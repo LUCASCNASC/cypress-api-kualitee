@@ -6,7 +6,7 @@ describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionsta
   function tcExecutionStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/tcexecutionstatus`,
+      url: `${BASE_URL}/Dashboard/TestCaseExecutions`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -127,7 +127,7 @@ describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionsta
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/tcexecutionstatus`,
+        url: `${BASE_URL}/Dashboard/TestCaseExecutions`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -141,7 +141,7 @@ describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionsta
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/tcexecutionstatus`,
+      url: `${BASE_URL}/Dashboard/TestCaseExecutions`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -6,7 +6,7 @@ describe('API - Dashboard Notification List - /dashboard/notification_list', () 
   function notificationList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/notification_list`,
+      url: `${BASE_URL}/Dashboard/Dropdownnotificationlist`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -93,7 +93,7 @@ describe('API - Dashboard Notification List - /dashboard/notification_list', () 
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/notification_list`,
+        url: `${BASE_URL}/Dashboard/Dropdownnotificationlist`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -107,7 +107,7 @@ describe('API - Dashboard Notification List - /dashboard/notification_list', () 
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/notification_list`,
+      url: `${BASE_URL}/Dashboard/Dropdownnotificationlist`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

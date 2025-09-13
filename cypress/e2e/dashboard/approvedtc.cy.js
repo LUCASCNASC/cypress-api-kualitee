@@ -6,7 +6,7 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
   function approvedTc(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/approvedtc`,
+      url: `${BASE_URL}/Dashboard/TestCaseApproved`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -129,7 +129,7 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/approvedtc`,
+        url: `${BASE_URL}/Dashboard/TestCaseApproved`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -143,7 +143,7 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/approvedtc`,
+      url: `${BASE_URL}/Dashboard/TestCaseApproved`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

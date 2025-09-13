@@ -7,7 +7,7 @@ describe('API - Users List - /users/list', () => {
   function listUsers(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/users/list`,
+      url: `${BASE_URL}/User/UsersLists`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Users List - /users/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/users/list`,
+        url: `${BASE_URL}/User/UsersLists`,
         failOnStatusCode: false,
       }).then((response) => {
         expect([405, 404, 400]).to.include(response.status);
@@ -108,7 +108,7 @@ describe('API - Users List - /users/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/users/list`,
+      url: `${BASE_URL}/User/UsersLists`,
       body: { token: validToken, user_status: 0 },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

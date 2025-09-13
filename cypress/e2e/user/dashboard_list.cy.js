@@ -5,7 +5,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
   function dashboardList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/users/dashboard_list`,
+      url: `${BASE_URL}/User/UsersListDashboard`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -78,7 +78,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/users/dashboard_list`,
+        url: `${BASE_URL}/User/UsersListDashboard`,
         failOnStatusCode: false,
       }).then(response => {
         expect([405, 404, 400]).to.include(response.status);
@@ -90,7 +90,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/users/dashboard_list`,
+      url: `${BASE_URL}/User/UsersListDashboard`,
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

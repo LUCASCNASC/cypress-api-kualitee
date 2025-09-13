@@ -6,7 +6,7 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
   function bugCloseStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/bugclosestatus`,
+      url: `${BASE_URL}/Dashboard/Defectsclosestatus`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -131,7 +131,7 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/bugclosestatus`,
+        url: `${BASE_URL}/Dashboard/Defectsclosestatus`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -145,7 +145,7 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/bugclosestatus`,
+      url: `${BASE_URL}/Dashboard/Defectsclosestatus`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

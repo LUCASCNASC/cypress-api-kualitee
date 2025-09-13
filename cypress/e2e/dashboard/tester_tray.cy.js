@@ -6,7 +6,7 @@ describe('API - Dashboard Tester Tray - /dashboard/tester_tray', () => {
   function testerTray(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/tester_tray`,
+      url: `${BASE_URL}/Dashboard/tester_tray`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -93,7 +93,7 @@ describe('API - Dashboard Tester Tray - /dashboard/tester_tray', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/tester_tray`,
+        url: `${BASE_URL}/Dashboard/tester_tray`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -107,7 +107,7 @@ describe('API - Dashboard Tester Tray - /dashboard/tester_tray', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/tester_tray`,
+      url: `${BASE_URL}/Dashboard/tester_tray`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

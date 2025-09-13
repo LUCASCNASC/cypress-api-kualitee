@@ -7,7 +7,7 @@ describe('API - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
   function dropdownDefect(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/dropdown_defect`,
+      url: `${BASE_URL}/Dashboard/DropdownDefects`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -105,7 +105,7 @@ describe('API - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/dropdown_defect`,
+        url: `${BASE_URL}/Dashboard/DropdownDefects`,
         form: true,
         body: { token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] },
         failOnStatusCode: false,
@@ -119,7 +119,7 @@ describe('API - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/dropdown_defect`,
+      url: `${BASE_URL}/Dashboard/DropdownDefects`,
       body: { token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -6,7 +6,7 @@ describe('API - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
   function dropdownList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/dropdown_list`,
+      url: `${BASE_URL}/Dashboard/DropdownList`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -93,7 +93,7 @@ describe('API - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/dashboard/dropdown_list`,
+        url: `${BASE_URL}/Dashboard/DropdownList`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -107,7 +107,7 @@ describe('API - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/dashboard/dropdown_list`,
+      url: `${BASE_URL}/Dashboard/DropdownList`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

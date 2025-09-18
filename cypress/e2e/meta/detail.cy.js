@@ -1,0 +1,145 @@
+// Testes automatizados para API: POST /metas/detail
+
+describe('API - Metas Detail - /metas/detail', () => {
+  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
+  const validToken = 'token_valido_aqui';
+  const validProjectId = 789;
+  const validId = 123;
+
+  function metasDetail(body, options = {}) {
+    return cy.request({
+      method: 'POST',
+      url: `${BASE_URL}/Meta/detail`,
+      form: true,
+      body,
+      failOnStatusCode: false,
+      ...options,
+    });
+  }
+
+  // --- POSITIVO ---
+  it('Retorna detalhes da meta com token, project_id e id válidos', () => {
+    metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
+      expect(response.status).to.eq(200);
+      expect(response.body).to.exist;
+      expect(response.headers['content-type']).to.include('application/json');
+    });
+  });
+
+  // --- NEGATIVO: Auth ---
+  it('Falha sem token', () => {
+    metasDetail({ project_id: validProjectId, id: validId }).then(response => {
+      expect([400, 401, 403]).to.include(response.status);
+    });
+  });
+
+  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
+    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
+      metasDetail({ token, project_id: validProjectId, id: validId }).then(response => {
+        expect([400, 401, 403]).to.include(response.status);
+      });
+    });
+  });
+
+  // --- project_id inválido, ausente, tipos errados, limites ---
+  it('Falha sem project_id', () => {
+    metasDetail({ token: validToken, id: validId }).then(response => {
+      expect([400, 422, 404]).to.include(response.status);
+    });
+  });
+
+  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
+    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
+      metasDetail({ token: validToken, project_id, id: validId }).then(response => {
+        expect([400, 422, 404]).to.include(response.status);
+      });
+    });
+  });
+
+  // --- id inválido, ausente, tipos errados, limites ---
+  it('Falha sem id', () => {
+    metasDetail({ token: validToken, project_id: validProjectId }).then(response => {
+      expect([400, 422, 404]).to.include(response.status);
+    });
+  });
+
+  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
+    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
+      metasDetail({ token: validToken, project_id: validProjectId, id }).then(response => {
+        expect([400, 422, 404]).to.include(response.status);
+      });
+    });
+  });
+
+  // --- Campos extras ---
+  it('Ignora campo extra no body', () => {
+    metasDetail({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
+      expect(response.status).to.eq(200);
+    });
+  });
+
+  // --- HTTP Method errado ---
+  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
+    it(`Falha com método HTTP ${method}`, () => {
+      cy.request({
+        method,
+        url: `${BASE_URL}/Meta/detail`,
+        form: true,
+        body: { token: validToken, project_id: validProjectId, id: validId },
+        failOnStatusCode: false,
+      }).then(response => {
+        expect([405, 404, 400]).to.include(response.status);
+      });
+    });
+  });
+
+  // --- Content-Type errado ---
+  it('Falha com Content-Type application/json', () => {
+    cy.request({
+      method: 'POST',
+      url: `${BASE_URL}/Meta/detail`,
+      body: { token: validToken, project_id: validProjectId, id: validId },
+      headers: { 'Content-Type': 'application/json' },
+      failOnStatusCode: false
+    }).then((response) => {
+      expect([400, 415]).to.include(response.status);
+    });
+  });
+
+  // --- Contrato: Não vazar informações sensíveis ---
+  it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+    metasDetail({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
+      const body = JSON.stringify(response.body);
+      expect(body).not.to.match(/exception|trace|sql|database/i);
+    });
+  });
+
+  // --- Headers ---
+  it('Headers devem conter CORS e content-type', () => {
+    metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
+      expect(response.headers).to.have.property('access-control-allow-origin');
+      expect(response.headers['content-type']).to.include('application/json');
+    });
+  });
+
+  // --- Rate limit (se aplicável) ---
+  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+    const requests = Array(10).fill(0).map(() =>
+      metasDetail({ token: validToken, project_id: validProjectId, id: validId })
+    );
+    cy.wrap(Promise.all(requests)).then((responses) => {
+      const rateLimited = responses.some(r => r.status === 429);
+      expect(rateLimited).to.be.true;
+    });
+  });
+
+  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  it('Permite requisições duplicadas rapidamente', () => {
+    metasDetail({ token: validToken, project_id: validProjectId, id: validId })
+      .then(() => metasDetail({ token: validToken, project_id: validProjectId, id: validId }))
+      .then((response) => {
+        expect([200, 400, 401, 409]).to.include(response.status);
+      });
+  });
+
+});

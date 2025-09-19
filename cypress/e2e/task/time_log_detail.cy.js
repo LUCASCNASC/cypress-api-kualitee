@@ -1,7 +1,6 @@
 // Testes automatizados para API: GET /task/time/log/detail
 
 describe('API - Task Time Log Detail - /task/time/log/detail', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validTaskId = 888;

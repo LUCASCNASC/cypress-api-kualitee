@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /roles/delete
 
 describe('API - Roles Delete - /roles/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validIdArray = [123];
   const validIdSingle = 123;

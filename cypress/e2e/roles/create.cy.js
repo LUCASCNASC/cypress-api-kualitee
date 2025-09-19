@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /roles/create
 
 describe('API - Roles Create - /roles/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validRoleName = 'Novo Papel';
   const validDescription = 'Descrição do papel';

@@ -1,5 +1,4 @@
 describe('API - Users Create - /users/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function createUser(body, options = {}) {

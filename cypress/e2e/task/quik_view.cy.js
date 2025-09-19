@@ -1,7 +1,6 @@
 // Testes automatizados para API: GET /task/quik/view
 
 describe('API - Task Quik View - /task/quik/view', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
 

@@ -1,5 +1,4 @@
 describe('API - Login - /auth/signin - Testes Avançados', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
 
   // Dados válidos (troque para o seu ambiente real)
   const validEmail = 'usuario@exemplo.com';

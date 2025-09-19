@@ -1,7 +1,6 @@
 // Testes automatizados para API: GET /roles/details
 
 describe('API - Roles Details - /roles/details', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validId = 123;
 

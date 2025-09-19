@@ -1,5 +1,4 @@
 describe('API - Users List - /users/list', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   // Token real obtido via login válido (substitua para seu ambiente)
   const validToken = 'token_valido_aqui';
 

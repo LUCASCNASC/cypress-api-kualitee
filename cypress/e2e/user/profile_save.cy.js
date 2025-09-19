@@ -1,5 +1,4 @@
 describe('API - Users Profile Save - /users/profile_save', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
 
   // Dados base válidos
   const validBody = {

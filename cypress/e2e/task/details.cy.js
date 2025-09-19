@@ -1,7 +1,7 @@
 // Testes automatizados para API: GET /task/details
 
 describe('API - Task Details - /task/details', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
+  
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validId = 888;

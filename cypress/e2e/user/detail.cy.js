@@ -1,6 +1,4 @@
 describe('API - User Detail - /users/detail', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
-  const validToken = 'token_valido_aqui';
 
   // Ajuste para um user_id válido de seu ambiente
   const validUserId = 101;

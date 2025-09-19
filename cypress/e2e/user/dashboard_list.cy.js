@@ -1,5 +1,4 @@
 describe('API - Users List Dashboard - /users/dashboard_list', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function dashboardList(body, options = {}) {

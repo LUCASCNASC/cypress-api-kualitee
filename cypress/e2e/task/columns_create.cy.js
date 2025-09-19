@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /task/columns/create
 
 describe('API - Task Columns Create - /task/columns/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validColumnName = 'Nova Coluna';

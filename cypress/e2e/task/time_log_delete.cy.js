@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /task/time/log/delete
 
 describe('API - Task Time Log Delete - /task/time/log/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validId = 1000;

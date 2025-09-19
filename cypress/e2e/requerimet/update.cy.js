@@ -2,7 +2,7 @@
 // Baseado no padrão de testes do projeto (vide list.cy.js)
 
 describe('API - Requirements Update - /requirements/update', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
+  
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validRequirementId = 123; // Substitua por um id de requisito válido

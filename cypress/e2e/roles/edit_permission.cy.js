@@ -1,7 +1,7 @@
 // Testes automatizados para API: GET /roles/edit/permission
 
 describe('API - Roles Edit Permission - /roles/edit/permission', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
+  
   const validToken = 'token_valido_aqui';
   const validId = 123;
 

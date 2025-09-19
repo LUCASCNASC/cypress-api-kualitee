@@ -1,5 +1,4 @@
 describe('API - Update Password - /update_password', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
 
   // Dados base válidos (ajuste para valores válidos em seu ambiente, se necessário)
   const validBody = {

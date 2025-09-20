@@ -1,5 +1,4 @@
 describe('API - Archived Projects - /project/archived_projects', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function archivedProjects(body, options = {}) {

@@ -1,5 +1,4 @@
 describe('API - Dashboard Defect by Status - /dashboard/defect_by_status', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 

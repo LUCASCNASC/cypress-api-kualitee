@@ -2,7 +2,6 @@
 // Padrão completo conforme exemplos anteriores, cobrindo todos os cenários possíveis, inclusive exportação e busca avançada.
 
 describe('API - Report Test Case Execution - /report/test_case_execution', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
 

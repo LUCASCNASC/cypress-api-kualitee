@@ -2,7 +2,6 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validBuildId = 10;

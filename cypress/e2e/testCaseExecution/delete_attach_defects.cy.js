@@ -2,7 +2,6 @@
 // Segue o padrão completo do exemplo fornecido, cobrindo todos os cenários.
 
 describe('API - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validTcId = 101;

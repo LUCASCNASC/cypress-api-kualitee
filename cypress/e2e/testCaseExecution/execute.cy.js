@@ -2,7 +2,6 @@
 // Padrão baseado no exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários possíveis.
 
 describe('API - Test Case Execution Execute - /test_case_execution/execute', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validStatus = 'Passed';

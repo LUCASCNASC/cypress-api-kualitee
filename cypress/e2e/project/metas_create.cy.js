@@ -1,5 +1,4 @@
 describe('API - Project Metas Create - /project/metas/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validMetaKey = 'meta_key_exemplo';
   const validMetaValue = 'meta_value_exemplo';

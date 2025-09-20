@@ -2,7 +2,6 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Defects Tree - /defects/tree', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
 

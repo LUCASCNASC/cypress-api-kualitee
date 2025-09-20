@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /metas/delete
 
 describe('API - Metas Delete - /metas/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 789;
   const validIds = [123, 456];

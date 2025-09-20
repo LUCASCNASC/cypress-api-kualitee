@@ -2,7 +2,6 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Defects Import Step 1 - /defects/import/step1', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validCsvFile = 'cypress/fixtures/defects_import.csv';

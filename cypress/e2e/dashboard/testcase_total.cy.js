@@ -1,5 +1,4 @@
 describe('API - Dashboard Test Case Total - /dashboard/testcase/total', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 11;   // Substitua por um ID válido do seu ambiente
   const validModuleId = 22;    // Substitua por um ID válido do seu ambiente

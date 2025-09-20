@@ -2,7 +2,6 @@
 // Segue o padrão dos testes Cypress do projeto
 
 describe('API - Duplicate Test Case - /test_case/duplicate', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validTestCaseName = 'TC001'; // Substitua por um nome de caso de teste válido do seu ambiente

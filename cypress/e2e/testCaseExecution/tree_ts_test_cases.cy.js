@@ -2,7 +2,6 @@
 // Segue o padrão completo do exemplo fornecido, cobrindo todos os cenários possíveis.
 
 describe('API - Test Case Execution Tree Test Scenario Test Cases - /test_case_execution/tree_ts_test_cases', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validCycleId = 1001;

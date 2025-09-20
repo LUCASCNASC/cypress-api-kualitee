@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /customfields/delete
 
 describe('API - Custom Fields Delete - /customfields/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 789;
   const validCustomFieldId = 123;

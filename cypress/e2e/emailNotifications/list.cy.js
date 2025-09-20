@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /emailnotification/list
 
 describe('API - Email Notification List - /emailnotification/list', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function emailNotificationList(body, options = {}) {

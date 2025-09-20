@@ -2,7 +2,6 @@
 // Segue o padrão completo do exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários.
 
 describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validTcId = 101;

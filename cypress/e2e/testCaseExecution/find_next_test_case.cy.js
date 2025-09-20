@@ -2,7 +2,6 @@
 // Padrão completo conforme exemplo aprovado, cobrindo todos os cenários possíveis.
 
 describe('API - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validTcId = 101;

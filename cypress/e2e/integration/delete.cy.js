@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /integration/save
 
 describe('API - Integration Save - /integration/save', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validPluginName = 'JIRA';
   const validUsername = 'usuario_teste';

@@ -1,5 +1,4 @@
 describe('API - Module Delete - /module/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validModuleId = 22; // Substitua por um id de módulo válido do seu ambiente

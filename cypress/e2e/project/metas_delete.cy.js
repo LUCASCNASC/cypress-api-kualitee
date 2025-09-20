@@ -1,5 +1,4 @@
 describe('API - Project Metas Delete - /project/metas/delete', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validMetaId = 123; // Substitua por um id de meta válido do seu ambiente
 

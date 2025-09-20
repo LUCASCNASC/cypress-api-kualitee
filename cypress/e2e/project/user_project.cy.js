@@ -1,5 +1,4 @@
 describe('API - Users Project List - /project/user_project', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function userProject(queryParams, options = {}) {

@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /customfields/list
 
 describe('API - Custom Fields List - /customfields/list', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
 
   function customfieldsList(body, options = {}) {

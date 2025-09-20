@@ -1,5 +1,4 @@
 describe('API - Project Status - /project/project_status', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectStatus = 'ativo'; // ajuste conforme status aceito pela API
   const validProjectId0 = 77; // ajuste para o ID válido

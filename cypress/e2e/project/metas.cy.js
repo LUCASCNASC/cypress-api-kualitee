@@ -1,5 +1,4 @@
 describe('API - Project Metas - /project/metas', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validMetaType = 'exemplo'; // Substitua pela string válida para meta_type
 

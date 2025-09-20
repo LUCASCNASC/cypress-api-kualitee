@@ -2,7 +2,6 @@
 // Segue o padrão dos testes Cypress do projeto
 
 describe('API - Import Step One - /test_scenario/import/step1', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validCsvFilePath = 'cypress/fixtures/test_scenarios_import.csv'; // Caminho para um CSV válido no seu projeto

@@ -2,7 +2,6 @@
 // Segue o padrão dos testes Cypress do projeto
 
 describe('API - Test Case Create - /test_case/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 12;   // Substitua por um build_id válido do seu ambiente

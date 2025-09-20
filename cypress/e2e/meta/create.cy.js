@@ -1,7 +1,6 @@
 // Testes automatizados para API: POST /metas/create
 
 describe('API - Metas Create - /metas/create', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validProjectId = 789;
   const validMetaKey = 'browser';

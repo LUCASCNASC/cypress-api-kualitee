@@ -1,7 +1,6 @@
 // Testes automatizados para API: GET /customfields/detail
 
 describe('API - Custom Fields Detail - /customfields/detail', () => {
-  const BASE_URL = 'https://apiss.kualitee.com/api/v2';
   const validToken = 'token_valido_aqui';
   const validId = 123;
 

@@ -6,7 +6,7 @@ describe('API - Build Details - /build/details', () => {
   function buildDetails(queryParams, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Build/BuildDetails`,
+      url: '/Build/BuildDetails',
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -100,7 +100,7 @@ describe('API - Build Details - /build/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Build/BuildDetails`,
+        url: '/Build/BuildDetails',
         qs: { token: validToken, project_id: validProjectId, build_id: validBuildId },
         failOnStatusCode: false,
       }).then(response => {
@@ -113,7 +113,7 @@ describe('API - Build Details - /build/details', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Build/BuildDetails`,
+      url: '/Build/BuildDetails',
       qs: { token: validToken, project_id: validProjectId, build_id: validBuildId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -11,7 +11,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   function bulkUpdateDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Bulkupdate`,
+      url: '/Defect/Bulkupdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -146,7 +146,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Defect/Bulkupdate`,
+        url: '/Defect/Bulkupdate',
         form: true,
         body: {
           token: validToken,
@@ -164,7 +164,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Bulkupdate`,
+      url: '/Defect/Bulkupdate',
       body: {
         token: validToken,
         project_id: validProjectId,

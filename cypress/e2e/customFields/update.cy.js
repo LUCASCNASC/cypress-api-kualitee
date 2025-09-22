@@ -12,7 +12,7 @@ describe('API - Custom Fields Update - /customfields/update', () => {
   function customfieldsUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Custom%20Fields/Update`,
+      url: '/Custom%20Fields/Update',
       form: true,
       body,
       failOnStatusCode: false,
@@ -231,7 +231,7 @@ describe('API - Custom Fields Update - /customfields/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Custom%20Fields/Update`,
+        url: '/Custom%20Fields/Update',
         form: true,
         body: {
           token: validToken,
@@ -251,7 +251,7 @@ describe('API - Custom Fields Update - /customfields/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Custom%20Fields/Update`,
+      url: '/Custom%20Fields/Update',
       body: {
         token: validToken,
         custom_field_id: validCustomFieldId,

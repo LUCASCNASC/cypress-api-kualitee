@@ -33,7 +33,7 @@ describe('API - Defects Create - /defects/create', () => {
     if (Object.keys(fileFields).length) {
       return cy.form_request(
         'POST',
-        `${BASE_URL}/Defect/Create`,
+        '/Defect/Create',
         body,
         Object.entries(fileFields).map(([name, filePath]) => ({
           name,
@@ -47,7 +47,7 @@ describe('API - Defects Create - /defects/create', () => {
     }
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Create`,
+      url: '/Defect/Create',
       form: true,
       body,
       failOnStatusCode: false,
@@ -194,7 +194,7 @@ describe('API - Defects Create - /defects/create', () => {
     cy.fixture('defect_image.png', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Defect/Create`,
+        '/Defect/Create',
         {
           token: validToken,
           project_id: validProjectId,
@@ -229,7 +229,7 @@ describe('API - Defects Create - /defects/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Defect/Create`,
+        url: '/Defect/Create',
         form: true,
         body: {
           token: validToken,
@@ -247,7 +247,7 @@ describe('API - Defects Create - /defects/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Create`,
+      url: '/Defect/Create',
       body: {
         token: validToken,
         project_id: validProjectId,

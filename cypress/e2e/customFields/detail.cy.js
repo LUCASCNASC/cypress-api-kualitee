@@ -7,7 +7,7 @@ describe('API - Custom Fields Detail - /customfields/detail', () => {
   function customfieldsDetail(query, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Custom%20Fields/detail`,
+      url: '/Custom%20Fields/detail',
       qs: query,
       failOnStatusCode: false,
       ...options,
@@ -65,7 +65,7 @@ describe('API - Custom Fields Detail - /customfields/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Custom%20Fields/detail`,
+        url: '/Custom%20Fields/detail',
         qs: { token: validToken, id: validId },
         failOnStatusCode: false,
       }).then(response => {

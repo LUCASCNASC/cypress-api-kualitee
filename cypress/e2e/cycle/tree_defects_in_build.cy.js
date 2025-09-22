@@ -9,7 +9,7 @@ describe('API - Defects Tree Defects In Build - /defects/tree_defects_in_build',
   function treeDefectsInBuild(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Treedefectsinbuild`,
+      url: '/Defect/Treedefectsinbuild',
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +109,7 @@ describe('API - Defects Tree Defects In Build - /defects/tree_defects_in_build',
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Defect/Treedefectsinbuild`,
+        url: '/Defect/Treedefectsinbuild',
         form: true,
         body: {
           token: validToken,
@@ -127,7 +127,7 @@ describe('API - Defects Tree Defects In Build - /defects/tree_defects_in_build',
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Treedefectsinbuild`,
+      url: '/Defect/Treedefectsinbuild',
       body: {
         token: validToken,
         project_id: validProjectId,

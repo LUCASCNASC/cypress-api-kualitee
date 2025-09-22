@@ -8,7 +8,7 @@ describe('API - Defects Defect Metas - /defects/defect_metas', () => {
   function defectMetas(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Defectmetas`,
+      url: '/Defect/Defectmetas',
       form: true,
       body,
       failOnStatusCode: false,
@@ -85,7 +85,7 @@ describe('API - Defects Defect Metas - /defects/defect_metas', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Defect/Defectmetas`,
+        url: '/Defect/Defectmetas',
         form: true,
         body: {
           token: validToken,
@@ -102,7 +102,7 @@ describe('API - Defects Defect Metas - /defects/defect_metas', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Defectmetas`,
+      url: '/Defect/Defectmetas',
       body: {
         token: validToken,
         project_id: validProjectId

@@ -6,7 +6,7 @@ describe('API - Builds Delete - /build/delete', () => {
   function buildDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Build/BuildsDelete`,
+      url: '/Build/BuildsDelete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -147,7 +147,7 @@ describe('API - Builds Delete - /build/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Build/BuildsDelete`,
+        url: '/Build/BuildsDelete',
         form: true,
         body: {
           token: validToken,
@@ -165,7 +165,7 @@ describe('API - Builds Delete - /build/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Build/BuildsDelete`,
+      url: '/Build/BuildsDelete',
       body: {
         token: validToken,
         project_id: validProjectId,

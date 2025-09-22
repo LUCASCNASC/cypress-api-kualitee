@@ -5,5 +5,8 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    env: {
+      BASE_URL: process.env.BASE_URL
+    }
   },
 });

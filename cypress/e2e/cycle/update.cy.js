@@ -34,7 +34,7 @@ describe('API - Defects Update - /defects/update', () => {
     if (Object.keys(fileFields).length) {
       return cy.form_request(
         'POST',
-        `${BASE_URL}/Defect/Update`,
+        '/Defect/Update',
         body,
         Object.entries(fileFields).map(([name, filePath]) => ({
           name,
@@ -48,7 +48,7 @@ describe('API - Defects Update - /defects/update', () => {
     }
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Update`,
+      url: '/Defect/Update',
       form: true,
       body,
       failOnStatusCode: false,
@@ -211,7 +211,7 @@ describe('API - Defects Update - /defects/update', () => {
     cy.fixture('defect_image.png', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Defect/Update`,
+        '/Defect/Update',
         {
           token: validToken,
           project_id: validProjectId,
@@ -248,7 +248,7 @@ describe('API - Defects Update - /defects/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Defect/Update`,
+        url: '/Defect/Update',
         form: true,
         body: {
           token: validToken,
@@ -267,7 +267,7 @@ describe('API - Defects Update - /defects/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Defect/Update`,
+      url: '/Defect/Update',
       body: {
         token: validToken,
         project_id: validProjectId,

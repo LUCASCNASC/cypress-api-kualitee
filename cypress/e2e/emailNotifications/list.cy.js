@@ -6,7 +6,7 @@ describe('API - Email Notification List - /emailnotification/list', () => {
   function emailNotificationList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Email%20Notifications/List`,
+      url: '/Email%20Notifications/List',
       form: true,
       body,
       failOnStatusCode: false,
@@ -50,7 +50,7 @@ describe('API - Email Notification List - /emailnotification/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Email%20Notifications/List`,
+        url: '/Email%20Notifications/List',
         form: true,
         body: { token: validToken },
         failOnStatusCode: false,
@@ -64,7 +64,7 @@ describe('API - Email Notification List - /emailnotification/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Email%20Notifications/List`,
+      url: '/Email%20Notifications/List',
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

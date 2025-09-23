@@ -5,7 +5,7 @@ describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
   function dashboardHeatmap(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Heatmap`,
+      url: '/Dashboard/Heatmap',
       form: true,
       body,
       failOnStatusCode: false,
@@ -92,7 +92,7 @@ describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/Heatmap`,
+        url: '/Dashboard/Heatmap',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -106,7 +106,7 @@ describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Heatmap`,
+      url: '/Dashboard/Heatmap',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

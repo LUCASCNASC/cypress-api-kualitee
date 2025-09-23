@@ -11,7 +11,7 @@ describe('API - Integration Save - /integration/save', () => {
   function integrationSave(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Integration/save`,
+      url: '/Integration/save',
       form: true,
       body,
       failOnStatusCode: false,
@@ -223,7 +223,7 @@ describe('API - Integration Save - /integration/save', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Integration/save`,
+        url: '/Integration/save',
         form: true,
         body: {
           token: validToken,
@@ -244,7 +244,7 @@ describe('API - Integration Save - /integration/save', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Integration/save`,
+      url: '/Integration/save',
       body: {
         token: validToken,
         plugin_name: validPluginName,

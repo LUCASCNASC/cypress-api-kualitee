@@ -5,7 +5,7 @@ describe('API - Dashboard Cycle - /dashboard/cycle', () => {
   function dashboardCycle(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Cycle`,
+      url: '/Dashboard/Cycle',
       form: true,
       body,
       failOnStatusCode: false,
@@ -126,7 +126,7 @@ describe('API - Dashboard Cycle - /dashboard/cycle', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/Cycle`,
+        url: '/Dashboard/Cycle',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -140,7 +140,7 @@ describe('API - Dashboard Cycle - /dashboard/cycle', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Cycle`,
+      url: '/Dashboard/Cycle',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

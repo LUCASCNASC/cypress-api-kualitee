@@ -5,7 +5,7 @@ describe('API - Dashboard Defect Statistics - /dashboard/defect_statistics', () 
   function defectStatistics(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/DefectsStatistics`,
+      url: '/Dashboard/DefectsStatistics',
       form: true,
       body,
       failOnStatusCode: false,
@@ -132,7 +132,7 @@ describe('API - Dashboard Defect Statistics - /dashboard/defect_statistics', () 
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/DefectsStatistics`,
+        url: '/Dashboard/DefectsStatistics',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -146,7 +146,7 @@ describe('API - Dashboard Defect Statistics - /dashboard/defect_statistics', () 
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/DefectsStatistics`,
+      url: '/Dashboard/DefectsStatistics',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

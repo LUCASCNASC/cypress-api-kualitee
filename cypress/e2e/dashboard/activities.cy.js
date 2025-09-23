@@ -6,7 +6,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
   function dashboardActivities(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Activities`,
+      url: '/Dashboard/Activities',
       form: true,
       body,
       failOnStatusCode: false,
@@ -124,7 +124,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/Activities`,
+        url: '/Dashboard/Activities',
         form: true,
         body: { token: validToken, project_id: validProjectId, show: 'all' },
         failOnStatusCode: false,
@@ -138,7 +138,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Activities`,
+      url: '/Dashboard/Activities',
       body: { token: validToken, project_id: validProjectId, show: 'all' },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

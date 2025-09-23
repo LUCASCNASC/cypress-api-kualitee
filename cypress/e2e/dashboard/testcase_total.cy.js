@@ -17,7 +17,7 @@ describe('API - Dashboard Test Case Total - /dashboard/testcase/total', () => {
   function testcaseTotal(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/TestCaseTotal`,
+      url: '/Dashboard/TestCaseTotal',
       form: true,
       body,
       failOnStatusCode: false,
@@ -150,7 +150,7 @@ describe('API - Dashboard Test Case Total - /dashboard/testcase/total', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/TestCaseTotal`,
+        url: '/Dashboard/TestCaseTotal',
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -164,7 +164,7 @@ describe('API - Dashboard Test Case Total - /dashboard/testcase/total', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/TestCaseTotal`,
+      url: '/Dashboard/TestCaseTotal',
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

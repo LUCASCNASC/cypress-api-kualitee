@@ -14,7 +14,7 @@ describe('API - Dashboard Test Scenario Total - /dashboard/testscenario/total', 
   function scenarioTotal(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/TestScenarioTotal`,
+      url: '/Dashboard/TestScenarioTotal',
       form: true,
       body,
       failOnStatusCode: false,
@@ -144,7 +144,7 @@ describe('API - Dashboard Test Scenario Total - /dashboard/testscenario/total', 
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/TestScenarioTotal`,
+        url: '/Dashboard/TestScenarioTotal',
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -158,7 +158,7 @@ describe('API - Dashboard Test Scenario Total - /dashboard/testscenario/total', 
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/TestScenarioTotal`,
+      url: '/Dashboard/TestScenarioTotal',
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -5,7 +5,7 @@ describe('API - Dashboard Notification Count - /dashboard/notification_count', (
   function notificationCount(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Notificationcount`,
+      url: '/Dashboard/Notificationcount',
       form: true,
       body,
       failOnStatusCode: false,
@@ -92,7 +92,7 @@ describe('API - Dashboard Notification Count - /dashboard/notification_count', (
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/Notificationcount`,
+        url: '/Dashboard/Notificationcount',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -106,7 +106,7 @@ describe('API - Dashboard Notification Count - /dashboard/notification_count', (
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/Notificationcount`,
+      url: '/Dashboard/Notificationcount',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

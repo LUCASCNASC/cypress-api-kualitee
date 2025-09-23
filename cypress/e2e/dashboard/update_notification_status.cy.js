@@ -6,7 +6,7 @@ describe('API - Dashboard Update Notification Status - /dashboard/update_notific
   function updateNotificationStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/UpdateNotificationstatus`,
+      url: '/Dashboard/UpdateNotificationstatus',
       form: true,
       body,
       failOnStatusCode: false,
@@ -104,7 +104,7 @@ describe('API - Dashboard Update Notification Status - /dashboard/update_notific
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Dashboard/UpdateNotificationstatus`,
+        url: '/Dashboard/UpdateNotificationstatus',
         form: true,
         body: { token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] },
         failOnStatusCode: false,
@@ -118,7 +118,7 @@ describe('API - Dashboard Update Notification Status - /dashboard/update_notific
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Dashboard/UpdateNotificationstatus`,
+      url: '/Dashboard/UpdateNotificationstatus',
       body: { token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

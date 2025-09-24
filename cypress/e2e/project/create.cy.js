@@ -15,7 +15,7 @@ describe('API - Project Create - /project/create', () => {
   function projectCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectCreate`,
+      url: '/Project/ProjectCreate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -112,7 +112,7 @@ describe('API - Project Create - /project/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectCreate`,
+        url: '/Project/ProjectCreate',
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -126,7 +126,7 @@ describe('API - Project Create - /project/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectCreate`,
+      url: '/Project/ProjectCreate',
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -5,7 +5,7 @@ describe('API - Project Integrations - /project/integrations', () => {
   function projectIntegrations(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectIntegrations`,
+      url: '/Project/ProjectIntegrations',
       form: true,
       body,
       failOnStatusCode: false,
@@ -80,7 +80,7 @@ describe('API - Project Integrations - /project/integrations', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectIntegrations`,
+        url: '/Project/ProjectIntegrations',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -94,7 +94,7 @@ describe('API - Project Integrations - /project/integrations', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectIntegrations`,
+      url: '/Project/ProjectIntegrations',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

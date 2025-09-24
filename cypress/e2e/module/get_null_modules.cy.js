@@ -7,7 +7,7 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
   function getNullModules(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/GetNullModules`,
+      url: '/Module/GetNullModules',
       form: true,
       body,
       failOnStatusCode: false,
@@ -147,7 +147,7 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Module/GetNullModules`,
+        url: '/Module/GetNullModules',
         form: true,
         body: {
           token: validToken,
@@ -166,7 +166,7 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/GetNullModules`,
+      url: '/Module/GetNullModules',
       body: {
         token: validToken,
         project_id: validProjectId,

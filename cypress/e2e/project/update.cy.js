@@ -16,7 +16,7 @@ describe('API - Project Update - /project/update', () => {
   function projectUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectUpdate`,
+      url: '/Project/ProjectUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -122,7 +122,7 @@ describe('API - Project Update - /project/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectUpdate`,
+        url: '/Project/ProjectUpdate',
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -136,7 +136,7 @@ describe('API - Project Update - /project/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectUpdate`,
+      url: '/Project/ProjectUpdate',
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

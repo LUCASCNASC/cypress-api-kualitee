@@ -9,7 +9,7 @@ describe('API - Requirements Get Testcases List - /requirements/get_testcases_li
   function getTestcasesList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/get_testcases_list`,
+      url: '/Requirement/get_testcases_list',
       form: true,
       body,
       failOnStatusCode: false,
@@ -88,7 +88,7 @@ describe('API - Requirements Get Testcases List - /requirements/get_testcases_li
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/get_testcases_list`,
+        url: '/Requirement/get_testcases_list',
         form: true,
         body: {
           token: validToken,
@@ -105,7 +105,7 @@ describe('API - Requirements Get Testcases List - /requirements/get_testcases_li
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/get_testcases_list`,
+      url: '/Requirement/get_testcases_list',
       body: {
         token: validToken,
         project_id: validProjectId

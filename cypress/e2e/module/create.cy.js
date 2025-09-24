@@ -8,7 +8,7 @@ describe('API - Module Create - /module/create', () => {
   function moduleCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/ModuleCreate`,
+      url: '/Module/ModuleCreate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -162,7 +162,7 @@ describe('API - Module Create - /module/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Module/ModuleCreate`,
+        url: '/Module/ModuleCreate',
         form: true,
         body: {
           token: validToken,
@@ -182,7 +182,7 @@ describe('API - Module Create - /module/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/ModuleCreate`,
+      url: '/Module/ModuleCreate',
       body: {
         token: validToken,
         project_id: validProjectId,

@@ -6,7 +6,7 @@ describe('API - Project Team Assigned - /team/create', () => {
   function teamCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectTeamAssigned`,
+      url: '/Project/ProjectTeamAssigned',
       form: true,
       body,
       failOnStatusCode: false,
@@ -140,7 +140,7 @@ describe('API - Project Team Assigned - /team/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectTeamAssigned`,
+        url: '/Project/ProjectTeamAssigned',
         form: true,
         body: {
           token: validToken,
@@ -161,7 +161,7 @@ describe('API - Project Team Assigned - /team/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectTeamAssigned`,
+      url: '/Project/ProjectTeamAssigned',
       body: {
         token: validToken,
         project_id: validProjectId,

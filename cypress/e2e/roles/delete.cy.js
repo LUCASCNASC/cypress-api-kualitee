@@ -8,7 +8,7 @@ describe('API - Roles Delete - /roles/delete', () => {
   function rolesDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Delete`,
+      url: '/Roles/Delete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -74,7 +74,7 @@ describe('API - Roles Delete - /roles/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Roles/Delete`,
+        url: '/Roles/Delete',
         form: true,
         body: { token: validToken, 'id[0]': validIdSingle },
         failOnStatusCode: false,
@@ -88,7 +88,7 @@ describe('API - Roles Delete - /roles/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Delete`,
+      url: '/Roles/Delete',
       body: { token: validToken, 'id[0]': validIdSingle },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

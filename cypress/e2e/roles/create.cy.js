@@ -9,7 +9,7 @@ describe('API - Roles Create - /roles/create', () => {
   function rolesCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Create`,
+      url: '/Roles/Create',
       form: true,
       body,
       failOnStatusCode: false,
@@ -103,7 +103,7 @@ describe('API - Roles Create - /roles/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Roles/Create`,
+        url: '/Roles/Create',
         form: true,
         body: { token: validToken, role_name: validRoleName, description: validDescription },
         failOnStatusCode: false,
@@ -117,7 +117,7 @@ describe('API - Roles Create - /roles/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Create`,
+      url: '/Roles/Create',
       body: { token: validToken, role_name: validRoleName, description: validDescription },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -9,7 +9,7 @@ describe('API - Metas Create - /metas/create', () => {
   function metasCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/Create`,
+      url: '/Meta/Create',
       form: true,
       body,
       failOnStatusCode: false,
@@ -98,7 +98,7 @@ describe('API - Metas Create - /metas/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Meta/Create`,
+        url: '/Meta/Create',
         form: true,
         body: { token: validToken, project_id: validProjectId, meta_value: validMetaValue },
         failOnStatusCode: false,
@@ -112,7 +112,7 @@ describe('API - Metas Create - /metas/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/Create`,
+      url: '/Meta/Create',
       body: { token: validToken, project_id: validProjectId, meta_value: validMetaValue },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -8,7 +8,7 @@ describe('API - Metas Detail - /metas/detail', () => {
   function metasDetail(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/detail`,
+      url: '/Meta/detail',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Metas Detail - /metas/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Meta/detail`,
+        url: '/Meta/detail',
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Metas Detail - /metas/detail', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/detail`,
+      url: '/Meta/detail',
       body: { token: validToken, project_id: validProjectId, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

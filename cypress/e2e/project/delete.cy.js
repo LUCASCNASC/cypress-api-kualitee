@@ -5,7 +5,7 @@ describe('API - Project Delete - /project/delete', () => {
   function projectDelete(queryParams, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectDelete`,
+      url: '/Project/ProjectDelete',
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -79,7 +79,7 @@ describe('API - Project Delete - /project/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectDelete`,
+        url: '/Project/ProjectDelete',
         qs: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
       }).then(response => {
@@ -92,7 +92,7 @@ describe('API - Project Delete - /project/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectDelete`,
+      url: '/Project/ProjectDelete',
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

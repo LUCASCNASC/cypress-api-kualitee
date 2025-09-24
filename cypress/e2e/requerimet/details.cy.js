@@ -11,7 +11,7 @@ describe('API - Requirements Details - /requirements/details', () => {
   function getRequirementDetails(query, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Requirement/requirements%2Fdetail`,
+      url: '/Requirement/requirements%2Fdetail',
       qs: query,
       failOnStatusCode: false,
       ...options,
@@ -108,7 +108,7 @@ describe('API - Requirements Details - /requirements/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/requirements%2Fdetail`,
+        url: '/Requirement/requirements%2Fdetail',
         qs: {
           token: validToken,
           project_id: validProjectId,
@@ -125,7 +125,7 @@ describe('API - Requirements Details - /requirements/details', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Requirement/requirements%2Fdetail`,
+      url: '/Requirement/requirements%2Fdetail',
       qs: {
         token: validToken,
         project_id: validProjectId,

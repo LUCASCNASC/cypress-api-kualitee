@@ -4,7 +4,7 @@ describe('API - List Copy - /project/project_list', () => {
   function projectList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ListCopy`,
+      url: '/Project/ListCopy',
       headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
       body,
       failOnStatusCode: false,
@@ -65,7 +65,7 @@ describe('API - List Copy - /project/project_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ListCopy`,
+        url: '/Project/ListCopy',
         headers: { 'Content-Type': 'application/json' },
         body: { token: validToken },
         failOnStatusCode: false,

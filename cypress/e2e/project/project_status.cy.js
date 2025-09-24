@@ -7,7 +7,7 @@ describe('API - Project Status - /project/project_status', () => {
   function projectStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectStatus`,
+      url: '/Project/ProjectStatus',
       headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
       body,
       failOnStatusCode: false,
@@ -143,7 +143,7 @@ describe('API - Project Status - /project/project_status', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectStatus`,
+        url: '/Project/ProjectStatus',
         headers: { 'Content-Type': 'application/json' },
         body: {
           token: validToken,

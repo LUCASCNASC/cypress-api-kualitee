@@ -7,7 +7,7 @@ describe('API - Roles Details - /roles/details', () => {
   function rolesDetails(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Roles/details`,
+      url: '/Roles/details',
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -65,7 +65,7 @@ describe('API - Roles Details - /roles/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Roles/details`,
+        url: '/Roles/details',
         qs: { token: validToken, id: validId },
         failOnStatusCode: false,
       }).then(response => {
@@ -78,7 +78,7 @@ describe('API - Roles Details - /roles/details', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Roles/details`,
+      url: '/Roles/details',
       qs: { token: validToken, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

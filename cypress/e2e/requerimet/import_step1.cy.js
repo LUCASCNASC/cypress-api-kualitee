@@ -10,7 +10,7 @@ describe('API - Requirements Import Step 1 - /requirements/import/step1', () => 
   function importStep1(formData, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/importstepone`,
+      url: '/Requirement/importstepone',
       form: true,
       body: formData,
       failOnStatusCode: false,
@@ -154,7 +154,7 @@ describe('API - Requirements Import Step 1 - /requirements/import/step1', () => 
         const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
         cy.request({
           method,
-          url: `${BASE_URL}/Requirement/importstepone`,
+          url: '/Requirement/importstepone',
           form: true,
           body: {
             token: validToken,
@@ -175,7 +175,7 @@ describe('API - Requirements Import Step 1 - /requirements/import/step1', () => 
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/Requirement/importstepone`,
+        url: '/Requirement/importstepone',
         body: {
           token: validToken,
           project_id: validProjectId,

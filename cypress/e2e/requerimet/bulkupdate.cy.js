@@ -11,7 +11,7 @@ describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
   function bulkUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/BulkUpdate`,
+      url: '/Requirement/BulkUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -135,7 +135,7 @@ describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/BulkUpdate`,
+        url: '/Requirement/BulkUpdate',
         form: true,
         body: {
           token: validToken,
@@ -155,7 +155,7 @@ describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/BulkUpdate`,
+      url:'/Requirement/BulkUpdate',
       body: {
         token: validToken,
         project_id: validProjectId,

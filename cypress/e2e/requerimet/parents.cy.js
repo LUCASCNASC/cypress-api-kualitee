@@ -9,7 +9,7 @@ describe('API - Requirements Parents - /requirements/parents', () => {
   function requirementsParents(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/parents`,
+      url: '/Requirement/parents',
       form: true,
       body,
       failOnStatusCode: false,
@@ -88,7 +88,7 @@ describe('API - Requirements Parents - /requirements/parents', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/parents`,
+        url: '/Requirement/parents',
         form: true,
         body: {
           token: validToken,
@@ -105,7 +105,7 @@ describe('API - Requirements Parents - /requirements/parents', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/parents`,
+      url: '/Requirement/parents',
       body: {
         token: validToken,
         project_id: validProjectId

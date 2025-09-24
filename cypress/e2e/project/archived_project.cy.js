@@ -4,7 +4,7 @@ describe('API - Archived Projects - /project/archived_projects', () => {
   function archivedProjects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ArchivedProjects`,
+      url: '/Project/ArchivedProjects',
       form: true,
       body,
       failOnStatusCode: false,
@@ -70,7 +70,7 @@ describe('API - Archived Projects - /project/archived_projects', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ArchivedProjects`,
+        url: '/Project/ArchivedProjects',
         form: true,
         body: { token: validToken },
         failOnStatusCode: false,
@@ -84,7 +84,7 @@ describe('API - Archived Projects - /project/archived_projects', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ArchivedProjects`,
+      url: '/Project/ArchivedProjects',
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

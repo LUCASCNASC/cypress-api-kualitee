@@ -7,7 +7,7 @@ describe('API - Project Metas Update - /project/metas/update', () => {
   function metasUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectMetasUpdate`,
+      url: '/Project/ProjectMetasUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -149,7 +149,7 @@ describe('API - Project Metas Update - /project/metas/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectMetasUpdate`,
+        url: '/Project/ProjectMetasUpdate',
         form: true,
         body: {
           token: validToken,
@@ -168,7 +168,7 @@ describe('API - Project Metas Update - /project/metas/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectMetasUpdate`,
+      url: '/Project/ProjectMetasUpdate',
       body: {
         token: validToken,
         meta_key: validMetaKey,

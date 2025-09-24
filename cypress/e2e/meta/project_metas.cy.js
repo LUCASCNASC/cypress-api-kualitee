@@ -7,7 +7,7 @@ describe('API - Metas Project Metas - /metas/project_metas', () => {
   function metasProjectMetas(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/Metalist`,
+      url: '/Meta/Metalist',
       form: true,
       body,
       failOnStatusCode: false,
@@ -66,7 +66,7 @@ describe('API - Metas Project Metas - /metas/project_metas', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Meta/Metalist`,
+        url: '/Meta/Metalist',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -80,7 +80,7 @@ describe('API - Metas Project Metas - /metas/project_metas', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Meta/Metalist`,
+      url: '/Meta/Metalist',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

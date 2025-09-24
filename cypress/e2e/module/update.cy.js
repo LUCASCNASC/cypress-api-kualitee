@@ -9,7 +9,7 @@ describe('API - Module Update - /module/update', () => {
   function moduleUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/ModuleUpdate`,
+      url: '/Module/ModuleUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -188,7 +188,7 @@ describe('API - Module Update - /module/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Module/ModuleUpdate`,
+        url: '/Module/ModuleUpdate',
         form: true,
         body: {
           token: validToken,
@@ -209,7 +209,7 @@ describe('API - Module Update - /module/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Module/ModuleUpdate`,
+      url: '/Module/ModuleUpdate',
       body: {
         token: validToken,
         project_id: validProjectId,

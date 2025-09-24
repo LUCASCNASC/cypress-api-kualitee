@@ -5,7 +5,7 @@ describe('API - Project Detail - /project/details', () => {
   function projectDetails(queryParams, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Project/ProjectDetail`,
+      url: '/Project/ProjectDetail',
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -79,7 +79,7 @@ describe('API - Project Detail - /project/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectDetail`,
+        url: '/Project/ProjectDetail',
         qs: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
       }).then(response => {
@@ -92,7 +92,7 @@ describe('API - Project Detail - /project/details', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Project/ProjectDetail`,
+      url: '/Project/ProjectDetail',
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

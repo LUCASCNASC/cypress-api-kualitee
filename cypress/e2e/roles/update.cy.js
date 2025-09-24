@@ -10,7 +10,7 @@ describe('API - Roles Update - /roles/update', () => {
   function rolesUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Update`,
+      url: '/Roles/Update',
       form: true,
       body,
       failOnStatusCode: false,
@@ -186,7 +186,7 @@ describe('API - Roles Update - /roles/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Roles/Update`,
+        url: '/Roles/Update',
         form: true,
         body: {
           token: validToken,
@@ -205,7 +205,7 @@ describe('API - Roles Update - /roles/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Roles/Update`,
+      url: '/Roles/Update',
       body: {
         token: validToken,
         id: validId,

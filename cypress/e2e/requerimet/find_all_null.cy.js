@@ -11,7 +11,7 @@ describe('API - Requirements Find All Null - /requirements/find_all_null', () =>
   function findAllNull(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/requirements%2Ffind_all_null`,
+      url: '/Requirement/requirements%2Ffind_all_null',
       form: true,
       body,
       failOnStatusCode: false,
@@ -111,7 +111,7 @@ describe('API - Requirements Find All Null - /requirements/find_all_null', () =>
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/requirements%2Ffind_all_null`,
+        url: '/Requirement/requirements%2Ffind_all_null',
         form: true,
         body: {
           token: validToken,
@@ -128,7 +128,7 @@ describe('API - Requirements Find All Null - /requirements/find_all_null', () =>
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/requirements%2Ffind_all_null`,
+      url: '/Requirement/requirements%2Ffind_all_null',
       body: {
         token: validToken,
         project_id: validProjectId

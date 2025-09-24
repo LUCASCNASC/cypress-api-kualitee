@@ -5,7 +5,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
   function metasDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectMetasDelete`,
+      url: '/Project/ProjectMetasDelete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -80,7 +80,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/ProjectMetasDelete`,
+        url: '/Project/ProjectMetasDelete',
         form: true,
         body: { token: validToken, meta_id: validMetaId },
         failOnStatusCode: false,
@@ -94,7 +94,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Project/ProjectMetasDelete`,
+      url: '/Project/ProjectMetasDelete',
       body: { token: validToken, meta_id: validMetaId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

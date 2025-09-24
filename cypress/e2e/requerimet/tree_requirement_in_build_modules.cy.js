@@ -11,7 +11,7 @@ describe('API - Requirements Tree Requirement in Build Modules - /requirements/t
   function treeRequirementInBuildModules(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/tree_requirement_in_build_modules`,
+      url: '/Requirement/tree_requirement_in_build_modules',
       form: true,
       body,
       failOnStatusCode: false,
@@ -111,7 +111,7 @@ describe('API - Requirements Tree Requirement in Build Modules - /requirements/t
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Requirement/tree_requirement_in_build_modules`,
+        url: '/Requirement/tree_requirement_in_build_modules',
         form: true,
         body: {
           token: validToken,
@@ -130,7 +130,7 @@ describe('API - Requirements Tree Requirement in Build Modules - /requirements/t
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Requirement/tree_requirement_in_build_modules`,
+      url: '/Requirement/tree_requirement_in_build_modules',
       body: {
         token: validToken,
         project_id: validProjectId,

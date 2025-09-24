@@ -5,7 +5,7 @@ describe('API - Defect Viewer - /defects/defect_viewers', () => {
   function defectViewers(queryParams, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Project/DefectViewer`,
+      url: '/Project/DefectViewer',
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -79,7 +79,7 @@ describe('API - Defect Viewer - /defects/defect_viewers', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Project/DefectViewer`,
+        url: '/Project/DefectViewer',
         qs: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
       }).then(response => {
@@ -92,7 +92,7 @@ describe('API - Defect Viewer - /defects/defect_viewers', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Project/DefectViewer`,
+      url: '/Project/DefectViewer',
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

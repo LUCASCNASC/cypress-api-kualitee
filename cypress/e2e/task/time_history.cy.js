@@ -8,7 +8,7 @@ describe('API - Task Time History - /task/time/history', () => {
   function taskTimeHistory(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/timehistory`,
+      url: '/Task/timehistory',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Time History - /task/time/history', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/timehistory`,
+        url: '/Task/timehistory',
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validTaskId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Time History - /task/time/history', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/task/time/history`,
+      url: '/Task/timehistory',
       body: { token: validToken, project_id: validProjectId, id: validTaskId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

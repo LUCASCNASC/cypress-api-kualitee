@@ -12,7 +12,7 @@ describe('API - Update Password - /update_password', () => {
   function updatePassword(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/UpdatePassword`,
+      url: '/User/UpdatePassword',
       form: true,
       body,
       failOnStatusCode: false,
@@ -117,7 +117,7 @@ describe('API - Update Password - /update_password', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/User/UpdatePassword`,
+        url: '/User/UpdatePassword',
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -131,7 +131,7 @@ describe('API - Update Password - /update_password', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/UpdatePassword`,
+      url: '/User/UpdatePassword',
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

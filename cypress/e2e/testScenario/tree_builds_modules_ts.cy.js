@@ -11,7 +11,7 @@ describe('API - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build
   function treeBuildModulesTS(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenariosisbuildandmodules`,
+      url: '/Test%20Scenario/TestScenariosisbuildandmodules',
       form: true,
       body,
       failOnStatusCode: false,
@@ -111,7 +111,7 @@ describe('API - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/TestScenariosisbuildandmodules`,
+        url: '/Test%20Scenario/TestScenariosisbuildandmodules',
         form: true,
         body: {
           token: validToken,
@@ -130,7 +130,7 @@ describe('API - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenariosisbuildandmodules`,
+      url: '/Test%20Scenario/TestScenariosisbuildandmodules',
       body: {
         token: validToken,
         project_id: validProjectId,

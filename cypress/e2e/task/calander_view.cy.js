@@ -7,7 +7,7 @@ describe('API - Task Calander View - /task/calander/view', () => {
   function taskCalanderView(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Task/calander%2Fview`,
+      url: '/Task/calander%2Fview',
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -65,7 +65,7 @@ describe('API - Task Calander View - /task/calander/view', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/calander%2Fview`,
+        url: '/Task/calander%2Fview',
         qs: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
       }).then(response => {
@@ -78,7 +78,7 @@ describe('API - Task Calander View - /task/calander/view', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Task/calander%2Fview`,
+      url: '/Task/calander%2Fview',
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -13,7 +13,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
   function findNextTestCase(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/FindNextTestcase`,
+      url: '/Test%20Case%20Execution/FindNextTestcase',
       form: true,
       body,
       failOnStatusCode: false,
@@ -269,7 +269,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/FindNextTestcase`,
+        url: '/Test%20Case%20Execution/FindNextTestcase',
         form: true,
         body: {
           token: validToken,
@@ -291,7 +291,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/FindNextTestcase`,
+      url: '/Test%20Case%20Execution/FindNextTestcase',
       body: {
         token: validToken,
         project_id: validProjectId,

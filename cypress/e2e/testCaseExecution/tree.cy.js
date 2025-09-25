@@ -8,7 +8,7 @@ describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () =
   function tree(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/TreeRoot`,
+      url: '/Test%20Case%20Execution/TreeRoot',
       form: true,
       body,
       failOnStatusCode: false,
@@ -67,7 +67,7 @@ describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () =
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/TreeRoot`,
+        url: '/Test%20Case%20Execution/TreeRoot',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -81,7 +81,7 @@ describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () =
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/TreeRoot`,
+      url: '/Test%20Case%20Execution/TreeRoot',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -6,7 +6,7 @@ describe('API - User Detail - /users/detail', () => {
   function getUserDetail(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/User/UserDetail`,
+      url: '/User/UserDetail',
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -98,7 +98,7 @@ describe('API - User Detail - /users/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/User/UserDetail`,
+        url: '/User/UserDetail',
         qs: { token: validToken, user_id: validUserId },
         failOnStatusCode: false,
       }).then(response => {
@@ -111,7 +111,7 @@ describe('API - User Detail - /users/detail', () => {
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/User/UserDetail`,
+      url: '/User/UserDetail',
       qs: { token: validToken, user_id: validUserId },
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       failOnStatusCode: false

@@ -9,7 +9,7 @@ describe('API - Test Case Metas - /test_case/metas', () => {
   function testCaseMetas(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/StatusListCopy`,
+      url: '/TestCase/StatusListCopy',
       form: true,
       body,
       failOnStatusCode: false,
@@ -92,7 +92,7 @@ describe('API - Test Case Metas - /test_case/metas', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/StatusListCopy`,
+        url: '/TestCase/StatusListCopy',
         form: true,
         body: {
           token: validToken,
@@ -109,7 +109,7 @@ describe('API - Test Case Metas - /test_case/metas', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/StatusListCopy`,
+      url: '/TestCase/StatusListCopy',
       body: {
         token: validToken,
         project_id: validProjectId

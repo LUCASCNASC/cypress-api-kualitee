@@ -15,7 +15,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
   function updateTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/PostTestScenarioUpdate`,
+      url: '/Test%20Scenario/PostTestScenarioUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -140,7 +140,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/PostTestScenarioUpdate`,
+        url: '/Test%20Scenario/PostTestScenarioUpdate',
         form: true,
         body: {
           token: validToken,
@@ -160,7 +160,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/PostTestScenarioUpdate`,
+      url: '/Test%20Scenario/PostTestScenarioUpdate',
       body: {
         token: validToken,
         project_id: validProjectId,

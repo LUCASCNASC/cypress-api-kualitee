@@ -8,7 +8,7 @@ describe('API - Login - /auth/signin - Testes Avançados', () => {
   function login(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/post_auth_signin`,
+      url: '/User/post_auth_signin',
       form: true,
       body,
       failOnStatusCode: false,
@@ -66,7 +66,7 @@ describe('API - Login - /auth/signin - Testes Avançados', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/post_auth_signin`,
+      url: '/User/post_auth_signin',
       body: { email_id: validEmail, password: validPassword, subdomain: validSubdomain },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
@@ -80,7 +80,7 @@ describe('API - Login - /auth/signin - Testes Avançados', () => {
     it(`Deve falhar com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/User/post_auth_signin`,
+        url: '/User/post_auth_signin',
         failOnStatusCode: false
       }).then((response) => {
         expect([405, 404, 400]).to.include(response.status);

@@ -8,7 +8,7 @@ describe('API - Task Logtime List - /task/logtime_list', () => {
   function taskLogtimeList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/logtime_list`,
+      url: '/Task/logtime_list',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Logtime List - /task/logtime_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/logtime_list`,
+        url: '/Task/logtime_list',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Logtime List - /task/logtime_list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/logtime_list`,
+      url: '/Task/logtime_list',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

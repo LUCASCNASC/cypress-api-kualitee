@@ -15,7 +15,7 @@ describe('API - Test Case Execution Execute - /test_case_execution/execute', () 
   function executeTest(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/Execute`,
+      url: '/Test%20Case%20Execution/Execute',
       form: true,
       body,
       failOnStatusCode: false,
@@ -356,7 +356,7 @@ describe('API - Test Case Execution Execute - /test_case_execution/execute', () 
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/Execute`,
+        url: '/Test%20Case%20Execution/Execute',
         form: true,
         body: {
           token: validToken,
@@ -380,7 +380,7 @@ describe('API - Test Case Execution Execute - /test_case_execution/execute', () 
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/Execute`,
+      url: '/Test%20Case%20Execution/Execute',
       body: {
         token: validToken,
         project_id: validProjectId,

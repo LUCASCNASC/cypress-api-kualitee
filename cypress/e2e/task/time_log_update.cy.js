@@ -9,7 +9,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
   function taskTimeLogUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fupdate`,
+      url: '/Task/task%2Ftime%2Flog%2Fupdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -276,7 +276,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fupdate`,
+        url: '/Task/task%2Ftime%2Flog%2Fupdate',
         form: true,
         body: {
           token: validToken,
@@ -302,7 +302,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fupdate`,
+      url: '/Task/task%2Ftime%2Flog%2Fupdate',
       body: {
         token: validToken,
         project_id: validProjectId,

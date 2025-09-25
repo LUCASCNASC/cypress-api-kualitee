@@ -10,7 +10,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   function duplicateTestCase(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/duplicate`,
+      url: '/TestCase/duplicate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -120,7 +120,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/duplicate`,
+        url: '/TestCase/duplicate',
         form: true,
         body: {
           token: validToken,
@@ -138,7 +138,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/duplicate`,
+      url: '/TestCase/duplicate',
       body: {
         token: validToken,
         project_id: validProjectId,

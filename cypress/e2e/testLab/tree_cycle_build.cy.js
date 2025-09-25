@@ -9,7 +9,7 @@ describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle
   function treeCycleBuild(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/TreeCycleinBuild`,
+      url: '/TestLab/TreeCycleinBuild',
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +109,7 @@ describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestLab/TreeCycleinBuild`,
+        url: '/TestLab/TreeCycleinBuild',
         form: true,
         body: {
           token: validToken,
@@ -127,7 +127,7 @@ describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/TreeCycleinBuild`,
+      url: '/TestLab/TreeCycleinBuild',
       body: {
         token: validToken,
         project_id: validProjectId,

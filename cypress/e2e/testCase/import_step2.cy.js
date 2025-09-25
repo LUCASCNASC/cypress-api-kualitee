@@ -40,7 +40,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
@@ -63,7 +63,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
@@ -83,7 +83,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importsteptwo`,
+          url: '/TestCase/importsteptwo',
           body: formData,
           headers: { 'Content-Type': 'multipart/form-data' },
           failOnStatusCode: false
@@ -107,7 +107,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
         }
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importsteptwo`,
+          url: '/TestCase/importsteptwo',
           body: formData,
           headers: { 'Content-Type': 'multipart/form-data' },
           failOnStatusCode: false
@@ -127,7 +127,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
       formData.set('import_csv_file', blob, 'valid_test_cases.csv');
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
@@ -146,7 +146,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
     formData.set('import_csv_file', emptyBlob, 'empty.csv');
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importsteptwo`,
+      url: '/TestCase/importsteptwo',
       body: formData,
       headers: { 'Content-Type': 'multipart/form-data' },
       failOnStatusCode: false
@@ -159,7 +159,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importsteptwo`,
+      url: '/TestCase/importsteptwo',
       body: buildBody(),
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
@@ -178,7 +178,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
@@ -199,7 +199,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
@@ -221,7 +221,7 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
       const requests = Array(10).fill(0).map(() =>
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importsteptwo`,
+          url: '/TestCase/importsteptwo',
           body: formData,
           headers: { 'Content-Type': 'multipart/form-data' },
           failOnStatusCode: false
@@ -244,14 +244,14 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importsteptwo`,
+        url: '/TestCase/importsteptwo',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
       }).then(() => {
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importsteptwo`,
+          url: '/TestCase/importsteptwo',
           body: formData,
           headers: { 'Content-Type': 'multipart/form-data' },
           failOnStatusCode: false

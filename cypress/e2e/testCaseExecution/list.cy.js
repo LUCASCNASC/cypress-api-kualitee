@@ -12,7 +12,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
   function execList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/List`,
+      url: '/Test%20Case%20Execution/List',
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +109,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/List`,
+        url: '/Test%20Case%20Execution/List',
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -123,7 +123,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/List`,
+      url: '/Test%20Case%20Execution/List',
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -5,7 +5,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
   function setDefaultProject(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/DefaultProject`,
+      url: '/User/DefaultProject',
       form: true,
       body,
       failOnStatusCode: false,
@@ -97,7 +97,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/User/DefaultProject`,
+        url: '/User/DefaultProject',
         form: true,
         body: { token: validToken, updated_project_id: validProjectId },
         failOnStatusCode: false,
@@ -111,7 +111,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/DefaultProject`,
+      url: '/User/DefaultProject',
       body: { token: validToken, updated_project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -11,7 +11,7 @@ describe('API - Test Case Execution Delete Attach Defects - /test_case_execution
   function deleteAttachDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/delete_attach_defects`,
+      url: '/Test%20Case%20Execution/delete_attach_defects',
       form: true,
       body,
       failOnStatusCode: false,
@@ -183,7 +183,7 @@ describe('API - Test Case Execution Delete Attach Defects - /test_case_execution
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/delete_attach_defects`,
+        url: '/Test%20Case%20Execution/delete_attach_defects',
         form: true,
         body: {
           token: validToken,
@@ -203,7 +203,7 @@ describe('API - Test Case Execution Delete Attach Defects - /test_case_execution
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/delete_attach_defects`,
+      url: '/Test%20Case%20Execution/delete_attach_defects',
       body: {
         token: validToken,
         project_id: validProjectId,

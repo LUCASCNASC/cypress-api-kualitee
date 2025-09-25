@@ -10,7 +10,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
   function importStep1(body, file, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importstepone`,
+      url: '/TestCase/importstepone',
       form: true,
       body,
       ...file && { formData: { ...body, import_csv_file: file } },
@@ -29,7 +29,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: '/TestCase/importstepone',
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -53,7 +53,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: '/TestCase/importstepone',
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'

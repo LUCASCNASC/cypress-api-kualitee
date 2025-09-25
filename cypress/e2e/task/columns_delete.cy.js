@@ -8,7 +8,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
   function taskColumnsDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columndelete`,
+      url: '/Task/columndelete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/columndelete`,
+        url: '/Task/columndelete',
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columndelete`,
+      url: '/Task/columndelete',
       body: { token: validToken, project_id: validProjectId, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

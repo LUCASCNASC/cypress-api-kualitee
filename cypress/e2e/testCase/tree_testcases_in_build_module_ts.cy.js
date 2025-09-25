@@ -10,7 +10,7 @@ describe('API - Test Case Tree in Build Module Test Scenarios - /test_case/tree_
   function testCaseTreeInBuildModuleTs(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/TreeTtestCaseBuildModuleTestScenarios`,
+      url: '/TestCase/TreeTtestCaseBuildModuleTestScenarios',
       form: true,
       body,
       failOnStatusCode: false,
@@ -104,7 +104,7 @@ describe('API - Test Case Tree in Build Module Test Scenarios - /test_case/tree_
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/TreeTtestCaseBuildModuleTestScenarios`,
+        url: '/TestCase/TreeTtestCaseBuildModuleTestScenarios',
         form: true,
         body: {
           token: validToken,
@@ -122,7 +122,7 @@ describe('API - Test Case Tree in Build Module Test Scenarios - /test_case/tree_
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/TreeTtestCaseBuildModuleTestScenarios`,
+      url: '/TestCase/TreeTtestCaseBuildModuleTestScenarios',
       body: {
         token: validToken,
         project_id: validProjectId,

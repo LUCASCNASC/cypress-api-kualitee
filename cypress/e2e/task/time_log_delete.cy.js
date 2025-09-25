@@ -8,7 +8,7 @@ describe('API - Task Time Log Delete - /task/time/log/delete', () => {
   function taskTimeLogDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fdelete`,
+      url: '/Task/task%2Ftime%2Flog%2Fdelete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Time Log Delete - /task/time/log/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fdelete`,
+        url: '/Task/task%2Ftime%2Flog%2Fdelete',
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Time Log Delete - /task/time/log/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Ftime%2Flog%2Fdelete`,
+      url: '/Task/task%2Ftime%2Flog%2Fdelete',
       body: { token: validToken, project_id: validProjectId, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

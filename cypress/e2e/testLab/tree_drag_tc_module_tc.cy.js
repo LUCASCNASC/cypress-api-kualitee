@@ -9,7 +9,7 @@ describe('API - Manage Test Case Tree Drag TC Module Test Scenario - /manage_tes
   function treeDragTcModuleTs(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/TreeDragTestCaseModuleTestScenario`,
+      url: '/TestLab/TreeDragTestCaseModuleTestScenario',
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +109,7 @@ describe('API - Manage Test Case Tree Drag TC Module Test Scenario - /manage_tes
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestLab/TreeDragTestCaseModuleTestScenario`,
+        url: '/TestLab/TreeDragTestCaseModuleTestScenario',
         form: true,
         body: {
           token: validToken,
@@ -127,7 +127,7 @@ describe('API - Manage Test Case Tree Drag TC Module Test Scenario - /manage_tes
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/TreeDragTestCaseModuleTestScenario`,
+      url: '/TestLab/TreeDragTestCaseModuleTestScenario',
       body: {
         token: validToken,
         project_id: validProjectId,

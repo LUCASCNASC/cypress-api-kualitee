@@ -10,7 +10,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
   function importStep1(body, filePath, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/importstepone`,
+      url: '/Test%20Scenario/importstepone',
       form: true,
       body,
       // Suporte a envio de arquivo CSV
@@ -29,7 +29,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: validToken,
           project_id: validProjectId
@@ -51,7 +51,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           project_id: validProjectId
         },
@@ -69,7 +69,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
       cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
         cy.form_request(
           'POST',
-          `${BASE_URL}/Test%20Scenario/importstepone`,
+          '/Test%20Scenario/importstepone',
           {
             token,
             project_id: validProjectId
@@ -93,7 +93,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
         // Não envia o arquivo
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/Test%20Scenario/importstepone`,
+          url: '/Test%20Scenario/importstepone',
           form: true,
           body,
           failOnStatusCode: false
@@ -104,7 +104,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
         cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
           cy.form_request(
             'POST',
-            `${BASE_URL}/Test%20Scenario/importstepone`,
+            '/Test%20Scenario/importstepone',
             body,
             [
               { name: 'import_csv_file', fileName: 'test_scenarios_import.csv', mimeType: 'text/csv', fileContent, encoding: 'base64' }
@@ -127,7 +127,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
           body[field] = value;
           cy.form_request(
             'POST',
-            `${BASE_URL}/Test%20Scenario/importstepone`,
+            '/Test%20Scenario/importstepone',
             body,
             [
               { name: 'import_csv_file', fileName: 'test_scenarios_import.csv', mimeType: 'text/csv', fileContent, encoding: 'base64' }
@@ -145,7 +145,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('invalid.txt', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: validToken,
           project_id: validProjectId
@@ -164,7 +164,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: validToken,
           project_id: validProjectId,
@@ -185,7 +185,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
       cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
         cy.request({
           method,
-          url: `${BASE_URL}/Test%20Scenario/importstepone`,
+          url: '/Test%20Scenario/importstepone',
           form: true,
           body: {
             token: validToken,
@@ -204,7 +204,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: "' OR 1=1 --",
           project_id: validProjectId
@@ -224,7 +224,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: validToken,
           project_id: validProjectId
@@ -245,7 +245,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
       const requests = Array(10).fill(0).map(() =>
         cy.form_request(
           'POST',
-          `${BASE_URL}/Test%20Scenario/importstepone`,
+          '/Test%20Scenario/importstepone',
           {
             token: validToken,
             project_id: validProjectId
@@ -267,7 +267,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
-        `${BASE_URL}/Test%20Scenario/importstepone`,
+        '/Test%20Scenario/importstepone',
         {
           token: validToken,
           project_id: validProjectId
@@ -278,7 +278,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
       ).then(() => {
         cy.form_request(
           'POST',
-          `${BASE_URL}/Test%20Scenario/importstepone`,
+          '/Test%20Scenario/importstepone',
           {
             token: validToken,
             project_id: validProjectId

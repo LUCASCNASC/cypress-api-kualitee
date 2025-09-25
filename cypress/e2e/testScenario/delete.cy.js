@@ -10,7 +10,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
   function deleteTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioDelete`,
+      url: '/Test%20Scenario/TestScenarioDelete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -104,7 +104,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/TestScenarioDelete`,
+        url: '/Test%20Scenario/TestScenarioDelete',
         form: true,
         body: {
           token: validToken,
@@ -122,7 +122,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioDelete`,
+      url: '/Test%20Scenario/TestScenarioDelete',
       body: {
         token: validToken,
         project_id: validProjectId,

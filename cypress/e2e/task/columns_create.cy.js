@@ -8,7 +8,7 @@ describe('API - Task Columns Create - /task/columns/create', () => {
   function taskColumnsCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columnCreate`,
+      url: '/Task/columnCreate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Columns Create - /task/columns/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/columnCreate`,
+        url: '/Task/columnCreate',
         form: true,
         body: { token: validToken, project_id: validProjectId, column_name: validColumnName },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Columns Create - /task/columns/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columnCreate`,
+      url: '/Task/columnCreate',
       body: { token: validToken, project_id: validProjectId, column_name: validColumnName },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -9,7 +9,7 @@ describe('API - Test Case Tree - /test_case/tree', () => {
   function testCaseTree(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/TreeRoot`,
+      url: '/TestCase/TreeRoot',
       form: true,
       body,
       failOnStatusCode: false,
@@ -92,7 +92,7 @@ describe('API - Test Case Tree - /test_case/tree', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/TreeRoot`,
+        url: '/TestCase/TreeRoot',
         form: true,
         body: {
           token: validToken,
@@ -109,7 +109,7 @@ describe('API - Test Case Tree - /test_case/tree', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/TreeRoot`,
+      url: '/TestCase/TreeRoot',
       body: {
         token: validToken,
         project_id: validProjectId

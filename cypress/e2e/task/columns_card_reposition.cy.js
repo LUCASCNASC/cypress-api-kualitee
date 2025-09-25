@@ -8,7 +8,7 @@ describe('API - Task Columns Card Reposition - /task/columns/card/reposition', (
   function taskColumnsCardReposition(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Fcolumns%2Fcard%2Freposition`,
+      url: '/Task/task%2Fcolumns%2Fcard%2Freposition',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Columns Card Reposition - /task/columns/card/reposition', (
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/task%2Fcolumns%2Fcard%2Freposition`,
+        url: '/Task/task%2Fcolumns%2Fcard%2Freposition',
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Columns Card Reposition - /task/columns/card/reposition', (
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/task%2Fcolumns%2Fcard%2Freposition`,
+      url: '/Task/task%2Fcolumns%2Fcard%2Freposition',
       body: { token: validToken, project_id: validProjectId, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

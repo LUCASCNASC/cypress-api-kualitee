@@ -14,7 +14,7 @@ describe('API - Test Scenario Create - /test_scenario/create', () => {
   function createTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioCreate`,
+      url: '/Test%20Scenario/TestScenarioCreate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -132,7 +132,7 @@ describe('API - Test Scenario Create - /test_scenario/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/TestScenarioCreate`,
+        url: '/Test%20Scenario/TestScenarioCreate',
         form: true,
         body: {
           token: validToken,
@@ -151,7 +151,7 @@ describe('API - Test Scenario Create - /test_scenario/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioCreate`,
+      url: '/Test%20Scenario/TestScenarioCreate',
       body: {
         token: validToken,
         project_id: validProjectId,

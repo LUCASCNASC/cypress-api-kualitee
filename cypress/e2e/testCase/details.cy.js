@@ -10,7 +10,7 @@ describe('API - Test Case Details - /test_case/details', () => {
   function testCaseDetails(query, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/TestCase/Detail`,
+      url: '/TestCase/Detail',
       qs: query,
       failOnStatusCode: false,
       ...options,
@@ -103,7 +103,7 @@ describe('API - Test Case Details - /test_case/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/Detail`,
+        url: '/TestCase/Detail',
         qs: {
           token: validToken,
           project_id: validProjectId,

@@ -11,7 +11,7 @@ describe('API - Manage Test Case Update - /manage_test_case/update', () => {
   function manageTestCaseUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/AddTestCasesCycle`,
+      url: '/TestLab/AddTestCasesCycle',
       form: true,
       body,
       failOnStatusCode: false,
@@ -133,7 +133,7 @@ describe('API - Manage Test Case Update - /manage_test_case/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestLab/AddTestCasesCycle`,
+        url: '/TestLab/AddTestCasesCycle',
         form: true,
         body: {
           token: validToken,
@@ -152,7 +152,7 @@ describe('API - Manage Test Case Update - /manage_test_case/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestLab/AddTestCasesCycle`,
+      url: '/TestLab/AddTestCasesCycle',
       body: {
         token: validToken,
         project_id: validProjectId,

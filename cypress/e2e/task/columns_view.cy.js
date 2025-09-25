@@ -8,7 +8,7 @@ describe('API - Task Columns View - /task/columns/view', () => {
   function taskColumnsView(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Task/task%2Fcolumn%2Fview`,
+      url: '/Task/task%2Fcolumn%2Fview',
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -83,7 +83,7 @@ describe('API - Task Columns View - /task/columns/view', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/task%2Fcolumn%2Fview`,
+        url: '/Task/task%2Fcolumn%2Fview',
         qs: { token: validToken, project_id: validProjectId, keyword: validKeyword },
         failOnStatusCode: false,
       }).then(response => {
@@ -96,7 +96,7 @@ describe('API - Task Columns View - /task/columns/view', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Task/task%2Fcolumn%2Fview`,
+      url: '/Task/task%2Fcolumn%2Fview',
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

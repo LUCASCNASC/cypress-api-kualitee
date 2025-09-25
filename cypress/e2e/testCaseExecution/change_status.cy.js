@@ -10,7 +10,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
   function changeStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/ChangeStatus`,
+      url: '/Test%20Case%20Execution/ChangeStatus',
       form: true,
       body,
       failOnStatusCode: false,
@@ -171,7 +171,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/ChangeStatus`,
+        url: '/Test%20Case%20Execution/ChangeStatus',
         form: true,
         body: {
           token: validToken,
@@ -192,7 +192,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/ChangeStatus`,
+      url: '/Test%20Case%20Execution/ChangeStatus',
       body: {
         token: validToken,
         project_id: validProjectId,

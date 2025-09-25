@@ -9,7 +9,7 @@ describe('API - Task Columns Update - /task/columns/update', () => {
   function taskColumnsUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columnupdate`,
+      url: '/Task/columnupdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -145,7 +145,7 @@ describe('API - Task Columns Update - /task/columns/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/columnupdate`,
+        url: '/Task/columnupdate',
         form: true,
         body: {
           token: validToken,
@@ -164,7 +164,7 @@ describe('API - Task Columns Update - /task/columns/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/columnupdate`,
+      url: '/Task/columnupdate',
       body: {
         token: validToken,
         project_id: validProjectId,

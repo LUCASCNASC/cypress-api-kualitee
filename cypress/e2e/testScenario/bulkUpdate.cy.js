@@ -13,7 +13,7 @@ describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
   function bulkUpdateTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioBulkUpdate`,
+      url: '/Test%20Scenario/TestScenarioBulkUpdate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -125,7 +125,7 @@ describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/TestScenarioBulkUpdate`,
+        url: '/Test%20Scenario/TestScenarioBulkUpdate',
         form: true,
         body: {
           token: validToken,
@@ -143,7 +143,7 @@ describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioBulkUpdate`,
+      url: '/Test%20Scenario/TestScenarioBulkUpdate',
       body: {
         token: validToken,
         project_id: validProjectId,

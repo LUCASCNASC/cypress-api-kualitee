@@ -13,7 +13,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
   function attachDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/attacheddefects`,
+      url: '/Test%20Case%20Execution/attacheddefects',
       form: true,
       body,
       failOnStatusCode: false,
@@ -290,7 +290,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Case%20Execution/attacheddefects`,
+        url: '/Test%20Case%20Execution/attacheddefects',
         form: true,
         body: {
           token: validToken,
@@ -313,7 +313,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Test%20Case%20Execution/attacheddefects`,
+      url: '/Test%20Case%20Execution/attacheddefects',
       body: {
         token: validToken,
         project_id: validProjectId,

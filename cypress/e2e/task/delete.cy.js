@@ -8,7 +8,7 @@ describe('API - Task Delete - /task/delete', () => {
   function taskDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/Delete`,
+      url: '/Task/Delete',
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +82,7 @@ describe('API - Task Delete - /task/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Task/Delete`,
+        url: '/Task/Delete',
         form: true,
         body: { token: validToken, project_id: validProjectId, 'id[0]': validId },
         failOnStatusCode: false,
@@ -96,7 +96,7 @@ describe('API - Task Delete - /task/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/Task/Delete`,
+      url: '/Task/Delete',
       body: { token: validToken, project_id: validProjectId, 'id[0]': validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

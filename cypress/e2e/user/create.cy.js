@@ -4,7 +4,7 @@ describe('API - Users Create - /users/create', () => {
   function createUser(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/UsersCreate`,
+      url: '/User/UsersCreate',
       form: true,
       body,
       failOnStatusCode: false,
@@ -163,7 +163,7 @@ describe('API - Users Create - /users/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/User/UsersCreate`,
+        url: '/User/UsersCreate',
         failOnStatusCode: false,
       }).then((response) => {
         expect([405, 404, 400]).to.include(response.status);
@@ -175,7 +175,7 @@ describe('API - Users Create - /users/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/User/UsersCreate`,
+      url: '/User/UsersCreate',
       body: { ...validBody, profile_username: 'user' + Date.now(), email: `ct${Date.now()}@test.com` },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

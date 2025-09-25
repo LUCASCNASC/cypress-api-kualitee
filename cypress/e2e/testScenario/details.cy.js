@@ -10,7 +10,7 @@ describe('API - Test Scenario Detail - /test_scenario/details', () => {
   function getTestScenarioDetails(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: `${BASE_URL}/Test%20Scenario/TestScenarioDetail`,
+      url: '/Test%20Scenario/TestScenarioDetail',
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -103,7 +103,7 @@ describe('API - Test Scenario Detail - /test_scenario/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/Test%20Scenario/TestScenarioDetail`,
+        url: '/Test%20Scenario/TestScenarioDetail',
         qs: {
           token: validToken,
           project_id: validProjectId,

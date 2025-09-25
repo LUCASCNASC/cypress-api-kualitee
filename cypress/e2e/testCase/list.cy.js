@@ -13,7 +13,7 @@ describe('API - Test Case List - /test_case/list', () => {
   function testCaseList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/List`,
+      url: '/TestCase/List',
       form: true,
       body,
       failOnStatusCode: false,
@@ -118,7 +118,7 @@ describe('API - Test Case List - /test_case/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: `${BASE_URL}/TestCase/List`,
+        url: '/TestCase/List',
         form: true,
         body: {
           token: validToken,
@@ -135,7 +135,7 @@ describe('API - Test Case List - /test_case/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/List`,
+      url: '/TestCase/List',
       body: {
         token: validToken,
         project_id: validProjectId

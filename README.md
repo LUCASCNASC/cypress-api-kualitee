@@ -67,3 +67,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
+
+Criar variável para a url inteira de todos os arquivos de teste

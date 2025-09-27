@@ -8,11 +8,12 @@ describe('API - Custom Fields Update - /customfields/update', () => {
   const validCustomFieldModule = 'TestScenario';
   const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';
   const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
+  const PATH_API = '/Custom%20Fields/Update'
 
   function customfieldsUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Update',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -231,7 +232,7 @@ describe('API - Custom Fields Update - /customfields/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Custom%20Fields/Update',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -251,7 +252,7 @@ describe('API - Custom Fields Update - /customfields/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Update',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         custom_field_id: validCustomFieldId,

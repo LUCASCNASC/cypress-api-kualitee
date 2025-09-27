@@ -4,11 +4,12 @@ describe('API - Custom Fields Delete - /customfields/delete', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 789;
   const validCustomFieldId = 123;
+  const PATH_API = '/Custom%20Fields/Delete'
 
   function customfieldsDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Delete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +83,7 @@ describe('API - Custom Fields Delete - /customfields/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Custom%20Fields/Delete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId },
         failOnStatusCode: false,
@@ -96,7 +97,7 @@ describe('API - Custom Fields Delete - /customfields/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Delete',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

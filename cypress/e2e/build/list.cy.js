@@ -2,11 +2,12 @@ describe('API - Build List - /build/list', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validKeyword = 'feature'; // Ou qualquer palavra-chave válida
+  const PATH_API = '/Build/BuiltList'
 
   function buildList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Build/BuiltList',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -97,7 +98,7 @@ describe('API - Build List - /build/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Build/BuiltList',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -111,7 +112,7 @@ describe('API - Build List - /build/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Build/BuiltList',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

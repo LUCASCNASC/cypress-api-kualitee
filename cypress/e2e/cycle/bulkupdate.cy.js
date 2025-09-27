@@ -7,11 +7,12 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   const validIds = [101, 102, 103];
   const validBuildId = 10;
   const validModuleId = 22;
+  const PATH_API = '/Defect/Bulkupdate'
 
   function bulkUpdateDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/Bulkupdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -146,7 +147,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/Bulkupdate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -164,7 +165,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/Bulkupdate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

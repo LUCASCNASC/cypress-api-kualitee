@@ -1,11 +1,12 @@
 describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
   const validToken = 'token_valido_aqui';
+  const PATH_API = '/Dashboard/TestCaseApproved'
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 
   function approvedTc(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Dashboard/TestCaseApproved',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -128,7 +129,7 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Dashboard/TestCaseApproved',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -142,7 +143,7 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Dashboard/TestCaseApproved',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

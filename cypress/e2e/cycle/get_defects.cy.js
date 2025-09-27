@@ -6,11 +6,12 @@ describe('API - Defects Get Defects - /defects/get_defects', () => {
   const validProjectId = 77;
   const validBuildId = 10;
   const validModuleId = 22;
+  const PATH_API = '/Defect/get_defects'
 
   function getDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/get_defects',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -117,7 +118,7 @@ describe('API - Defects Get Defects - /defects/get_defects', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/get_defects',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -134,7 +135,7 @@ describe('API - Defects Get Defects - /defects/get_defects', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/get_defects',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId

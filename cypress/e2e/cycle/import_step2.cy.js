@@ -9,12 +9,13 @@ describe('API - Defects Import Step 2 - /defects/import/step2', () => {
   const validDbColumns = [
     "build_id", "module_id", "description", "bugtype", "priority", "status", "devices", "os", "browser", "steps_to_reproduce", "eresult", "aresult"
   ];
+  const PATH_API = '/Defect/step2'
 
   function defectsImportStep2(body, filePath, options = {}) {
     // Para envio de arquivo, use plugin como cypress-form-data ou cy.form_request se disponível
     return cy.form_request(
       'POST',
-      '/Defect/step2',
+      `/${PATH_API}`,
       body,
       [{ name: 'import_csv_file', fileName: filePath.split('/').pop(), mimeType: 'text/csv', filePath }],
       { failOnStatusCode: false, ...options }
@@ -172,7 +173,7 @@ describe('API - Defects Import Step 2 - /defects/import/step2', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/step2',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -191,7 +192,7 @@ describe('API - Defects Import Step 2 - /defects/import/step2', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/step2',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

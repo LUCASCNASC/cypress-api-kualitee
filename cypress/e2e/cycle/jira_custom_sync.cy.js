@@ -5,11 +5,12 @@ describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validPluginName = 'jira';
+  const PATH_API = '/Defect/jira_custom_sync'
 
   function jiraCustomSync(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/jira_custom_sync',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +110,7 @@ describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/jira_custom_sync',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -127,7 +128,7 @@ describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/jira_custom_sync',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

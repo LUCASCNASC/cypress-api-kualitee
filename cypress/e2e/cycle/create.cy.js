@@ -24,6 +24,7 @@ describe('API - Defects Create - /defects/create', () => {
   const validKiId = 'ki-12345';
   const validReqId = 'req-98765';
   const validBugRequirementId = 'bug-req-55';
+  const PATH_API = '/Defect/Create'
 
   // Simulação de arquivos (se a API aceitar)
   const validDefectImage = 'cypress/fixtures/defect_image.png';
@@ -47,7 +48,7 @@ describe('API - Defects Create - /defects/create', () => {
     }
     return cy.request({
       method: 'POST',
-      url: '/Defect/Create',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -229,7 +230,7 @@ describe('API - Defects Create - /defects/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/Create',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -247,7 +248,7 @@ describe('API - Defects Create - /defects/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/Create',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

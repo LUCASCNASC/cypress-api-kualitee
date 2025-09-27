@@ -5,11 +5,12 @@ describe('API - Defects Tree Defects In Module - /defects/tree_defects_in_module
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validModuleId = 22;
+  const PATH_API = '/Defect/Treedefectsinmodule'
 
   function treeDefectsInModule(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/Treedefectsinmodule',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +110,7 @@ describe('API - Defects Tree Defects In Module - /defects/tree_defects_in_module
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/Treedefectsinmodule',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -127,7 +128,7 @@ describe('API - Defects Tree Defects In Module - /defects/tree_defects_in_module
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/Treedefectsinmodule',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

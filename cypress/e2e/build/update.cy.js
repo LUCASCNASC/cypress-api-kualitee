@@ -6,11 +6,12 @@ describe('API - Builds Update - /build/update', () => {
   const validBuildId = '10'; // Note: string type
   const validId = 123; // Substitua por um id válido do seu ambiente
   const validDescription = 'Atualização de build';
+  const PATH_API = '/Build/BuildsUpdate'
 
   function buildUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Build/BuildsUpdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -200,7 +201,7 @@ describe('API - Builds Update - /build/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Build/BuildsUpdate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -222,7 +223,7 @@ describe('API - Builds Update - /build/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Build/BuildsUpdate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

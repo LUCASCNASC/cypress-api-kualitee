@@ -25,6 +25,7 @@ describe('API - Defects Update - /defects/update', () => {
   const validKiId = 'ki-54321';
   const validReqId = 'req-87654';
   const validBugRequirementId = 'bug-req-66';
+  const PATH_API = '/Defect/Update'
 
   // Simulação de arquivos (se a API aceitar)
   const validDefectImage = 'cypress/fixtures/defect_image.png';
@@ -34,7 +35,7 @@ describe('API - Defects Update - /defects/update', () => {
     if (Object.keys(fileFields).length) {
       return cy.form_request(
         'POST',
-        '/Defect/Update',
+        `/${PATH_API}`,
         body,
         Object.entries(fileFields).map(([name, filePath]) => ({
           name,
@@ -48,7 +49,7 @@ describe('API - Defects Update - /defects/update', () => {
     }
     return cy.request({
       method: 'POST',
-      url: '/Defect/Update',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -248,7 +249,7 @@ describe('API - Defects Update - /defects/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/Update',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -267,7 +268,7 @@ describe('API - Defects Update - /defects/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/Update',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

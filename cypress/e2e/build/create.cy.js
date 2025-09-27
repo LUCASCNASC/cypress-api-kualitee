@@ -5,11 +5,12 @@ describe('API - Builds Create - /build/create', () => {
   const validEndDate = '2020-06-02';
   const validBuildName = 'Build v1.2.3';
   const validBuildDescription = 'Descrição do build de testes automáticos.';
+  const PATH_API = '/Build/BuildsCreate'
 
   function buildCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Build/BuildsCreate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,

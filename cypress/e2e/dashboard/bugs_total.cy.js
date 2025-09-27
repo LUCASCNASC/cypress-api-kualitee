@@ -1,5 +1,6 @@
 describe('API - Dashboard Bugs Total - /dashboard/bugs/total', () => {
   const validToken = 'token_valido_aqui';
+  const PATH_API = '/Dashboard/DefectsTotal'
   const validProjectId = 11; // Substitua por um ID válido do seu ambiente
 
   const validBody = {
@@ -18,7 +19,7 @@ describe('API - Dashboard Bugs Total - /dashboard/bugs/total', () => {
   function bugsTotal(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Dashboard/DefectsTotal',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -139,7 +140,7 @@ describe('API - Dashboard Bugs Total - /dashboard/bugs/total', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Dashboard/DefectsTotal',
+        url: `/${PATH_API}`,
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -153,7 +154,7 @@ describe('API - Dashboard Bugs Total - /dashboard/bugs/total', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Dashboard/DefectsTotal',
+      url: `/${PATH_API}`,
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

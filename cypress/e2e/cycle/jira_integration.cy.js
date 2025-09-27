@@ -4,11 +4,12 @@
 describe('API - Defects Jira Integration - /defects/jira_integration', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
+  const PATH_API = '/Defect/jira_integration'
 
   function jiraIntegration(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/jira_integration',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -85,7 +86,7 @@ describe('API - Defects Jira Integration - /defects/jira_integration', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/jira_integration',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -102,7 +103,7 @@ describe('API - Defects Jira Integration - /defects/jira_integration', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/jira_integration',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId

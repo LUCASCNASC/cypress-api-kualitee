@@ -2,11 +2,12 @@ describe('API - Build Details - /build/details', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
+  const PATH_API = '/Build/BuildsDelete'
 
   function buildDetails(queryParams, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Build/BuildDetails',
+      url: `/${PATH_API}`,
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -100,7 +101,7 @@ describe('API - Build Details - /build/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Build/BuildDetails',
+        url: `/${PATH_API}`,
         qs: { token: validToken, project_id: validProjectId, build_id: validBuildId },
         failOnStatusCode: false,
       }).then(response => {
@@ -113,7 +114,7 @@ describe('API - Build Details - /build/details', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Build/BuildDetails',
+      url: `/${PATH_API}`,
       qs: { token: validToken, project_id: validProjectId, build_id: validBuildId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

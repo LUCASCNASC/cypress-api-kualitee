@@ -5,11 +5,12 @@ describe('API - Defects Details - /defects/details', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validDefectId = 101;
+  const PATH_API = '/Defect/stagingdetail'
 
   function defectsDetails(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Defect/stagingdetail',
+      url: `/${PATH_API}`,
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -108,7 +109,7 @@ describe('API - Defects Details - /defects/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/stagingdetail',
+        url: `/${PATH_API}`,
         qs: {
           token: validToken,
           project_id: validProjectId,
@@ -125,7 +126,7 @@ describe('API - Defects Details - /defects/details', () => {
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
-      url: '/Defect/stagingdetail',
+      url: `/${PATH_API}`,
       qs: {
         token: validToken,
         project_id: validProjectId,

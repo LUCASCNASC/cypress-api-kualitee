@@ -1,11 +1,12 @@
 describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
   const validToken = 'token_valido_aqui';
+  const PATH_API = '/Dashboard/Defectsclosestatus'
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 
   function bugCloseStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Dashboard/Defectsclosestatus',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -130,7 +131,7 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Dashboard/Defectsclosestatus',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -144,7 +145,7 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Dashboard/Defectsclosestatus',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

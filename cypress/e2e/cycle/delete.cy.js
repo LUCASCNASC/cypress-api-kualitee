@@ -5,11 +5,12 @@ describe('API - Defects Delete - /defects/delete', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77;
   const validDefectId = 101;
+  const PATH_API = '/Defect/Delete'
 
   function defectsDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/Delete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -113,7 +114,7 @@ describe('API - Defects Delete - /defects/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/Delete',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -131,7 +132,7 @@ describe('API - Defects Delete - /defects/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/Delete',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

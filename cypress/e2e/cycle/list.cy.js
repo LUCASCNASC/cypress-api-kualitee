@@ -20,11 +20,12 @@ describe('API - Defects List - /defects/list', () => {
   const validDevice = 'iPhone 13';
   const validExport = 'yes';
   const validExportType = 'Excel';
+  const PATH_API = '/Defect/List'
 
   function defectsList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Defect/List',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -201,7 +202,7 @@ describe('API - Defects List - /defects/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Defect/List',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -218,7 +219,7 @@ describe('API - Defects List - /defects/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Defect/List',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId

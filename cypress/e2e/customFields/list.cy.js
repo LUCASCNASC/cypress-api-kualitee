@@ -2,11 +2,12 @@
 
 describe('API - Custom Fields List - /customfields/list', () => {
   const validToken = 'token_valido_aqui';
+  const PATH_API = '/Custom%20Fields/List'
 
   function customfieldsList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/List',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -50,7 +51,7 @@ describe('API - Custom Fields List - /customfields/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Custom%20Fields/List',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken },
         failOnStatusCode: false,
@@ -64,7 +65,7 @@ describe('API - Custom Fields List - /customfields/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/List',
+      url: `/${PATH_API}`,
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

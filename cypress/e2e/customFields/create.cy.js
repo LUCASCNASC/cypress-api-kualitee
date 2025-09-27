@@ -7,11 +7,12 @@ describe('API - Custom Fields Create - /customfields/create', () => {
   const validCustomFieldModule = 'TestScenario';
   const validCustomFieldName = 'MeuCampoCustomizado';
   const validCustomFieldDesc = 'Descrição do campo customizado';
+  const PATH_API = '/Custom%20Fields/Create'
 
   function customfieldsCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Create',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -191,7 +192,7 @@ describe('API - Custom Fields Create - /customfields/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Custom%20Fields/Create',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -210,7 +211,7 @@ describe('API - Custom Fields Create - /customfields/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Custom%20Fields/Create',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         'project_id[0]': validProjectId,

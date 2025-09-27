@@ -2,11 +2,12 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validId = 'user_or_entity_id'; // Substitua por um valor válido se necessário
+  const PATH_API = '/Dashboard/Activities'
 
   function dashboardActivities(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Dashboard/Activities',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -124,7 +125,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Dashboard/Activities',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, show: 'all' },
         failOnStatusCode: false,
@@ -138,7 +139,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Dashboard/Activities',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, show: 'all' },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -3,11 +3,12 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
   const validModuleId = 22; // Substitua por um id de módulo válido do seu ambiente
+  const PATH_API = '/Module/GetNullModules'
 
   function getNullModules(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Module/GetNullModules',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -147,7 +148,7 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Module/GetNullModules',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -166,7 +167,7 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Module/GetNullModules',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

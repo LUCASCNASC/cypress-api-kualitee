@@ -3,11 +3,12 @@
 describe('API - Integration Detail - /integration/detail', () => {
   const validToken = 'token_valido_aqui';
   const validId = 123;
+  const PATH_API = '/Integration/detail'
 
   function integrationDetail(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Integration/detail',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -66,7 +67,7 @@ describe('API - Integration Detail - /integration/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Integration/detail',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, id: validId },
         failOnStatusCode: false,
@@ -80,7 +81,7 @@ describe('API - Integration Detail - /integration/detail', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Integration/detail',
+      url: `/${PATH_API}`,
       body: { token: validToken, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

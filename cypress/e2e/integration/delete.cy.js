@@ -7,11 +7,12 @@ describe('API - Integration Save - /integration/save', () => {
   const validPassword = 'senha_teste';
   const validPluginUrl = 'https://jira.example.com';
   const validId = 123;
+  const PATH_API = '/Integration/Delete'
 
   function integrationSave(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Integration/Delete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -223,7 +224,7 @@ describe('API - Integration Save - /integration/save', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Integration/Delete',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -244,7 +245,7 @@ describe('API - Integration Save - /integration/save', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Integration/Delete',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         plugin_name: validPluginName,

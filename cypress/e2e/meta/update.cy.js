@@ -6,11 +6,12 @@ describe('API - Metas Update - /metas/update', () => {
   const validId = 123;
   const validMetaKey = 'browser';
   const validMetaValue = 'chrome';
+  const PATH_API = '/Meta/Update'
 
   function metasUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Meta/Update',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -114,7 +115,7 @@ describe('API - Metas Update - /metas/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Meta/Update',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue },
         failOnStatusCode: false,
@@ -128,7 +129,7 @@ describe('API - Metas Update - /metas/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Meta/Update',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

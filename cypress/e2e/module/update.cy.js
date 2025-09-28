@@ -5,11 +5,12 @@ describe('API - Module Update - /module/update', () => {
   const validModuleName = 'Autenticação';
   const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
   const validModuleDescription = 'Descrição atualizada do módulo de autenticação.';
+  const PATH_API = '/Module/ModuleUpdate'
 
   function moduleUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Module/ModuleUpdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -188,7 +189,7 @@ describe('API - Module Update - /module/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Module/ModuleUpdate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -209,7 +210,7 @@ describe('API - Module Update - /module/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Module/ModuleUpdate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

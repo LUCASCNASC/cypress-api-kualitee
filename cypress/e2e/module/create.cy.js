@@ -4,11 +4,12 @@ describe('API - Module Create - /module/create', () => {
   const validModuleName = 'Autenticação';
   const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
   const validModuleDescription = 'Módulo responsável pelo fluxo de login e autenticação.';
+  const PATH_API = '/Module/ModuleCreate'
 
   function moduleCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Module/ModuleCreate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -162,7 +163,7 @@ describe('API - Module Create - /module/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Module/ModuleCreate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -182,7 +183,7 @@ describe('API - Module Create - /module/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Module/ModuleCreate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

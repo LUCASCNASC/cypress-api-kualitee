@@ -2,11 +2,12 @@ describe('API - Module Delete - /module/delete', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validModuleId = 22; // Substitua por um id de módulo válido do seu ambiente
+  const PATH_API = '/Module/ModuleDelete'
 
   function moduleDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Module/ModuleDelete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -147,7 +148,7 @@ describe('API - Module Delete - /module/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Module/ModuleDelete',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -165,7 +166,7 @@ describe('API - Module Delete - /module/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Module/ModuleDelete',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

@@ -5,11 +5,12 @@ describe('API - Metas List - /metas/list', () => {
   const validProjectId = 789;
   const validSystemOptions = 'all';
   const validValue = 'some_value';
+  const PATH_API = '/Meta/List'
 
   function metasList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Meta/List',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -92,7 +93,7 @@ describe('API - Metas List - /metas/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Meta/List',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -106,7 +107,7 @@ describe('API - Metas List - /metas/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Meta/List',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

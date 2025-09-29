@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /task/delete
+const PATH_API = '/Task/Delete'
 
 describe('API - Task Delete - /task/delete', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Task Delete - /task/delete', () => {
   function taskDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Task/Delete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +83,7 @@ describe('API - Task Delete - /task/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/Delete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, 'id[0]': validId },
         failOnStatusCode: false,
@@ -96,7 +97,7 @@ describe('API - Task Delete - /task/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Task/Delete',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, 'id[0]': validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

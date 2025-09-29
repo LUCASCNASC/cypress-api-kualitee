@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectStatus'
+
 describe('API - Project Status - /project/project_status', () => {
   const validToken = 'token_valido_aqui';
   const validProjectStatus = 'ativo'; // ajuste conforme status aceito pela API
@@ -7,7 +9,7 @@ describe('API - Project Status - /project/project_status', () => {
   function projectStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectStatus',
+      url: `/${PATH_API}`,
       headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
       body,
       failOnStatusCode: false,
@@ -143,7 +145,7 @@ describe('API - Project Status - /project/project_status', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectStatus',
+        url: `/${PATH_API}`,
         headers: { 'Content-Type': 'application/json' },
         body: {
           token: validToken,

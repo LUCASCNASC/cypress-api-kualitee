@@ -1,10 +1,12 @@
+const PATH_API = '/User/UserUpdate'
+
 describe('API - Users Update - /users/update', () => {
   const validToken = 'token_valido_aqui';
 
   function updateUser(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/UserUpdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -171,7 +173,7 @@ describe('API - Users Update - /users/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UserUpdate',
+        url: `/${PATH_API}`,
         failOnStatusCode: false,
       }).then((response) => {
         expect([405, 404, 400]).to.include(response.status);
@@ -183,7 +185,7 @@ describe('API - Users Update - /users/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/UserUpdate',
+      url: `/${PATH_API}`,
       body: { ...validBody, profile_username: 'updateuser' + Date.now(), email: `ct${Date.now()}@test.com` },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

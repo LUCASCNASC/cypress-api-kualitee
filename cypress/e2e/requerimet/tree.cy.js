@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /requirements/tree
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Requirement/tree'
 
 describe('API - Requirements Tree - /requirements/tree', () => {
   
@@ -10,7 +11,7 @@ describe('API - Requirements Tree - /requirements/tree', () => {
   function requirementsTree(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Requirement/tree',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -89,7 +90,7 @@ describe('API - Requirements Tree - /requirements/tree', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Requirement/tree',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -106,7 +107,7 @@ describe('API - Requirements Tree - /requirements/tree', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Requirement/tree',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId

@@ -1,4 +1,5 @@
 // Testes automatizados para API: GET /roles/edit/permission
+const PATH_API = '/Roles/editpermission'
 
 describe('API - Roles Edit Permission - /roles/edit/permission', () => {
   
@@ -8,7 +9,7 @@ describe('API - Roles Edit Permission - /roles/edit/permission', () => {
   function rolesEditPermission(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Roles/editpermission',
+      url: `/${PATH_API}`,
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -66,7 +67,7 @@ describe('API - Roles Edit Permission - /roles/edit/permission', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Roles/editpermission',
+        url: `/${PATH_API}`,
         qs: { token: validToken, id: validId },
         failOnStatusCode: false,
       }).then(response => {
@@ -79,7 +80,7 @@ describe('API - Roles Edit Permission - /roles/edit/permission', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Roles/editpermission',
+      url: `/${PATH_API}`,
       qs: { token: validToken, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -1,3 +1,5 @@
+const PATH_API = '/User/profile'
+
 describe('API - Users Profile Save - /users/profile_save', () => {
 
   // Dados base válidos
@@ -23,7 +25,7 @@ describe('API - Users Profile Save - /users/profile_save', () => {
       formData.append('attachment', file, 'teste.txt');
       return cy.request({
         method: 'POST',
-        url: '/User/profile',
+        url: `/${PATH_API}`,
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false,
@@ -32,7 +34,7 @@ describe('API - Users Profile Save - /users/profile_save', () => {
     } else {
       return cy.request({
         method: 'POST',
-        url: '/User/profile',
+        url: `/${PATH_API}`,
         form: true,
         body,
         failOnStatusCode: false,
@@ -153,7 +155,7 @@ describe('API - Users Profile Save - /users/profile_save', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/profile',
+      url: `/${PATH_API}`,
       body: { ...validBody, profile_username: 'profileuser' + Date.now(), email: `ct${Date.now()}@test.com` },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
@@ -167,7 +169,7 @@ describe('API - Users Profile Save - /users/profile_save', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/profile',
+        url: `/${PATH_API}`,
         failOnStatusCode: false,
       }).then(response => {
         expect([405, 404, 400]).to.include(response.status);

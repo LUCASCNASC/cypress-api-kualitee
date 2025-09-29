@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case_execution/tree_builds_cycle
 // Segue o padrão completo do exemplo fornecido, cobrindo todos os cenários possíveis.
+const PATH_API = '/Test%20Case%20Execution/TreeBuildsCycle'
 
 describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tree_builds_cycle', () => {
   const validToken = 'token_valido_aqui';
@@ -9,7 +10,7 @@ describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tre
   function treeBuildsCycle(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/TreeBuildsCycle',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -83,7 +84,7 @@ describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tre
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Case%20Execution/TreeBuildsCycle',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, build_id: validBuildId },
         failOnStatusCode: false,
@@ -97,7 +98,7 @@ describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tre
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/TreeBuildsCycle',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, build_id: validBuildId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

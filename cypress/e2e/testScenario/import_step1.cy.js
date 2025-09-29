@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_scenario/import/step1
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Test%20Scenario/importstepone'
 
 describe('API - Import Step One - /test_scenario/import/step1', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
   function importStep1(body, filePath, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/importstepone',
+      url: `/${PATH_API}`,
       form: true,
       body,
       // Suporte a envio de arquivo CSV
@@ -93,7 +94,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
         // Não envia o arquivo
         cy.request({
           method: 'POST',
-          url: '/Test%20Scenario/importstepone',
+          url: `/${PATH_API}`,
           form: true,
           body,
           failOnStatusCode: false
@@ -104,7 +105,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
         cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
           cy.form_request(
             'POST',
-            '/Test%20Scenario/importstepone',
+            `/${PATH_API}`,
             body,
             [
               { name: 'import_csv_file', fileName: 'test_scenarios_import.csv', mimeType: 'text/csv', fileContent, encoding: 'base64' }
@@ -185,7 +186,7 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
       cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
         cy.request({
           method,
-          url: '/Test%20Scenario/importstepone',
+          url: `/${PATH_API}`,
           form: true,
           body: {
             token: validToken,

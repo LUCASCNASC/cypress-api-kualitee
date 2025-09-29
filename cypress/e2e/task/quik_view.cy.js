@@ -1,4 +1,5 @@
 // Testes automatizados para API: GET /task/quik/view
+const PATH_API = '/Task/task%2Fquik%2Fview'
 
 describe('API - Task Quik View - /task/quik/view', () => {
   const validToken = 'token_valido_aqui';
@@ -7,7 +8,7 @@ describe('API - Task Quik View - /task/quik/view', () => {
   function taskQuikView(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Task/task%2Fquik%2Fview',
+      url: `/${PATH_API}`,
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -65,7 +66,7 @@ describe('API - Task Quik View - /task/quik/view', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/task%2Fquik%2Fview',
+        url: `/${PATH_API}`,
         qs: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
       }).then(response => {
@@ -78,7 +79,7 @@ describe('API - Task Quik View - /task/quik/view', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Task/task%2Fquik%2Fview',
+      url: `/${PATH_API}`,
       qs: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

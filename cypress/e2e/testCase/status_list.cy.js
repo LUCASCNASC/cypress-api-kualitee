@@ -1,5 +1,6 @@
 // Testes automatizados para API: GET /test_case/status_list
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/TestCase/StatusList'
 
 describe('API - Test Case Status List - /test_case/status_list', () => {
   const validToken = 'token_valido_aqui';
@@ -9,7 +10,7 @@ describe('API - Test Case Status List - /test_case/status_list', () => {
   function testCaseStatusList(query, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/TestCase/StatusList',
+      url: `/${PATH_API}`,
       qs: query,
       failOnStatusCode: false,
       ...options,
@@ -91,7 +92,7 @@ describe('API - Test Case Status List - /test_case/status_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/TestCase/StatusList',
+        url: `/${PATH_API}`,
         qs: {
           token: validToken,
           project_id: validProjectId

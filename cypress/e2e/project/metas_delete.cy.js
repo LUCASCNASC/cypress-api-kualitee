@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectMetasDelete'
+
 describe('API - Project Metas Delete - /project/metas/delete', () => {
   const validToken = 'token_valido_aqui';
   const validMetaId = 123; // Substitua por um id de meta válido do seu ambiente
@@ -5,7 +7,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
   function metasDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectMetasDelete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -80,7 +82,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectMetasDelete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, meta_id: validMetaId },
         failOnStatusCode: false,
@@ -94,7 +96,7 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Project/ProjectMetasDelete',
+      url: `/${PATH_API}`,
       body: { token: validToken, meta_id: validMetaId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

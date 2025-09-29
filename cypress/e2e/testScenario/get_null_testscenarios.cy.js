@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_scenario/get_null_testscenarios
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Test%20Scenario/GetNullTestScenario'
 
 describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', 
   function getNullTestScenarios(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/GetNullTestScenario',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -99,7 +100,7 @@ describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', 
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Scenario/GetNullTestScenario',
+        url:`/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -117,7 +118,7 @@ describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', 
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/GetNullTestScenario',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

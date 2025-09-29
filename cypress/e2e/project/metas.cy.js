@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectMetas'
+
 describe('API - Project Metas - /project/metas', () => {
   const validToken = 'token_valido_aqui';
   const validMetaType = 'exemplo'; // Substitua pela string válida para meta_type
@@ -5,7 +7,7 @@ describe('API - Project Metas - /project/metas', () => {
   function projectMetas(queryParams, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Project/ProjectMetas',
+      url: `/${PATH_API}`,
       qs: queryParams,
       failOnStatusCode: false,
       ...options,
@@ -73,7 +75,7 @@ describe('API - Project Metas - /project/metas', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectMetas',
+        url: `/${PATH_API}`,
         qs: { token: validToken, meta_type: validMetaType },
         failOnStatusCode: false,
       }).then(response => {
@@ -86,7 +88,7 @@ describe('API - Project Metas - /project/metas', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Project/ProjectMetas',
+      url: `/${PATH_API}`,
       qs: { token: validToken, meta_type: validMetaType },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

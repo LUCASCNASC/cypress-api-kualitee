@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /requirements/import/step2
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Requirement/importsteptwo'
 
 describe('API - Requirements Import Step 2 - /requirements/import/step2', () => {
   const validToken = 'token_valido_aqui';
@@ -14,7 +15,7 @@ describe('API - Requirements Import Step 2 - /requirements/import/step2', () => 
   function importStep2(formData, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Requirement/importsteptwo',
+      url: `/${PATH_API}`,
       form: true,
       body: formData,
       failOnStatusCode: false,
@@ -150,7 +151,7 @@ describe('API - Requirements Import Step 2 - /requirements/import/step2', () => 
         const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
         cy.request({
           method,
-          url: '/Requirement/importsteptwo',
+          url: `/${PATH_API}`,
           form: true,
           body: {
             token: validToken,
@@ -173,7 +174,7 @@ describe('API - Requirements Import Step 2 - /requirements/import/step2', () => 
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       cy.request({
         method: 'POST',
-        url: '/Requirement/importsteptwo',
+        url: `/${PATH_API}`,
         body: {
           token: validToken,
           project_id: validProjectId,

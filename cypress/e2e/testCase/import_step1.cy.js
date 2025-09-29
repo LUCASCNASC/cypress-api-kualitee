@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case/import/step1
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/TestCase/importstepone'
 
 describe('API - Import Step 1 - /test_case/import/step1', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
   function importStep1(body, file, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/TestCase/importstepone',
+      url: `/${PATH_API}`,
       form: true,
       body,
       ...file && { formData: { ...body, import_csv_file: file } },
@@ -29,7 +30,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: '/TestCase/importstepone',
+        url: `/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -53,7 +54,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: '/TestCase/importstepone',
+        url: `/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -75,7 +76,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importstepone`,
+          url: `${BASE_URL}/${PATH_API}`,
           body: formData,
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -97,7 +98,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: `${BASE_URL}/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -112,7 +113,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
   it('Falha sem arquivo CSV', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importstepone`,
+      url: `${BASE_URL}/${PATH_API}`,
       form: true,
       body: {
         token: validToken,
@@ -134,7 +135,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importstepone`,
+      url: `${BASE_URL}/${PATH_API}`,
       body: formData,
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -149,7 +150,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: `${BASE_URL}/TestCase/importstepone`,
+      url: `${BASE_URL}/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId
@@ -171,7 +172,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: `${BASE_URL}/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -194,7 +195,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: `${BASE_URL}/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -218,7 +219,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
       const requests = Array(10).fill(0).map(() =>
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importstepone`,
+          url: `${BASE_URL}/${PATH_API}`,
           body: formData,
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -243,7 +244,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
 
       cy.request({
         method: 'POST',
-        url: `${BASE_URL}/TestCase/importstepone`,
+        url: `${BASE_URL}/${PATH_API}`,
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -252,7 +253,7 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
       }).then(() => {
         cy.request({
           method: 'POST',
-          url: `${BASE_URL}/TestCase/importstepone`,
+          url: `${BASE_URL}/${PATH_API}`,
           body: formData,
           headers: {
             'Content-Type': 'multipart/form-data'

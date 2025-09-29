@@ -1,3 +1,5 @@
+const PATH_API = '/User/UsersLists'
+
 describe('API - Users List - /users/list', () => {
   // Token real obtido via login válido (substitua para seu ambiente)
   const validToken = 'token_valido_aqui';
@@ -6,7 +8,7 @@ describe('API - Users List - /users/list', () => {
   function listUsers(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/UsersLists',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -95,7 +97,7 @@ describe('API - Users List - /users/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UsersLists',
+        url: `/${PATH_API}`,
         failOnStatusCode: false,
       }).then((response) => {
         expect([405, 404, 400]).to.include(response.status);
@@ -107,7 +109,7 @@ describe('API - Users List - /users/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/UsersLists',
+      url: `/${PATH_API}`,
       body: { token: validToken, user_status: 0 },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

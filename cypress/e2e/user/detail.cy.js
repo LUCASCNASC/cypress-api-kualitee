@@ -1,3 +1,5 @@
+const PATH_API = '/User/UserDetail'
+
 describe('API - User Detail - /users/detail', () => {
 
   // Ajuste para um user_id válido de seu ambiente
@@ -6,7 +8,7 @@ describe('API - User Detail - /users/detail', () => {
   function getUserDetail(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/User/UserDetail',
+      url: `/${PATH_API}`,
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -98,7 +100,7 @@ describe('API - User Detail - /users/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UserDetail',
+        url: `/${PATH_API}`,
         qs: { token: validToken, user_id: validUserId },
         failOnStatusCode: false,
       }).then(response => {
@@ -111,7 +113,7 @@ describe('API - User Detail - /users/detail', () => {
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
-      url: '/User/UserDetail',
+      url: `/${PATH_API}`,
       qs: { token: validToken, user_id: validUserId },
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       failOnStatusCode: false

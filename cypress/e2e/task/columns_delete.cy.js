@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /task/columns/delete
+const PATH_API = '/Task/columndelete'
 
 describe('API - Task Columns Delete - /task/columns/delete', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
   function taskColumnsDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Task/columndelete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +83,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/columndelete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validId },
         failOnStatusCode: false,
@@ -96,7 +97,7 @@ describe('API - Task Columns Delete - /task/columns/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Task/columndelete',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, id: validId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

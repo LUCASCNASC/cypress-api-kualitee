@@ -1,10 +1,12 @@
+const PATH_API = '/User/UsersListDashboard'
+
 describe('API - Users List Dashboard - /users/dashboard_list', () => {
   const validToken = 'token_valido_aqui';
 
   function dashboardList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/UsersListDashboard',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -77,7 +79,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UsersListDashboard',
+        url: `/${PATH_API}`,
         failOnStatusCode: false,
       }).then(response => {
         expect([405, 404, 400]).to.include(response.status);
@@ -89,7 +91,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/UsersListDashboard',
+      url: `/${PATH_API}`,
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -1,10 +1,12 @@
+const PATH_API = '/Project/ListCopy'
+
 describe('API - List Copy - /project/project_list', () => {
   const validToken = 'token_valido_aqui';
 
   function projectList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ListCopy',
+      url: `/${PATH_API}`,
       headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
       body,
       failOnStatusCode: false,
@@ -65,7 +67,7 @@ describe('API - List Copy - /project/project_list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ListCopy',
+        url: `/${PATH_API}`,
         headers: { 'Content-Type': 'application/json' },
         body: { token: validToken },
         failOnStatusCode: false,

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case_execution/find_next_test_case
 // Padrão completo conforme exemplo aprovado, cobrindo todos os cenários possíveis.
+const PATH_API = '/Test%20Case%20Execution/FindNextTestcase'
 
 describe('API - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
   const validToken = 'token_valido_aqui';
@@ -13,7 +14,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
   function findNextTestCase(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/FindNextTestcase',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -269,7 +270,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Case%20Execution/FindNextTestcase',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -291,7 +292,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/FindNextTestcase',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

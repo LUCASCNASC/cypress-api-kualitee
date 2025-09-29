@@ -1,3 +1,5 @@
+const PATH_API = '/User/UsersDelete'
+
 describe('API - Users Delete - /users/delete', () => {
   const validToken = 'token_valido_aqui';
 
@@ -7,7 +9,7 @@ describe('API - Users Delete - /users/delete', () => {
   function deleteUser(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/UsersDelete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -106,7 +108,7 @@ describe('API - Users Delete - /users/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UsersDelete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, 'user_id[0]': validUserId },
         failOnStatusCode: false,
@@ -120,7 +122,7 @@ describe('API - Users Delete - /users/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/UsersDelete',
+      url: `/${PATH_API}`,
       body: { token: validToken, 'user_id[0]': validUserId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_scenario/tree_modules_ts
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Test%20Scenario/TreeTestScenariosInModules'
 
 describe('API - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts', () => {
   const validToken = 'token_valido_aqui';
@@ -11,7 +12,7 @@ describe('API - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts',
   function treeModulesTS(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/TreeTestScenariosInModules',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -111,7 +112,7 @@ describe('API - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts',
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Scenario/TreeTestScenariosInModules',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -130,7 +131,7 @@ describe('API - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts',
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/TreeTestScenariosInModules',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

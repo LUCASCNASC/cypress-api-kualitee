@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectUpdate'
+
 describe('API - Project Update - /project/update', () => {
   const validToken = 'token_valido_aqui';
 
@@ -16,7 +18,7 @@ describe('API - Project Update - /project/update', () => {
   function projectUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectUpdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -122,7 +124,7 @@ describe('API - Project Update - /project/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectUpdate',
+        url: `/${PATH_API}`,
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -136,7 +138,7 @@ describe('API - Project Update - /project/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Project/ProjectUpdate',
+      url: `/${PATH_API}`,
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

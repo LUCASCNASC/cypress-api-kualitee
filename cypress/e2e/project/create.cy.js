@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectCreate'
+
 describe('API - Project Create - /project/create', () => {
   const validToken = 'token_valido_aqui';
 
@@ -15,7 +17,7 @@ describe('API - Project Create - /project/create', () => {
   function projectCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectCreate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -112,7 +114,7 @@ describe('API - Project Create - /project/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectCreate',
+        url: `/${PATH_API}`,
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -126,7 +128,7 @@ describe('API - Project Create - /project/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Project/ProjectCreate',
+      url: `/${PATH_API}`,
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

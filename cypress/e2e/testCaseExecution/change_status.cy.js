@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case_execution/change_status
 // Segue o padrão do arquivo de exemplo fornecido (approvedtc.cy.js)
+const PATH_API = '/Test%20Case%20Execution/ChangeStatus'
 
 describe('API - Test Case Execution Change Status - /test_case_execution/change_status', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
   function changeStatus(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/ChangeStatus',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -171,7 +172,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Case%20Execution/ChangeStatus',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -192,7 +193,7 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/ChangeStatus',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

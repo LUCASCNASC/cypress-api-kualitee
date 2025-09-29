@@ -1,5 +1,6 @@
 // Testes automatizados para API: GET /requirements/details
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Requirement/requirements%2Fdetail'
 
 describe('API - Requirements Details - /requirements/details', () => {
   
@@ -11,7 +12,7 @@ describe('API - Requirements Details - /requirements/details', () => {
   function getRequirementDetails(query, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Requirement/requirements%2Fdetail',
+      url: `/${PATH_API}`,
       qs: query,
       failOnStatusCode: false,
       ...options,
@@ -108,7 +109,7 @@ describe('API - Requirements Details - /requirements/details', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Requirement/requirements%2Fdetail',
+        url: `/${PATH_API}`,
         qs: {
           token: validToken,
           project_id: validProjectId,
@@ -125,7 +126,7 @@ describe('API - Requirements Details - /requirements/details', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Requirement/requirements%2Fdetail',
+      url: `/${PATH_API}`,
       qs: {
         token: validToken,
         project_id: validProjectId,

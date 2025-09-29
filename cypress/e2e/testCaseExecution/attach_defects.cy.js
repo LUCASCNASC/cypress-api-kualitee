@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case_execution/attach_defects
 // Segue o padrão completo do exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários.
+const PATH_API = '/Test%20Case%20Execution/attacheddefects'
 
 describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
   const validToken = 'token_valido_aqui';
@@ -13,7 +14,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
   function attachDefects(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/attacheddefects',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -290,7 +291,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Case%20Execution/attacheddefects',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -313,7 +314,7 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/attacheddefects',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /manage_test_case/tree_drag_tc_ts
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
+const PATH_API = '/TestLab/TreeDragTestCaseTestscenario'
 
 describe('API - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/tree_drag_tc_ts', () => {
   const validToken = 'token_valido_aqui';
@@ -9,7 +10,7 @@ describe('API - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/
   function treeDragTcTs(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/TestLab/TreeDragTestCaseTestscenario',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +110,7 @@ describe('API - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/TestLab/TreeDragTestCaseTestscenario',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -127,7 +128,7 @@ describe('API - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/TestLab/TreeDragTestCaseTestscenario',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

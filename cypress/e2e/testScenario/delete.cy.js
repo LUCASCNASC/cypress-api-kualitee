@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_scenario/delete
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Test%20Scenario/TestScenarioDelete'
 
 describe('API - Test Scenario Delete - /test_scenario/delete', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
   function deleteTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/TestScenarioDelete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -104,7 +105,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Scenario/TestScenarioDelete',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -122,7 +123,7 @@ describe('API - Test Scenario Delete - /test_scenario/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/TestScenarioDelete',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

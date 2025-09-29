@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /roles/list
+const PATH_API = '/Roles/List'
 
 describe('API - Roles List - /roles/list', () => {
   const validToken = 'token_valido_aqui';
@@ -6,7 +7,7 @@ describe('API - Roles List - /roles/list', () => {
   function rolesList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Roles/List',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -50,7 +51,7 @@ describe('API - Roles List - /roles/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Roles/List',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken },
         failOnStatusCode: false,
@@ -64,7 +65,7 @@ describe('API - Roles List - /roles/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Roles/List',
+      url: `/${PATH_API}`,
       body: { token: validToken },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

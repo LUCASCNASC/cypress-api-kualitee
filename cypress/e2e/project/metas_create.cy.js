@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectMetasMetasCreate'
+
 describe('API - Project Metas Create - /project/metas/create', () => {
   const validToken = 'token_valido_aqui';
   const validMetaKey = 'meta_key_exemplo';
@@ -6,7 +8,7 @@ describe('API - Project Metas Create - /project/metas/create', () => {
   function metasCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectMetasMetasCreate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -116,7 +118,7 @@ describe('API - Project Metas Create - /project/metas/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectMetasMetasCreate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -134,7 +136,7 @@ describe('API - Project Metas Create - /project/metas/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Project/ProjectMetasMetasCreate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         meta_key: validMetaKey,

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /requirements/get_defect_list
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Requirement/get_defect_list'
 
 describe('API - Requirements Get Defect List - /requirements/get_defect_list', () => {
   const validToken = 'token_valido_aqui';
@@ -9,7 +10,7 @@ describe('API - Requirements Get Defect List - /requirements/get_defect_list', (
   function getDefectList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Requirement/get_defect_list',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -88,7 +89,7 @@ describe('API - Requirements Get Defect List - /requirements/get_defect_list', (
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Requirement/get_defect_list',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -105,7 +106,7 @@ describe('API - Requirements Get Defect List - /requirements/get_defect_list', (
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Requirement/get_defect_list',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId

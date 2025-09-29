@@ -1,3 +1,5 @@
+const PATH_API = '/User/DefaultProject'
+
 describe('API - Auth Default Project - /auth/default_project', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
@@ -5,7 +7,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
   function setDefaultProject(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/DefaultProject',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -97,7 +99,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/DefaultProject',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, updated_project_id: validProjectId },
         failOnStatusCode: false,
@@ -111,7 +113,7 @@ describe('API - Auth Default Project - /auth/default_project', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/DefaultProject',
+      url: `/${PATH_API}`,
       body: { token: validToken, updated_project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

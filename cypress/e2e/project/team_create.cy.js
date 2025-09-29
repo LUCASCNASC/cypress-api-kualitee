@@ -1,3 +1,5 @@
+const PATH_API = '/Project/ProjectTeamAssigned'
+
 describe('API - Project Team Assigned - /team/create', () => {
   const validToken = 'token_valido_aqui';
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
@@ -6,7 +8,7 @@ describe('API - Project Team Assigned - /team/create', () => {
   function teamCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Project/ProjectTeamAssigned',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -140,7 +142,7 @@ describe('API - Project Team Assigned - /team/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Project/ProjectTeamAssigned',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -161,7 +163,7 @@ describe('API - Project Team Assigned - /team/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Project/ProjectTeamAssigned',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

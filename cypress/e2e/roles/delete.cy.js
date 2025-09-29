@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /roles/delete
+const PATH_API = '/Roles/Delete'
 
 describe('API - Roles Delete - /roles/delete', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Roles Delete - /roles/delete', () => {
   function rolesDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Roles/Delete',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -74,7 +75,7 @@ describe('API - Roles Delete - /roles/delete', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Roles/Delete',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, 'id[0]': validIdSingle },
         failOnStatusCode: false,
@@ -88,7 +89,7 @@ describe('API - Roles Delete - /roles/delete', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Roles/Delete',
+      url: `/${PATH_API}`,
       body: { token: validToken, 'id[0]': validIdSingle },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

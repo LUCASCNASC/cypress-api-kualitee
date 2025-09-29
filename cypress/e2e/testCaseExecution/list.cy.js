@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case_execution/list
 // Padrão baseado no exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários possíveis.
+const PATH_API = '/Test%20Case%20Execution/List'
 
 describe('API - Test Case Execution List - /test_case_execution/list', () => {
   const validToken = 'token_valido_aqui';
@@ -12,7 +13,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
   function execList(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/List',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -109,7 +110,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Case%20Execution/List',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -123,7 +124,7 @@ describe('API - Test Case Execution List - /test_case_execution/list', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Case%20Execution/List',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

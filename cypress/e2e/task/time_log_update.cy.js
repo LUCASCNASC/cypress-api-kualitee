@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /task/time/log/update
+const PATH_API = '/Task/task%2Ftime%2Flog%2Fupdate'
 
 describe('API - Task Time Log Update - /task/time/log/update', () => {
   const validToken = 'token_valido_aqui';
@@ -9,7 +10,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
   function taskTimeLogUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Task/task%2Ftime%2Flog%2Fupdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -276,7 +277,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/task%2Ftime%2Flog%2Fupdate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -302,7 +303,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Task/task%2Ftime%2Flog%2Fupdate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

@@ -1,3 +1,5 @@
+const PATH_API = '/User/UpdatePassword'
+
 describe('API - Update Password - /update_password', () => {
 
   // Dados base válidos (ajuste para valores válidos em seu ambiente, se necessário)
@@ -12,7 +14,7 @@ describe('API - Update Password - /update_password', () => {
   function updatePassword(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/User/UpdatePassword',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -117,7 +119,7 @@ describe('API - Update Password - /update_password', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/User/UpdatePassword',
+        url: `/${PATH_API}`,
         form: true,
         body: validBody,
         failOnStatusCode: false,
@@ -131,7 +133,7 @@ describe('API - Update Password - /update_password', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/User/UpdatePassword',
+      url: `/${PATH_API}`,
       body: validBody,
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case/duplicate
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/TestCase/duplicate'
 
 describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   const validToken = 'token_valido_aqui';
@@ -10,7 +11,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   function duplicateTestCase(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/TestCase/duplicate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -120,7 +121,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/TestCase/duplicate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -138,7 +139,7 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/TestCase/duplicate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

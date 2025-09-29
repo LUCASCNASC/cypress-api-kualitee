@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /report/test_case_execution
 // Padrão completo conforme exemplos anteriores, cobrindo todos os cenários possíveis, inclusive exportação e busca avançada.
+const PATH_API = '/Report/TestCaseExecution'
 
 describe('API - Report Test Case Execution - /report/test_case_execution', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Report Test Case Execution - /report/test_case_execution', () =>
   function reportTestCaseExecution(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Report/TestCaseExecution',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -122,7 +123,7 @@ describe('API - Report Test Case Execution - /report/test_case_execution', () =>
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Report/TestCaseExecution',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId },
         failOnStatusCode: false,
@@ -136,7 +137,7 @@ describe('API - Report Test Case Execution - /report/test_case_execution', () =>
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Report/TestCaseExecution',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

@@ -1,4 +1,5 @@
 // Testes automatizados para API: GET /task/detail
+const PATH_API = '/Task/task%2Ftime%2Flog%2FdetailCopy'
 
 describe('API - Task Detail - /task/detail', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Task Detail - /task/detail', () => {
   function taskDetail(params, options = {}) {
     return cy.request({
       method: 'GET',
-      url: '/Task/task%2Ftime%2Flog%2FdetailCopy',
+      url: `/${PATH_API}`,
       qs: params,
       failOnStatusCode: false,
       ...options,
@@ -81,7 +82,7 @@ describe('API - Task Detail - /task/detail', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/task%2Ftime%2Flog%2FdetailCopy',
+        url: `/${PATH_API}`,
         qs: { token: validToken, project_id: validProjectId, id: validTaskId },
         failOnStatusCode: false,
       }).then(response => {
@@ -94,7 +95,7 @@ describe('API - Task Detail - /task/detail', () => {
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
-      url: '/Task/task%2Ftime%2Flog%2FdetailCopy',
+      url: `/${PATH_API}`,
       qs: { token: validToken, project_id: validProjectId, id: validTaskId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

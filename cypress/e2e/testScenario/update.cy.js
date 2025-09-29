@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_scenario/update
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/Test%20Scenario/PostTestScenarioUpdate'
 
 describe('API - Test Scenario Update - /test_scenario/update', () => {
   const validToken = 'token_valido_aqui';
@@ -15,7 +16,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
   function updateTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/PostTestScenarioUpdate',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -140,7 +141,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Test%20Scenario/PostTestScenarioUpdate',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -160,7 +161,7 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Test%20Scenario/PostTestScenarioUpdate',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

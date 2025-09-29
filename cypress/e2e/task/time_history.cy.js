@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /task/time/history
+const PATH_API = '/Task/timehistory'
 
 describe('API - Task Time History - /task/time/history', () => {
   const validToken = 'token_valido_aqui';
@@ -8,7 +9,7 @@ describe('API - Task Time History - /task/time/history', () => {
   function taskTimeHistory(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Task/timehistory',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -82,7 +83,7 @@ describe('API - Task Time History - /task/time/history', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/timehistory',
+        url: `/${PATH_API}`,
         form: true,
         body: { token: validToken, project_id: validProjectId, id: validTaskId },
         failOnStatusCode: false,
@@ -96,7 +97,7 @@ describe('API - Task Time History - /task/time/history', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Task/timehistory',
+      url: `/${PATH_API}`,
       body: { token: validToken, project_id: validProjectId, id: validTaskId },
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false

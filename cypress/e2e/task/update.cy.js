@@ -1,4 +1,5 @@
 // Testes automatizados para API: POST /task/update
+const PATH_API = '/Task/Update'
 
 describe('API - Task Update - /task/update', () => {
   const validToken = 'token_valido_aqui';
@@ -12,7 +13,7 @@ describe('API - Task Update - /task/update', () => {
   function taskUpdate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/Task/Update',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -231,7 +232,7 @@ describe('API - Task Update - /task/update', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/Task/Update',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -255,7 +256,7 @@ describe('API - Task Update - /task/update', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/Task/Update',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

@@ -1,5 +1,6 @@
 // Testes automatizados para API: POST /test_case/create
 // Segue o padrão dos testes Cypress do projeto
+const PATH_API = '/TestCase/Create'
 
 describe('API - Test Case Create - /test_case/create', () => {
   const validToken = 'token_valido_aqui';
@@ -13,7 +14,7 @@ describe('API - Test Case Create - /test_case/create', () => {
   function testCaseCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
-      url: '/TestCase/Create',
+      url: `/${PATH_API}`,
       form: true,
       body,
       failOnStatusCode: false,
@@ -162,7 +163,7 @@ describe('API - Test Case Create - /test_case/create', () => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
-        url: '/TestCase/Create',
+        url: `/${PATH_API}`,
         form: true,
         body: {
           token: validToken,
@@ -184,7 +185,7 @@ describe('API - Test Case Create - /test_case/create', () => {
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
-      url: '/TestCase/Create',
+      url: `/${PATH_API}`,
       body: {
         token: validToken,
         project_id: validProjectId,

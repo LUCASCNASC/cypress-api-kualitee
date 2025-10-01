@@ -2,7 +2,7 @@ const PATH_API = '/Requirement/List'
 
 describe('API - Requirements List - /requirements/list', () => {
   
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 10;
   const validModuleId = 22;

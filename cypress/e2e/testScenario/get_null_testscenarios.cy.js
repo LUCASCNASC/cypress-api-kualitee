@@ -3,7 +3,7 @@
 const PATH_API = '/Test%20Scenario/GetNullTestScenario'
 
 describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 12;   // Opcional, se aplicável
 

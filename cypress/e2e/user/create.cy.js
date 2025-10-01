@@ -1,7 +1,7 @@
 const PATH_API = '/User/UsersCreate'
 
 describe('API - Users Create - /users/create', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
 
   function createUser(body, options = {}) {
     return cy.request({

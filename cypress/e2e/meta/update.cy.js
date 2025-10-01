@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /metas/update
 
 describe('API - Metas Update - /metas/update', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 789;
   const validId = 123;
   const validMetaKey = 'browser';

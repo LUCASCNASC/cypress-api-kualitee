@@ -3,7 +3,7 @@
 const PATH_API = '/Report/defects'
 
 describe('API - Report Defects - /report/defects', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
 
   function reportDefects(body, options = {}) {

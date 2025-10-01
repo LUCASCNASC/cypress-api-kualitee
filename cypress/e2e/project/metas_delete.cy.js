@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectMetasDelete'
 
 describe('API - Project Metas Delete - /project/metas/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validMetaId = 123; // Substitua por um id de meta válido do seu ambiente
 
   function metasDelete(body, options = {}) {

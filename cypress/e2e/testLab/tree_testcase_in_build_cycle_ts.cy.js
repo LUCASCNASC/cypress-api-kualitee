@@ -3,7 +3,7 @@
 const PATH_API = '/TestLab/TreeTestCaseinBuildcycletestScenario'
 
 describe('API - Manage Test Case Tree Testcase In Build Cycle Test Scenario - /manage_test_case/tree_testcase_in_build_cycle_ts', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validCycleId = 1001;
   const validTestScenarioId = 1234;

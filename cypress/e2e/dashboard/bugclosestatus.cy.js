@@ -1,5 +1,5 @@
 describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/Defectsclosestatus'
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 

@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectMetasUpdate'
 
 describe('API - Project Metas Update - /project/metas/update', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validMetaKey = 'meta_key_exemplo';
   const validMetaValue = 'meta_value_exemplo';
   const validMetaId = 123; // Substitua por um id de meta válido do seu ambiente

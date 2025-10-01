@@ -2,7 +2,7 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Defects Import Step 2 - /defects/import/step2', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validCsvFile = 'cypress/fixtures/defects_import.csv';
   const validAssignTo = 123;

@@ -3,7 +3,7 @@
 const PATH_API = '/Requirement/BulkUpdate'
 
 describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido
   const validModuleId = 5;   // Substitua por um module_id válido
   const validRequirementIds = [101, 102, 103]; // Substitua por ids de requisitos válidos

@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectCreate'
 
 describe('API - Project Create - /project/create', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
 
   // Valores válidos de exemplo
   const validBody = {

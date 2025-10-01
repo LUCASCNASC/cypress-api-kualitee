@@ -3,7 +3,7 @@
 const PATH_API = '/Requirement/tree_requirement_in_builds'
 
 describe('API - Requirements Tree Requirement in Builds - /requirements/tree_requirement_in_builds', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validBuildId = 12;   // Substitua por um build_id válido do seu ambiente
 

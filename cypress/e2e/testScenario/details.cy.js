@@ -3,7 +3,7 @@
 const PATH_API = '/Test%20Scenario/TestScenarioDetail'
 
 describe('API - Test Scenario Detail - /test_scenario/details', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validTestScenarioId = 99; // Substitua por um test_scenario_id válido do seu ambiente
 

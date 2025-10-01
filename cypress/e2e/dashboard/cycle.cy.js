@@ -1,5 +1,5 @@
 describe('API - Dashboard Cycle - /dashboard/cycle', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/Cycle'
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 

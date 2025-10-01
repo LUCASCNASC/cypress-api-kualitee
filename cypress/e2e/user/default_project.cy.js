@@ -1,7 +1,7 @@
 const PATH_API = '/User/DefaultProject'
 
 describe('API - Auth Default Project - /auth/default_project', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 
   function setDefaultProject(body, options = {}) {

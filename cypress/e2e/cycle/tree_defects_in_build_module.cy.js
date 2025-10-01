@@ -2,7 +2,7 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Defects Tree Defects In Build Module - /defects/tree_defects_in_build_module', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validBuildId = 10;
   const validModuleId = 22;

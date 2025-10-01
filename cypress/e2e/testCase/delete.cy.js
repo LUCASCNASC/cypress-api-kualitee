@@ -3,7 +3,7 @@
 const PATH_API = '/TestCase/Deleted'
 
 describe('API - Test Case Delete - /test_case/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validIds = [1001, 1002]; // Substitua por ids de casos de teste válidos do seu ambiente
 

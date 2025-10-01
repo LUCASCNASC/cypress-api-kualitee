@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ListCopy'
 
 describe('API - List Copy - /project/project_list', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
 
   function projectList(body, options = {}) {
     return cy.request({

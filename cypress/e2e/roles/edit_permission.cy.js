@@ -3,7 +3,7 @@ const PATH_API = '/Roles/editpermission'
 
 describe('API - Roles Edit Permission - /roles/edit/permission', () => {
   
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validId = 123;
 
   function rolesEditPermission(params, options = {}) {

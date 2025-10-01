@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /customfields/create
 
 describe('API - Custom Fields Create - /customfields/create', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 789;
   const validFieldType = 'textbox';
   const validCustomFieldModule = 'TestScenario';

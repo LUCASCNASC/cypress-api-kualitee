@@ -3,7 +3,7 @@
 const PATH_API = '/TestCase/Update'
 
 describe('API - Test Case Update - /test_case/update', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validId = 1001;      // Substitua pelo id do caso de teste existente
   const validBuildId = 12;

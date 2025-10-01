@@ -3,7 +3,7 @@
 const PATH_API = '/Test%20Scenario/TestScenarioDelete'
 
 describe('API - Test Scenario Delete - /test_scenario/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validTestScenarioId = 99; // Substitua por um test_scenario_id válido do seu ambiente
 

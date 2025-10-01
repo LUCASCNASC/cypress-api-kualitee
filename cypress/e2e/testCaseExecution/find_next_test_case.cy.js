@@ -3,7 +3,7 @@
 const PATH_API = '/Test%20Case%20Execution/FindNextTestcase'
 
 describe('API - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validTcId = 101;
   const validTestScenarioId = 1234;

@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectIntegrations'
 
 describe('API - Project Integrations - /project/integrations', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 
   function projectIntegrations(body, options = {}) {

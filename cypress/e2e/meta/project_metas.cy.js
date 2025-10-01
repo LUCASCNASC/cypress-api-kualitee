@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /metas/project_metas
 
 describe('API - Metas Project Metas - /metas/project_metas', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 789;
   const PATH_API = '/Meta/Metalist'
 

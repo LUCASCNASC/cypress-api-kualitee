@@ -4,6 +4,7 @@ describe('API - User Detail - /users/detail', () => {
 
   // Ajuste para um user_id válido de seu ambiente
   const validUserId = 101;
+  const validToken = Cypress.env('VALID_TOKEN');
 
   function getUserDetail(params, options = {}) {
     return cy.request({

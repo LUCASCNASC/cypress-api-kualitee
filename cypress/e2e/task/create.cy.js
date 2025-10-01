@@ -2,7 +2,7 @@
 const PATH_API = '/Task/Create'
 
 describe('API - Task Create - /task/create', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validAssignedTo = [1234];
   const validTaskname = 'Nova tarefa';

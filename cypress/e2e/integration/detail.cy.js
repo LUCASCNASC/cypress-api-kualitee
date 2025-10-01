@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /integration/detail
 
 describe('API - Integration Detail - /integration/detail', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validId = 123;
   const PATH_API = '/Integration/detail'
 

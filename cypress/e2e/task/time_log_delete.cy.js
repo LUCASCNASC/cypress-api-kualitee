@@ -2,7 +2,7 @@
 const PATH_API = '/Task/task%2Ftime%2Flog%2Fdelete'
 
 describe('API - Task Time Log Delete - /task/time/log/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validId = 1000;
 

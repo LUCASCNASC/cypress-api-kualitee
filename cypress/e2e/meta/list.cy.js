@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /metas/list
 
 describe('API - Metas List - /metas/list', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 789;
   const validSystemOptions = 'all';
   const validValue = 'some_value';

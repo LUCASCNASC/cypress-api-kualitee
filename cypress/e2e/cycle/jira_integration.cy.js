@@ -2,7 +2,7 @@
 // Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 
 describe('API - Defects Jira Integration - /defects/jira_integration', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const PATH_API = '/Defect/jira_integration'
 

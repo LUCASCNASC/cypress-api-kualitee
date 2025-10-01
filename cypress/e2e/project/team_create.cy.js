@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectTeamAssigned'
 
 describe('API - Project Team Assigned - /team/create', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
   const validUserIds = [10, 11, 12, 13]; // Substitua por ids de usuários válidos
 

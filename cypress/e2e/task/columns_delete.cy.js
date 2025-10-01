@@ -2,7 +2,7 @@
 const PATH_API = '/Task/columndelete'
 
 describe('API - Task Columns Delete - /task/columns/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validId = 888;
 

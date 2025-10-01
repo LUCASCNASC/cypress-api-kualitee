@@ -2,7 +2,7 @@
 const PATH_API = '/Task/task%2Fcolumns%2Fcard%2Freposition'
 
 describe('API - Task Columns Card Reposition - /task/columns/card/reposition', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validId = 888;
 

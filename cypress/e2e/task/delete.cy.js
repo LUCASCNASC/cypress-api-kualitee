@@ -2,7 +2,7 @@
 const PATH_API = '/Task/Delete'
 
 describe('API - Task Delete - /task/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validId = 888;
 

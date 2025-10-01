@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /customfields/delete
 
 describe('API - Custom Fields Delete - /customfields/delete', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 789;
   const validCustomFieldId = 123;
   const PATH_API = '/Custom%20Fields/Delete'

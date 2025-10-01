@@ -3,7 +3,7 @@
 const PATH_API = '/Requirement/get_testscenario_list'
 
 describe('API - Requirements Get Testscenario List - /requirements/get_testscenario_list', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
 
   // Função utilitária para chamada da API

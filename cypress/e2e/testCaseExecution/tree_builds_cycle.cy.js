@@ -3,7 +3,7 @@
 const PATH_API = '/Test%20Case%20Execution/TreeBuildsCycle'
 
 describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tree_builds_cycle', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validBuildId = 10;
 

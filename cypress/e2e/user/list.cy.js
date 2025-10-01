@@ -2,7 +2,7 @@ const PATH_API = '/User/UsersLists'
 
 describe('API - Users List - /users/list', () => {
   // Token real obtido via login válido (substitua para seu ambiente)
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
 
   // Helper para requisições
   function listUsers(body, options = {}) {

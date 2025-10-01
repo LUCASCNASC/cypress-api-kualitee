@@ -3,7 +3,7 @@
 const PATH_API = '/TestLab/TreeTragTesetCaseinBuild'
 
 describe('API - Manage Test Case Tree Drag TC In Build - /manage_test_case/tree_drag_tc_in_build', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = 77;
   const validBuildId = 10;
 

@@ -1,7 +1,7 @@
 // Testes automatizados para API: POST /emailnotification/list
 
 describe('API - Email Notification List - /emailnotification/list', () => {
-  const validToken = 'token_valido_aqui';
+  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Email%20Notifications/List'
 
   function emailNotificationList(body, options = {}) {

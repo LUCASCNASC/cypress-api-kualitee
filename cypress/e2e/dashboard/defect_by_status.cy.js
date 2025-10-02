@@ -1,7 +1,7 @@
 describe('API - Dashboard Defect by Status - /dashboard/defect_by_status', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/Defectsbystatus'
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function defectByStatus(body, options = {}) {
     return cy.request({

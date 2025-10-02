@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Case%20Execution/TreeTestCaseinBuildCycle'
 
 describe('API - Test Case Execution Tree Test Case in Build Cycle - /test_case_execution/tree_test_case_in_build_cycle', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = 10;
   const validCycleId = 1001;
 

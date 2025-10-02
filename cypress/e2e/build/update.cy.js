@@ -1,6 +1,6 @@
 describe('API - Builds Update - /build/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validStartDate = '2020-06-02';
   const validEndDate = '2020-06-02';
   const validBuildId = '10'; // Note: string type

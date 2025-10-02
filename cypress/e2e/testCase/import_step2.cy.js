@@ -4,7 +4,7 @@ const PATH_API = '/TestCase/importsteptwo'
 
 describe('API - Import Step 2 - /test_case/import/step2', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validAssignedTo = 123; // Substitua por um assignedto válido do seu ambiente
   const validCsv = 'fixtures/valid_test_cases.csv'; // Coloque um csv de teste válido no diretório fixtures
 

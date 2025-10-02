@@ -1,7 +1,7 @@
 describe('API - Dashboard Bugs Total - /dashboard/bugs/total', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/DefectsTotal'
-  const validProjectId = 11; // Substitua por um ID válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   const validBody = {
     token: validToken,

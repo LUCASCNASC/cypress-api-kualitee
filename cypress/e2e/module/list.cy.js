@@ -1,6 +1,6 @@
 describe('API - Module List - /module/list', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validKeyword = 'login'; // ou qualquer palavra-chave válida
   const PATH_API = '/Module/ModuleList'
 

@@ -1,6 +1,6 @@
 describe('API - Module Update - /module/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleId = 22; // Substitua por um id de módulo válido do seu ambiente
   const validModuleName = 'Autenticação';
   const validBuildId = 10; // Substitua por um id de build válido do seu ambiente

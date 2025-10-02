@@ -4,7 +4,7 @@ const PATH_API = '/Task/details'
 describe('API - Task Details - /task/details', () => {
   
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = 888;
 
   function taskDetails(params, options = {}) {

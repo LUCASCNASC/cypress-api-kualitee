@@ -4,7 +4,7 @@ const PATH_API = '/Requirement/importsteptwo'
 
 describe('API - Requirements Import Step 2 - /requirements/import/step2', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsvPath = 'caminho/para/arquivo.csv'; // Substitua pelo caminho de um arquivo CSV válido no seu projeto
   const validAssignedTo = 'user123'; // Substitua pelo usuário válido
   const validDbColumns = [

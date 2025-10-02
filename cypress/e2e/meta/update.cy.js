@@ -2,7 +2,7 @@
 
 describe('API - Metas Update - /metas/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 789;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = 123;
   const validMetaKey = 'browser';
   const validMetaValue = 'chrome';

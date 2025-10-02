@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Scenario/GetTestScenarioTree'
 
 describe('API - Test Scenario Tree - /test_scenario/tree', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   // Função utilitária para chamada da API
   function testScenarioTree(body, options = {}) {

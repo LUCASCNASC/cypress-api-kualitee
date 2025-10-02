@@ -2,7 +2,7 @@ const PATH_API = '/Project/ProjectDetail'
 
 describe('API - Project Detail - /project/details', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function projectDetails(queryParams, options = {}) {
     return cy.request({

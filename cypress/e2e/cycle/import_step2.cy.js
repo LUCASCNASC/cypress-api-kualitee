@@ -3,7 +3,7 @@
 
 describe('API - Defects Import Step 2 - /defects/import/step2', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsvFile = 'cypress/fixtures/defects_import.csv';
   const validAssignTo = 123;
   const validDbColumns = [

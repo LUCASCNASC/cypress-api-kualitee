@@ -4,7 +4,7 @@ const PATH_API = '/TestLab/AddTestCasesCycle'
 
 describe('API - Manage Test Case Update - /manage_test_case/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   // Exemplo de node[to] e node[from] baseado na documentação
   const validNodeTo = { parent: { id: 1001, _type: 'cycle' } };
   const validNodeFrom = { parent: { id: 2001 }, name: "TCExample", _type: "tc", checked: true };

@@ -2,7 +2,7 @@
 
 describe('API - Metas Create - /metas/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 789;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validMetaKey = 'browser';
   const validMetaValue = 'chrome';
   const PATH_API = '/Meta/Create'

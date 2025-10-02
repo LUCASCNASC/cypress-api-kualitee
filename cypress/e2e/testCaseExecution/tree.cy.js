@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Case%20Execution/TreeRoot'
 
 describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function tree(body, options = {}) {
     return cy.request({

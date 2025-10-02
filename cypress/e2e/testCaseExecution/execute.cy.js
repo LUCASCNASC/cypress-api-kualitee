@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Case%20Execution/Execute'
 
 describe('API - Test Case Execution Execute - /test_case_execution/execute', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validStatus = 'Passed';
   const validTcId = 101;
   const validTestScenarioId = 1234;

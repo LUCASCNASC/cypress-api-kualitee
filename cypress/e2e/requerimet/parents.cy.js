@@ -4,7 +4,7 @@ const PATH_API = '/Requirement/parents'
 
 describe('API - Requirements Parents - /requirements/parents', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   // Função utilitária para chamada da API
   function requirementsParents(body, options = {}) {

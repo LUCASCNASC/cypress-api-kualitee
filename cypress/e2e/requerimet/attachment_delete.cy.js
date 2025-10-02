@@ -4,7 +4,7 @@ const PATH_API = '/Requirement/deleteimage'
 
 describe('API - Requirements Attachment Delete - /requirements/attachment/delete', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validImageId = 456; // Substitua por um id de imagem válido
 
   // Função utilitária para chamada da API

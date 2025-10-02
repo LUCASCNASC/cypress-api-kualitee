@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Case%20Execution/attacheddefects'
 
 describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTcId = 101;
   const validTestScenarioId = 1234;
   const validCycleId = 1001;

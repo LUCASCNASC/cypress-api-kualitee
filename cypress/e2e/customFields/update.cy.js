@@ -3,7 +3,7 @@
 describe('API - Custom Fields Update - /customfields/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validCustomFieldId = 456;
-  const validProjectId = 789;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validFieldType = 'textbox';
   const validCustomFieldModule = 'TestScenario';
   const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';

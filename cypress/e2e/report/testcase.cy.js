@@ -4,7 +4,7 @@ const PATH_API = '/Report/TestCase'
 
 describe('API - Report Testcase - /report/testcase', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function reportTestcase(body, options = {}) {
     return cy.request({

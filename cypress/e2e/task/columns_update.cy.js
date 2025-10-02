@@ -3,7 +3,7 @@ const PATH_API = '/Task/columnupdate'
 
 describe('API - Task Columns Update - /task/columns/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = 888;
   const validColumnName = 'Coluna Atualizada';
 

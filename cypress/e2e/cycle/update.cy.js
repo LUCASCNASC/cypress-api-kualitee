@@ -3,7 +3,7 @@
 
 describe('API - Defects Update - /defects/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validDefectId = 101; // id do defeito a ser atualizado
   const validBuildId = 10;
   const validModuleId = 22;

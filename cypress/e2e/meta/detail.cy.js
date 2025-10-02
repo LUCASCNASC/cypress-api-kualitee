@@ -2,7 +2,7 @@
 
 describe('API - Metas Detail - /metas/detail', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 789;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = 123;
   const PATH_API = '/Meta/detail'
 

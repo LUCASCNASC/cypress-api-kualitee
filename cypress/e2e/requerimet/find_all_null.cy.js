@@ -4,7 +4,7 @@ const PATH_API = '/Requirement/requirements%2Ffind_all_null'
 
 describe('API - Requirements Find All Null - /requirements/find_all_null', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;  // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = 12;    // Substitua por um build_id válido do seu ambiente
   const validModuleId = 5;    // Substitua por um module_id válido do seu ambiente
 

@@ -4,7 +4,7 @@ const PATH_API = '/Requirement/delete'
 
 describe('API - Requirements Delete - /requirements/delete', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77; // Substitua por um id de projeto válido do seu ambiente
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validRequirementId = 123; // Substitua por um id de requisito válido
 
   // Função utilitária para chamada da API

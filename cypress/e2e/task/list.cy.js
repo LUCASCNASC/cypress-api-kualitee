@@ -3,7 +3,7 @@ const PATH_API = '/Task/List'
 
 describe('API - Task List - /task/list', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function taskList(body, options = {}) {
     return cy.request({

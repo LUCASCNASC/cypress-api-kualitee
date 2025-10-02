@@ -3,7 +3,7 @@ const PATH_API = '/Task/timehistory'
 
 describe('API - Task Time History - /task/time/history', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTaskId = 888;
 
   function taskTimeHistory(body, options = {}) {

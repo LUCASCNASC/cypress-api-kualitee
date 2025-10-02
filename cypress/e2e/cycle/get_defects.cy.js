@@ -3,7 +3,7 @@
 
 describe('API - Defects Get Defects - /defects/get_defects', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = 10;
   const validModuleId = 22;
   const PATH_API = '/Defect/get_defects'

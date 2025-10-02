@@ -3,7 +3,7 @@ const PATH_API = '/Task/Update'
 
 describe('API - Task Update - /task/update', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = 77;
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTaskId = 888;
   const validAssignedTo = [1234];
   const validTaskname = 'Tarefa atualizada';

@@ -68,4 +68,4 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
 
-Criar variável para a url inteira de todos os arquivos de teste
+Adicionar "const validBuildId" no arquivo cypress.env.json e atualizar em todos os arquivos necessários.

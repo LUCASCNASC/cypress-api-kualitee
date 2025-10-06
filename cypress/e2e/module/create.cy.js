@@ -2,7 +2,7 @@ describe('API - Module Create - /module/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleName = 'Autenticação';
-  const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleDescription = 'Módulo responsável pelo fluxo de login e autenticação.';
   const PATH_API = '/Module/ModuleCreate'
 

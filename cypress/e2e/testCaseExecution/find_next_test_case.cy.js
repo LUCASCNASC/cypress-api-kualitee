@@ -8,7 +8,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
   const validTcId = 101;
   const validTestScenarioId = 1234;
   const validCycleId = 1001;
-  const validBuildId = 10;
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validOffsetTestExecutions = 0;
 
   function findNextTestCase(body, options = {}) {

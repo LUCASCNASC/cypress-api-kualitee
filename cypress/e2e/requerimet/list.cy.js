@@ -4,7 +4,7 @@ describe('API - Requirements List - /requirements/list', () => {
   
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = 10;
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = 22;
   const validStatus = 'open';
   const validCreatedBy = [123, 456]; // IDs de usuários válidos

@@ -4,7 +4,7 @@
 describe('API - Defects Create - /defects/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = 10;
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = 22;
   const validDescription = 'Defeito crítico na tela de login';
   const validSourceName = 'QA';

@@ -1,7 +1,7 @@
 describe('API - Build Details - /build/details', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = 10; // Substitua por um id de build válido do seu ambiente
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const PATH_API = '/Build/BuildsDelete'
 
   function buildDetails(queryParams, options = {}) {

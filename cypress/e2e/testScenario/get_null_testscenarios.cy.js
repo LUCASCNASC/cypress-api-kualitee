@@ -5,7 +5,7 @@ const PATH_API = '/Test%20Scenario/GetNullTestScenario'
 describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = 12;   // Opcional, se aplicável
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
 
   // Função utilitária para chamada da API
   function getNullTestScenarios(body, options = {}) {

@@ -9,7 +9,7 @@ describe('API - Test Case Execution Execute - /test_case_execution/execute', () 
   const validTcId = 101;
   const validTestScenarioId = 1234;
   const validCycleId = 1001;
-  const validBuildId = 10;
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validNotes = 'Teste executado com sucesso';
   const validExecute = 'yes';
 

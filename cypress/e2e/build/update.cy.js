@@ -4,7 +4,7 @@ describe('API - Builds Update - /build/update', () => {
   const validStartDate = '2020-06-02';
   const validEndDate = '2020-06-02';
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validId = 123; // Substitua por um id válido do seu ambiente
+  const validId = Cypress.env('VALID_ID');
   const validDescription = 'Atualização de build';
   const PATH_API = '/Build/BuildsUpdate'
 

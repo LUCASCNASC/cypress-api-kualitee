@@ -6,7 +6,7 @@ describe('API - Integration Save - /integration/save', () => {
   const validUsername = 'usuario_teste';
   const validPassword = 'senha_teste';
   const validPluginUrl = 'https://jira.example.com';
-  const validId = 123;
+  const validId = Cypress.env('VALID_ID');
   const PATH_API = '/Integration/save'
 
   function integrationSave(body, options = {}) {

@@ -2,7 +2,7 @@
 
 describe('API - Custom Fields Detail - /customfields/detail', () => {
   const validToken = Cypress.env('VALID_TOKEN');
-  const validId = 123;
+  const validId = Cypress.env('VALID_ID');
   const PATH_API = '/Custom%20Fields/detail'
 
   function customfieldsDetail(query, options = {}) {

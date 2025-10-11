@@ -2,7 +2,7 @@ describe('API - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const PATH_API = '/Dashboard/DropdownDefects'
-  const validIds = [100, 101]; // Substitua por ids válidos de defeito do seu ambiente
+  const validIds = Cypress.env('VALID_IDS');
 
   function dropdownDefect(body, options = {}) {
     return cy.request({

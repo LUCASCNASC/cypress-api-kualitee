@@ -2,7 +2,7 @@ describe('API - Dashboard Update Notification Status - /dashboard/update_notific
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const PATH_API = '/Dashboard/UpdateNotificationstatus'
-  const validIds = [100, 101]; // Substitua por ids de notificação válidos do seu ambiente
+  const validIds = Cypress.env('VALID_IDS');
 
   function updateNotificationStatus(body, options = {}) {
     return cy.request({

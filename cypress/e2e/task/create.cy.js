@@ -6,7 +6,7 @@ describe('API - Task Create - /task/create', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validAssignedTo = [1234];
   const validTaskname = 'Nova tarefa';
-  const validStartDate = '2025-09-17';
+  const validStartDate = Cypress.env('VALID_START_DATE');
   const validEndDate = '2025-09-18';
 
   function taskCreate(body, options = {}) {

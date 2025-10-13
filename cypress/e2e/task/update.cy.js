@@ -7,7 +7,7 @@ describe('API - Task Update - /task/update', () => {
   const validTaskId = 888;
   const validAssignedTo = [1234];
   const validTaskname = 'Tarefa atualizada';
-  const validStartDate = '2025-09-19';
+  const validStartDate = Cypress.env('VALID_START_DATE');
   const validEndDate = '2025-09-20';
 
   function taskUpdate(body, options = {}) {

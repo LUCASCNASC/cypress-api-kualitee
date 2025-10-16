@@ -70,4 +70,3 @@ Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
 
 Adicionar "const validId" no arquivo cypress.env.json e atualizar em todos os arquivos necessários.
 - Melhorar a performance dos testes de APIs, deixando-os mais leves.
-Propor melhorias em relação a performance.

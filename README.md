@@ -67,6 +67,3 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
-
-Adicionar "const validId" no arquivo cypress.env.json e atualizar em todos os arquivos necessários.
-- Melhorar a performance dos testes de APIs, deixando-os mais leves.

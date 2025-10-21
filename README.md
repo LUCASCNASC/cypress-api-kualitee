@@ -23,26 +23,22 @@ Clone o repositório:
 git clone https://github.com/LUCASCNASC/cypress-api-kualitee.git
 cd cypress-api-kualitee
 ```
-
 Instale as dependências:
 ```bash
 npm install
 # ou
 yarn install
 ```
-
 ## Como executar os testes
 
 Para executar todos os testes em modo headless:
 ```bash
 npx cypress run
 ```
-
 Para abrir a interface gráfica do Cypress:
 ```bash
 npx cypress open
 ```
-
 ## Estrutura do Projeto
 
 ```

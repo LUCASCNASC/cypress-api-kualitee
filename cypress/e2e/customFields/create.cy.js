@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /customfields/create
-
 describe('API - Custom Fields Create - /customfields/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

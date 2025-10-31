@@ -1,6 +1,3 @@
-// Testes automatizados para API: POST /defects/import/step1
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
-
 describe('API - Defects Import Step 1 - /defects/import/step1', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

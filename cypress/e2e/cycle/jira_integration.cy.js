@@ -1,6 +1,3 @@
-// Testes automatizados para API: POST /defects/jira_integration
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
-
 describe('API - Defects Jira Integration - /defects/jira_integration', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

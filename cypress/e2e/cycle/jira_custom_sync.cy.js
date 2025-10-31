@@ -1,6 +1,3 @@
-// Testes automatizados para API: POST /defects/jira_custom_sync
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
-
 describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

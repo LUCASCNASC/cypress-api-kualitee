@@ -1,6 +1,3 @@
-// Testes automatizados para API: POST /defects/defect_metas
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
-
 describe('API - Defects Defect Metas - /defects/defect_metas', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

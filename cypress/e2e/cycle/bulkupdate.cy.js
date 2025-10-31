@@ -1,6 +1,3 @@
-// Testes automatizados para API: POST /defects/bulkupdate
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
-
 describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

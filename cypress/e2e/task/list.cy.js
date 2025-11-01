@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/list
 const PATH_API = '/Task/List'
 
 describe('API - Task List - /task/list', () => {

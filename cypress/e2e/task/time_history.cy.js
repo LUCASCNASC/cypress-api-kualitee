@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/time/history
 const PATH_API = '/Task/timehistory'
 
 describe('API - Task Time History - /task/time/history', () => {

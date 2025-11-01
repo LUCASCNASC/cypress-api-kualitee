@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/columns/create
 const PATH_API = '/Task/columnCreate'
 
 describe('API - Task Columns Create - /task/columns/create', () => {

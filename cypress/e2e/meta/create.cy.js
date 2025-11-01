@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /metas/create
-
 describe('API - Metas Create - /metas/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

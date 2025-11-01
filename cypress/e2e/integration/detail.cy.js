@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /integration/detail
-
 describe('API - Integration Detail - /integration/detail', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validId = Cypress.env('VALID_ID');

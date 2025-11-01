@@ -1,4 +1,3 @@
-// Testes automatizados para API: GET /task/columns/view
 const PATH_API = '/Task/task%2Fcolumn%2Fview'
 
 describe('API - Task Columns View - /task/columns/view', () => {

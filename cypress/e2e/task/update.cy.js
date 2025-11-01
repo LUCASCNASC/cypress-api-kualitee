@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/update
 const PATH_API = '/Task/Update'
 
 describe('API - Task Update - /task/update', () => {

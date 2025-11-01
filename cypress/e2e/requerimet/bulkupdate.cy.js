@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/bulkupdate
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/BulkUpdate'
 
 describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {

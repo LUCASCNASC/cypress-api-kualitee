@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/columns/card/reposition
 const PATH_API = '/Task/task%2Fcolumns%2Fcard%2Freposition'
 
 describe('API - Task Columns Card Reposition - /task/columns/card/reposition', () => {

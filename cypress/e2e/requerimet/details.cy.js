@@ -1,5 +1,3 @@
-// Testes automatizados para API: GET /requirements/details
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/requirements%2Fdetail'
 
 describe('API - Requirements Details - /requirements/details', () => {

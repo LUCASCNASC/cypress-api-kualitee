@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /integration/save
-
 describe('API - Integration Save - /integration/save', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validPluginName = 'JIRA';

@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/delete
-// Baseado no padrão de testes do projeto
 const PATH_API = '/Requirement/delete'
 
 describe('API - Requirements Delete - /requirements/delete', () => {

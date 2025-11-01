@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/delete
 const PATH_API = '/Task/Delete'
 
 describe('API - Task Delete - /task/delete', () => {

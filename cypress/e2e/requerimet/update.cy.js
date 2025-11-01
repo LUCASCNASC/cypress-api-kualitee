@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/update
-// Baseado no padrão de testes do projeto (vide list.cy.js)
 const PATH_API = '/Requirement/update'
 
 describe('API - Requirements Update - /requirements/update', () => {

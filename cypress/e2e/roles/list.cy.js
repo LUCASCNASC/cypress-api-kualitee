@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /roles/list
 const PATH_API = '/Roles/List'
 
 describe('API - Roles List - /roles/list', () => {

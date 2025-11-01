@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/columns/delete
 const PATH_API = '/Task/columndelete'
 
 describe('API - Task Columns Delete - /task/columns/delete', () => {

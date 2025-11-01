@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/find_all_null
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/requirements%2Ffind_all_null'
 
 describe('API - Requirements Find All Null - /requirements/find_all_null', () => {

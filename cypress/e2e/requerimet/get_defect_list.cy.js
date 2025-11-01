@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/get_defect_list
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/get_defect_list'
 
 describe('API - Requirements Get Defect List - /requirements/get_defect_list', () => {

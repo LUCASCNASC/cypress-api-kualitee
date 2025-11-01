@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /task/time/log/delete
 const PATH_API = '/Task/task%2Ftime%2Flog%2Fdelete'
 
 describe('API - Task Time Log Delete - /task/time/log/delete', () => {

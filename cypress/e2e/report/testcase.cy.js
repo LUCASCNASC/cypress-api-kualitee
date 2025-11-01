@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /report/testcase
-// Padrão completo conforme exemplos fornecidos, cobrindo todos os cenários possíveis, inclusive exportação e busca avançada.
 const PATH_API = '/Report/TestCase'
 
 describe('API - Report Testcase - /report/testcase', () => {

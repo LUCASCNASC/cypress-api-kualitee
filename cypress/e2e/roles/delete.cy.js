@@ -1,4 +1,3 @@
-// Testes automatizados para API: POST /roles/delete
 const PATH_API = '/Roles/Delete'
 
 describe('API - Roles Delete - /roles/delete', () => {

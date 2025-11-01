@@ -1,4 +1,3 @@
-// Testes automatizados para API: GET /task/calander/view
 const PATH_API = '/Task/calander%2Fview'
 
 describe('API - Task Calander View - /task/calander/view', () => {

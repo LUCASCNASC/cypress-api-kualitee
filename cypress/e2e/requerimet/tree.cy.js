@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/tree
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/tree'
 
 describe('API - Requirements Tree - /requirements/tree', () => {

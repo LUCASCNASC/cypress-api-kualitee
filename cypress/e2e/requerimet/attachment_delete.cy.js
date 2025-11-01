@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /requirements/attachment/delete
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Requirement/deleteimage'
 
 describe('API - Requirements Attachment Delete - /requirements/attachment/delete', () => {

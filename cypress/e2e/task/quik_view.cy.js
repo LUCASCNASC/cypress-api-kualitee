@@ -1,4 +1,3 @@
-// Testes automatizados para API: GET /task/quik/view
 const PATH_API = '/Task/task%2Fquik%2Fview'
 
 describe('API - Task Quik View - /task/quik/view', () => {

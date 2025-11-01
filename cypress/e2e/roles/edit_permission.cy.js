@@ -1,4 +1,3 @@
-// Testes automatizados para API: GET /roles/edit/permission
 const PATH_API = '/Roles/editpermission'
 
 describe('API - Roles Edit Permission - /roles/edit/permission', () => {

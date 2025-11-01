@@ -1,4 +1,3 @@
-// Testes automatizados para API: GET /roles/details
 const PATH_API = '/Roles/details'
 
 describe('API - Roles Details - /roles/details', () => {

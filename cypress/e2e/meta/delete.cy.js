@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /metas/delete
-
 describe('API - Metas Delete - /metas/delete', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');

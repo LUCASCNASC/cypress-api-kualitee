@@ -6,9 +6,9 @@ describe('API - Test Case Create - /test_case/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5;   // Substitua por um module_id válido do seu ambiente
-  const validScenarioId = 201; // Substitua por um t_scenario_id válido
-  const validRequirementId = 101; // Substitua por um requirement_id válido
+  const validModuleId = 5; 
+  const validScenarioId = 201;
+  const validRequirementId = 101;
 
   // Função utilitária para chamada da API
   function testCaseCreate(body, options = {}) {

@@ -5,7 +5,7 @@ const PATH_API = '/TestCase/Detail'
 describe('API - Test Case Details - /test_case/details', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validTcId = 1001;    // Substitua por um tc_id válido do seu ambiente
+  const validTcId = 1001; 
 
   // Função utilitária para chamada da API
   function testCaseDetails(query, options = {}) {

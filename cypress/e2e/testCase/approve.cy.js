@@ -5,9 +5,8 @@ const PATH_API = '/TestCase/Approved'
 describe('API - Test Case Approve - /test_case/approve', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validTestcaseIds = [1001, 1002]; // Substitua por ids de casos de teste válidos
+  const validTestcaseIds = [1001, 1002];
 
-  // Função utilitária para chamada da API
   function testCaseApprove(body, options = {}) {
     return cy.request({
       method: 'POST',

@@ -14,7 +14,6 @@ describe('API - Users Update - /users/update', () => {
     });
   }
 
-  // Dados base válidos
   const validBody = {
     token: validToken,
     profile_username: 'userupdate' + Date.now(),

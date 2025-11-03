@@ -10,7 +10,6 @@ describe('API - Test Scenario List - /test_scenario/list', () => {
   const validRequirementId = 88; // Opcional, se aplicável
   const validCreatedBy = [123];  // Opcional, se aplicável
 
-  // Função utilitária para chamada da API
   function testScenarioList(body, options = {}) {
     return cy.request({
       method: 'POST',

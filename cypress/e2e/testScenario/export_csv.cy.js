@@ -7,7 +7,6 @@ describe('API - Test Scenario Export CSV - /test_scenario/export_csv', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validExportTypes = ['CSV', 'Excel', 'Word'];
 
-  // Função utilitária para chamada da API
   function exportTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',

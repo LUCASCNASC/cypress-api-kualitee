@@ -4,7 +4,6 @@ describe('API - Users Profile Save - /users/profile_save', () => {
 
   const validToken = Cypress.env('VALID_TOKEN');
 
-  // Dados base válidos
   const validBody = {
     profile_username: 'profileuser' + Date.now(),
     first_name: 'Lucas',
@@ -16,7 +15,6 @@ describe('API - Users Profile Save - /users/profile_save', () => {
     country: 'Brasil',
     zipcode: 12345678,
     role: 7
-    // attachment será testado separadamente
   };
 
   function saveProfile(body, file = null, options = {}) {

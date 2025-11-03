@@ -7,7 +7,6 @@ describe('API - Import Step One - /test_scenario/import/step1', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsvFilePath = 'cypress/fixtures/test_scenarios_import.csv'; // Caminho para um CSV válido no seu projeto
 
-  // Função utilitária para chamada da API
   function importStep1(body, filePath, options = {}) {
     return cy.request({
       method: 'POST',

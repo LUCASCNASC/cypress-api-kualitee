@@ -6,7 +6,6 @@ describe('API - Test Scenario Tree - /test_scenario/tree', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  // Função utilitária para chamada da API
   function testScenarioTree(body, options = {}) {
     return cy.request({
       method: 'POST',

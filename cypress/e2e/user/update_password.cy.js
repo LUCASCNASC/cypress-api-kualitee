@@ -4,7 +4,6 @@ describe('API - Update Password - /update_password', () => {
 
   const validToken = Cypress.env('VALID_TOKEN');
 
-  // Dados base válidos (ajuste para valores válidos em seu ambiente, se necessário)
   const validBody = {
     activated_tenant_id: 'tenant123',
     activated_user_email: 'user'+Date.now()+'@test.com',

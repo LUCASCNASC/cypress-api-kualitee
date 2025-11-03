@@ -4,7 +4,6 @@ describe('API - Login - /auth/signin - Testes Avançados', () => {
 
   const validToken = Cypress.env('VALID_TOKEN');
 
-  // Dados válidos (troque para o seu ambiente real)
   const validEmail = 'usuario@exemplo.com';
   const validPassword = 'senhaSegura';
   const validSubdomain = 'meusubdominio';

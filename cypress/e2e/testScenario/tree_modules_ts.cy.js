@@ -8,7 +8,6 @@ describe('API - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts',
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = 5;   // Substitua por um module_id válido do seu ambiente
 
-  // Função utilitária para chamada da API
   function treeModulesTS(body, options = {}) {
     return cy.request({
       method: 'POST',

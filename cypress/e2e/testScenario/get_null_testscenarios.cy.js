@@ -7,7 +7,6 @@ describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', 
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
 
-  // Função utilitária para chamada da API
   function getNullTestScenarios(body, options = {}) {
     return cy.request({
       method: 'POST',

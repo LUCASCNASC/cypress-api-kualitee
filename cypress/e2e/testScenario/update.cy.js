@@ -12,7 +12,6 @@ describe('API - Test Scenario Update - /test_scenario/update', () => {
   const validScenarioName = 'Cenário Atualizado';
   const validDescription = 'Descrição atualizada do cenário de teste';
 
-  // Função utilitária para chamada da API
   function updateTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',

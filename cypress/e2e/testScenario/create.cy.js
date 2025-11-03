@@ -11,7 +11,6 @@ describe('API - Test Scenario Create - /test_scenario/create', () => {
   const validScenarioName = 'Novo Cenário de Teste';
   const validDescription = 'Descrição detalhada do cenário de teste';
 
-  // Função utilitária para chamada da API
   function createTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',

@@ -10,7 +10,6 @@ describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
   const validRequirementId = 88; // Opcional, se aplicável
   const validTestScenarioIds = [99, 100]; // Substitua por ids válidos do seu ambiente
 
-  // Função utilitária para chamada da API
   function bulkUpdateTestScenario(body, options = {}) {
     return cy.request({
       method: 'POST',

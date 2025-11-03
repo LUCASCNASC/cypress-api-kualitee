@@ -14,7 +14,6 @@ describe('API - Users Create - /users/create', () => {
     });
   }
 
-  // Dados base válidos
   const validBody = {
     token: validToken,
     profile_username: 'user' + Date.now(),

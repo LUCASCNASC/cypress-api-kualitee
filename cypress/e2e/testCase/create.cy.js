@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/create
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/Create'
 
 describe('API - Test Case Create - /test_case/create', () => {
@@ -10,7 +8,6 @@ describe('API - Test Case Create - /test_case/create', () => {
   const validScenarioId = 201;
   const validRequirementId = 101;
 
-  // Função utilitária para chamada da API
   function testCaseCreate(body, options = {}) {
     return cy.request({
       method: 'POST',

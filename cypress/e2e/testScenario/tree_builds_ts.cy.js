@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_scenario/tree_build_ts
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Test%20Scenario/TestScenariosinBuilds'
 
 describe('API - Test Scenarios in Builds - /test_scenario/tree_build_ts', () => {

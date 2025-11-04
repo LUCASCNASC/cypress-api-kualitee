@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/find_next_test_case
-// Padrão completo conforme exemplo aprovado, cobrindo todos os cenários possíveis.
 const PATH_API = '/Test%20Case%20Execution/FindNextTestcase'
 
 describe('API - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {

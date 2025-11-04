@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_scenario/list
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Test%20Scenario/TestScenarioList'
 
 describe('API - Test Scenario List - /test_scenario/list', () => {

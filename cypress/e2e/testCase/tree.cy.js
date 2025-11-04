@@ -1,12 +1,9 @@
-// Testes automatizados para API: POST /test_case/tree
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/TreeRoot'
 
 describe('API - Test Case Tree - /test_case/tree', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  // Função utilitária para chamada da API
   function testCaseTree(body, options = {}) {
     return cy.request({
       method: 'POST',

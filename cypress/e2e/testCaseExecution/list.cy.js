@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/list
-// Padrão baseado no exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários possíveis.
 const PATH_API = '/Test%20Case%20Execution/List'
 
 describe('API - Test Case Execution List - /test_case_execution/list', () => {

@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_scenario/export_csv
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Test%20Scenario/ExportCSV'
 
 describe('API - Test Scenario Export CSV - /test_scenario/export_csv', () => {

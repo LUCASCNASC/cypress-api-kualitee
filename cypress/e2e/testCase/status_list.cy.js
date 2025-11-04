@@ -1,12 +1,9 @@
-// Testes automatizados para API: GET /test_case/status_list
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/StatusList'
 
 describe('API - Test Case Status List - /test_case/status_list', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  // Função utilitária para chamada da API
   function testCaseStatusList(query, options = {}) {
     return cy.request({
       method: 'GET',

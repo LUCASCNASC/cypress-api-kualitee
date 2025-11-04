@@ -1,5 +1,4 @@
-// Testes automatizados para API: POST /test_scenario/delete
-// Segue o padrão dos testes Cypress do projeto
+
 const PATH_API = '/Test%20Scenario/TestScenarioDelete'
 
 describe('API - Test Scenario Delete - /test_scenario/delete', () => {

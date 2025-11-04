@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/delete_attach_defects
-// Segue o padrão completo do exemplo fornecido, cobrindo todos os cenários.
 const PATH_API = '/Test%20Case%20Execution/delete_attach_defects'
 
 describe('API - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {

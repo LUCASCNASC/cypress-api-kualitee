@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/import/step2
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/importsteptwo'
 
 describe('API - Import Step 2 - /test_case/import/step2', () => {
@@ -8,7 +6,6 @@ describe('API - Import Step 2 - /test_case/import/step2', () => {
   const validAssignedTo = 123; 
   const validCsv = 'fixtures/valid_test_cases.csv';
 
-  // Todos os db_columns requeridos (ordem importa)
   const dbColumns = [
     'build_id',
     'module_id',

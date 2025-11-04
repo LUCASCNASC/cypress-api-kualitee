@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_scenario/import/step1
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Test%20Scenario/importstepone'
 
 describe('API - Import Step One - /test_scenario/import/step1', () => {

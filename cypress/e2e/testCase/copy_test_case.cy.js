@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/copy_test_case
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/Copy'
 
 describe('API - Test Case Copy - /test_case/copy_test_case', () => {
@@ -7,7 +5,6 @@ describe('API - Test Case Copy - /test_case/copy_test_case', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTestcaseIds = [1001, 1002]; 
 
-  // Função utilitária para chamada da API
   function testCaseCopy(body, options = {}) {
     return cy.request({
       method: 'POST',

@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/approve
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/Approved'
 
 describe('API - Test Case Approve - /test_case/approve', () => {

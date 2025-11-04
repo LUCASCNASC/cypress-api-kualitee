@@ -1,5 +1,4 @@
-// Testes automatizados para API: POST /test_scenario/get_null_testscenarios
-// Segue o padrão dos testes Cypress do projeto
+
 const PATH_API = '/Test%20Scenario/GetNullTestScenario'
 
 describe('API - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {

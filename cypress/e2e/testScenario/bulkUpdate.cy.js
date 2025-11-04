@@ -1,5 +1,5 @@
-// Testes automatizados para API: POST /test_scenario/bulkupdate
-// Segue o padrão dos testes Cypress do projeto
+
+
 const PATH_API = '/Test%20Scenario/TestScenarioBulkUpdate'
 
 describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {

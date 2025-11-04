@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/delete
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/Deleted'
 
 describe('API - Test Case Delete - /test_case/delete', () => {
@@ -7,7 +5,6 @@ describe('API - Test Case Delete - /test_case/delete', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validIds = Cypress.env('VALID_IDS');
 
-  // Função utilitária para chamada da API
   function testCaseDelete(body, options = {}) {
     return cy.request({
       method: 'POST',

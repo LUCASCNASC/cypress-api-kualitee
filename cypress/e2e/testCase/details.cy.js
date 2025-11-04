@@ -1,5 +1,3 @@
-// Testes automatizados para API: GET /test_case/details
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/Detail'
 
 describe('API - Test Case Details - /test_case/details', () => {
@@ -7,7 +5,6 @@ describe('API - Test Case Details - /test_case/details', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTcId = 1001; 
 
-  // Função utilitária para chamada da API
   function testCaseDetails(query, options = {}) {
     return cy.request({
       method: 'GET',

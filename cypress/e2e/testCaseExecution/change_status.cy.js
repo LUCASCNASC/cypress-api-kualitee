@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/change_status
-// Segue o padrão do arquivo de exemplo fornecido (approvedtc.cy.js)
 const PATH_API = '/Test%20Case%20Execution/ChangeStatus'
 
 describe('API - Test Case Execution Change Status - /test_case_execution/change_status', () => {

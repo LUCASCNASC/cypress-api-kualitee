@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/import/step1
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/importstepone'
 
 describe('API - Import Step 1 - /test_case/import/step1', () => {
@@ -7,7 +5,6 @@ describe('API - Import Step 1 - /test_case/import/step1', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsv = 'fixtures/valid_test_cases.csv'; 
 
-  // Função utilitária para chamada da API
   function importStep1(body, file, options = {}) {
     return cy.request({
       method: 'POST',

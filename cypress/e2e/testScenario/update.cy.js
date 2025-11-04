@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_scenario/update
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/Test%20Scenario/PostTestScenarioUpdate'
 
 describe('API - Test Scenario Update - /test_scenario/update', () => {

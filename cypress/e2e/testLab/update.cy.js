@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /manage_test_case/update
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 const PATH_API = '/TestLab/AddTestCasesCycle'
 
 describe('API - Manage Test Case Update - /manage_test_case/update', () => {

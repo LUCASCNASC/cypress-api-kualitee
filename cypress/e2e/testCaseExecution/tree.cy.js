@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/tree
-// Segue o padrão completo do exemplo fornecido cobrindo todos os cenários.
 const PATH_API = '/Test%20Case%20Execution/TreeRoot'
 
 describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () => {

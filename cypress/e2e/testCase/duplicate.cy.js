@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case/duplicate
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/duplicate'
 
 describe('API - Duplicate Test Case - /test_case/duplicate', () => {
@@ -7,7 +5,6 @@ describe('API - Duplicate Test Case - /test_case/duplicate', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTestCaseName = 'TC001'; 
 
-  // Função utilitária para chamada da API
   function duplicateTestCase(body, options = {}) {
     return cy.request({
       method: 'POST',

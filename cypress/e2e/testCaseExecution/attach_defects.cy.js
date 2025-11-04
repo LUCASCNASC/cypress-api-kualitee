@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/attach_defects
-// Segue o padrão completo do exemplo fornecido (approvedtc.cy.js), cobrindo todos os cenários.
 const PATH_API = '/Test%20Case%20Execution/attacheddefects'
 
 describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {

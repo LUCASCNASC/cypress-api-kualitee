@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /manage_test_case/tree_drag_tc_module_ts
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 const PATH_API = '/TestLab/TreeDragTestCaseModuleTestScenario'
 
 describe('API - Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case/tree_drag_tc_module_ts', () => {

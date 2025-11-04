@@ -1,12 +1,9 @@
-// Testes automatizados para API: POST /test_case/metas
-// Segue o padrão dos testes Cypress do projeto
 const PATH_API = '/TestCase/StatusListCopy'
 
 describe('API - Test Case Metas - /test_case/metas', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  // Função utilitária para chamada da API
   function testCaseMetas(body, options = {}) {
     return cy.request({
       method: 'POST',

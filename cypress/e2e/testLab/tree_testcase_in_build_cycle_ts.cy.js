@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /manage_test_case/tree_testcase_in_build_cycle_ts
-// Segue o padrão do arquivo de exemplo fornecido (update.cy.js)
 const PATH_API = '/TestLab/TreeTestCaseinBuildcycletestScenario'
 
 describe('API - Manage Test Case Tree Testcase In Build Cycle Test Scenario - /manage_test_case/tree_testcase_in_build_cycle_ts', () => {

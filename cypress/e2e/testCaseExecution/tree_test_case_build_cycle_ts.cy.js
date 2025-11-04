@@ -1,5 +1,3 @@
-// Testes automatizados para API: POST /test_case_execution/tree_test_case_build_cycle_ts
-// Segue o padrão completo do exemplo fornecido, cobrindo todos os cenários possíveis.
 const PATH_API = '/Test%20Case%20Execution/TreeTestCaseBuildCycleTestScenario'
 
 describe('API - Test Case Execution Tree Test Case Build Cycle TS - /test_case_execution/tree_test_case_build_cycle_ts', () => {

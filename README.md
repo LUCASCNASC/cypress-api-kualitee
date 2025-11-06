@@ -64,4 +64,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
 
-Ajustar em todos os arquivos que apresentam "const validModuleId = 22;" colocar "const validProjectId = Cypress.env('VALID_MODULE_ID');"
+Ajustar em todos os arquivos que apresentam "const validModuleId = 22;" colocar "const validModuleId = Cypress.env('VALID_MODULE_ID');" 
+- ajustado até a pasta cycle

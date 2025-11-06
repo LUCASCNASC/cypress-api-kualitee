@@ -3,7 +3,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validIds = Cypress.env('VALID_IDS');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 22;
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
   const PATH_API = '/Defect/Bulkupdate'
 
   function bulkUpdateDefects(body, options = {}) {

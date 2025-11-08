@@ -4,7 +4,7 @@ describe('API - Test Scenario List - /test_scenario/list', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5;   // Opcional, se aplicável
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
   const validRequirementId = 88; // Opcional, se aplicável
   const validCreatedBy = [123];  // Opcional, se aplicável
 

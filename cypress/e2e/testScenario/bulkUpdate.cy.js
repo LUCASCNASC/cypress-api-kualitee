@@ -6,7 +6,7 @@ describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5;   // Opcional, se aplicável
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
   const validRequirementId = 88; // Opcional, se aplicável
   const validTestScenarioIds = [99, 100]; // Substitua por ids válidos do seu ambiente
 

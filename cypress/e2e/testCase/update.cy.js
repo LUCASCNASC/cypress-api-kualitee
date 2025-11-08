@@ -5,7 +5,7 @@ describe('API - Test Case Update - /test_case/update', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = 1001;
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5;
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
   const validScenarioId = 201;
   const validRequirementId = 101;
 

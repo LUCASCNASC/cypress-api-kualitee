@@ -4,7 +4,7 @@ describe('API - Test Case Tree in Build Modules - /test_case/tree_testcase_in_bu
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5; 
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
 
   function testCaseTreeInBuildModules(body, options = {}) {
     return cy.request({

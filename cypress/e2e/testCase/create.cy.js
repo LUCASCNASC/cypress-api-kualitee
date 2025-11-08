@@ -4,7 +4,7 @@ describe('API - Test Case Create - /test_case/create', () => {
   const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 5; 
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
   const validScenarioId = 201;
   const validRequirementId = 101;
 

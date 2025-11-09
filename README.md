@@ -63,3 +63,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
+
+Nos arquivos de teste, estou colocando as variáveis do describe como variáveis globais do arquivo de teste.
+Feitos:
+- testScenario

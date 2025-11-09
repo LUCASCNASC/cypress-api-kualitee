@@ -1,14 +1,12 @@
-
-
 const PATH_API = '/Test%20Scenario/TestScenarioBulkUpdate'
+const validToken = Cypress.env('VALID_TOKEN');
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+const validRequirementId = 88;
+const validTestScenarioIds = [99, 100];
 
 describe('API - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const validRequirementId = 88; // Opcional, se aplicável
-  const validTestScenarioIds = [99, 100]; // Substitua por ids válidos do seu ambiente
 
   function bulkUpdateTestScenario(body, options = {}) {
     return cy.request({

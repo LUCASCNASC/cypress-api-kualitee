@@ -1,8 +1,7 @@
 const PATH_API = '/User/UpdatePassword'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Update Password - /update_password', () => {
-
-  const validToken = Cypress.env('VALID_TOKEN');
 
   const validBody = {
     activated_tenant_id: 'tenant123',

@@ -1,9 +1,8 @@
 const PATH_API = '/User/UserDetail'
+const validUserId = 101;
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - User Detail - /users/detail', () => {
-
-  const validUserId = 101;
-  const validToken = Cypress.env('VALID_TOKEN');
 
   function getUserDetail(params, options = {}) {
     return cy.request({

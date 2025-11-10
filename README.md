@@ -67,3 +67,4 @@ Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
 Nos arquivos de teste, estou colocando as variáveis do describe como variáveis globais do arquivo de teste.
 Feitos:
 - testScenario
+- user

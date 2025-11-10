@@ -1,7 +1,7 @@
 const PATH_API = '/User/UserUpdate'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Users Update - /users/update', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
 
   function updateUser(body, options = {}) {
     return cy.request({

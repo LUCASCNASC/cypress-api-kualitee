@@ -1,9 +1,8 @@
 const PATH_API = '/User/UsersDelete'
+const validToken = Cypress.env('VALID_TOKEN');
+const validUserId = 101;
 
 describe('API - Users Delete - /users/delete', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
-
-  const validUserId = 101;
 
   function deleteUser(body, options = {}) {
     return cy.request({

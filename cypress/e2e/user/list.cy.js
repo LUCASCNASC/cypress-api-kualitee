@@ -1,8 +1,7 @@
 const PATH_API = '/User/UsersLists'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Users List - /users/list', () => {
-  
-  const validToken = Cypress.env('VALID_TOKEN');
 
   function listUsers(body, options = {}) {
     return cy.request({

@@ -68,3 +68,4 @@ Nos arquivos de teste, estou colocando as variáveis do describe como variáveis
 Feitos:
 - testScenario
 - user
+- testLab

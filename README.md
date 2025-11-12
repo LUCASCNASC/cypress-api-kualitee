@@ -69,3 +69,4 @@ Feitos:
 - testScenario
 - user
 - testLab
+- testCaseExecution

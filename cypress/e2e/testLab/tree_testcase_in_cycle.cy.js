@@ -1,9 +1,11 @@
-const validToken = Cypress.env('VALID_TOKEN');
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validCycleId = 1001;
+
 const PATH_API = '/TestLab/TreeTestCaseinCycle'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testcase_in_cycle', () => {
+
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+  const validCycleId = 1001;
   
   function treeTestcaseInCycle(body, options = {}) {
     return cy.request({

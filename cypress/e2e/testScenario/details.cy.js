@@ -1,9 +1,10 @@
 const PATH_API = '/Test%20Scenario/TestScenarioDetail'
 const validToken = Cypress.env('VALID_TOKEN');
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validTestScenarioId = 99;
 
 describe('API - Test Scenario Detail - /test_scenario/details', () => {
+
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+  const validTestScenarioId = 99;
 
   function getTestScenarioDetails(params, options = {}) {
     return cy.request({

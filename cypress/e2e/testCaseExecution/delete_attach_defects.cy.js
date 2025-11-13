@@ -1,11 +1,12 @@
 const PATH_API = '/Test%20Case%20Execution/delete_attach_defects'
 const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validTcId = 101;
-const validBugId = 555;
-const validExecBugId = 222;
 
 describe('API - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
+
+  const validTcId = 101;
+  const validBugId = 555;
+  const validExecBugId = 222;
 
   function deleteAttachDefects(body, options = {}) {
     return cy.request({

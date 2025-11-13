@@ -1,10 +1,11 @@
 const PATH_API = '/Test%20Scenario/TestScenariosinBuilds'
 const validToken = Cypress.env('VALID_TOKEN');
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validBuildId = Cypress.env('VALID_BUILD_ID');
-const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API - Test Scenarios in Builds - /test_scenario/tree_build_ts', () => {
+
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
 
   function treeBuildTS(body, options = {}) {
     return cy.request({

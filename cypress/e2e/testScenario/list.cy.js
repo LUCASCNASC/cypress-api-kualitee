@@ -1,12 +1,13 @@
 const PATH_API = '/Test%20Scenario/TestScenarioList'
 const validToken = Cypress.env('VALID_TOKEN');
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validBuildId = Cypress.env('VALID_BUILD_ID');
-const validModuleId = Cypress.env('VALID_MODULE_ID');
-const validRequirementId = 88;
-const validCreatedBy = [123];
 
 describe('API - Test Scenario List - /test_scenario/list', () => {
+
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
+  const validModuleId = Cypress.env('VALID_MODULE_ID');
+  const validRequirementId = 88;
+  const validCreatedBy = [123];
 
   function testScenarioList(body, options = {}) {
     return cy.request({

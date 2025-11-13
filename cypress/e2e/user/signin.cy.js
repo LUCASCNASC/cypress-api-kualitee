@@ -1,10 +1,11 @@
 const PATH_API = '/User/post_auth_signin'
 const validToken = Cypress.env('VALID_TOKEN');
-const validEmail = 'usuario@exemplo.com';
-const validPassword = 'senhaSegura';
-const validSubdomain = 'meusubdominio';
 
 describe('API - Login - /auth/signin - Testes Avançados', () => {
+
+  const validEmail = 'usuario@exemplo.com';
+  const validPassword = 'senhaSegura';
+  const validSubdomain = 'meusubdominio';
 
   function login(body, options = {}) {
     return cy.request({

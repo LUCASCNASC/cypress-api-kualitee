@@ -1,13 +1,14 @@
 const PATH_API = '/Test%20Case%20Execution/FindNextTestcase'
 const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validTcId = 101;
-const validTestScenarioId = 1234;
-const validCycleId = 1001;
-const validBuildId = Cypress.env('VALID_BUILD_ID');
-const validOffsetTestExecutions = 0;
 
 describe('API - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
+
+  const validTcId = 101;
+  const validTestScenarioId = 1234;
+  const validCycleId = 1001;
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
+  const validOffsetTestExecutions = 0;
   
   function findNextTestCase(body, options = {}) {
     return cy.request({

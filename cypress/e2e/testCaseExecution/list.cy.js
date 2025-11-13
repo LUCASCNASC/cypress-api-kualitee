@@ -1,12 +1,13 @@
 const PATH_API = '/Test%20Case%20Execution/List'
 const validToken = Cypress.env('VALID_TOKEN');
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validBuildId = Cypress.env('VALID_BUILD_ID');
-const validCycleId = 1001;
-const validExecutionType = 'manual';
-const validStatus = 'passed';
 
 describe('API - Test Case Execution List - /test_case_execution/list', () => {
+
+  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+  const validBuildId = Cypress.env('VALID_BUILD_ID');
+  const validCycleId = 1001;
+  const validExecutionType = 'manual';
+  const validStatus = 'passed';
 
   function execList(body, options = {}) {
     return cy.request({

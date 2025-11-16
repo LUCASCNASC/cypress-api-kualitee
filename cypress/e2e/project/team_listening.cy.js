@@ -1,7 +1,7 @@
-const PATH_API = '/Project/ProjectTeamListing'
+const PATH_API = '/Project/ProjectTeamListing';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Project Team Listing - /team/listing', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function teamListing(body, options = {}) {

@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Custom Fields Create - /customfields/create', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validFieldType = 'textbox';
   const validCustomFieldModule = 'TestScenario';

@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ArchivedProjects'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Archived Projects - /project/archived_projects', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
 
   function archivedProjects(body, options = {}) {
     return cy.request({

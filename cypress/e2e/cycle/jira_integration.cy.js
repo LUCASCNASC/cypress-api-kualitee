@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Defects Jira Integration - /defects/jira_integration', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const PATH_API = '/Defect/jira_integration'
 

@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Builds Delete - /build/delete', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const PATH_API = '/Build/BuildsDelete'

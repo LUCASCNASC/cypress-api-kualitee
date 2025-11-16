@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Module Delete - /module/delete', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');
   const PATH_API = '/Module/ModuleDelete'

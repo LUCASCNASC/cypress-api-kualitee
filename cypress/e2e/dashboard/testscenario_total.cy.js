@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Dashboard Test Scenario Total - /dashboard/testscenario/total', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/TestScenarioTotal'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 

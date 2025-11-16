@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Metas Delete - /metas/delete', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validIds = Cypress.env('VALID_IDS');
   const PATH_API = '/Meta/Create'

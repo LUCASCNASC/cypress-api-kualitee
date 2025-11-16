@@ -1,8 +1,8 @@
-const PATH_API = '/Project/ProjectMetas'
+const PATH_API = '/Project/ProjectMetas';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Project Metas - /project/metas', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
-  const validMetaType = 'exemplo'; // Substitua pela string válida para meta_type
+  const validMetaType = 'exemplo';
 
   function projectMetas(queryParams, options = {}) {
     return cy.request({

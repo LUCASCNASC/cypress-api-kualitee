@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectDetail'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Project Detail - /project/details', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function projectDetails(queryParams, options = {}) {

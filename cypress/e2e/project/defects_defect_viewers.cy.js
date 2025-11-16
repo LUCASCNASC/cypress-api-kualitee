@@ -1,7 +1,7 @@
-const PATH_API = '/Project/DefectViewer'
+const PATH_API = '/Project/DefectViewer';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Defect Viewer - /defects/defect_viewers', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function defectViewers(queryParams, options = {}) {

@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Email Notification List - /emailnotification/list', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Email%20Notifications/List'
 
   function emailNotificationList(body, options = {}) {

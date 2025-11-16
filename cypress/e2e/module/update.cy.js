@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Module Update - /module/update', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');
   const validModuleName = 'Autenticação';

@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validIds = Cypress.env('VALID_IDS');
   const validBuildId = Cypress.env('VALID_BUILD_ID');

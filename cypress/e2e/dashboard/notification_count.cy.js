@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Dashboard Notification Count - /dashboard/notification_count', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const PATH_API = '/Dashboard/Notificationcount'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 

@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Integration Save - /integration/save', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validPluginName = 'JIRA';
   const validUsername = 'usuario_teste';
   const validPassword = 'senha_teste';

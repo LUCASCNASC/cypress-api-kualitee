@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Custom Fields Update - /customfields/update', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validCustomFieldId = 456;
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validFieldType = 'textbox';

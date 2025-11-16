@@ -1,5 +1,6 @@
+const validToken = Cypress.env('VALID_TOKEN');
+
 describe('API - Module Create - /module/create', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleName = 'Autenticação';
   const validBuildId = Cypress.env('VALID_BUILD_ID');

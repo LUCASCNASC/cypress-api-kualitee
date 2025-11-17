@@ -1,7 +1,7 @@
-const PATH_API = '/Requirement/requirements%2Ffind_all_null'
+const PATH_API = '/Requirement/requirements%2Ffind_all_null';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Requirements Find All Null - /requirements/find_all_null', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');

@@ -1,7 +1,7 @@
 const PATH_API = '/Task/task%2Fcolumn%2Fview'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Columns View - /task/columns/view', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validKeyword = 'important';
 

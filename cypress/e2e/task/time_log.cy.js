@@ -1,7 +1,7 @@
 const PATH_API = '/Task/task%2Ftime%2Flog'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Time Log - /task/time/log', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTaskId = 888;
 

@@ -1,7 +1,7 @@
-const PATH_API = '/Roles/List'
+const PATH_API = '/Roles/List';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Roles List - /roles/list', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
 
   function rolesList(body, options = {}) {
     return cy.request({

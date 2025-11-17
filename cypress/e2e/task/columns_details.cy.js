@@ -1,7 +1,7 @@
 const PATH_API = '/Task/columndetails'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Columns Details - /task/columns/details', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validId = Cypress.env('VALID_ID');
 

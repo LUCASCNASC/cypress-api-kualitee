@@ -1,7 +1,7 @@
-const PATH_API = '/Requirement/importstepone'
+const PATH_API = '/Requirement/importstepone';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Requirements Import Step 1 - /requirements/import/step1', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsvPath = 'caminho/para/arquivo.csv'; // Substitua pelo caminho de um arquivo CSV válido no seu projeto
 

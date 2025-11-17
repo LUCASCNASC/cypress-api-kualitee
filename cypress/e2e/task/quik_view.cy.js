@@ -1,7 +1,7 @@
 const PATH_API = '/Task/task%2Fquik%2Fview'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Quik View - /task/quik/view', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function taskQuikView(params, options = {}) {

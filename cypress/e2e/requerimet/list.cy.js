@@ -1,8 +1,7 @@
-const PATH_API = '/Requirement/List'
+const PATH_API = '/Requirement/List';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Requirements List - /requirements/list', () => {
-  
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');

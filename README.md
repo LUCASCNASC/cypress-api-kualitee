@@ -65,4 +65,4 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)
 
 Próximos passos:
-- deixar apenas as variáveis Authorization para fora dos testes. Atualizado até "project".
+- deixar apenas as variáveis Authorization para fora dos testes. Atualizado até "task".

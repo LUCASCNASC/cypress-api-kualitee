@@ -1,7 +1,7 @@
-const PATH_API = '/Roles/Create'
+const PATH_API = '/Roles/Create';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Roles Create - /roles/create', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validRoleName = 'Novo Papel';
   const validDescription = 'Descrição do papel';
   const validCanDelete = true;

@@ -1,7 +1,7 @@
 const PATH_API = '/Task/Update'
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Update - /task/update', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTaskId = 888;
   const validAssignedTo = [1234];

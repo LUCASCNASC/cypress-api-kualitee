@@ -1,7 +1,7 @@
-const PATH_API = '/Task/calander%2Fview'
+const PATH_API = '/Task/calander%2Fview';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Task Calander View - /task/calander/view', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function taskCalanderView(params, options = {}) {

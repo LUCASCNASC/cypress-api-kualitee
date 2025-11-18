@@ -1,7 +1,8 @@
-const PATH_API = '/TestCase/Deleted'
+const PATH_API = '/TestCase/Deleted';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Test Case Delete - /test_case/delete', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
+  
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validIds = Cypress.env('VALID_IDS');
 

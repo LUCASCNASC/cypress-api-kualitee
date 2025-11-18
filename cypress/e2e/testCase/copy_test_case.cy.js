@@ -1,7 +1,8 @@
-const PATH_API = '/TestCase/Copy'
+const PATH_API = '/TestCase/Copy';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Test Case Copy - /test_case/copy_test_case', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
+  
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validTestcaseIds = [1001, 1002]; 
 

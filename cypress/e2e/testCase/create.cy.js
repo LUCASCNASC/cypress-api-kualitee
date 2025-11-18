@@ -1,7 +1,8 @@
-const PATH_API = '/TestCase/Create'
+const PATH_API = '/TestCase/Create';
+const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API - Test Case Create - /test_case/create', () => {
-  const validToken = Cypress.env('VALID_TOKEN');
+  
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');

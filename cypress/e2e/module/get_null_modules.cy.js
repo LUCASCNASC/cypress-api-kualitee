@@ -1,10 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Module/Get_Null_Modules';
 
 describe('API - Get Null Modules - /module/get_null_modules', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const PATH_API = '/Module/GetNullModules'
 
   function getNullModules(body, options = {}) {
     return cy.request({

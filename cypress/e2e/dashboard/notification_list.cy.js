@@ -1,7 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Dashboard/Dropdownnotificationlist';
 
 describe('API - Dashboard Notification List - /dashboard/notification_list', () => {
-  const PATH_API = '/Dashboard/Dropdownnotificationlist'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function notificationList(body, options = {}) {

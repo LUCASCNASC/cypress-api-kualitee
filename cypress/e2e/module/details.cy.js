@@ -1,9 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Module/ModuleDetail';
 
 describe('API - Module Detail - /module/details', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const PATH_API = '/Module/ModuleDetail'
 
   function moduleDetails(queryParams, options = {}) {
     return cy.request({

@@ -1,7 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Dashboard/Defectsopenstatus';
 
 describe('API - Dashboard Bug Open Status - /dashboard/bugopenstatus', () => {
-  const PATH_API = '/Dashboard/Defectsopenstatus'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function bugOpenStatus(body, options = {}) {

@@ -1,4 +1,5 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Defect/List';
 
 describe('API - Defects List - /defects/list', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
@@ -18,7 +19,6 @@ describe('API - Defects List - /defects/list', () => {
   const validDevice = 'iPhone 13';
   const validExport = 'yes';
   const validExportType = 'Excel';
-  const PATH_API = '/Defect/List'
 
   function defectsList(body, options = {}) {
     return cy.request({

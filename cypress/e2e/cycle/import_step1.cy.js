@@ -1,9 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Defect/importstepone';
 
 describe('API - Defects Import Step 1 - /defects/import/step1', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validCsvFile = 'cypress/fixtures/defects_import.csv';
-  const PATH_API = '/Defect/importstepone'
 
   function defectsImportStep1(body, filePath, options = {}) {
     // Para envio de arquivo, use um plugin como cypress-form-data ou cy.form_request se disponível

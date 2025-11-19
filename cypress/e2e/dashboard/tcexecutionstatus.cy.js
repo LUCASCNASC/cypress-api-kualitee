@@ -1,7 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Dashboard/TestCaseExecutions';
 
 describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionstatus', () => {
-  const PATH_API = '/Dashboard/TestCaseExecutions'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function tcExecutionStatus(body, options = {}) {

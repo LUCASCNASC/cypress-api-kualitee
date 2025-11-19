@@ -1,7 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Dashboard/Heatmap';
 
 describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
-  const PATH_API = '/Dashboard/Heatmap'
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function dashboardHeatmap(body, options = {}) {

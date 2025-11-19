@@ -1,4 +1,5 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Defect/Create';
 
 describe('API - Defects Create - /defects/create', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
@@ -22,7 +23,6 @@ describe('API - Defects Create - /defects/create', () => {
   const validKiId = 'ki-12345';
   const validReqId = 'req-98765';
   const validBugRequirementId = 'bug-req-55';
-  const PATH_API = '/Defect/Create'
 
   // Simulação de arquivos (se a API aceitar)
   const validDefectImage = 'cypress/fixtures/defect_image.png';

@@ -1,4 +1,5 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Defect/Update';
 
 describe('API - Defects Update - /defects/update', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
@@ -23,7 +24,6 @@ describe('API - Defects Update - /defects/update', () => {
   const validKiId = 'ki-54321';
   const validReqId = 'req-87654';
   const validBugRequirementId = 'bug-req-66';
-  const PATH_API = '/Defect/Update'
 
   // Simulação de arquivos (se a API aceitar)
   const validDefectImage = 'cypress/fixtures/defect_image.png';

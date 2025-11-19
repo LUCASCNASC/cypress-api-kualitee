@@ -1,10 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Build/BuildsDelete';
 
 describe('API - Build Details - /build/details', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
   const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const PATH_API = '/Build/BuildsDelete'
-
+  
   function buildDetails(queryParams, options = {}) {
     return cy.request({
       method: 'GET',

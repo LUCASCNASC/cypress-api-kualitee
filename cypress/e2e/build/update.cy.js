@@ -1,4 +1,5 @@
 const validToken = Cypress.env('VALID_TOKEN');
+const PATH_API = '/Build/BuildsUpdate';
 
 describe('API - Builds Update - /build/update', () => {
   const validProjectId = Cypress.env('VALID_PROJECT_ID');
@@ -7,7 +8,6 @@ describe('API - Builds Update - /build/update', () => {
   const validBuildId = Cypress.env('VALID_BUILD_ID');
   const validId = Cypress.env('VALID_ID');
   const validDescription = 'Atualização de build';
-  const PATH_API = '/Build/BuildsUpdate'
 
   function buildUpdate(body, options = {}) {
     return cy.request({

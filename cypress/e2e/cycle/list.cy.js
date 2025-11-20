@@ -1,24 +1,25 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/List';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+const validTestScenarioId = 33;
+const validDefect = 'defeito01';
+const validKeyword = 'login';
+const validOS = 'Windows';
+const validBrowser = 'Chrome';
+const validAssignTo = [123, 456];
+const validStatus = ['Open', 'Closed'];
+const validCreatedBy = [789];
+const validSeverity = 'High';
+const validBugType = 'UI';
+const validDefectViewers = 321;
+const validDevice = 'iPhone 13';
+const validExport = 'yes';
+const validExportType = 'Excel';
+
 describe('API - Defects List - /defects/list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const validTestScenarioId = 33;
-  const validDefect = 'defeito01';
-  const validKeyword = 'login';
-  const validOS = 'Windows';
-  const validBrowser = 'Chrome';
-  const validAssignTo = [123, 456];
-  const validStatus = ['Open', 'Closed'];
-  const validCreatedBy = [789];
-  const validSeverity = 'High';
-  const validBugType = 'UI';
-  const validDefectViewers = 321;
-  const validDevice = 'iPhone 13';
-  const validExport = 'yes';
-  const validExportType = 'Excel';
 
   function defectsList(body, options = {}) {
     return cy.request({

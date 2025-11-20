@@ -1,33 +1,32 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Update';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validDefectId = 101;
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+const validDescription = 'Atualização do defeito: fluxo login falha em ambiente staging';
+const validBrowserName = 'Chrome';
+const validDefectType = 'Bug';
+const validOsType = 'iOS';
+const validSeverity = 'Minor';
+const validStepsToReproduce = '1. Abrir app\n2. Tentar login\n3. Receber erro';
+const validExpectedResult = 'Login deve funcionar normalmente';
+const validComments = 'Ocorrência esporádica';
+const validPriority = 'Medium';
+const validDevices = 'iPhone 14';
+const validStatus = 'Open';
+const validAssignto = '123';
+const validDefectViewers = '456';
+const validBugtype = 'Backend';
+const validIntegration = 'jira';
+const validKiId = 'ki-54321';
+const validReqId = 'req-87654';
+const validBugRequirementId = 'bug-req-66';
+const validDefectImage = 'cypress/fixtures/defect_image.png';
+
 describe('API - Defects Update - /defects/update', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validDefectId = 101; // id do defeito a ser atualizado
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const validDescription = 'Atualização do defeito: fluxo login falha em ambiente staging';
-  const validBrowserName = 'Chrome';
-  const validDefectType = 'Bug';
-  const validOsType = 'iOS';
-  const validSeverity = 'Minor';
-  const validStepsToReproduce = '1. Abrir app\n2. Tentar login\n3. Receber erro';
-  const validExpectedResult = 'Login deve funcionar normalmente';
-  const validComments = 'Ocorrência esporádica';
-  const validPriority = 'Medium';
-  const validDevices = 'iPhone 14';
-  const validStatus = 'Open';
-  const validAssignto = '123';
-  const validDefectViewers = '456';
-  const validBugtype = 'Backend';
-  const validIntegration = 'jira';
-  const validKiId = 'ki-54321';
-  const validReqId = 'req-87654';
-  const validBugRequirementId = 'bug-req-66';
-
-  // Simulação de arquivos (se a API aceitar)
-  const validDefectImage = 'cypress/fixtures/defect_image.png';
-
+  
   function defectsUpdate(body, fileFields = {}, options = {}) {
     // Se for enviar arquivos, use cy.form_request customizado ou plugin adequado
     if (Object.keys(fileFields).length) {

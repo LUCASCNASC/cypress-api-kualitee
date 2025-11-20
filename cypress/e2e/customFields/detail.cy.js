@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/detail';
 
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Custom Fields Detail - /customfields/detail', () => {
-  const validId = Cypress.env('VALID_ID');
 
   function customfieldsDetail(query, options = {}) {
     return cy.request({

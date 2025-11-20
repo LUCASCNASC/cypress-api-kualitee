@@ -1,10 +1,11 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/Activities';
 
-describe('API - Dashboard Activities - /dashboard/activities', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
 
+describe('API - Dashboard Activities - /dashboard/activities', () => {
+  
   function dashboardActivities(body, options = {}) {
     return cy.request({
       method: 'POST',

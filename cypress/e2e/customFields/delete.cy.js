@@ -1,9 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/Delete';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validCustomFieldId = 123;
+
 describe('API - Custom Fields Delete - /customfields/delete', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validCustomFieldId = 123;
 
   function customfieldsDelete(body, options = {}) {
     return cy.request({

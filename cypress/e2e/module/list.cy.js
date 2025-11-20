@@ -1,9 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Module/ModuleList';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validKeyword = 'login'; 
+
 describe('API - Module List - /module/list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validKeyword = 'login'; 
   
   function moduleList(body, options = {}) {
     return cy.request({

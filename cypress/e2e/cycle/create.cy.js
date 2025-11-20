@@ -1,32 +1,31 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Create';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+const validDescription = 'Defeito crítico na tela de login';
+const validSourceName = 'QA';
+const validDefectStatus = 'New';
+const validDefectType = 'Bug';
+const validEditor = 'lucas.nascimento';
+const validStepsToReproduce = '1. Abrir tela de login\n2. Inserir credenciais inválidas\n3. Clicar em "Entrar"';
+const validExpectedResult = 'Mensagem de erro amigável';
+const validComments = 'Reproduzido em ambiente de homologação';
+const validPriority = 'High';
+const validDevices = 'iPhone 13';
+const validStatus = 'Open';
+const validAssignto = '123';
+const validDefectViewers = '456';
+const validBugtype = 'UI';
+const validIntegration = 'jira';
+const validKiId = 'ki-12345';
+const validReqId = 'req-98765';
+const validBugRequirementId = 'bug-req-55';
+const validDefectImage = 'cypress/fixtures/defect_image.png';
+
 describe('API - Defects Create - /defects/create', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const validDescription = 'Defeito crítico na tela de login';
-  const validSourceName = 'QA';
-  const validDefectStatus = 'New';
-  const validDefectType = 'Bug';
-  const validEditor = 'lucas.nascimento';
-  const validStepsToReproduce = '1. Abrir tela de login\n2. Inserir credenciais inválidas\n3. Clicar em "Entrar"';
-  const validExpectedResult = 'Mensagem de erro amigável';
-  const validComments = 'Reproduzido em ambiente de homologação';
-  const validPriority = 'High';
-  const validDevices = 'iPhone 13';
-  const validStatus = 'Open';
-  const validAssignto = '123';
-  const validDefectViewers = '456';
-  const validBugtype = 'UI';
-  const validIntegration = 'jira';
-  const validKiId = 'ki-12345';
-  const validReqId = 'req-98765';
-  const validBugRequirementId = 'bug-req-55';
-
-  // Simulação de arquivos (se a API aceitar)
-  const validDefectImage = 'cypress/fixtures/defect_image.png';
-
+  
   function defectsCreate(body, fileFields = {}, options = {}) {
     // Se for enviar arquivos, use cy.form_request customizado ou plugin adequado
     if (Object.keys(fileFields).length) {

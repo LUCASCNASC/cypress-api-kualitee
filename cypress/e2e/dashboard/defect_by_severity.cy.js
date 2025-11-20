@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/Defectsbyseverity';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Dashboard Defect by Severity - /dashboard/defect_by_severity', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function defectBySeverity(body, options = {}) {
     return cy.request({

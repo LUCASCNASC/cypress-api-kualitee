@@ -1,11 +1,12 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Module/Create';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validModuleName = 'Autenticação';
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleDescription = 'Módulo responsável pelo fluxo de login e autenticação.';
+
 describe('API - Module Create - /module/create', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validModuleName = 'Autenticação';
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleDescription = 'Módulo responsável pelo fluxo de login e autenticação.';
 
   function moduleCreate(body, options = {}) {
     return cy.request({

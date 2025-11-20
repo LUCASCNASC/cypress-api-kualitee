@@ -1,9 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Deleteimages';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validImageId = 555;
+
 describe('API - Defects Delete Image - /defects/delete_image', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validImageId = 555;
 
   function defectsDeleteImage(body, options = {}) {
     return cy.request({

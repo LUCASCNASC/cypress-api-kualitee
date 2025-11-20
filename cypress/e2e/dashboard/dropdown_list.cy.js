@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/DropdownList';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function dropdownList(body, options = {}) {
     return cy.request({

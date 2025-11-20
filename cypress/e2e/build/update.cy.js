@@ -1,13 +1,14 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Build/BuildsUpdate';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validStartDate = Cypress.env('VALID_START_DATE');
+const validEndDate = '2020-06-02';
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validId = Cypress.env('VALID_ID');
+const validDescription = 'Atualização de build';
+
 describe('API - Builds Update - /build/update', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validStartDate = Cypress.env('VALID_START_DATE');
-  const validEndDate = '2020-06-02';
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validId = Cypress.env('VALID_ID');
-  const validDescription = 'Atualização de build';
 
   function buildUpdate(body, options = {}) {
     return cy.request({

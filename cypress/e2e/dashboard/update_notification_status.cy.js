@@ -1,9 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/UpdateNotificationStatus';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validIds = Cypress.env('VALID_IDS');
+
 describe('API - Dashboard Update Notification Status - /dashboard/update_notification_status', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validIds = Cypress.env('VALID_IDS');
 
   function updateNotificationStatus(body, options = {}) {
     return cy.request({

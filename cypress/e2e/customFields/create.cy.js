@@ -1,12 +1,13 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/Create';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validFieldType = 'textbox';
+const validCustomFieldModule = 'TestScenario';
+const validCustomFieldName = 'MeuCampoCustomizado';
+const validCustomFieldDesc = 'Descrição do campo customizado';
+
 describe('API - Custom Fields Create - /customfields/create', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validFieldType = 'textbox';
-  const validCustomFieldModule = 'TestScenario';
-  const validCustomFieldName = 'MeuCampoCustomizado';
-  const validCustomFieldDesc = 'Descrição do campo customizado';
 
   function customfieldsCreate(body, options = {}) {
     return cy.request({

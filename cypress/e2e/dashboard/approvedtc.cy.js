@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/TestCaseApproved';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function approvedTc(body, options = {}) {
     return cy.request({

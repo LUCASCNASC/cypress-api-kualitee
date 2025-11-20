@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/TesterTray';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Dashboard Tester Tray - /dashboard/tester_tray', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function testerTray(body, options = {}) {
     return cy.request({

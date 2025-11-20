@@ -1,13 +1,14 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/Update';
 
+const validCustomFieldId = 456;
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validFieldType = 'textbox';
+const validCustomFieldModule = 'TestScenario';
+const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';
+const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
+
 describe('API - Custom Fields Update - /customfields/update', () => {
-  const validCustomFieldId = 456;
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validFieldType = 'textbox';
-  const validCustomFieldModule = 'TestScenario';
-  const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';
-  const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
 
   function customfieldsUpdate(body, options = {}) {
     return cy.request({

@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Integration/detail';
 
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Integration Detail - /integration/detail', () => {
-  const validId = Cypress.env('VALID_ID');
 
   function integrationDetail(body, options = {}) {
     return cy.request({

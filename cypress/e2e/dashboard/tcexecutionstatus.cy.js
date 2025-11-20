@@ -1,9 +1,10 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Dashboard/TestCaseExecutions';
 
-describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionstatus', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
+describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionstatus', () => {
+  
   function tcExecutionStatus(body, options = {}) {
     return cy.request({
       method: 'POST',

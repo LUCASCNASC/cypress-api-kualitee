@@ -1,10 +1,11 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Meta/List';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validSystemOptions = 'all';
+const validValue = 'some_value';  
+
 describe('API - Metas List - /metas/list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validSystemOptions = 'all';
-  const validValue = 'some_value';
 
   function metasList(body, options = {}) {
     return cy.request({

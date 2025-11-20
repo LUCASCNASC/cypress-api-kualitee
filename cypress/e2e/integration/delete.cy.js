@@ -1,12 +1,13 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Integration/Delete';
 
+const validPluginName = 'JIRA';
+const validUsername = 'usuario_teste';
+const validPassword = 'senha_teste';
+const validPluginUrl = 'https://jira.example.com';
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Integration Save - /integration/save', () => {
-  const validPluginName = 'JIRA';
-  const validUsername = 'usuario_teste';
-  const validPassword = 'senha_teste';
-  const validPluginUrl = 'https://jira.example.com';
-  const validId = Cypress.env('VALID_ID');
 
   function integrationSave(body, options = {}) {
     return cy.request({

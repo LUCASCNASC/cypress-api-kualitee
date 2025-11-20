@@ -1,10 +1,11 @@
 const validToken = Cypress.env('VALID_TOKEN');
  const PATH_API = '/Build/BuiltList';
 
-describe('API - Build List - /build/list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validKeyword = 'feature'; // Ou qualquer palavra-chave válida
+ const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validKeyword = 'feature';
 
+describe('API - Build List - /build/list', () => {
+  
   function buildList(body, options = {}) {
     return cy.request({
       method: 'POST',

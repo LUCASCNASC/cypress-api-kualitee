@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Tree';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Defects Tree - /defects/tree', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function defectsTree(body, options = {}) {
     return cy.request({

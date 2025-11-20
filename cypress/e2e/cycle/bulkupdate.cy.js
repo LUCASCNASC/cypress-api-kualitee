@@ -1,11 +1,12 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Bulkupdate';
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validIds = Cypress.env('VALID_IDS');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+
 describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validIds = Cypress.env('VALID_IDS');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
 
   function bulkUpdateDefects(body, options = {}) {
     return cy.request({

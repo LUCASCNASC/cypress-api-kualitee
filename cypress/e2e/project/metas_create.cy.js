@@ -1,9 +1,10 @@
-const PATH_API = '/Project/ProjectMetasMetasCreate'
+const PATH_API = '/Project/ProjectMetasMetasCreate';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validMetaKey = 'meta_key_exemplo';
+const validMetaValue = 'meta_value_exemplo';
+
 describe('API - Project Metas Create - /project/metas/create', () => {
-  const validMetaKey = 'meta_key_exemplo';
-  const validMetaValue = 'meta_value_exemplo';
 
   function metasCreate(body, options = {}) {
     return cy.request({

@@ -1,12 +1,13 @@
 const PATH_API = '/Requirement/update';
-const validToken = Cypress.env('VALID_TOKEN');
+const validToken = Cypress.env('VALID_TOKEN')
+
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validRequirementId = 123;
+const validAssignedTo = 111;
+const validTitle = 'Título do requisito';
+const validSummary = 'Resumo do requisito';
 
 describe('API - Requirements Update - /requirements/update', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validRequirementId = 123; // Substitua por um id de requisito válido
-  const validAssignedTo = 111; // Substitua por um usuário válido
-  const validTitle = 'Título do requisito';
-  const validSummary = 'Resumo do requisito';
 
   // Dados opcionais válidos
   const optionalFields = {

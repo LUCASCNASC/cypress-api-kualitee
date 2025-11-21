@@ -1,13 +1,12 @@
 const PATH_API = '/Requirement/importsteptwo';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validCsvPath = 'caminho/para/arquivo.csv'; 
+const validAssignedTo = 'user123';
+const validDbColumns = [ 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8' ];
+
 describe('API - Requirements Import Step 2 - /requirements/import/step2', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validCsvPath = 'caminho/para/arquivo.csv'; 
-  const validAssignedTo = 'user123';
-  const validDbColumns = [
-    'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8'
-  ]; // Substitua pelas colunas reais do seu banco, se necessário
 
   // Função utilitária para chamada da API
   function importStep2(formData, options = {}) {

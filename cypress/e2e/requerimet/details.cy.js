@@ -1,9 +1,10 @@
 const PATH_API = '/Requirement/requirements%2Fdetail';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validRequirementId = 101;
+
 describe('API - Requirements Details - /requirements/details', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validRequirementId = 101; // Substitua por um id de requisito válido
 
   // Função utilitária para chamada da API
   function getRequirementDetails(query, options = {}) {

@@ -1,8 +1,9 @@
 const PATH_API = '/Requirement/get_defect_list';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Requirements Get Defect List - /requirements/get_defect_list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   // Função utilitária para chamada da API
   function getDefectList(body, options = {}) {

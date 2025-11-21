@@ -1,10 +1,11 @@
 const PATH_API = '/Project/ProjectStatus';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectStatus = 'ativo';
+const validProjectId0 = 77;
+const validProjectId1 = 78;
+
 describe('API - Project Status - /project/project_status', () => {
-  const validProjectStatus = 'ativo';
-  const validProjectId0 = 77;
-  const validProjectId1 = 78;
 
   function projectStatus(body, options = {}) {
     return cy.request({

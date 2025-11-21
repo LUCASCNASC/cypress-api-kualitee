@@ -1,8 +1,9 @@
 const PATH_API = '/Project/ProjectDelete';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Project Delete - /project/delete', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function projectDelete(queryParams, options = {}) {
     return cy.request({

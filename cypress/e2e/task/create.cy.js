@@ -1,12 +1,13 @@
 const PATH_API = '/Task/Create'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validAssignedTo = [1234];
+const validTaskname = 'Nova tarefa';
+const validStartDate = Cypress.env('VALID_START_DATE');
+const validEndDate = '2025-09-18';
+
 describe('API - Task Create - /task/create', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validAssignedTo = [1234];
-  const validTaskname = 'Nova tarefa';
-  const validStartDate = Cypress.env('VALID_START_DATE');
-  const validEndDate = '2025-09-18';
 
   function taskCreate(body, options = {}) {
     return cy.request({

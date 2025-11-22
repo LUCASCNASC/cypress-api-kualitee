@@ -1,11 +1,11 @@
 const PATH_API = '/TestCase/importsteptwo';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validAssignedTo = 123; 
+const validCsv = 'fixtures/valid_test_cases.csv';
+
 describe('API - Import Step 2 - /test_case/import/step2', () => {
-  
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validAssignedTo = 123; 
-  const validCsv = 'fixtures/valid_test_cases.csv';
 
   const dbColumns = [
     'build_id',

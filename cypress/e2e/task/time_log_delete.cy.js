@@ -1,9 +1,10 @@
 const PATH_API = '/Task/task%2Ftime%2Flog%2Fdelete'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Task Time Log Delete - /task/time/log/delete', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
 
   function taskTimeLogDelete(body, options = {}) {
     return cy.request({

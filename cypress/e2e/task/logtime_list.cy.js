@@ -1,8 +1,9 @@
 const PATH_API = '/Task/logtime_list'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Task Logtime List - /task/logtime_list', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function taskLogtimeList(body, options = {}) {
     return cy.request({

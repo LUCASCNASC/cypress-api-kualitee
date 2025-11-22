@@ -1,13 +1,13 @@
 const PATH_API = '/TestCase/Create';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = Cypress.env('VALID_MODULE_ID');
+const validScenarioId = 201;
+const validRequirementId = 101;
+
 describe('API - Test Case Create - /test_case/create', () => {
-  
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = Cypress.env('VALID_MODULE_ID');
-  const validScenarioId = 201;
-  const validRequirementId = 101;
 
   function testCaseCreate(body, options = {}) {
     return cy.request({

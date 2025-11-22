@@ -1,9 +1,10 @@
 const PATH_API = '/Task/columndelete'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Task Columns Delete - /task/columns/delete', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
 
   function taskColumnsDelete(body, options = {}) {
     return cy.request({

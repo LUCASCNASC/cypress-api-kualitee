@@ -1,9 +1,10 @@
 const PATH_API = '/Task/Delete'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Task Delete - /task/delete', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
 
   function taskDelete(body, options = {}) {
     return cy.request({

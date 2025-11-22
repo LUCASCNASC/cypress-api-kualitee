@@ -1,9 +1,9 @@
 const PATH_API = '/TestCase/StatusList';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 describe('API - Test Case Status List - /test_case/status_list', () => {
-  
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
   function testCaseStatusList(query, options = {}) {
     return cy.request({

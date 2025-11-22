@@ -1,10 +1,11 @@
 const PATH_API = '/Task/columnupdate'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
+const validColumnName = 'Coluna Atualizada';
+
 describe('API - Task Columns Update - /task/columns/update', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
-  const validColumnName = 'Coluna Atualizada';
 
   function taskColumnsUpdate(body, options = {}) {
     return cy.request({

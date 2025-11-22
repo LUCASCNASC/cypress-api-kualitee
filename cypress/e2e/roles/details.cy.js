@@ -1,8 +1,9 @@
 const PATH_API = '/Roles/details';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Roles Details - /roles/details', () => {
-  const validId = Cypress.env('VALID_ID');
 
   function rolesDetails(params, options = {}) {
     return cy.request({

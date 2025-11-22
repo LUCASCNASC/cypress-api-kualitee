@@ -1,9 +1,10 @@
 const PATH_API = '/Task/task%2Fcolumns%2Fcard%2Freposition';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validId = Cypress.env('VALID_ID');
+
 describe('API - Task Columns Card Reposition - /task/columns/card/reposition', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validId = Cypress.env('VALID_ID');
 
   function taskColumnsCardReposition(body, options = {}) {
     return cy.request({

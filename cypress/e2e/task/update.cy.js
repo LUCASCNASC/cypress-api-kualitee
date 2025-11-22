@@ -1,13 +1,14 @@
 const PATH_API = '/Task/Update'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validTaskId = 888;
+const validAssignedTo = [1234];
+const validTaskname = 'Tarefa atualizada';
+const validStartDate = Cypress.env('VALID_START_DATE');
+const validEndDate = '2025-09-20';
+
 describe('API - Task Update - /task/update', () => {
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validTaskId = 888;
-  const validAssignedTo = [1234];
-  const validTaskname = 'Tarefa atualizada';
-  const validStartDate = Cypress.env('VALID_START_DATE');
-  const validEndDate = '2025-09-20';
 
   function taskUpdate(body, options = {}) {
     return cy.request({

@@ -1,10 +1,10 @@
 const PATH_API = '/TestCase/Copy';
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validTestcaseIds = [1001, 1002];  
+
 describe('API - Test Case Copy - /test_case/copy_test_case', () => {
-  
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validTestcaseIds = [1001, 1002]; 
 
   function testCaseCopy(body, options = {}) {
     return cy.request({

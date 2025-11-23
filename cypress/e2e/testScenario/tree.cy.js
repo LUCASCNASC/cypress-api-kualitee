@@ -1,9 +1,9 @@
 const PATH_API = '/Test%20Scenario/GetTestScenarioTree'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Test Scenario Tree - /test_scenario/tree', () => {
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+describe('API - Test Scenario Tree - /test_scenario/tree', () => {
 
   function testScenarioTree(body, options = {}) {
     return cy.request({

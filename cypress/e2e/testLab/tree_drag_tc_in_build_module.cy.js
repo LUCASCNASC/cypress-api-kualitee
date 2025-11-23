@@ -1,11 +1,11 @@
 const PATH_API = '/TestLab/TreeDragTestCaseinBuildModule'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Manage Test Case Tree Drag TC In Build Module - /manage_test_case/tree_drag_tc_in_build_module', () => {
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validBuildId = Cypress.env('VALID_BUILD_ID');
+const validModuleId = 22;
 
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validBuildId = Cypress.env('VALID_BUILD_ID');
-  const validModuleId = 22;
+describe('API - Manage Test Case Tree Drag TC In Build Module - /manage_test_case/tree_drag_tc_in_build_module', () => {
   
   function treeDragTcInBuildModule(body, options = {}) {
     return cy.request({

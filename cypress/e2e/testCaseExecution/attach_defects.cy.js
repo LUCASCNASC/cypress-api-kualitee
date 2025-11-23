@@ -1,14 +1,14 @@
 const PATH_API = '/Test%20Case%20Execution/attacheddefects'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
+const validTcId = 101;
+const validTestScenarioId = 1234;
+const validCycleId = 1001;
+const validExecutionId = 222;
+const validDefects = [555, 556];
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  const validTcId = 101;
-  const validTestScenarioId = 1234;
-  const validCycleId = 1001;
-  const validExecutionId = 222;
-  const validDefects = [555, 556];
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+describe('API - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
   
   function attachDefects(body, options = {}) {
     return cy.request({

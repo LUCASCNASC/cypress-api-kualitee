@@ -1,10 +1,10 @@
 const PATH_API = '/Test%20Scenario/ExportCSV'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Test Scenario Export CSV - /test_scenario/export_csv', () => {
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+const validExportTypes = ['CSV', 'Excel', 'Word'];
 
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
-  const validExportTypes = ['CSV', 'Excel', 'Word'];
+describe('API - Test Scenario Export CSV - /test_scenario/export_csv', () => {
 
   function exportTestScenario(body, options = {}) {
     return cy.request({

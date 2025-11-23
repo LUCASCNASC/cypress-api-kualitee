@@ -1,9 +1,9 @@
 const PATH_API = '/TestLab/TreeDragRoot'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Manage Test Case Tree - /manage_test_case/tree', () => {
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-  const validProjectId = Cypress.env('VALID_PROJECT_ID');
+describe('API - Manage Test Case Tree - /manage_test_case/tree', () => {
   
   function manageTestCaseTree(body, options = {}) {
     return cy.request({

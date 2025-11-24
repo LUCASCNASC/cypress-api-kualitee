@@ -17,7 +17,6 @@ describe('API - Build List - /build/list', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Retorna lista de builds com token e project_id válidos', () => {
     buildList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

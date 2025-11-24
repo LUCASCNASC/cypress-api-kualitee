@@ -18,7 +18,7 @@ describe('API - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta casos de teste do cenário de teste com todos os campos obrigatórios válidos', () => {
     treeDragTcTs({
       token: validToken,

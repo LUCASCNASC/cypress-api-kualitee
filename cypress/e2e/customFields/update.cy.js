@@ -21,7 +21,6 @@ describe('API - Custom Fields Update - /customfields/update', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Atualiza custom field com todos os campos obrigatórios', () => {
     customfieldsUpdate({
       token: validToken,

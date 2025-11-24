@@ -15,7 +15,7 @@ describe('API - Task Quik View - /task/quik/view', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna visão rápida das tasks com token e project_id válidos', () => {
     taskQuikView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

@@ -25,7 +25,7 @@ describe('API - Dashboard Test Scenario Total - /dashboard/testscenario/total', 
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna total de cenários de teste com parâmetros completos e válidos', () => {
     scenarioTotal(validBody).then(response => {
       expect(response.status).to.eq(200);

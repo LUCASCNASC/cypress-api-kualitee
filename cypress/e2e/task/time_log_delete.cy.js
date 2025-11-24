@@ -17,7 +17,7 @@ describe('API - Task Time Log Delete - /task/time/log/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta log de tempo com token, project_id e id válidos', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);

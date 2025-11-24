@@ -17,7 +17,7 @@ describe('API - Project Metas Create - /project/metas/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria meta de projeto com todos os campos válidos', () => {
     metasCreate({
       token: validToken,

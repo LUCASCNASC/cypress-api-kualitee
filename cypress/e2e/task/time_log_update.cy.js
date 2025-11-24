@@ -18,7 +18,7 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza log de tempo de task com todos campos obrigatórios válidos', () => {
     taskTimeLogUpdate({
       token: validToken,

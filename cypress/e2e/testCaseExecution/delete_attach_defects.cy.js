@@ -19,7 +19,7 @@ describe('API - Test Case Execution Delete Attach Defects - /test_case_execution
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Remove bug de uma execução de test case com dados válidos', () => {
     deleteAttachDefects({
       token: validToken,

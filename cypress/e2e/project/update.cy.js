@@ -25,7 +25,7 @@ describe('API - Project Update - /project/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza projeto com todos os campos válidos', () => {
     projectUpdate(validBody).then(response => {
       expect(response.status).to.eq(200);

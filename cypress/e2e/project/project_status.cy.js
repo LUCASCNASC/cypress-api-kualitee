@@ -18,7 +18,7 @@ describe('API - Project Status - /project/project_status', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza status de projetos com todos os campos válidos', () => {
     projectStatus({
       token: validToken,

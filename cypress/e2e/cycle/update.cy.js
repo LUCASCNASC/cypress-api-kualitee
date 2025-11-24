@@ -54,7 +54,7 @@ describe('API - Defects Update - /defects/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza defeito com campos mínimos obrigatórios', () => {
     defectsUpdate({
       token: validToken,

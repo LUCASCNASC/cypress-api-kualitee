@@ -17,7 +17,7 @@ describe('API - Manage Test Case Tree Drag TC In Build - /manage_test_case/tree_
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta árvore de casos de teste do build com todos os campos obrigatórios válidos', () => {
     treeDragTcInBuild({
       token: validToken,

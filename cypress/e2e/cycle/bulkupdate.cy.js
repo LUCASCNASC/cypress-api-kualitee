@@ -19,7 +19,7 @@ describe('API - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza defeitos em lote com todos os campos obrigatórios válidos', () => {
     bulkUpdateDefects({
       token: validToken,

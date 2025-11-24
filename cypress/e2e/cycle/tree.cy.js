@@ -16,7 +16,7 @@ describe('API - Defects Tree - /defects/tree', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta árvore de defeitos com todos os campos obrigatórios válidos', () => {
     defectsTree({
       token: validToken,

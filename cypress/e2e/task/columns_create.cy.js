@@ -17,7 +17,7 @@ describe('API - Task Columns Create - /task/columns/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria coluna de task com token, project_id e column_name válidos', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect(response.status).to.eq(200);

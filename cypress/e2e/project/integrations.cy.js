@@ -16,7 +16,7 @@ describe('API - Project Integrations - /project/integrations', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna integrações do projeto com token e project_id válidos', () => {
     projectIntegrations({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

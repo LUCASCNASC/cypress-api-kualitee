@@ -17,7 +17,7 @@ describe('API - Module Delete - /module/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta módulo do projeto com token, project_id e module_id[0] válidos', () => {
     moduleDelete({
       token: validToken,

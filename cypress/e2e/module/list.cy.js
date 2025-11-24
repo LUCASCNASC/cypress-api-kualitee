@@ -17,7 +17,7 @@ describe('API - Module List - /module/list', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de módulos com token e project_id válidos', () => {
     moduleList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

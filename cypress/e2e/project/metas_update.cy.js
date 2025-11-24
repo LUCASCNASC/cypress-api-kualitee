@@ -18,7 +18,7 @@ describe('API - Project Metas Update - /project/metas/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza meta de projeto com todos os campos válidos', () => {
     metasUpdate({
       token: validToken,

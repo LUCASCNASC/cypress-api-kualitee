@@ -17,7 +17,7 @@ describe('API - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de dropdown de defeitos com token, project_id e ids válidos', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);

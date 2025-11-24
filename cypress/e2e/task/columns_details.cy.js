@@ -16,7 +16,7 @@ describe('API - Task Columns Details - /task/columns/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes da coluna com token, project_id e id válidos', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);

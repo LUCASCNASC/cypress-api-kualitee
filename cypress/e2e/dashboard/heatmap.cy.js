@@ -16,7 +16,7 @@ describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna heatmap com token e project_id válidos', () => {
     dashboardHeatmap({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

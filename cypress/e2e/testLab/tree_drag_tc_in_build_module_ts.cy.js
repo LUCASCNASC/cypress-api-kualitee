@@ -17,7 +17,7 @@ describe('API - Manage Test Case Tree Drag TC In Build Module Test Scenario - /m
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta casos de teste do cenário de teste do módulo do build com todos os campos obrigatórios válidos', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,

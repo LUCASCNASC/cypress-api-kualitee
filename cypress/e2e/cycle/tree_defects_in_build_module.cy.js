@@ -18,7 +18,7 @@ describe('API - Defects Tree Defects In Build Module - /defects/tree_defects_in_
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta árvore de defeitos em módulo de build com todos os campos obrigatórios válidos', () => {
     treeDefectsInBuildModule({
       token: validToken,

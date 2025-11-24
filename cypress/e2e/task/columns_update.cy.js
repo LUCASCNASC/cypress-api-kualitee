@@ -18,7 +18,7 @@ describe('API - Task Columns Update - /task/columns/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza coluna de task com token, project_id, column_name e id válidos', () => {
     taskColumnsUpdate({
       token: validToken,

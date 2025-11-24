@@ -14,7 +14,7 @@ describe('API - Project List - /project/list', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de projetos com token válido', () => {
     projectList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);

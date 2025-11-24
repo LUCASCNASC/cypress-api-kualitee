@@ -16,7 +16,7 @@ describe('API - Task Details - /task/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes da task com token, project_id e id válidos', () => {
     taskDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);

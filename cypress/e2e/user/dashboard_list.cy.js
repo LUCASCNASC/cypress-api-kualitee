@@ -14,7 +14,7 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de usuários do dashboard com token válido', () => {
     dashboardList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);

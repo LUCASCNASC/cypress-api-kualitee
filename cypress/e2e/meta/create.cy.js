@@ -18,7 +18,7 @@ describe('API - Metas Create - /metas/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria meta com token, project_id, meta_value válidos', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);

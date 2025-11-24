@@ -21,7 +21,7 @@ describe('API - Test Case Execution Find Next Test Case - /test_case_execution/f
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna próximo test case com todos os campos obrigatórios válidos', () => {
     findNextTestCase({
       token: validToken,

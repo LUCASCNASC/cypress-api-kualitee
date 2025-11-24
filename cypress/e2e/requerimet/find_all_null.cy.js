@@ -19,7 +19,7 @@ describe('API - Requirements Find All Null - /requirements/find_all_null', () =>
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna resultado com token e project_id obrigatórios válidos', () => {
     findAllNull({
       token: validToken,

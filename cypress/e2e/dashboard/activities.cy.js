@@ -17,7 +17,7 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna atividades com token, project_id e show válidos', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {
       expect(response.status).to.eq(200);

@@ -14,7 +14,7 @@ describe('API - Email Notification List - /emailnotification/list', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de notificações de email com token válido', () => {
     emailNotificationList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);

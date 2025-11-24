@@ -20,7 +20,6 @@ describe('API - Builds Create - /build/create', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Cria build com todos os campos válidos', () => {
     buildCreate({
       token: validToken,

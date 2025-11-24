@@ -16,7 +16,7 @@ describe('API - Defects Import Step 1 - /defects/import/step1', () => {
     );
   }
 
-  // --- POSITIVO ---
+  
   it('Importa CSV de defeitos com campos obrigatórios válidos', () => {
     defectsImportStep1(
       {

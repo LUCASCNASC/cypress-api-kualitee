@@ -17,7 +17,7 @@ describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta árvore de ciclos do build com todos os campos obrigatórios válidos', () => {
     treeCycleBuild({
       token: validToken,

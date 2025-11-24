@@ -16,7 +16,7 @@ describe('API - Module Detail - /module/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes do módulo com token, project_id e module_id válidos', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.status).to.eq(200);

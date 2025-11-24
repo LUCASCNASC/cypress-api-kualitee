@@ -20,7 +20,6 @@ describe('API - Custom Fields Create - /customfields/create', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Cria custom field com todos os campos obrigatórios', () => {
     customfieldsCreate({
       token: validToken,

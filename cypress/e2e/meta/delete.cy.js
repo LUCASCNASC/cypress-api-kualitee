@@ -17,7 +17,7 @@ describe('API - Metas Delete - /metas/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta metas com token, project_id e ids[0], ids[1] válidos', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);

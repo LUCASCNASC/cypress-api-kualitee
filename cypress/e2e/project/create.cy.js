@@ -24,7 +24,7 @@ describe('API - Project Create - /project/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria projeto com todos os campos válidos', () => {
     projectCreate(validBody).then(response => {
       expect(response.status).to.eq(200);

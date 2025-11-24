@@ -16,7 +16,7 @@ describe('API - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna dropdown list com token e project_id válidos', () => {
     dropdownList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

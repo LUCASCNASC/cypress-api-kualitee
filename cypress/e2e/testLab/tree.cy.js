@@ -16,7 +16,7 @@ describe('API - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta árvore de casos de teste com todos os campos obrigatórios válidos', () => {
     manageTestCaseTree({
       token: validToken,

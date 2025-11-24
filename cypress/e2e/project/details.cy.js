@@ -15,7 +15,7 @@ describe('API - Project Detail - /project/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes do projeto com token e project_id válidos', () => {
     projectDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

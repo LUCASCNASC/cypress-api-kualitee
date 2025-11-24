@@ -16,7 +16,7 @@ describe('API - Integration Detail - /integration/detail', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes de integração com token e id válidos', () => {
     integrationDetail({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);

@@ -19,7 +19,7 @@ describe('API - Manage Test Case Tree Testcase in Cycle Test Scenario - /manage_
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta casos de teste do cenário de teste do ciclo com todos os campos obrigatórios válidos', () => {
     treeTestcaseInCycleTs({
       token: validToken,

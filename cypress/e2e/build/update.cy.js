@@ -21,7 +21,6 @@ describe('API - Builds Update - /build/update', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Atualiza build do projeto com todos os campos válidos', () => {
     buildUpdate({
       token: validToken,

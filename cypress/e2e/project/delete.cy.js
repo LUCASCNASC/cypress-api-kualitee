@@ -15,7 +15,7 @@ describe('API - Project Delete - /project/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta projeto com token e project_id válidos', () => {
     projectDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

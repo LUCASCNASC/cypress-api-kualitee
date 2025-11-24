@@ -17,7 +17,7 @@ describe('API - Requirements Get Testscenario List - /requirements/get_testscena
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de cenários de teste com token e project_id válidos', () => {
     getTestscenarioList({
       token: validToken,

@@ -17,7 +17,7 @@ describe('API - Defects Delete - /defects/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta defeito com todos os campos obrigatórios válidos', () => {
     defectsDelete({
       token: validToken,

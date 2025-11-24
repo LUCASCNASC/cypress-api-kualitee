@@ -14,7 +14,6 @@ describe('API - Custom Fields List - /customfields/list', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Lista custom fields com token válido', () => {
     customfieldsList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);

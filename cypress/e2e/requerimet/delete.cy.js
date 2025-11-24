@@ -18,7 +18,7 @@ describe('API - Requirements Delete - /requirements/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta requirement com token, project_id e id válidos', () => {
     requirementsDelete({
       token: validToken,

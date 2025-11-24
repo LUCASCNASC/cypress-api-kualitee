@@ -16,7 +16,7 @@ describe('API - Dashboard Defect Statistics - /dashboard/defect_statistics', () 
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna estatísticas de defeitos com token e project_id válidos', () => {
     defectStatistics({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

@@ -17,7 +17,7 @@ describe('API - Requirements Get Testcases List - /requirements/get_testcases_li
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna lista de casos de teste com token e project_id válidos', () => {
     getTestcasesList({
       token: validToken,

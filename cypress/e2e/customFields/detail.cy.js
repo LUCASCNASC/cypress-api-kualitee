@@ -15,7 +15,6 @@ describe('API - Custom Fields Detail - /customfields/detail', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Retorna detalhes do custom field com token e id válidos', () => {
     customfieldsDetail({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);

@@ -18,7 +18,7 @@ describe('API - Requirements Tree Requirements - /requirements/tree_requirements
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna árvore de requisitos com token, project_id e requirement_id válidos', () => {
     treeRequirements({
       token: validToken,

@@ -17,7 +17,7 @@ describe('API - Requirements Details - /requirements/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes do requisito com token, project_id e requirement_id válidos', () => {
     getRequirementDetails({
       token: validToken,

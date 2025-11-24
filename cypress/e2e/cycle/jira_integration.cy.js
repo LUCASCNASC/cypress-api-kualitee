@@ -16,7 +16,7 @@ describe('API - Defects Jira Integration - /defects/jira_integration', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Integra com Jira com todos os campos obrigatórios válidos', () => {
     jiraIntegration({
       token: validToken,

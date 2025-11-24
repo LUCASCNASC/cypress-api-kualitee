@@ -15,7 +15,7 @@ describe('API - Defects Defect Metas - /defects/defect_metas', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta metadados de defeitos com todos os campos obrigatórios válidos', () => {
     defectMetas({
       token: validToken,

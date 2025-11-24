@@ -23,7 +23,7 @@ describe('API - Test Case Execution Execute - /test_case_execution/execute', () 
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Executa test case com todos os campos obrigatórios válidos', () => {
     executeTest({
       token: validToken,

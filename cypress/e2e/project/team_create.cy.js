@@ -17,7 +17,7 @@ describe('API - Project Team Assigned - /team/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Associa usuários a um projeto com dados válidos', () => {
     teamCreate({
       token: validToken,

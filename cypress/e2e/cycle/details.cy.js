@@ -16,7 +16,7 @@ describe('API - Defects Details - /defects/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Consulta detalhes do defeito com todos os parâmetros válidos', () => {
     defectsDetails({
       token: validToken,

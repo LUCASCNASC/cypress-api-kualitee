@@ -18,7 +18,7 @@ describe('API - Requirements Attachment Delete - /requirements/attachment/delete
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Deleta attachment com token, project_id e image_id válidos', () => {
     requirementsAttachmentDelete({
       token: validToken,

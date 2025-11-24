@@ -16,7 +16,7 @@ describe('API - Metas Project Metas - /metas/project_metas', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Lista metas do projeto com token e project_id válidos', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

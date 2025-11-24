@@ -15,7 +15,7 @@ describe('API - Roles Details - /roles/details', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna detalhes do role com token e id válidos', () => {
     rolesDetails({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);

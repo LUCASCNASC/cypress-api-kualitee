@@ -18,7 +18,7 @@ describe('API - Test Case Execution Tree Test Scenario Test Cases - /test_case_e
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna árvore de test cases de cenário com todos os campos obrigatórios válidos', () => {
     treeTsTestCases({
       token: validToken,

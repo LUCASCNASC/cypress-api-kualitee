@@ -17,7 +17,6 @@ describe('API - Custom Fields Delete - /customfields/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Deleta custom field com token, project_id e custom_field_id[0] válidos', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.status).to.eq(200);

@@ -18,7 +18,7 @@ describe('API - Test Case Execution Tree Test Case Build Cycle TS - /test_case_e
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna árvore de test cases de cenário/build/cycle com todos os campos obrigatórios válidos', () => {
     treeTestCaseBuildCycleTS({
       token: validToken,

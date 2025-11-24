@@ -20,7 +20,7 @@ describe('API - Module Update - /module/update', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Atualiza módulo com todos os campos válidos', () => {
     moduleUpdate({
       token: validToken,

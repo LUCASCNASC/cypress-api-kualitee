@@ -17,7 +17,7 @@ describe('API - Task Time Log - /task/time/log', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Registra tempo de task com todos campos obrigatórios válidos', () => {
     taskTimeLog({
       token: validToken,

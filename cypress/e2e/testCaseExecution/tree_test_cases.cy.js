@@ -17,7 +17,7 @@ describe('API - Test Case Execution Tree Test Cases - /test_case_execution/tree_
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna árvore de test cases com token, project_id e cycle_id válidos', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.status).to.eq(200);

@@ -20,7 +20,7 @@ describe('API - Integration Save - /integration/save', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Salva integração com todos os campos obrigatórios válidos', () => {
     integrationSave({
       token: validToken,

@@ -19,7 +19,7 @@ describe('API - Module Create - /module/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria módulo com todos os campos válidos', () => {
     moduleCreate({
       token: validToken,

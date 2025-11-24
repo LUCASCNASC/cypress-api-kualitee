@@ -16,7 +16,7 @@ describe('API - Dashboard Bug Open Status - /dashboard/bugopenstatus', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Retorna status dos bugs com token e project_id válidos', () => {
     bugOpenStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);

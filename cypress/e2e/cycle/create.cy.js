@@ -53,7 +53,7 @@ describe('API - Defects Create - /defects/create', () => {
     });
   }
 
-  // --- POSITIVO ---
+  
   it('Cria defeito com campos mínimos obrigatórios', () => {
     defectsCreate({
       token: validToken,

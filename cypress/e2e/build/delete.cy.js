@@ -17,7 +17,6 @@ describe('API - Builds Delete - /build/delete', () => {
     });
   }
 
-  // --- POSITIVO ---
   it('Deleta build do projeto com token, project_id e build_id válidos', () => {
     buildDelete({
       token: validToken,

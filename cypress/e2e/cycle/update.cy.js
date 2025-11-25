@@ -53,7 +53,6 @@ describe('API - Defects Update - /defects/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza defeito com campos mínimos obrigatórios', () => {
     defectsUpdate({

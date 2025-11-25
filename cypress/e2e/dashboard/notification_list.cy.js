@@ -15,7 +15,6 @@ describe('API - Dashboard Notification List - /dashboard/notification_list', () 
       ...options,
     });
   }
-
   
   it('Retorna notification list com token e project_id válidos', () => {
     notificationList({ token: validToken, project_id: validProjectId }).then(response => {

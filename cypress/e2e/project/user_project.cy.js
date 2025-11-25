@@ -12,7 +12,6 @@ describe('API - Users Project List - /project/user_project', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de projetos do usuário com token válido', () => {
     userProject({ token: validToken }).then(response => {

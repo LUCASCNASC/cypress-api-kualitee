@@ -15,7 +15,6 @@ describe('API - Dashboard Defect by Severity - /dashboard/defect_by_severity', (
       ...options,
     });
   }
-
   
   it('Retorna informações de defeitos por severity com token e project_id válidos', () => {
     defectBySeverity({ token: validToken, project_id: validProjectId }).then(response => {

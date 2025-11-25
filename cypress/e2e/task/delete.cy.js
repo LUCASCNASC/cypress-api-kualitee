@@ -16,7 +16,6 @@ describe('API - Task Delete - /task/delete', () => {
       ...options,
     });
   }
-
   
   it('Deleta uma task com token, project_id e id[0] válidos', () => {
     taskDelete({ token: validToken, project_id: validProjectId, 'id[0]': validId }).then(response => {

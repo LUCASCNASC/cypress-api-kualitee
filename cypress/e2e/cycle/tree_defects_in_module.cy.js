@@ -16,7 +16,6 @@ describe('API - Defects Tree Defects In Module - /defects/tree_defects_in_module
       ...options,
     });
   }
-
   
   it('Consulta árvore de defeitos em módulo com todos os campos obrigatórios válidos', () => {
     treeDefectsInModule({

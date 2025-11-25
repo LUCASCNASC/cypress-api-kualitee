@@ -17,7 +17,6 @@ describe('API - Task Time Log Update - /task/time/log/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza log de tempo de task com todos campos obrigatórios válidos', () => {
     taskTimeLogUpdate({

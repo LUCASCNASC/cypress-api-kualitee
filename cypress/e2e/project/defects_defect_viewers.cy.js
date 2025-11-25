@@ -14,7 +14,6 @@ describe('API - Defect Viewer - /defects/defect_viewers', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de visualizadores de defeitos com token e project_id válidos', () => {
     defectViewers({ token: validToken, project_id: validProjectId }).then(response => {

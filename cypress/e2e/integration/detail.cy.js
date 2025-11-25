@@ -15,7 +15,6 @@ describe('API - Integration Detail - /integration/detail', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes de integração com token e id válidos', () => {
     integrationDetail({ token: validToken, id: validId }).then(response => {

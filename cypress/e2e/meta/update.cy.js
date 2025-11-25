@@ -18,7 +18,6 @@ describe('API - Metas Update - /metas/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza meta com token, project_id, id, meta_value válidos', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {

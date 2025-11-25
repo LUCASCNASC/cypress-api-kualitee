@@ -15,7 +15,6 @@ describe('API - Metas Project Metas - /metas/project_metas', () => {
       ...options,
     });
   }
-
   
   it('Lista metas do projeto com token e project_id válidos', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId }).then(response => {

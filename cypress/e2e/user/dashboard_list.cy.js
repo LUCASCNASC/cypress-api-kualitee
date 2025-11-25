@@ -13,7 +13,6 @@ describe('API - Users List Dashboard - /users/dashboard_list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de usuários do dashboard com token válido', () => {
     dashboardList({ token: validToken }).then(response => {

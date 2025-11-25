@@ -18,7 +18,6 @@ describe('API - Manage Test Case Tree Testcase In Build Cycle Test Scenario - /m
       ...options,
     });
   }
-
   
   it('Consulta casos de teste de cenário do ciclo do build com todos os campos obrigatórios válidos', () => {
     treeTestcaseInBuildCycleTs({

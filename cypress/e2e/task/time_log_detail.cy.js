@@ -15,7 +15,6 @@ describe('API - Task Time Log Detail - /task/time/log/detail', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes do log de tempo da task com token, project_id e id válidos', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {

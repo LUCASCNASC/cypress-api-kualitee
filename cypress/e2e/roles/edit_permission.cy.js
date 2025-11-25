@@ -14,7 +14,6 @@ describe('API - Roles Edit Permission - /roles/edit/permission', () => {
       ...options,
     });
   }
-
   
   it('Retorna permissão de edição de role com token e id válidos', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {

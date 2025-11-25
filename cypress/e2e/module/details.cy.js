@@ -15,7 +15,6 @@ describe('API - Module Detail - /module/details', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes do módulo com token, project_id e module_id válidos', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {

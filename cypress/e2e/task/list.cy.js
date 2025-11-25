@@ -15,7 +15,6 @@ describe('API - Task List - /task/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de tarefas com token e project_id válidos', () => {
     taskList({ token: validToken, project_id: validProjectId }).then(response => {

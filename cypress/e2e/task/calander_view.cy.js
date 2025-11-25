@@ -14,7 +14,6 @@ describe('API - Task Calander View - /task/calander/view', () => {
       ...options,
     });
   }
-
   
   it('Retorna visão de calendário das tasks com token e project_id válidos', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId }).then(response => {

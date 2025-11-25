@@ -17,7 +17,6 @@ describe('API - Manage Test Case Update - /manage_test_case/update', () => {
       ...options,
     });
   }
-
   
   it('Adiciona casos de teste ao ciclo com todos os campos obrigatórios válidos', () => {
     manageTestCaseUpdate({

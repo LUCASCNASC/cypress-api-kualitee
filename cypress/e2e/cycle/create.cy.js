@@ -52,7 +52,6 @@ describe('API - Defects Create - /defects/create', () => {
       ...options,
     });
   }
-
   
   it('Cria defeito com campos mínimos obrigatórios', () => {
     defectsCreate({

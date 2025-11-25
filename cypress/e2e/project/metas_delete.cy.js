@@ -15,7 +15,6 @@ describe('API - Project Metas Delete - /project/metas/delete', () => {
       ...options,
     });
   }
-
   
   it('Deleta meta de projeto com token e meta_id válidos', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {

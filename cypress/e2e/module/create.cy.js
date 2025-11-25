@@ -18,7 +18,6 @@ describe('API - Module Create - /module/create', () => {
       ...options,
     });
   }
-
   
   it('Cria módulo com todos os campos válidos', () => {
     moduleCreate({

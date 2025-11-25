@@ -14,7 +14,6 @@ describe('API - Project Detail - /project/details', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes do projeto com token e project_id válidos', () => {
     projectDetails({ token: validToken, project_id: validProjectId }).then(response => {

@@ -16,7 +16,6 @@ describe('API - Requirements Get Defect List - /requirements/get_defect_list', (
       ...options,
     });
   }
-
   
   it('Retorna lista de defeitos com token e project_id válidos', () => {
     getDefectList({

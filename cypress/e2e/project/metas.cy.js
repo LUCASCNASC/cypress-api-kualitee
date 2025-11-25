@@ -14,7 +14,6 @@ describe('API - Project Metas - /project/metas', () => {
       ...options,
     });
   }
-
   
   it('Retorna metas do projeto com token e meta_type válidos', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {

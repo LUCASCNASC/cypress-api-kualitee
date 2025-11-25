@@ -16,7 +16,6 @@ describe('API - Project Metas Create - /project/metas/create', () => {
       ...options,
     });
   }
-
   
   it('Cria meta de projeto com todos os campos válidos', () => {
     metasCreate({

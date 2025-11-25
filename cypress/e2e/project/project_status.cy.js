@@ -17,7 +17,6 @@ describe('API - Project Status - /project/project_status', () => {
       ...options,
     });
   }
-
   
   it('Atualiza status de projetos com todos os campos válidos', () => {
     projectStatus({

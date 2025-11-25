@@ -17,7 +17,6 @@ describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
     });
   }
 
-  
   it('Sincroniza com Jira usando todos os campos obrigatórios válidos', () => {
     jiraCustomSync({
       token: validToken,

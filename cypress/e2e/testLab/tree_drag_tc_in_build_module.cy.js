@@ -17,7 +17,6 @@ describe('API - Manage Test Case Tree Drag TC In Build Module - /manage_test_cas
       ...options,
     });
   }
-
   
   it('Consulta casos de teste do módulo do build com todos os campos obrigatórios válidos', () => {
     treeDragTcInBuildModule({

@@ -15,7 +15,6 @@ describe('API - Defects Tree - /defects/tree', () => {
       ...options,
     });
   }
-
   
   it('Consulta árvore de defeitos com todos os campos obrigatórios válidos', () => {
     defectsTree({

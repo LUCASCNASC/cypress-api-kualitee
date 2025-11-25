@@ -19,7 +19,6 @@ describe('API - Integration Save - /integration/save', () => {
       ...options,
     });
   }
-
   
   it('Salva integração com todos os campos obrigatórios válidos', () => {
     integrationSave({

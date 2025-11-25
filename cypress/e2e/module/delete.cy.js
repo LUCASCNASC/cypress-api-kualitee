@@ -16,7 +16,6 @@ describe('API - Module Delete - /module/delete', () => {
       ...options,
     });
   }
-
   
   it('Deleta módulo do projeto com token, project_id e module_id[0] válidos', () => {
     moduleDelete({

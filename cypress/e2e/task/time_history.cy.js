@@ -16,7 +16,6 @@ describe('API - Task Time History - /task/time/history', () => {
       ...options,
     });
   }
-
   
   it('Retorna histórico de tempo da task com token, project_id e id válidos', () => {
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {

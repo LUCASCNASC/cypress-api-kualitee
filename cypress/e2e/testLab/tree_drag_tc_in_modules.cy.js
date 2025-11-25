@@ -16,7 +16,6 @@ describe('API - Manage Test Case Tree Drag TC In Modules - /manage_test_case/tre
       ...options,
     });
   }
-
   
   it('Consulta casos de teste do módulo com todos os campos obrigatórios válidos', () => {
     treeDragTcInModules({

@@ -19,7 +19,6 @@ describe('API - Module Update - /module/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza módulo com todos os campos válidos', () => {
     moduleUpdate({

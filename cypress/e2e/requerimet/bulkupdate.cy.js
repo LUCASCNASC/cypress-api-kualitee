@@ -18,7 +18,6 @@ describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
       ...options,
     });
   }
-
   
   it('Atualiza em lote requisitos com todos os campos obrigatórios válidos', () => {
     bulkUpdate({

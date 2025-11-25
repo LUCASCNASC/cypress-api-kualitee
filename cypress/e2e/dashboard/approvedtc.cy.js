@@ -15,7 +15,6 @@ describe('API - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
       ...options,
     });
   }
-
   
   it('Retorna test cases aprovados com token e project_id válidos', () => {
     approvedTc({ token: validToken, project_id: validProjectId }).then(response => {

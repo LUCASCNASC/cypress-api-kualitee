@@ -15,7 +15,6 @@ describe('API - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle', () 
       ...options,
     });
   }
-
   
   it('Consulta árvore de ciclos com todos os campos obrigatórios válidos', () => {
     treeCycle({

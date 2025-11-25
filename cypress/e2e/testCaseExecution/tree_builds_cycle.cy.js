@@ -17,7 +17,6 @@ describe('API - Test Case Execution Tree Builds Cycle - /test_case_execution/tre
       ...options,
     });
   }
-
   
   it('Retorna ciclos da build do projeto com token, project_id e build_id válidos', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {

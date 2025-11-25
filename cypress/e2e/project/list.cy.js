@@ -13,7 +13,6 @@ describe('API - Project List - /project/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de projetos com token válido', () => {
     projectList({ token: validToken }).then(response => {

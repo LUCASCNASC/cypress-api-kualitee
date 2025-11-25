@@ -16,7 +16,6 @@ describe('API - Metas Detail - /metas/detail', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes da meta com token, project_id e id válidos', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {

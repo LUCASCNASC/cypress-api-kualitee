@@ -32,7 +32,6 @@ describe('API - Defects List - /defects/list', () => {
     });
   }
 
-  
   it('Lista defeitos com campos obrigatórios mínimos', () => {
     defectsList({
       token: validToken,

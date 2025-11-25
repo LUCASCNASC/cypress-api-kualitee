@@ -16,7 +16,6 @@ describe('API - Defects Delete Image - /defects/delete_image', () => {
       ...options,
     });
   }
-
   
   it('Deleta imagem de defeito com todos os campos obrigatórios válidos', () => {
     defectsDeleteImage({

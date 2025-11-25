@@ -20,7 +20,6 @@ describe('API - Test Case Execution Attach Defects - /test_case_execution/attach
       ...options,
     });
   }
-
   
   it('Anexa múltiplos defects a uma execução de test case válida', () => {
     attachDefects({

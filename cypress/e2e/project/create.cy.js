@@ -23,7 +23,6 @@ describe('API - Project Create - /project/create', () => {
       ...options,
     });
   }
-
   
   it('Cria projeto com todos os campos válidos', () => {
     projectCreate(validBody).then(response => {

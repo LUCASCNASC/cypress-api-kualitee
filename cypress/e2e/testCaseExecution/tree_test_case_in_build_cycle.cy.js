@@ -18,7 +18,6 @@ describe('API - Test Case Execution Tree Test Case in Build Cycle - /test_case_e
       ...options,
     });
   }
-
   
   it('Retorna árvore de test cases de build/cycle com todos os campos obrigatórios válidos', () => {
     treeTestCaseInBuildCycle({

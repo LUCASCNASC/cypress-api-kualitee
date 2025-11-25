@@ -15,7 +15,6 @@ describe('API - Dashboard Notification Count - /dashboard/notification_count', (
       ...options,
     });
   }
-
   
   it('Retorna notification count com token e project_id válidos', () => {
     notificationCount({ token: validToken, project_id: validProjectId }).then(response => {

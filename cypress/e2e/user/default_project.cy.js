@@ -15,7 +15,6 @@ describe('API - Auth Default Project - /auth/default_project', () => {
       ...options,
     });
   }
-
   
   it('Define projeto padrão com token e project_id válidos', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId }).then(response => {

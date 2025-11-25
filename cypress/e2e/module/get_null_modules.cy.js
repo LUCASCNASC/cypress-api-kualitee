@@ -17,7 +17,6 @@ describe('API - Get Null Modules - /module/get_null_modules', () => {
       ...options,
     });
   }
-
   
   it('Retorna módulos nulos com todos os campos válidos', () => {
     getNullModules({

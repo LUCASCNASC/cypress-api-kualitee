@@ -17,7 +17,6 @@ describe('API - Test Case Execution Change Status - /test_case_execution/change_
       ...options,
     });
   }
-
   
   it('Altera status de múltiplos test cases com dados válidos', () => {
     changeStatus({

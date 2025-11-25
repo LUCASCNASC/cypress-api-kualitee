@@ -15,7 +15,6 @@ describe('API - Task Detail - /task/detail', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes da task com token, project_id e id válidos', () => {
     taskDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {

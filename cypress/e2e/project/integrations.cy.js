@@ -15,7 +15,6 @@ describe('API - Project Integrations - /project/integrations', () => {
       ...options,
     });
   }
-
   
   it('Retorna integrações do projeto com token e project_id válidos', () => {
     projectIntegrations({ token: validToken, project_id: validProjectId }).then(response => {

@@ -13,7 +13,6 @@ describe('API - Email Notification List - /emailnotification/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de notificações de email com token válido', () => {
     emailNotificationList({ token: validToken }).then(response => {

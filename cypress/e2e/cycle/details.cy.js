@@ -15,7 +15,6 @@ describe('API - Defects Details - /defects/details', () => {
       ...options,
     });
   }
-
   
   it('Consulta detalhes do defeito com todos os parâmetros válidos', () => {
     defectsDetails({

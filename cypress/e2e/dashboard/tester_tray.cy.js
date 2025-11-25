@@ -15,7 +15,6 @@ describe('API - Dashboard Tester Tray - /dashboard/tester_tray', () => {
       ...options,
     });
   }
-
   
   it('Retorna tester tray com token e project_id válidos', () => {
     testerTray({ token: validToken, project_id: validProjectId }).then(response => {

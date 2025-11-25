@@ -13,7 +13,6 @@ describe('API - Archived Projects - /project/archived_projects', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de projetos arquivados com token válido', () => {
     archivedProjects({ token: validToken }).then(response => {

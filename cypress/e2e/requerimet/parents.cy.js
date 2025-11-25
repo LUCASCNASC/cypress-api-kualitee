@@ -16,7 +16,6 @@ describe('API - Requirements Parents - /requirements/parents', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de pais de requisitos com token e project_id válidos', () => {
     requirementsParents({

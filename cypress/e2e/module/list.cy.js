@@ -16,7 +16,6 @@ describe('API - Module List - /module/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de módulos com token e project_id válidos', () => {
     moduleList({ token: validToken, project_id: validProjectId }).then(response => {

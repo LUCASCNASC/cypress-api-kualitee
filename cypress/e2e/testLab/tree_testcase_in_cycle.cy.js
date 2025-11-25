@@ -17,7 +17,6 @@ describe('API - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree
       ...options,
     });
   }
-
   
   it('Consulta casos de teste do ciclo com todos os campos obrigatórios válidos', () => {
     treeTestcaseInCycle({

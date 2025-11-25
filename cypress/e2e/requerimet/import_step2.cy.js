@@ -19,7 +19,6 @@ describe('API - Requirements Import Step 2 - /requirements/import/step2', () => 
       ...options,
     });
   }
-
   
   it('Importa requisitos (step2) com todos os campos obrigatórios válidos', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {

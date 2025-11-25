@@ -21,7 +21,6 @@ describe('API - Requirements List - /requirements/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de requisitos com token e project_id válidos', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {

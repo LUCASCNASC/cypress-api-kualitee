@@ -17,7 +17,6 @@ describe('API - Defects Get Defects - /defects/get_defects', () => {
       ...options,
     });
   }
-
   
   it('Consulta defeitos com campos obrigatórios mínimos', () => {
     getDefects({

@@ -14,7 +14,6 @@ describe('API - Roles Details - /roles/details', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes do role com token e id válidos', () => {
     rolesDetails({ token: validToken, id: validId }).then(response => {

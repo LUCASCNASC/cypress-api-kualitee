@@ -16,7 +16,6 @@ describe('API - Requirements Details - /requirements/details', () => {
       ...options,
     });
   }
-
   
   it('Retorna detalhes do requisito com token, project_id e requirement_id válidos', () => {
     getRequirementDetails({

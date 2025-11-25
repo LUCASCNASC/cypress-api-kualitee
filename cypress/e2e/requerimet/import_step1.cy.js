@@ -17,7 +17,6 @@ describe('API - Requirements Import Step 1 - /requirements/import/step1', () => 
       ...options,
     });
   }
-
   
   it('Importa requisitos com token, project_id e arquivo CSV válidos', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {

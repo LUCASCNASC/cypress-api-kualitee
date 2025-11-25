@@ -15,7 +15,6 @@ describe('API - Dashboard Heatmap - /dashboard/heatmap', () => {
       ...options,
     });
   }
-
   
   it('Retorna heatmap com token e project_id válidos', () => {
     dashboardHeatmap({ token: validToken, project_id: validProjectId }).then(response => {

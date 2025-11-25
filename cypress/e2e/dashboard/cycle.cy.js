@@ -15,7 +15,6 @@ describe('API - Dashboard Cycle - /dashboard/cycle', () => {
       ...options,
     });
   }
-
   
   it('Retorna informações do ciclo com token e project_id válidos', () => {
     dashboardCycle({ token: validToken, project_id: validProjectId }).then(response => {

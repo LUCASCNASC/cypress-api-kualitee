@@ -24,7 +24,6 @@ describe('API - Project Update - /project/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza projeto com todos os campos válidos', () => {
     projectUpdate(validBody).then(response => {

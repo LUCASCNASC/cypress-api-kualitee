@@ -15,7 +15,6 @@ describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionsta
       ...options,
     });
   }
-
   
   it('Retorna status de execução de casos de teste com token e project_id válidos', () => {
     tcExecutionStatus({ token: validToken, project_id: validProjectId }).then(response => {

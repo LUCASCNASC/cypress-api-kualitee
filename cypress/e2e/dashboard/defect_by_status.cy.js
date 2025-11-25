@@ -15,7 +15,6 @@ describe('API - Dashboard Defect by Status - /dashboard/defect_by_status', () =>
       ...options,
     });
   }
-
   
   it('Retorna informações de defeitos por status com token e project_id válidos', () => {
     defectByStatus({ token: validToken, project_id: validProjectId }).then(response => {

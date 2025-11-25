@@ -16,7 +16,6 @@ describe('API - Dashboard Activities - /dashboard/activities', () => {
       ...options,
     });
   }
-
   
   it('Retorna atividades com token, project_id e show válidos', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {

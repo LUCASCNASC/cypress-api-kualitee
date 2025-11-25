@@ -15,7 +15,6 @@ describe('API - Test Case Execution Tree Root - /test_case_execution/tree', () =
       ...options,
     });
   }
-
   
   it('Retorna a árvore de execução com token e project_id válidos', () => {
     tree({ token: validToken, project_id: validProjectId }).then(response => {

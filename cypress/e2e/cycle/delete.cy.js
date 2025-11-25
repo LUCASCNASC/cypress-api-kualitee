@@ -16,7 +16,6 @@ describe('API - Defects Delete - /defects/delete', () => {
       ...options,
     });
   }
-
   
   it('Deleta defeito com todos os campos obrigatórios válidos', () => {
     defectsDelete({

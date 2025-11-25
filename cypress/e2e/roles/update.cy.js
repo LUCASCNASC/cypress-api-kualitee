@@ -18,7 +18,6 @@ describe('API - Roles Update - /roles/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza role com token, id, role_name e description válidos', () => {
     rolesUpdate({

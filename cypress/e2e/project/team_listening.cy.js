@@ -15,7 +15,6 @@ describe('API - Project Team Listing - /team/listing', () => {
       ...options,
     });
   }
-
   
   it('Retorna equipe do projeto com token e project_id válidos', () => {
     teamListing({ token: validToken, project_id: validProjectId }).then(response => {

@@ -13,7 +13,6 @@ describe('API - Roles List - /roles/list', () => {
       ...options,
     });
   }
-
   
   it('Retorna lista de roles com token válido', () => {
     rolesList({ token: validToken }).then(response => {

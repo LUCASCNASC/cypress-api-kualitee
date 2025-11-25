@@ -16,7 +16,6 @@ describe('API - Task Columns Card Reposition - /task/columns/card/reposition', (
       ...options,
     });
   }
-
   
   it('Reposiciona card da coluna com token, project_id e id válidos', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId }).then(response => {

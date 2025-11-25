@@ -17,7 +17,6 @@ describe('API - Requirements Tree Requirement in Builds - /requirements/tree_req
       ...options,
     });
   }
-
   
   it('Retorna árvore de requisitos da build com token, project_id e build_id válidos', () => {
     treeRequirementInBuilds({

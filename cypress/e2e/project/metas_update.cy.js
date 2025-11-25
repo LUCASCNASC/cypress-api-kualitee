@@ -17,7 +17,6 @@ describe('API - Project Metas Update - /project/metas/update', () => {
       ...options,
     });
   }
-
   
   it('Atualiza meta de projeto com todos os campos válidos', () => {
     metasUpdate({

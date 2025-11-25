@@ -17,7 +17,6 @@ describe('API - Roles Create - /roles/create', () => {
       ...options,
     });
   }
-
   
   it('Cria role com token, role_name e description válidos', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {

@@ -18,7 +18,6 @@ describe('API - Requirements Tree Requirement in Build Modules - /requirements/t
       ...options,
     });
   }
-
   
   it('Retorna árvore de requisitos do módulo na build com todos os campos válidos', () => {
     treeRequirementInBuildModules({

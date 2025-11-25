@@ -16,7 +16,6 @@ describe('API - Requirements Tree - /requirements/tree', () => {
       ...options,
     });
   }
-
   
   it('Retorna a árvore de requisitos com token e project_id válidos', () => {
     requirementsTree({

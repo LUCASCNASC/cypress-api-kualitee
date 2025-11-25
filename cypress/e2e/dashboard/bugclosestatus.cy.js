@@ -15,7 +15,6 @@ describe('API - Dashboard Bug Close Status - /dashboard/bugclosestatus', () => {
       ...options,
     });
   }
-
   
   it('Retorna status de fechamento dos bugs com token e project_id válidos', () => {
     bugCloseStatus({ token: validToken, project_id: validProjectId }).then(response => {

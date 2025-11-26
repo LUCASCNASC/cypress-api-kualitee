@@ -2,6 +2,7 @@ const PATH_API = '/Task/columnCreate'
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validColumnName = 'Nova Coluna';
 
 describe('API - Task Columns Create - /task/columns/create', () => {

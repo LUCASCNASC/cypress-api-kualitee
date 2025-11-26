@@ -1,6 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/importstepone';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCsvFile = 'cypress/fixtures/defects_import.csv';
 
 describe('API - Defects Import Step 1 - /defects/import/step1', () => {

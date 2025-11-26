@@ -2,9 +2,10 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Update';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validDefectId = 101;
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
+
+const validDefectId = 101;
 const validDescription = 'Atualização do defeito: fluxo login falha em ambiente staging';
 const validBrowserName = 'Chrome';
 const validDefectType = 'Bug';

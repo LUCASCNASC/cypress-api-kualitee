@@ -2,6 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/jira_custom_sync';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validPluginName = 'jira';
 
 describe('API - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {

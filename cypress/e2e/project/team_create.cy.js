@@ -2,6 +2,7 @@ const PATH_API = '/Project/ProjectTeamAssigned';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validUserIds = [10, 11, 12, 13];
 
 describe('API - Project Team Assigned - /team/create', () => {

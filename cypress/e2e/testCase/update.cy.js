@@ -2,9 +2,10 @@ const PATH_API = '/TestCase/Update';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
-const validId = 1001;
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
+
+const validId = 1001;
 const validScenarioId = 201;
 const validRequirementId = 101;
 

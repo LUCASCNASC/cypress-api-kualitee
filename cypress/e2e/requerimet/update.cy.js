@@ -2,6 +2,7 @@ const PATH_API = '/Requirement/update';
 const validToken = Cypress.env('VALID_TOKEN')
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validRequirementId = 123;
 const validAssignedTo = 111;
 const validTitle = 'Título do requisito';

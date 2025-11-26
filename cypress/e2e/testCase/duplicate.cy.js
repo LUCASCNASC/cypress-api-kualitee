@@ -2,6 +2,7 @@ const PATH_API = '/TestCase/duplicate';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validTestCaseName = 'TC001'; 
 
 describe('API - Duplicate Test Case - /test_case/duplicate', () => {

@@ -2,6 +2,7 @@ const PATH_API = '/Requirement/requirements%2Fdetail';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validRequirementId = 101;
 
 describe('API - Requirements Details - /requirements/details', () => {

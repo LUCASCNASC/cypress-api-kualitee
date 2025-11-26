@@ -2,6 +2,7 @@ const PATH_API = '/TestCase/Approved';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validTestcaseIds = [1001, 1002];
 
 describe('API - Test Case Approve - /test_case/approve', () => {

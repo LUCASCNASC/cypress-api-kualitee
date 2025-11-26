@@ -3,6 +3,7 @@ const PATH_API = '/Meta/Update';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
+
 const validMetaKey = 'browser';
 const validMetaValue = 'chrome';
 

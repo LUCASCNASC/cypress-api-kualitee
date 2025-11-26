@@ -3,6 +3,7 @@ const PATH_API = '/TestLab/TreeTestCaseinBuildcycletestScenario';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCycleId = 1001;
 const validTestScenarioId = 1234;
 

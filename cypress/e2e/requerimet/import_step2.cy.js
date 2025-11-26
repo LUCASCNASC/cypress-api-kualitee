@@ -2,6 +2,7 @@ const PATH_API = '/Requirement/importsteptwo';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCsvPath = 'caminho/para/arquivo.csv'; 
 const validAssignedTo = 'user123';
 const validDbColumns = [ 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8' ];

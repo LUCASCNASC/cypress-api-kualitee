@@ -2,6 +2,7 @@ const PATH_API = '/Requirement/importstepone';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCsvPath = 'caminho/para/arquivo.csv';
 
 describe('API - Requirements Import Step 1 - /requirements/import/step1', () => {

@@ -2,6 +2,7 @@ const PATH_API = '/Test%20Scenario/importstepone'
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCsvFilePath = 'cypress/fixtures/test_scenarios_import.csv';
 
 describe('API - Import Step One - /test_scenario/import/step1', () => {

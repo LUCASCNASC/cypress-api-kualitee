@@ -2,6 +2,7 @@ const PATH_API = '/TestCase/importsteptwo';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validAssignedTo = 123; 
 const validCsv = 'fixtures/valid_test_cases.csv';
 

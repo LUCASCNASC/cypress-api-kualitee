@@ -3,6 +3,7 @@ const PATH_API = '/Build/BuildsCreate';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validStartDate = Cypress.env('VALID_START_DATE');
+
 const validEndDate = '2020-06-02';
 const validBuildName = 'Build v1.2.3';
 const validBuildDescription = 'Descrição do build de testes automáticos.';

@@ -1,8 +1,9 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/Update';
 
-const validCustomFieldId = 456;
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
+const validCustomFieldId = 456;
 const validFieldType = 'textbox';
 const validCustomFieldModule = 'TestScenario';
 const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';

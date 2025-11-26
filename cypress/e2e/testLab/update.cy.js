@@ -2,6 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/TestLab/AddTestCasesCycle';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validNodeTo = { parent: { id: 1001, _type: 'cycle' } };
 const validNodeFrom = { parent: { id: 2001 }, name: "TCExample", _type: "tc", checked: true };
 

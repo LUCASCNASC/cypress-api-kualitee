@@ -1,8 +1,9 @@
 const PATH_API = '/Roles/Delete';
 const validToken = Cypress.env('VALID_TOKEN');
 
-const validIdArray = [123];
 const validIdSingle = Cypress.env('VALID_IDS_SINGLE');
+
+const validIdArray = [123];
 
 describe('API - Roles Delete - /roles/delete', () => {
 

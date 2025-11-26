@@ -2,6 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Custom%20Fields/Create';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validFieldType = 'textbox';
 const validCustomFieldModule = 'TestScenario';
 const validCustomFieldName = 'MeuCampoCustomizado';

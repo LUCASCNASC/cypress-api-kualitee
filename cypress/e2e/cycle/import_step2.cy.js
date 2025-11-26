@@ -2,6 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/step2';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validCsvFile = 'cypress/fixtures/defects_import.csv';
 const validAssignTo = 123;
 const validDbColumns = [

@@ -2,6 +2,7 @@ const PATH_API = '/Roles/Update';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validId = Cypress.env('VALID_ID');
+
 const validRoleName = 'Papel Atualizado';
 const validDescription = 'Descrição atualizada';
 const validCanDelete = true;

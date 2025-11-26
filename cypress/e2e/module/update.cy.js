@@ -3,8 +3,9 @@ const PATH_API = '/Module/ModuleUpdate';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
-const validModuleName = 'Autenticação';
 const validBuildId = Cypress.env('VALID_BUILD_ID');
+
+const validModuleName = 'Autenticação';
 const validModuleDescription = 'Descrição atualizada do módulo de autenticação.';
 
 describe('API - Module Update - /module/update', () => {

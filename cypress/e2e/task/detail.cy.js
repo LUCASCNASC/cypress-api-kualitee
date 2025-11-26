@@ -2,6 +2,7 @@ const PATH_API = '/Task/task%2Ftime%2Flog%2FdetailCopy'
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validTaskId = 888;
 
 describe('API - Task Detail - /task/detail', () => {

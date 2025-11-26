@@ -2,6 +2,7 @@ const PATH_API = '/TestCase/Detail';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validTcId = 1001; 
 
 describe('API - Test Case Details - /test_case/details', () => {

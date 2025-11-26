@@ -2,6 +2,7 @@ const PATH_API = '/Requirement/delete';
 const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validRequirementId = 123;
 
 describe('API - Requirements Delete - /requirements/delete', () => {

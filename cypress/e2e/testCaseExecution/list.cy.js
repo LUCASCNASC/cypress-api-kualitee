@@ -3,6 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
+
 const validCycleId = 1001;
 const validExecutionType = 'manual';
 const validStatus = 'passed';

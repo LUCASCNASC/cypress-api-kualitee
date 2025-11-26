@@ -1,9 +1,10 @@
 const PATH_API = '/Test%20Case%20Execution/ChangeStatus'
 const validToken = Cypress.env('VALID_TOKEN');
 
+const validProjectId = Cypress.env('VALID_PROJECT_ID');
+
 const validStatus = 'Passed';
 const validTcIds = [101, 102, 103];
-const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API - Test Case Execution Change Status - /test_case_execution/change_status', () => {
 

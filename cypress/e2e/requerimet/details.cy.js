@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validRequirementId = 101;
 
-describe('API - Requirements Details - /requirements/details', () => {
+describe('API rest - Requirements Details - /requirements/details', () => {
 
   // Função utilitária para chamada da API
   function getRequirementDetails(query, options = {}) {

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validUserId = 101;
 
-describe('API - User Detail - /users/detail', () => {
+describe('API rest - User Detail - /users/detail', () => {
 
   function getUserDetail(params, options = {}) {
     return cy.request({

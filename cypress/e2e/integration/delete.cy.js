@@ -8,7 +8,7 @@ const validUsername = 'usuario_teste';
 const validPassword = 'senha_teste';
 const validPluginUrl = 'https://jira.example.com';
 
-describe('API - Integration Save - /integration/save', () => {
+describe('API rest - Integration Save - /integration/save', () => {
 
   function integrationSave(body, options = {}) {
     return cy.request({

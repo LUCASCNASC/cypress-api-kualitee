@@ -4,7 +4,7 @@ const PATH_API = '/Meta/Create';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validIds = Cypress.env('VALID_IDS');
 
-describe('API - Metas Delete - /metas/delete', () => {
+describe('API rest - Metas Delete - /metas/delete', () => {
 
   function metasDelete(body, options = {}) {
     return cy.request({

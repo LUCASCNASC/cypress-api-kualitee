@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validUserId = 101;
 
-describe('API - Users Delete - /users/delete', () => {
+describe('API rest - Users Delete - /users/delete', () => {
 
   function deleteUser(body, options = {}) {
     return cy.request({

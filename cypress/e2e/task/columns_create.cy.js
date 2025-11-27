@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validColumnName = 'Nova Coluna';
 
-describe('API - Task Columns Create - /task/columns/create', () => {
+describe('API rest - Task Columns Create - /task/columns/create', () => {
 
   function taskColumnsCreate(body, options = {}) {
     return cy.request({

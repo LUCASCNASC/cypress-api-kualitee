@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectUpdate';
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Project Update - /project/update', () => {
+describe('API rest - Project Update - /project/update', () => {
 
   const validBody = {
     token: validToken,

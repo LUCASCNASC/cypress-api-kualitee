@@ -5,7 +5,7 @@ const validMetaKey = 'meta_key_exemplo';
 const validMetaValue = 'meta_value_exemplo';
 const validMetaId = 123;
 
-describe('API - Project Metas Update - /project/metas/update', () => {
+describe('API rest - Project Metas Update - /project/metas/update', () => {
 
   function metasUpdate(body, options = {}) {
     return cy.request({

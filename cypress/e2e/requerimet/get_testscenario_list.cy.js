@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Requirements Get Testscenario List - /requirements/get_testscenario_list', () => {
+describe('API rest - Requirements Get Testscenario List - /requirements/get_testscenario_list', () => {
 
   // Função utilitária para chamada da API
   function getTestscenarioList(body, options = {}) {

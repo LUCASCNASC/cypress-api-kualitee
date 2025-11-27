@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/DefectsStatistics';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Dashboard Defect Statistics - /dashboard/defect_statistics', () => {
+describe('API rest - Dashboard Defect Statistics - /dashboard/defect_statistics', () => {
 
   function defectStatistics(body, options = {}) {
     return cy.request({

@@ -7,7 +7,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 const validCycleId = 1001;
 
-describe('API - Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_testcase_cycle_build', () => {
+describe('API rest - Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_testcase_cycle_build', () => {
   
   function treeTestcaseCycleBuild(body, options = {}) {
     return cy.request({

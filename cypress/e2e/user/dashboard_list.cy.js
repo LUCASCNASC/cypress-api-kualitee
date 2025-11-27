@@ -1,7 +1,7 @@
 const PATH_API = '/User/UsersListDashboard'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Users List Dashboard - /users/dashboard_list', () => {
+describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
 
   function dashboardList(body, options = {}) {
     return cy.request({

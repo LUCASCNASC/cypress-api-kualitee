@@ -8,7 +8,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 const validTestScenarioId = 201;
 const validRequirementId = 101; 
 
-describe('API - Test Case List - /test_case/list', () => {
+describe('API rest - Test Case List - /test_case/list', () => {
 
   function testCaseList(body, options = {}) {
     return cy.request({

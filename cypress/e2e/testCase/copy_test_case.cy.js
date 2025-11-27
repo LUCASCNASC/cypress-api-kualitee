@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestcaseIds = [1001, 1002];  
 
-describe('API - Test Case Copy - /test_case/copy_test_case', () => {
+describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
 
   function testCaseCopy(body, options = {}) {
     return cy.request({

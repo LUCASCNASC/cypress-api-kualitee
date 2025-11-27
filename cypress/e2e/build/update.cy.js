@@ -9,7 +9,7 @@ const validId = Cypress.env('VALID_ID');
 const validEndDate = '2020-06-02';
 const validDescription = 'Atualização de build';
 
-describe('API - Builds Update - /build/update', () => {
+describe('API rest - Builds Update - /build/update', () => {
 
   function buildUpdate(body, options = {}) {
     return cy.request({

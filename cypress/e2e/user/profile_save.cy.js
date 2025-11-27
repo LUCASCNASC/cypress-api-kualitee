@@ -1,7 +1,7 @@
 const PATH_API = '/User/profile'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API - Users Profile Save - /users/profile_save', () => {
+describe('API rest - Users Profile Save - /users/profile_save', () => {
 
   const validBody = {
     profile_username: 'profileuser' + Date.now(),

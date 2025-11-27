@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Task Delete - /task/delete', () => {
+describe('API rest - Task Delete - /task/delete', () => {
 
   function taskDelete(body, options = {}) {
     return cy.request({

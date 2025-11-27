@@ -7,7 +7,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleName = 'Autenticação';
 const validModuleDescription = 'Módulo responsável pelo fluxo de login e autenticação.';
 
-describe('API - Module Create - /module/create', () => {
+describe('API rest - Module Create - /module/create', () => {
 
   function moduleCreate(body, options = {}) {
     return cy.request({

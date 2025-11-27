@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Test Case Status List - /test_case/status_list', () => {
+describe('API rest - Test Case Status List - /test_case/status_list', () => {
 
   function testCaseStatusList(query, options = {}) {
     return cy.request({

@@ -8,7 +8,7 @@ const validAssignedTo = 111;
 const validTitle = 'Título do requisito';
 const validSummary = 'Resumo do requisito';
 
-describe('API - Requirements Update - /requirements/update', () => {
+describe('API rest - Requirements Update - /requirements/update', () => {
 
   // Dados opcionais válidos
   const optionalFields = {

@@ -5,7 +5,7 @@ const validRoleName = 'Novo Papel';
 const validDescription = 'Descrição do papel';
 const validCanDelete = true;
 
-describe('API - Roles Create - /roles/create', () => {
+describe('API rest - Roles Create - /roles/create', () => {
 
   function rolesCreate(body, options = {}) {
     return cy.request({

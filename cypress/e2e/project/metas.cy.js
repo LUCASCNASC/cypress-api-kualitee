@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validMetaType = 'exemplo';
 
-describe('API - Project Metas - /project/metas', () => {
+describe('API rest - Project Metas - /project/metas', () => {
 
   function projectMetas(queryParams, options = {}) {
     return cy.request({

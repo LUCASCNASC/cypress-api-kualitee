@@ -10,7 +10,7 @@ const validRequirementId = 88;
 const validScenarioName = 'Cenário Atualizado';
 const validDescription = 'Descrição atualizada do cenário de teste';
 
-describe('API - Test Scenario Update - /test_scenario/update', () => {
+describe('API rest - Test Scenario Update - /test_scenario/update', () => {
 
   function updateTestScenario(body, options = {}) {
     return cy.request({

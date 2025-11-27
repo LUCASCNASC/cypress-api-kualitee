@@ -8,7 +8,7 @@ const validCustomFieldModule = 'TestScenario';
 const validCustomFieldName = 'MeuCampoCustomizado';
 const validCustomFieldDesc = 'Descrição do campo customizado';
 
-describe('API - Custom Fields Create - /customfields/create', () => {
+describe('API rest - Custom Fields Create - /customfields/create', () => {
 
   function customfieldsCreate(body, options = {}) {
     return cy.request({

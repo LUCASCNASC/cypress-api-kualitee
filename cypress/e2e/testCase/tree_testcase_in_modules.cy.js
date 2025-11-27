@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validModuleId = 5;  
 
-describe('API - Test Case Tree in Modules - /test_case/tree_testcase_in_modules', () => {
+describe('API rest - Test Case Tree in Modules - /test_case/tree_testcase_in_modules', () => {
 
   function testCaseTreeInModules(body, options = {}) {
     return cy.request({

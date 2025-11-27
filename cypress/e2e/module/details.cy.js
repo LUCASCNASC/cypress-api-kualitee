@@ -4,7 +4,7 @@ const PATH_API = '/Module/ModuleDetail';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API - Module Detail - /module/details', () => {
+describe('API rest - Module Detail - /module/details', () => {
 
   function moduleDetails(queryParams, options = {}) {
     return cy.request({

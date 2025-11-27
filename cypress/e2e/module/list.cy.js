@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validKeyword = 'login'; 
 
-describe('API - Module List - /module/list', () => {
+describe('API rest - Module List - /module/list', () => {
   
   function moduleList(body, options = {}) {
     return cy.request({

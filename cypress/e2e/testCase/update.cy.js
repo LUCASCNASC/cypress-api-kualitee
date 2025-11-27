@@ -9,7 +9,7 @@ const validId = 1001;
 const validScenarioId = 201;
 const validRequirementId = 101;
 
-describe('API - Test Case Update - /test_case/update', () => {
+describe('API rest - Test Case Update - /test_case/update', () => {
 
   function testCaseUpdate(body, options = {}) {
     return cy.request({

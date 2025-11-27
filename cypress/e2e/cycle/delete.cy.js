@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validDefectId = 101;
 
-describe('API - Defects Delete - /defects/delete', () => {
+describe('API rest - Defects Delete - /defects/delete', () => {
 
   function defectsDelete(body, options = {}) {
     return cy.request({

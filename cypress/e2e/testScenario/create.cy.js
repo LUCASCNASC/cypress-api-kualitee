@@ -9,7 +9,7 @@ const validRequirementId = 88;
 const validScenarioName = 'Novo Cenário de Teste';
 const validDescription = 'Descrição detalhada do cenário de teste';
 
-describe('API - Test Scenario Create - /test_scenario/create', () => {
+describe('API rest - Test Scenario Create - /test_scenario/create', () => {
 
   function createTestScenario(body, options = {}) {
     return cy.request({

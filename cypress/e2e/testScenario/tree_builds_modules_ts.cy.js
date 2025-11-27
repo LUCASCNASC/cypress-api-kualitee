@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modules_ts', () => {
+describe('API rest - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modules_ts', () => {
  
   function treeBuildModulesTS(body, options = {}) {
     return cy.request({

@@ -4,7 +4,7 @@ const PATH_API = '/Meta/detail';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Metas Detail - /metas/detail', () => {
+describe('API rest - Metas Detail - /metas/detail', () => {
   
   function metasDetail(body, options = {}) {
     return cy.request({

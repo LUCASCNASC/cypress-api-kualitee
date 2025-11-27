@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCycleId = 1001;
 
-describe('API - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testcase_in_cycle', () => {
+describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testcase_in_cycle', () => {
   
   function treeTestcaseInCycle(body, options = {}) {
     return cy.request({

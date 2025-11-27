@@ -8,7 +8,7 @@ const validAssignedTo = [1234];
 const validTaskname = 'Nova tarefa';
 const validEndDate = '2025-09-18';
 
-describe('API - Task Create - /task/create', () => {
+describe('API rest - Task Create - /task/create', () => {
 
   function taskCreate(body, options = {}) {
     return cy.request({

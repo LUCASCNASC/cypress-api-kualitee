@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 
-describe('API - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build', () => {
+describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build', () => {
 
   function treeCycleBuild(body, options = {}) {
     return cy.request({

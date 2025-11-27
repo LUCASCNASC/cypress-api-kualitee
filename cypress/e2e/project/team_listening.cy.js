@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Project Team Listing - /team/listing', () => {
+describe('API rest - Project Team Listing - /team/listing', () => {
 
   function teamListing(body, options = {}) {
     return cy.request({

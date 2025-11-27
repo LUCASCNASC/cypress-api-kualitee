@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Notificationcount';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Dashboard Notification Count - /dashboard/notification_count', () => {
+describe('API rest - Dashboard Notification Count - /dashboard/notification_count', () => {
 
   function notificationCount(body, options = {}) {
     return cy.request({

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Project Integrations - /project/integrations', () => {
+describe('API rest - Project Integrations - /project/integrations', () => {
 
   function projectIntegrations(body, options = {}) {
     return cy.request({

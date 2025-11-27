@@ -8,7 +8,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 const validScenarioId = 201;
 const validRequirementId = 101;
 
-describe('API - Test Case Create - /test_case/create', () => {
+describe('API rest - Test Case Create - /test_case/create', () => {
 
   function testCaseCreate(body, options = {}) {
     return cy.request({

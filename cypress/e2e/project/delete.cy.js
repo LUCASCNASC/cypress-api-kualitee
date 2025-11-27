@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Project Delete - /project/delete', () => {
+describe('API rest - Project Delete - /project/delete', () => {
 
   function projectDelete(queryParams, options = {}) {
     return cy.request({

@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validKeyword = 'important';
 
-describe('API - Task Columns View - /task/columns/view', () => {
+describe('API rest - Task Columns View - /task/columns/view', () => {
 
   function taskColumnsView(params, options = {}) {
     return cy.request({

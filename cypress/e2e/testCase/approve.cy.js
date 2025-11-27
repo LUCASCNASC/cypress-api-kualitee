@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestcaseIds = [1001, 1002];
 
-describe('API - Test Case Approve - /test_case/approve', () => {
+describe('API rest - Test Case Approve - /test_case/approve', () => {
 
   function testCaseApprove(body, options = {}) {
     return cy.request({

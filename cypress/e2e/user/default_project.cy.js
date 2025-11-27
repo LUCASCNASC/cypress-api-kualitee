@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Auth Default Project - /auth/default_project', () => {
+describe('API rest - Auth Default Project - /auth/default_project', () => {
 
   function setDefaultProject(body, options = {}) {
     return cy.request({

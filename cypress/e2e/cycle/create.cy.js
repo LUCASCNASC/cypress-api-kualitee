@@ -25,7 +25,7 @@ const validReqId = 'req-98765';
 const validBugRequirementId = 'bug-req-55';
 const validDefectImage = 'cypress/fixtures/defect_image.png';
 
-describe('API - Defects Create - /defects/create', () => {
+describe('API rest - Defects Create - /defects/create', () => {
   
   function defectsCreate(body, fileFields = {}, options = {}) {
     // Se for enviar arquivos, use cy.form_request customizado ou plugin adequado

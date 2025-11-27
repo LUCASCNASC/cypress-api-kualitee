@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validDefectId = 101;
 
-describe('API - Defects Details - /defects/details', () => {
+describe('API rest - Defects Details - /defects/details', () => {
 
   function defectsDetails(params, options = {}) {
     return cy.request({

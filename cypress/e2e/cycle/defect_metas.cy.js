@@ -2,7 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Defectmetas';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Defects Defect Metas - /defects/defect_metas', () => {
+describe('API rest - Defects Defect Metas - /defects/defect_metas', () => {
 
   function defectMetas(body, options = {}) {
     return cy.request({

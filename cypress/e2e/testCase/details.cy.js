@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTcId = 1001; 
 
-describe('API - Test Case Details - /test_case/details', () => {
+describe('API rest - Test Case Details - /test_case/details', () => {
 
   function testCaseDetails(query, options = {}) {
     return cy.request({

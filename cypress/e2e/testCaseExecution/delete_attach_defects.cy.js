@@ -7,7 +7,7 @@ const validTcId = 101;
 const validBugId = 555;
 const validExecBugId = 222;
 
-describe('API - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
+describe('API rest - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
 
   function deleteAttachDefects(body, options = {}) {
     return cy.request({

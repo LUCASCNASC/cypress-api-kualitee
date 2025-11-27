@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Cycle';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Dashboard Cycle - /dashboard/cycle', () => {
+describe('API rest - Dashboard Cycle - /dashboard/cycle', () => {
 
   function dashboardCycle(body, options = {}) {
     return cy.request({

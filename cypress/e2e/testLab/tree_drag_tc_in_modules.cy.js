@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API - Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag_tc_in_modules', () => {
+describe('API rest - Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag_tc_in_modules', () => {
 
   function treeDragTcInModules(body, options = {}) {
     return cy.request({

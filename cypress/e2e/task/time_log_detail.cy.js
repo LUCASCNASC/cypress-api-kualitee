@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTaskId = 888;
 
-describe('API - Task Time Log Detail - /task/time/log/detail', () => {
+describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
 
   function taskTimeLogDetail(params, options = {}) {
     return cy.request({

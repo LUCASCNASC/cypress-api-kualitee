@@ -3,7 +3,7 @@ const PATH_API = '/Meta/ProjectMetas';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Metas Project Metas - /metas/project_metas', () => {
+describe('API rest - Metas Project Metas - /metas/project_metas', () => {
 
   function metasProjectMetas(body, options = {}) {
     return cy.request({

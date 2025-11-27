@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestcaseIds = [1001, 1002];
 
-describe('API - Test Case Template - /test_case/template_test_case', () => {
+describe('API rest - Test Case Template - /test_case/template_test_case', () => {
 
   function testCaseTemplate(body, options = {}) {
     return cy.request({

@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validStatus = 'Passed';
 const validTcIds = [101, 102, 103];
 
-describe('API - Test Case Execution Change Status - /test_case_execution/change_status', () => {
+describe('API rest - Test Case Execution Change Status - /test_case_execution/change_status', () => {
 
   function changeStatus(body, options = {}) {
     return cy.request({

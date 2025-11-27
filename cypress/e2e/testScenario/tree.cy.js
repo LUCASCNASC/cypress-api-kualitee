@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Test Scenario Tree - /test_scenario/tree', () => {
+describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
 
   function testScenarioTree(body, options = {}) {
     return cy.request({

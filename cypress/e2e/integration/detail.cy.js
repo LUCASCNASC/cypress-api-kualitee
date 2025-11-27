@@ -3,7 +3,7 @@ const PATH_API = '/Integration/detail';
 
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Integration Detail - /integration/detail', () => {
+describe('API rest - Integration Detail - /integration/detail', () => {
 
   function integrationDetail(body, options = {}) {
     return cy.request({

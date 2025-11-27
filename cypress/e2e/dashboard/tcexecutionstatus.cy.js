@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/TestCaseExecutions';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Dashboard Test Case Execution Status - /dashboard/tcexecutionstatus', () => {
+describe('API rest - Dashboard Test Case Execution Status - /dashboard/tcexecutionstatus', () => {
   
   function tcExecutionStatus(body, options = {}) {
     return cy.request({

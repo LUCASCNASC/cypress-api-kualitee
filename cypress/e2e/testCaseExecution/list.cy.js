@@ -8,7 +8,7 @@ const validCycleId = 1001;
 const validExecutionType = 'manual';
 const validStatus = 'passed';
 
-describe('API - Test Case Execution List - /test_case_execution/list', () => {
+describe('API rest - Test Case Execution List - /test_case_execution/list', () => {
 
   function execList(body, options = {}) {
     return cy.request({

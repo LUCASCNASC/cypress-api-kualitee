@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCsvPath = 'caminho/para/arquivo.csv';
 
-describe('API - Requirements Import Step 1 - /requirements/import/step1', () => {
+describe('API rest - Requirements Import Step 1 - /requirements/import/step1', () => {
 
   // Função utilitária para chamada da API
   function importStep1(formData, options = {}) {

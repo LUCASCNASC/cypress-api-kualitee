@@ -9,7 +9,7 @@ const validDbColumns = [
   "build_id", "module_id", "description", "bugtype", "priority", "status", "devices", "os", "browser", "steps_to_reproduce", "eresult", "aresult"
 ];
 
-describe('API - Defects Import Step 2 - /defects/import/step2', () => {
+describe('API rest - Defects Import Step 2 - /defects/import/step2', () => {
 
   function defectsImportStep2(body, filePath, options = {}) {
     // Para envio de arquivo, use plugin como cypress-form-data ou cy.form_request se disponível

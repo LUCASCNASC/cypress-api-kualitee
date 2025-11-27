@@ -5,7 +5,7 @@ const validIdSingle = Cypress.env('VALID_IDS_SINGLE');
 
 const validIdArray = [123];
 
-describe('API - Roles Delete - /roles/delete', () => {
+describe('API rest - Roles Delete - /roles/delete', () => {
 
   function rolesDelete(body, options = {}) {
     return cy.request({

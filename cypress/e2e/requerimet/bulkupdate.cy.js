@@ -6,7 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 const validRequirementIds = [101, 102, 103];
 
-describe('API - Requirements Bulk Update - /requirements/bulkupdate', () => {
+describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () => {
 
   // Função utilitária para chamada da API
   function bulkUpdate(body, options = {}) {

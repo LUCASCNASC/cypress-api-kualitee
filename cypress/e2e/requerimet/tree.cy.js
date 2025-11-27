@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Requirements Tree - /requirements/tree', () => {
+describe('API rest - Requirements Tree - /requirements/tree', () => {
 
   // Função utilitária para chamada da API
   function requirementsTree(body, options = {}) {

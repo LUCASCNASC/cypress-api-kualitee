@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validSystemOptions = 'all';
 const validValue = 'some_value';  
 
-describe('API - Metas List - /metas/list', () => {
+describe('API rest - Metas List - /metas/list', () => {
 
   function metasList(body, options = {}) {
     return cy.request({

@@ -4,7 +4,7 @@ const PATH_API = '/Dashboard/Activities';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Dashboard Activities - /dashboard/activities', () => {
+describe('API rest - Dashboard Activities - /dashboard/activities', () => {
   
   function dashboardActivities(body, options = {}) {
     return cy.request({

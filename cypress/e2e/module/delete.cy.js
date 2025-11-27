@@ -4,7 +4,7 @@ const PATH_API = '/Module/ModuleDelete';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API - Module Delete - /module/delete', () => {
+describe('API rest - Module Delete - /module/delete', () => {
 
   function moduleDelete(body, options = {}) {
     return cy.request({

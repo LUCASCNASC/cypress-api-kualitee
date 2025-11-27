@@ -10,7 +10,7 @@ const validCreatedBy = [123, 456];
 const validExport = 'yes';
 const validExportType = 'CSV';
 
-describe('API - Requirements List - /requirements/list', () => {
+describe('API rest - Requirements List - /requirements/list', () => {
 
   function requirementsList(body, options = {}) {
     return cy.request({

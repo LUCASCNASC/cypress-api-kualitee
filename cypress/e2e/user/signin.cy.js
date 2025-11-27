@@ -5,7 +5,7 @@ const validEmail = 'usuario@exemplo.com';
 const validPassword = 'senhaSegura';
 const validSubdomain = 'meusubdominio';
 
-describe('API - Login - /auth/signin - Testes Avançados', () => {
+describe('API rest - Login - /auth/signin - Testes Avançados', () => {
 
   function login(body, options = {}) {
     return cy.request({

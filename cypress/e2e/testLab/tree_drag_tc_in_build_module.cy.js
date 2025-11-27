@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 const validModuleId = 22;
 
-describe('API - Manage Test Case Tree Drag TC In Build Module - /manage_test_case/tree_drag_tc_in_build_module', () => {
+describe('API rest - Manage Test Case Tree Drag TC In Build Module - /manage_test_case/tree_drag_tc_in_build_module', () => {
   
   function treeDragTcInBuildModule(body, options = {}) {
     return cy.request({

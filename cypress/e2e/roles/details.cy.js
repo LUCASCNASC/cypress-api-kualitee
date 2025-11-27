@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Roles Details - /roles/details', () => {
+describe('API rest - Roles Details - /roles/details', () => {
 
   function rolesDetails(params, options = {}) {
     return cy.request({

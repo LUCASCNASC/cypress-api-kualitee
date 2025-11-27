@@ -5,7 +5,7 @@ const validProjectStatus = 'ativo';
 const validProjectId0 = 77;
 const validProjectId1 = 78;
 
-describe('API - Project Status - /project/project_status', () => {
+describe('API rest - Project Status - /project/project_status', () => {
 
   function projectStatus(body, options = {}) {
     return cy.request({

@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTaskId = 888;
 
-describe('API - Task Detail - /task/detail', () => {
+describe('API rest - Task Detail - /task/detail', () => {
 
   function taskDetail(params, options = {}) {
     return cy.request({

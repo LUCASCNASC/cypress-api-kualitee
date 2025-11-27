@@ -11,7 +11,7 @@ const validCycleId = 1001;
 const validNotes = 'Teste executado com sucesso';
 const validExecute = 'yes';
 
-describe('API - Test Case Execution Execute - /test_case_execution/execute', () => {
+describe('API rest - Test Case Execution Execute - /test_case_execution/execute', () => {
   
   function executeTest(body, options = {}) {
     return cy.request({

@@ -9,7 +9,7 @@ const validAssignedTo = [1234];
 const validTaskname = 'Tarefa atualizada';
 const validEndDate = '2025-09-20';
 
-describe('API - Task Update - /task/update', () => {
+describe('API rest - Task Update - /task/update', () => {
 
   function taskUpdate(body, options = {}) {
     return cy.request({

@@ -7,7 +7,7 @@ const validRoleName = 'Papel Atualizado';
 const validDescription = 'Descrição atualizada';
 const validCanDelete = true;
 
-describe('API - Roles Update - /roles/update', () => {
+describe('API rest - Roles Update - /roles/update', () => {
 
   function rolesUpdate(body, options = {}) {
     return cy.request({

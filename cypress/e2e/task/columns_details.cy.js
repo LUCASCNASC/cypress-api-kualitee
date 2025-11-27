@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API - Task Columns Details - /task/columns/details', () => {
+describe('API rest - Task Columns Details - /task/columns/details', () => {
 
   function taskColumnsDetails(params, options = {}) {
     return cy.request({

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API - Defect Viewer - /defects/defect_viewers', () => {
+describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
 
   function defectViewers(queryParams, options = {}) {
     return cy.request({

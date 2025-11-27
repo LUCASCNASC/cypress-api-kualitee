@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validMetaKey = 'meta_key_exemplo';
 const validMetaValue = 'meta_value_exemplo';
 
-describe('API - Project Metas Create - /project/metas/create', () => {
+describe('API rest - Project Metas Create - /project/metas/create', () => {
 
   function metasCreate(body, options = {}) {
     return cy.request({

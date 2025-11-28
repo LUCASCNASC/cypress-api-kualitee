@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Defectsopenstatus';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard Bug Open Status - /dashboard/bugopenstatus', () => {
+describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopenstatus', () => {
   
   function bugOpenStatus(body, options = {}) {
     return cy.request({

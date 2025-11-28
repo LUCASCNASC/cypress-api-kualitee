@@ -20,7 +20,7 @@ const validDevice = 'iPhone 13';
 const validExport = 'yes';
 const validExportType = 'Excel';
 
-describe('API rest - Defects List - /defects/list', () => {
+describe('API rest - Cycle - Defects List - /defects/list', () => {
 
   function defectsList(body, options = {}) {
     return cy.request({

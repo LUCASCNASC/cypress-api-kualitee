@@ -8,7 +8,7 @@ const validEndDate = '2020-06-02';
 const validBuildName = 'Build v1.2.3';
 const validBuildDescription = 'Descrição do build de testes automáticos.';
 
-describe('API rest - Builds Create - /build/create', () => {
+describe('API rest - Build - Builds Create - /build/create', () => {
 
   function buildCreate(body, options = {}) {
     return cy.request({

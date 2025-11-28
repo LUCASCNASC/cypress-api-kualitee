@@ -9,7 +9,7 @@ const validCustomFieldModule = 'TestScenario';
 const validCustomFieldName = 'MeuCampoCustomizadoAtualizado';
 const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
 
-describe('API rest - Custom Fields Update - /customfields/update', () => {
+describe('API rest - Custom Fields - Custom Fields Update - /customfields/update', () => {
 
   function customfieldsUpdate(body, options = {}) {
     return cy.request({

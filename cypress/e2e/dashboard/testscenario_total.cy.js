@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/TestScenarioTotal';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard Test Scenario Total - /dashboard/testscenario/total', () => {
+describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/testscenario/total', () => {
 
   const validBody = {
     project_id: validProjectId,

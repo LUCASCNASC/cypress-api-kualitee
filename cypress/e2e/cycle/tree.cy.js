@@ -3,7 +3,7 @@ const PATH_API = '/Defect/Tree';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Defects Tree - /defects/tree', () => {
+describe('API rest - Cycle - Defects Tree - /defects/tree', () => {
 
   function defectsTree(body, options = {}) {
     return cy.request({

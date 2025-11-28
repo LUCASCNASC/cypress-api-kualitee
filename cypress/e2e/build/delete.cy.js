@@ -4,7 +4,7 @@ const PATH_API = '/Build/BuildsDelete';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 
-describe('API rest - Builds Delete - /build/delete', () => {
+describe('API rest - Build - Builds Delete - /build/delete', () => {
 
   function buildDelete(body, options = {}) {
     return cy.request({

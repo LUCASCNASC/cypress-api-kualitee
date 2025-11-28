@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Dropdownnotificationlist';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard Notification List - /dashboard/notification_list', () => {
+describe('API rest - Dashboard - Dashboard Notification List - /dashboard/notification_list', () => {
   
   function notificationList(body, options = {}) {
     return cy.request({

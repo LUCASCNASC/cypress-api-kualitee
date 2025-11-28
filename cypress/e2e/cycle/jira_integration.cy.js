@@ -3,7 +3,7 @@ const PATH_API = '/Defect/jira_integration';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Defects Jira Integration - /defects/jira_integration', () => {
+describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integration', () => {
 
   function jiraIntegration(body, options = {}) {
     return cy.request({

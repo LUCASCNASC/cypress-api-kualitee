@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCustomFieldId = 123;
 
-describe('API rest - Custom Fields Delete - /customfields/delete', () => {
+describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete', () => {
 
   function customfieldsDelete(body, options = {}) {
     return cy.request({

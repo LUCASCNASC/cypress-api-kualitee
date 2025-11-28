@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validKeyword = 'feature';
 
-describe('API rest - Build List - /build/list', () => {
+describe('API rest - Build - Build List - /build/list', () => {
   
   function buildList(body, options = {}) {
     return cy.request({

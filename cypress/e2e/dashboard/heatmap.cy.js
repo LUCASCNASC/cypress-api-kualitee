@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Heatmap';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard Heatmap - /dashboard/heatmap', () => {
+describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => {
 
   function dashboardHeatmap(body, options = {}) {
     return cy.request({

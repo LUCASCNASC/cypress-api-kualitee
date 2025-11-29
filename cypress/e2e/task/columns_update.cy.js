@@ -19,7 +19,7 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   }
   
-  it('Atualiza coluna de task com token, project_id, column_name e id válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsUpdate({
       token: validToken,
       project_id: validProjectId,

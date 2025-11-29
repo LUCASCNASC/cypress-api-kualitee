@@ -16,7 +16,7 @@ describe('API rest - Users List - /users/list', () => {
 
   // --- POSITIVOS ---
   [0, 1, 2, undefined].forEach((status) => {
-    it(`Deve retornar lista de usuários com token válido e status ${status === undefined ? 'default' : status}`, () => {
+    it(`Status Code 200 ${status === undefined ? 'default' : status}`, () => {
       listUsers({ token: validToken, ...(status !== undefined ? { user_status: status } : {}) }).then((response) => {
         expect(response.status).to.eq(200);
         expect(response.body).to.be.an('object');

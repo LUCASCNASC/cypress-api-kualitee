@@ -30,7 +30,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
   }
 
   // --- POSITIVOS ---
-  it('Retorna total de bugs com todos os parâmetros válidos', () => {
+  it('Status Code 200', () => {
     bugsTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

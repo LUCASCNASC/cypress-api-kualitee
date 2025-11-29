@@ -16,7 +16,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   }
   
-  it('Lista metas do projeto com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

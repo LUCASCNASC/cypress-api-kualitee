@@ -17,7 +17,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   }
   
-  it('Reposiciona card da coluna com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

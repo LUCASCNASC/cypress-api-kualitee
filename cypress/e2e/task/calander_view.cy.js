@@ -15,7 +15,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   }
   
-  it('Retorna visão de calendário das tasks com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

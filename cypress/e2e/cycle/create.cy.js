@@ -54,7 +54,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   }
   
-  it('Cria defeito com campos mínimos obrigatórios', () => {
+  it('Status Code 200', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId,

@@ -20,7 +20,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   }
   
-  it('Cria módulo com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,

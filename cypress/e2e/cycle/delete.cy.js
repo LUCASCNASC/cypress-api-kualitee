@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   }
   
-  it('Deleta defeito com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     defectsDelete({
       token: validToken,
       project_id: validProjectId,

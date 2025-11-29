@@ -22,7 +22,7 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   }
   
-  it('Anexa múltiplos defects a uma execução de test case válida', () => {
+  it('Status Code 200', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,

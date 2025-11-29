@@ -20,7 +20,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   }
   
-  it('Atualiza em lote requisitos com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,

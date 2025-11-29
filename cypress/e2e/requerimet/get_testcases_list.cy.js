@@ -17,7 +17,7 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   }
   
-  it('Retorna lista de casos de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     getTestcasesList({
       token: validToken,
       project_id: validProjectId

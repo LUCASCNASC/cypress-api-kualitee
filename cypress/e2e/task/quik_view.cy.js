@@ -15,7 +15,7 @@ describe('API rest - Task Quik View - /task/quik/view', () => {
     });
   }
   
-  it('Retorna visão rápida das tasks com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     taskQuikView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

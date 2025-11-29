@@ -18,7 +18,7 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   }
 
-  it('Deleta custom field com token, project_id e custom_field_id[0] válidos', () => {
+  it('Status Code 200', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

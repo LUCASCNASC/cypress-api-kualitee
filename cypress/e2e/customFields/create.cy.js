@@ -21,7 +21,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   }
 
-  it('Cria custom field com todos os campos obrigatórios', () => {
+  it('Status Code 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,

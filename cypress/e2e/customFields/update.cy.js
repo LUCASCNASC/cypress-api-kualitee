@@ -22,7 +22,7 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   }
 
-  it('Atualiza custom field com todos os campos obrigatórios', () => {
+  it('Status Code 200', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,

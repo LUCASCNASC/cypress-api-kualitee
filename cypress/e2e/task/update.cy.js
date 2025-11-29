@@ -23,7 +23,7 @@ describe('API rest - Task Update - /task/update', () => {
   }
 
   // --- POSITIVO (mínimo obrigatório) ---
-  it('Atualiza task com campos obrigatórios mínimos', () => {
+  it('Status Code 200', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,

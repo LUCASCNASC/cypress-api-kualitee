@@ -33,7 +33,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   }
 
-  it('Lista defeitos com campos obrigatórios mínimos', () => {
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId

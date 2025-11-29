@@ -20,7 +20,7 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   }
 
   // POSITIVO: todos os campos obrigatórios válidos
-  it('Deleta cenário de teste com token, project_id e test_scenario_id válidos', () => {
+  it('Status Code 200', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

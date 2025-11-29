@@ -18,7 +18,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   }
   
-  it('Associa usuários a um projeto com dados válidos', () => {
+  it('Status Code 200', () => {
     teamCreate({
       token: validToken,
       project_id: validProjectId,

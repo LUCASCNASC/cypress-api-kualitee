@@ -17,7 +17,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   }
 
-  it('Deleta build do projeto com token, project_id e build_id válidos', () => {
+  it('Status Code 200', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,

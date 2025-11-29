@@ -14,7 +14,7 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
     });
   }
 
-  it('Lista custom fields com token válido', () => {
+  it('Status Code 200', () => {
     customfieldsList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

@@ -18,7 +18,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   }
   
-  it('Retorna detalhes do requisito com token, project_id e requirement_id válidos', () => {
+  it('Status Code 200', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

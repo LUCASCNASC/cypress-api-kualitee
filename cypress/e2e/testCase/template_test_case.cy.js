@@ -19,7 +19,7 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   }
 
   // --- POSITIVO: Template para um caso de teste ---
-  it('Gera template para um caso de teste', () => {
+  it('Status Code 200', () => {
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,

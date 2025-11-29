@@ -20,7 +20,7 @@ describe('API rest - Manage Test Case Tree Testcase Cycle Build - /manage_test_c
     });
   }
   
-  it('Consulta árvore de casos de teste do ciclo do build com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeTestcaseCycleBuild({
       token: validToken,
       project_id: validProjectId,

@@ -17,7 +17,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   }
   
-  it('Deleta coluna com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

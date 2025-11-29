@@ -19,7 +19,7 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   }
 
-  it('Atualiza defeitos em lote com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     bulkUpdateDefects({
       token: validToken,
       project_id: validProjectId,

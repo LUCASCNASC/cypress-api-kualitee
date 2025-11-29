@@ -20,7 +20,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   }
   
-  it('Atualiza meta com token, project_id, id, meta_value válidos', () => {
+  it('Status Code 200', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

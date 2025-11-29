@@ -19,7 +19,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   }
   
-  it('Lista metas com token e project_id válidos', () => {
+  it('LStatus Code 200', () => {
     metasList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

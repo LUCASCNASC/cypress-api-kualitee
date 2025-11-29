@@ -19,7 +19,7 @@ describe('API rest - Test Case Execution Tree Test Scenario Test Cases - /test_c
     });
   }
   
-  it('Retorna árvore de test cases de cenário com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeTsTestCases({
       token: validToken,
       project_id: validProjectId,

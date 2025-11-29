@@ -16,7 +16,7 @@ describe('API rest - Cycle - Defects Tree - /defects/tree', () => {
     });
   }
   
-  it('Consulta árvore de defeitos com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200s', () => {
     defectsTree({
       token: validToken,
       project_id: validProjectId

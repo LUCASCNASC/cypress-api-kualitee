@@ -19,7 +19,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   }
   
-  it('Cria meta com token, project_id, meta_value válidos', () => {
+  it('Status Code 200', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

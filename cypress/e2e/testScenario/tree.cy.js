@@ -17,7 +17,7 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   }
 
   // POSITIVO: obrigatórios apenas
-  it('Retorna a árvore de cenários de teste com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     testScenarioTree({
       token: validToken,
       project_id: validProjectId

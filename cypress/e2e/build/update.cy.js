@@ -22,7 +22,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   }
 
-  it('Atualiza build do projeto com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     buildUpdate({
       token: validToken,
       project_id: validProjectId,

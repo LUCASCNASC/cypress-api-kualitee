@@ -18,7 +18,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   }
 
   // POSITIVO: todos os campos obrigatórios válidos
-  it('Retorna detalhes do cenário de teste com token, project_id e test_scenario_id válidos', () => {
+  it('Status Code 200', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

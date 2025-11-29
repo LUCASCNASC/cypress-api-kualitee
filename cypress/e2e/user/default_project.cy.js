@@ -16,7 +16,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   }
   
-  it('Define projeto padrão com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

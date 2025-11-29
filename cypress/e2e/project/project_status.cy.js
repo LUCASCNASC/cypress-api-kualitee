@@ -18,7 +18,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   }
   
-  it('Atualiza status de projetos com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,

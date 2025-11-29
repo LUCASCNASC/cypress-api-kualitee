@@ -22,7 +22,7 @@ describe('API rest - Task Create - /task/create', () => {
   }
 
   // --- POSITIVO (mínimo obrigatório) ---
-  it('Cria task com campos obrigatórios mínimos', () => {
+  it('Status Code 200', () => {
     taskCreate({
       token: validToken,
       project_id: validProjectId,

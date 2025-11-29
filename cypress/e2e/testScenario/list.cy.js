@@ -22,7 +22,7 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   }
 
   // POSITIVO: Somente obrigatórios
-  it('Retorna lista de cenários de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     testScenarioList({
       token: validToken,
       project_id: validProjectId

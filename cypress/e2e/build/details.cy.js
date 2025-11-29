@@ -15,7 +15,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
       ...options,
     });
   }
-  it('Retorna detalhes do build com token, project_id e build_id válidos', () => {
+  it('Status Code 200', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

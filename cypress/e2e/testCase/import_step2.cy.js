@@ -31,7 +31,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   }
 
   // --- POSITIVO: upload CSV válido e todos os campos obrigatórios ---
-  it('Importa arquivo CSV válido e todos os campos obrigatórios', () => {
+  it('Status Code 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();

@@ -22,7 +22,7 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   }
   
-  it('Retorna próximo test case com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,

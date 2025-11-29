@@ -55,7 +55,7 @@ describe('API rest - Cycle - Defects Update - /defects/update', () => {
     });
   }
   
-  it('Atualiza defeito com campos mínimos obrigatórios', () => {
+  it('Status Code 200', () => {
     defectsUpdate({
       token: validToken,
       project_id: validProjectId,

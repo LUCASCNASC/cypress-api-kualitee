@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   }
   
-  it('Retorna status de execução de casos de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     tcExecutionStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

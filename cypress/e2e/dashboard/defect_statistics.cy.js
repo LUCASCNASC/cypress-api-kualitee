@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect
     });
   }
   
-  it('Retorna estatísticas de defeitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     defectStatistics({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

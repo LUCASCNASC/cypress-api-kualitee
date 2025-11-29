@@ -37,7 +37,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   }
 
   // --- POSITIVOS ---
-  it('Atualiza requirement com campos obrigatórios mínimos', () => {
+  it('Status Code 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,

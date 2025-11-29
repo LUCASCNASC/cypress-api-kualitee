@@ -17,7 +17,7 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   }
   
-  it('Retorna detalhes da meta com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

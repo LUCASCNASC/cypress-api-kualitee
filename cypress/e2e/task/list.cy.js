@@ -16,7 +16,7 @@ describe('API rest - Task List - /task/list', () => {
     });
   }
   
-  it('Retorna lista de tarefas com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     taskList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

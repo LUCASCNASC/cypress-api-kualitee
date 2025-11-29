@@ -20,7 +20,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
   }
 
   // --- POSITIVO: upload CSV válido ---
-  it('Importa arquivo CSV válido', () => {
+  it('Status Code 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);

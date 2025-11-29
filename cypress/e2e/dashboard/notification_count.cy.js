@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Notification Count - /dashboard/notif
     });
   }
   
-  it('Retorna notification count com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     notificationCount({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

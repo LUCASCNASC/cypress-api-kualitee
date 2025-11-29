@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Tester Tray - /dashboard/tester_tray'
     });
   }
   
-  it('Retorna tester tray com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     testerTray({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

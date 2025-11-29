@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
     });
   }
   
-  it('Consulta árvore de defeitos em módulo de build com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeDefectsInBuildModule({
       token: validToken,
       project_id: validProjectId,

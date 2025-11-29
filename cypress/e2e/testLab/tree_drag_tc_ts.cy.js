@@ -19,7 +19,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
     });
   }
   
-  it('Consulta casos de teste do cenário de teste com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,

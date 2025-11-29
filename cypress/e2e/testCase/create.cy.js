@@ -22,7 +22,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
   }
 
   // --- POSITIVO: Campos obrigatórios mínimos ---
-  it('Cria caso de teste com campos mínimos obrigatórios', () => {
+  it('Status Code 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,

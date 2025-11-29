@@ -18,7 +18,7 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   }
   
-  it('Deleta role com token válido e id[0] inteiro (array)', () => {
+  it('Status Code 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdArray[0] }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

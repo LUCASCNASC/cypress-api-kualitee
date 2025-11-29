@@ -21,7 +21,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   }
   
-  it('Salva integração com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,

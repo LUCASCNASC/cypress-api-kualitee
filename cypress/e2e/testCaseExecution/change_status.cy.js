@@ -19,7 +19,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   }
   
-  it('Altera status de múltiplos test cases com dados válidos', () => {
+  it('Status Code 200', () => {
     changeStatus({
       token: validToken,
       project_id: validProjectId,

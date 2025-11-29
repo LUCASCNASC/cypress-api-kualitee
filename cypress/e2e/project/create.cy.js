@@ -24,7 +24,7 @@ describe('API rest - Project Create - /project/create', () => {
     });
   }
   
-  it('Cria projeto com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     projectCreate(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

@@ -18,7 +18,7 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   }
   
-  it('Cria role com token, role_name e description válidos', () => {
+  it('Status Code 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

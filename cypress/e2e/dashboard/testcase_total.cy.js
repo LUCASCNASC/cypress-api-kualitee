@@ -29,7 +29,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   }
 
   // --- POSITIVOS ---
-  it('Retorna total de casos de teste com parâmetros completos e válidos', () => {
+  it('Status Code 200', () => {
     testcaseTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

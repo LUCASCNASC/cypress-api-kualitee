@@ -14,7 +14,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   }
   
-  it('Retorna lista de projetos arquivados com token válido', () => {
+  it('Status Code 200', () => {
     archivedProjects({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

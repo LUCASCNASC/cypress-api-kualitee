@@ -17,7 +17,7 @@ describe('API rest - Users Delete - /users/delete', () => {
   }
 
   // --- POSITIVOS ---
-  it('Deleta usuário com token e user_id válidos', () => {
+  it('Status Code 200', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

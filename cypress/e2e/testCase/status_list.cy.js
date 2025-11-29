@@ -16,7 +16,7 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   }
 
   // --- POSITIVO: todos os campos obrigatórios válidos ---
-  it('Retorna lista de status de casos de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId

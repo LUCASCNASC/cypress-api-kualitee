@@ -16,7 +16,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   }
   
-  it('Retorna detalhes da coluna com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

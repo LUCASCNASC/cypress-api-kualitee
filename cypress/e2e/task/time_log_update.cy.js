@@ -19,7 +19,7 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   }
   
-  it('Atualiza log de tempo de task com todos campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,

@@ -16,7 +16,7 @@ describe('API rest - User Detail - /users/detail', () => {
   }
 
   // --- POSITIVOS ---
-  it('Retorna detalhes do usuário com token e user_id válidos', () => {
+  it('Status Code 200', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

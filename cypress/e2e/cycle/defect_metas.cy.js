@@ -15,7 +15,7 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   }
 
-  it('Consulta metadados de defeitos com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     defectMetas({
       token: validToken,
       project_id: validProjectId

@@ -18,7 +18,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   }
 
   // --- POSITIVO: todos os campos obrigatórios válidos ---
-  it('Retorna árvore de casos de teste em builds com token, project_id e build_id válidos', () => {
+  it('Status Code 200', () => {
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId,

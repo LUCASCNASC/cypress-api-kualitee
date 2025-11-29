@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   }
   
-  it('Consulta defeitos com campos obrigatórios mínimos', () => {
+  it('Status Code 200', () => {
     getDefects({
       token: validToken,
       project_id: validProjectId

@@ -23,7 +23,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   }
 
   // --- POSITIVO: Campos obrigatórios mínimos ---
-  it('Atualiza caso de teste com campos mínimos obrigatórios', () => {
+  it('Status Code 200', () => {
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,

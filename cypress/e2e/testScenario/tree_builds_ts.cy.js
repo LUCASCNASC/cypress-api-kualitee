@@ -19,7 +19,7 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
   }
 
   // POSITIVO: todos os campos obrigatórios válidos
-  it('Retorna os cenários em builds com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeBuildTS({
       token: validToken,
       project_id: validProjectId,

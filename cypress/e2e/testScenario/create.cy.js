@@ -23,7 +23,7 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   }
 
   // POSITIVO: obrigatórios apenas
-  it('Cria cenário de teste com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     createTestScenario({
       token: validToken,
       project_id: validProjectId,

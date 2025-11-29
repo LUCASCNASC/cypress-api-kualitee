@@ -24,7 +24,7 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   }
 
   // POSITIVO: obrigatórios apenas
-  it('Atualiza cenário de teste com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,

@@ -24,7 +24,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   }
   
-  it('Executa test case com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

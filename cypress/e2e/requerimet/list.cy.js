@@ -23,7 +23,7 @@ describe('API rest - Requirements List - /requirements/list', () => {
     });
   }
   
-  it('Retorna lista de requisitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

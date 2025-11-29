@@ -16,7 +16,7 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   }
   
-  it('Consulta árvore de casos de teste com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     manageTestCaseTree({
       token: validToken,
       project_id: validProjectId

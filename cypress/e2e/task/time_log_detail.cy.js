@@ -17,7 +17,7 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   }
   
-  it('Retorna detalhes do log de tempo da task com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

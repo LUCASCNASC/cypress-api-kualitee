@@ -14,7 +14,7 @@ describe('API rest - Roles List - /roles/list', () => {
     });
   }
   
-  it('Retorna lista de roles com token válido', () => {
+  it('Status Code 200', () => {
     rolesList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

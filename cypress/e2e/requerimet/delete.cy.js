@@ -19,7 +19,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   }
   
-  it('Deleta requirement com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,

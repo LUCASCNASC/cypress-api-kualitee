@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   }
 
-  it('Sincroniza com Jira usando todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     jiraCustomSync({
       token: validToken,
       project_id: validProjectId,

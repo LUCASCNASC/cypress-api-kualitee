@@ -15,7 +15,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   }
   
-  it('Retorna detalhes do role com token e id válidos', () => {
+  it('Status Code 200', () => {
     rolesDetails({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   }
   
-  it('Deleta imagem de defeito com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,

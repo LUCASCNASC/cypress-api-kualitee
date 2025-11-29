@@ -18,7 +18,7 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   }
 
   // POSITIVO: obrigatórios apenas
-  it('Retorna cenários nulos com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

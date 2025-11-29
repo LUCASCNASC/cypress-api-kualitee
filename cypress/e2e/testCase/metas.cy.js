@@ -17,7 +17,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
   }
 
   // --- POSITIVO: todos os campos obrigatórios válidos ---
-  it('Retorna metas de casos de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     testCaseMetas({
       token: validToken,
       project_id: validProjectId

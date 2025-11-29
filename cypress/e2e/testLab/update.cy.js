@@ -19,7 +19,7 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   }
   
-  it('Adiciona casos de teste ao ciclo com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     manageTestCaseUpdate({
       token: validToken,
       project_id: validProjectId,

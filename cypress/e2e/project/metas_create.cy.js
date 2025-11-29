@@ -17,7 +17,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   }
   
-  it('Cria meta de projeto com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,

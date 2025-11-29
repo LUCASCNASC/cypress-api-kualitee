@@ -54,7 +54,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  it('Salva perfil apenas com campos obrigatórios', () => {
+  it('Status Code 200', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;
     saveProfile({ ...bodyMin, profile_username: 'profileuser' + Date.now(), email: `min${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);

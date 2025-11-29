@@ -16,7 +16,7 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   }
   
-  it('Retorna detalhes de integração com token e id válidos', () => {
+  it('Status Code 200', () => {
     integrationDetail({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

@@ -18,7 +18,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   }
   
-  it('Retorna ciclos da build do projeto com token, project_id e build_id válidos', () => {
+  it('Status Code 200', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

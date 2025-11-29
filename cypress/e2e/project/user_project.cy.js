@@ -13,7 +13,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   }
   
-  it('Retorna lista de projetos do usuário com token válido', () => {
+  it('Status Code 200', () => {
     userProject({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

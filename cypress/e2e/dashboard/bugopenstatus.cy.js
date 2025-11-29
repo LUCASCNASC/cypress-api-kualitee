@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
     });
   }
   
-  it('Retorna status dos bugs com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     bugOpenStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

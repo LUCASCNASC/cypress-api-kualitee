@@ -15,7 +15,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   }
   
-  it('Retorna lista de visualizadores de defeitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     defectViewers({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

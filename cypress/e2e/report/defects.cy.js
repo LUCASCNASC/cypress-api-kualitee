@@ -17,7 +17,7 @@ describe('API rest - Report Defects - /report/defects', () => {
   }
 
   // --- POSITIVO (mínimo) ---
-  it('Retorna lista de defeitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     reportDefects({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

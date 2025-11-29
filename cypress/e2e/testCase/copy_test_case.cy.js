@@ -19,7 +19,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
   }
 
   // --- POSITIVO: Copiar um caso de teste ---
-  it('Copia um caso de teste', () => {
+  it('Status Code 200', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,

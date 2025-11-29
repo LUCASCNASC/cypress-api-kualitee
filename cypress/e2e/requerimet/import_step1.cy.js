@@ -19,7 +19,7 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   }
   
-  it('Importa requisitos com token, project_id e arquivo CSV válidos', () => {
+  it('Status Code 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {

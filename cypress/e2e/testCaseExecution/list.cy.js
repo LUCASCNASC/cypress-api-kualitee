@@ -22,7 +22,7 @@ describe('API rest - Test Case Execution List - /test_case_execution/list', () =
   }
 
   // --- POSITIVOS ---
-  it('Retorna lista de execuções com token e project_id válidos (mínimo)', () => {
+  it('Status Code 200', () => {
     execList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

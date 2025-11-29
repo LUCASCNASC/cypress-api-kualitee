@@ -21,7 +21,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   }
   
-  it('Atualiza módulo com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,

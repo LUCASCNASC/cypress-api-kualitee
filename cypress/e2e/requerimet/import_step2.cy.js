@@ -21,7 +21,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   }
   
-  it('Importa requisitos (step2) com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {

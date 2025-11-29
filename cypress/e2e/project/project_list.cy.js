@@ -14,7 +14,7 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   }
   
-  it('Retorna lista de projetos com token válido', () => {
+  it('Status Code 200', () => {
     projectList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

@@ -19,7 +19,7 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   }
   
-  it('Retorna resultado com token e project_id obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     findAllNull({
       token: validToken,
       project_id: validProjectId

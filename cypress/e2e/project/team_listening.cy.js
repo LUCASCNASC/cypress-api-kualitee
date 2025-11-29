@@ -16,7 +16,7 @@ describe('API rest - Project Team Listing - /team/listing', () => {
     });
   }
   
-  it('Retorna equipe do projeto com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     teamListing({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

@@ -17,7 +17,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   }
   
-  it('Retorna lista de dropdown de defeitos com token, project_id e ids válidos', () => {
+  it('Status Code 200', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

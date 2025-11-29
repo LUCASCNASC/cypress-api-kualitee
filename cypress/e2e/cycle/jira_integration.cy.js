@@ -16,7 +16,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   }
 
-  it('Integra com Jira com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     jiraIntegration({
       token: validToken,
       project_id: validProjectId

@@ -19,7 +19,7 @@ describe('API rest - Login - /auth/signin - Testes Avançados', () => {
   }
 
   // --- POSITIVOS ---
-  it('Login com credenciais válidas', () => {
+  it('Status Code 200', () => {
     login({ email_id: validEmail, password: validPassword, subdomain: validSubdomain }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.all.keys('token', 'user', 'expires_in'); // ajuste para o contrato real

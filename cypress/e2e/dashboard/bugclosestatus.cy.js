@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Bug Close Status - /dashboard/bugclos
     });
   }
   
-  it('Retorna status de fechamento dos bugs com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     bugCloseStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

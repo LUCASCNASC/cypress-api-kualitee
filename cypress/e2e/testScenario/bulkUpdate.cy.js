@@ -22,7 +22,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   }
 
   // POSITIVO: obrigatórios apenas (mínimo 1 id)
-  it('Atualiza em massa cenário(s) de teste com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

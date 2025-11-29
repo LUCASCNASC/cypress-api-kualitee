@@ -15,7 +15,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   }
   
-  it('Retorna metas do projeto com token e meta_type válidos', () => {
+  it('Status Code 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

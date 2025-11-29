@@ -16,7 +16,7 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   }
   
-  it('Retorna detalhes do módulo com token, project_id e module_id válidos', () => {
+  it('Status Code 200', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

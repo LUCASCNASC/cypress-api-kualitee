@@ -19,7 +19,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
     });
   }
   
-  it('Retorna árvore de requisitos do módulo na build com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,

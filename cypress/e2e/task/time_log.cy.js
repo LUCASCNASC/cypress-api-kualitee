@@ -18,7 +18,7 @@ describe('API rest - Task Time Log - /task/time/log', () => {
     });
   }
   
-  it('Registra tempo de task com todos campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     taskTimeLog({
       token: validToken,
       project_id: validProjectId,

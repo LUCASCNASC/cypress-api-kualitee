@@ -19,7 +19,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   }
 
   // --- POSITIVO: Aprovar um caso de teste ---
-  it('Aprova um caso de teste', () => {
+  it('Status Code 200', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,

@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Notification List - /dashboard/notifi
     });
   }
   
-  it('Retorna notification list com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     notificationList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

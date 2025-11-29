@@ -25,7 +25,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   }
   
-  it('Atualiza projeto com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     projectUpdate(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

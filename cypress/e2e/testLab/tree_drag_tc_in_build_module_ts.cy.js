@@ -18,7 +18,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   }
   
-  it('Consulta casos de teste do cenário de teste do módulo do build com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

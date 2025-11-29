@@ -18,7 +18,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   }
   
-  it('Retorna histórico de tempo da task com token, project_id e id válidos', () => {
+  it('Status Code 200', () => {
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

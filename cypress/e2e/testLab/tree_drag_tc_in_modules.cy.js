@@ -17,7 +17,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Modules - /manage_test_cas
     });
   }
   
-  it('Consulta casos de teste do módulo com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,

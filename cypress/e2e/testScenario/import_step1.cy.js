@@ -25,7 +25,7 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   }
 
   // POSITIVO: todos os campos obrigatórios válidos
-  it('Importa CSV de cenários de teste (passo 1) com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',

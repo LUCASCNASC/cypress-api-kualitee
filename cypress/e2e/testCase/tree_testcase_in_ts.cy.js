@@ -19,7 +19,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   }
 
   // --- POSITIVO: todos os campos obrigatórios válidos ---
-  it('Retorna árvore de casos de teste em TS com token, project_id e test_scenario_id válidos', () => {
+  it('Status Code 200', () => {
     testCaseTreeInTs({
       token: validToken,
       project_id: validProjectId,

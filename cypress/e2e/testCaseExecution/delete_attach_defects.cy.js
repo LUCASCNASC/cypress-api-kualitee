@@ -20,7 +20,7 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   }
   
-  it('Remove bug de uma execução de test case com dados válidos', () => {
+  it('Status Code 200', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,

@@ -16,7 +16,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   }
   
-  it('Deleta meta de projeto com token e meta_id válidos', () => {
+  it('Status Code 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

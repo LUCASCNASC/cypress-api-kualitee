@@ -17,7 +17,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   }
   
-  it('Retorna atividades com token, project_id e show válidos', () => {
+  it('Status Code 200', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

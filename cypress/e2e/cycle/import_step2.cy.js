@@ -22,7 +22,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     );
   }
 
-  it('Importa CSV de defeitos mapeando todos os campos válidos', () => {
+  it('Status Code 200', () => {
     defectsImportStep2(
       {
         token: validToken,

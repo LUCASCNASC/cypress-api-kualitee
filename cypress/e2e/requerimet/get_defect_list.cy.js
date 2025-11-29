@@ -17,7 +17,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   }
   
-  it('Retorna lista de defeitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     getDefectList({
       token: validToken,
       project_id: validProjectId

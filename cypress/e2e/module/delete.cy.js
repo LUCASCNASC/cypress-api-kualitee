@@ -17,7 +17,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   }
   
-  it('Deleta módulo do projeto com token, project_id e module_id[0] válidos', () => {
+  it('Status Code 200', () => {
     moduleDelete({
       token: validToken,
       project_id: validProjectId,

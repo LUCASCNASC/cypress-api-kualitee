@@ -20,7 +20,7 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
 
   // POSITIVO: todos export_types válidos
   validExportTypes.forEach(export_type => {
-    it(`Exporta cenários de teste como ${export_type}`, () => {
+    it(`Status Code 200 ${export_type}`, () => {
       exportTestScenario({
         token: validToken,
         project_id: validProjectId,

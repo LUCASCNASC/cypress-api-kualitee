@@ -25,7 +25,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   }
   
-  it('Retorna total de cenários de teste com parâmetros completos e válidos', () => {
+  it('Status Code 200', () => {
     scenarioTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

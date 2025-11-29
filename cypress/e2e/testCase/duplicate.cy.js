@@ -19,7 +19,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
   }
 
   // --- POSITIVO: todos os campos obrigatórios válidos ---
-  it('Duplica caso de teste com token, project_id e tc_name válidos', () => {
+  it('Status Code 200', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,

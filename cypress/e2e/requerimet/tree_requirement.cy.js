@@ -18,7 +18,7 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   }
   
-  it('Retorna árvore de requisitos com token, project_id e requirement_id válidos', () => {
+  it('Status Code 200', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,

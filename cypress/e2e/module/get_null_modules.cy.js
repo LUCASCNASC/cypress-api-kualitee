@@ -18,7 +18,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   }
   
-  it('Retorna módulos nulos com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,

@@ -20,7 +20,7 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
     });
   }
   
-  it('Consulta casos de teste de cenário do ciclo do build com todos os campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeTestcaseInBuildCycleTs({
       token: validToken,
       project_id: validProjectId,

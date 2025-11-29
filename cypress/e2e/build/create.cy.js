@@ -21,7 +21,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   }
 
-  it('Cria build com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     buildCreate({
       token: validToken,
       project_id: validProjectId,

@@ -17,7 +17,7 @@ describe('API rest - Report Testcase - /report/testcase', () => {
   }
 
   // --- POSITIVO (mínimo) ---
-  it('Retorna relatório de test cases com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     reportTestcase({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

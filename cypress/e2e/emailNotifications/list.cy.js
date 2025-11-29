@@ -14,7 +14,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   }
   
-  it('Retorna lista de notificações de email com token válido', () => {
+  it('Status Code 200', () => {
     emailNotificationList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

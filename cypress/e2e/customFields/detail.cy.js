@@ -15,7 +15,7 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   }
 
-  it('Retorna detalhes do custom field com token e id válidos', () => {
+  it('Status Code 200', () => {
     customfieldsDetail({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

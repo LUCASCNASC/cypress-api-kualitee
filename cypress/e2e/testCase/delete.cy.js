@@ -18,7 +18,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   }
 
   // --- POSITIVO: Um id ---
-  it('Deleta um caso de teste com token, project_id e id[0] válidos', () => {
+  it('Status Code 200', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,

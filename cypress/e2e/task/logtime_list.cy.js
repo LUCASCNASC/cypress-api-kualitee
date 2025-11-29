@@ -17,7 +17,7 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
   }
 
   // --- POSITIVO (mínimo) ---
-  it('Retorna lista de logtime com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     taskLogtimeList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

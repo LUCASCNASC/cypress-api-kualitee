@@ -30,7 +30,7 @@ describe('API rest - Users Create - /users/create', () => {
 
   // --- POSITIVOS ---
   [7, 6, 2].forEach(role => {
-    it(`Cria usuário com role válida (${role})`, () => {
+    it(`Status Code 200 (${role})`, () => {
       createUser({ ...validBody, role, profile_username: 'user' + Date.now(), email: `user${role}${Date.now()}@test.com` }).then(response => {
         expect(response.status).to.eq(200);
         expect(response.body).to.be.an('object');

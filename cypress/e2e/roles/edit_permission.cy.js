@@ -15,7 +15,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   }
   
-  it('Retorna permissão de edição de role com token e id válidos', () => {
+  it('Status Code 200', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

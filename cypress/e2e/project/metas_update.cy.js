@@ -18,7 +18,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   }
   
-  it('Atualiza meta de projeto com todos os campos válidos', () => {
+  it('Status Code 200', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,

@@ -14,7 +14,7 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   }
   
-  it('Retorna lista de usuários do dashboard com token válido', () => {
+  it('Status Code 200', () => {
     dashboardList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

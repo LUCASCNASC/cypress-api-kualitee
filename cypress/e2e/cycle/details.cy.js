@@ -17,7 +17,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   }
   
-  it('Consulta detalhes do defeito com todos os parâmetros válidos', () => {
+  it('Status Code 200', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,

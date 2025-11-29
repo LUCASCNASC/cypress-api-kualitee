@@ -19,7 +19,7 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
     });
   }
   
-  it('Deleta attachment com token, project_id e image_id válidos', () => {
+  it('Status Code 200', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,

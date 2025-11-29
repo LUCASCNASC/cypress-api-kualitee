@@ -22,7 +22,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   }
 
   // --- POSITIVO: Mínimo obrigatório ---
-  it('Retorna lista de casos de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId

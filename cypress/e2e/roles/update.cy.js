@@ -20,7 +20,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   }
   
-  it('Atualiza role com token, id, role_name e description válidos', () => {
+  it('Status Code 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

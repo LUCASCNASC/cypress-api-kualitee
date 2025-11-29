@@ -17,7 +17,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     );
   }
   
-  it('Importa CSV de defeitos com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     defectsImportStep1(
       {
         token: validToken,

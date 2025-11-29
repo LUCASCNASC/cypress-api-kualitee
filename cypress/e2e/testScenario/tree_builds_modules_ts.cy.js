@@ -19,7 +19,7 @@ describe('API rest - Test Scenarios Tree Build Modules TS - /test_scenario/tree_
   }
 
   // POSITIVO: todos os campos obrigatórios válidos
-  it('Retorna a árvore de build/modules de cenários de teste com campos obrigatórios válidos', () => {
+  it('Status Code 200', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,

@@ -18,7 +18,7 @@ describe('API rest - Task Columns View - /task/columns/view', () => {
   }
 
   // --- POSITIVO: só obrigatórios ---
-  it('Retorna colunas das tasks com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

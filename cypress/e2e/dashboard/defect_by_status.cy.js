@@ -16,7 +16,7 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   }
   
-  it('Retorna informações de defeitos por status com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     defectByStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

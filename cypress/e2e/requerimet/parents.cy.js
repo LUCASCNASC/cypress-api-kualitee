@@ -17,7 +17,7 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   }
   
-  it('Retorna lista de pais de requisitos com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     requirementsParents({
       token: validToken,
       project_id: validProjectId

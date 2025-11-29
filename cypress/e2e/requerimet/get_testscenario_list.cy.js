@@ -17,7 +17,7 @@ describe('API rest - Requirements Get Testscenario List - /requirements/get_test
     });
   }
   
-  it('Retorna lista de cenários de teste com token e project_id válidos', () => {
+  it('Status Code 200', () => {
     getTestscenarioList({
       token: validToken,
       project_id: validProjectId

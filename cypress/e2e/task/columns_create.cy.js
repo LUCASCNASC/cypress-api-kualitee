@@ -18,7 +18,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   }
   
-  it('Cria coluna de task com token, project_id e column_name válidos', () => {
+  it('Status Code 200', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

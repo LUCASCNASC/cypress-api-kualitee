@@ -37,7 +37,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   // --- NEGATIVOS: Auth ---
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403 - Falha sem token', () => {
     buildCreate({
       project_id: validProjectId,
       start_date: validStartDate,
@@ -49,7 +49,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401, 403 - Falha com token inválido', () => {
     buildCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -62,7 +62,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 400, 401, 403 - Falha com token expirado', () => {
     buildCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -75,7 +75,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code 400, 401, 403 - Falha com token nulo', () => {
     buildCreate({
       token: null,
       project_id: validProjectId,
@@ -90,7 +90,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
 
   // --- Campos obrigatórios ausentes ---
   ['project_id', 'start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
+    it(`Status Code 400, 422 - Falha sem campo obrigatório ${field}`, () => {
       const body = {
         token: validToken,
         project_id: validProjectId,
@@ -109,7 +109,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   // --- Campos obrigatórios inválidos ---
   [null, '', {}, [], true, false].forEach(invalidValue => {
     ['start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
-      it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
+      it(`Status Code 400, 422, 404 - Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
         const body = {
           token: validToken,
           project_id: validProjectId,
@@ -127,7 +127,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
+    it(`Status Code 400, 422, 404 - Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       buildCreate({
         token: validToken,
         project_id,
@@ -142,7 +142,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   // --- Campos extras ---
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200 - Ignora campo extra no body', () => {
     buildCreate({
       token: validToken,
       project_id: validProjectId,
@@ -158,7 +158,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
 
   // --- HTTP Method errado ---
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
+    it(`Status Code 400, 405, 404 - Falha com método HTTP ${method}`, () => {
       cy.request({
         method,
         url: '/Build/BuildsCreate',
@@ -179,7 +179,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   // --- Content-Type errado ---
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415 - Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
       url: '/Build/BuildsCreate',
@@ -229,7 +229,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   // --- Rate limit (se aplicável) ---
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429 - Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       buildCreate({
         token: validToken,
@@ -247,7 +247,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   // --- Duplicidade: Aceita requisições idênticas sequenciais ---
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409 - Permite requisições duplicadas rapidamente', () => {
     buildCreate({
       token: validToken,
       project_id: validProjectId,

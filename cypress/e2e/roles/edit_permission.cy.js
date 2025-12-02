@@ -60,7 +60,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -87,7 +87,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesEditPermission({ token: "' OR 1=1 --", id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -95,7 +95,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -103,7 +103,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesEditPermission({ token: validToken, id: validId })
@@ -114,7 +114,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesEditPermission({ token: validToken, id: validId })
       .then(() => rolesEditPermission({ token: validToken, id: validId }))

@@ -92,7 +92,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     jiraCustomSync({
       token: validToken,
@@ -104,7 +104,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -123,7 +123,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -140,7 +140,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     jiraCustomSync({
       token: "' OR 1=1 --",
@@ -152,7 +152,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     jiraCustomSync({
       token: validToken,
@@ -164,7 +164,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas sincronizações rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       jiraCustomSync({

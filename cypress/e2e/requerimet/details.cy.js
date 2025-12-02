@@ -90,7 +90,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra na query', () => {
     getRequirementDetails({
       token: validToken,
@@ -102,7 +102,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -137,7 +137,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getRequirementDetails({
       token: "' OR 1=1 --",
@@ -149,7 +149,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     getRequirementDetails({
       token: validToken,
@@ -161,7 +161,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getRequirementDetails({
@@ -176,7 +176,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     getRequirementDetails({
       token: validToken,

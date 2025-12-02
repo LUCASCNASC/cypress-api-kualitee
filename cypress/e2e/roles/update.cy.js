@@ -168,7 +168,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     rolesUpdate({
       token: validToken,
@@ -182,7 +182,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -202,7 +202,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -220,7 +220,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesUpdate({
       token: "' OR 1=1 --",
@@ -233,7 +233,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     rolesUpdate({
       token: validToken,
@@ -246,7 +246,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesUpdate({
@@ -262,7 +262,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesUpdate({
       token: validToken,

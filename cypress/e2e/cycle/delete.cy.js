@@ -96,7 +96,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     defectsDelete({
       token: validToken,
@@ -108,7 +108,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -127,7 +127,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -144,7 +144,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsDelete({
       token: "' OR 1=1 --",
@@ -156,7 +156,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     defectsDelete({
       token: validToken,
@@ -168,7 +168,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDelete({
@@ -183,7 +183,7 @@ describe('API rest - Cycle - Defects Delete - /defects/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite deleções duplicadas rapidamente', () => {
     defectsDelete({
       token: validToken,

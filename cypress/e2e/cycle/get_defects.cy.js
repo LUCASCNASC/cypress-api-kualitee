@@ -100,7 +100,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     getDefects({
       token: validToken,
@@ -111,7 +111,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -129,7 +129,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -145,7 +145,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getDefects({
       token: "' OR 1=1 --",
@@ -156,7 +156,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     getDefects({
       token: validToken,
@@ -167,7 +167,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getDefects({
@@ -181,7 +181,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     getDefects({
       token: validToken,

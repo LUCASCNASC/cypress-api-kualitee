@@ -70,14 +70,14 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -92,7 +92,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +105,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsCardReposition({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +113,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +121,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId })
@@ -132,7 +132,7 @@ describe('API rest - Task Columns Card Reposition - /task/columns/card/repositio
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId }))

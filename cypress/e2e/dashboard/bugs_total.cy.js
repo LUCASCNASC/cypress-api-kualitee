@@ -47,7 +47,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     bugsTotal({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -129,7 +129,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     bugsTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -137,7 +137,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -152,7 +152,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -165,7 +165,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     bugsTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -173,7 +173,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     bugsTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -181,7 +181,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       bugsTotal({ ...validBody, project_id: validProjectId })
@@ -192,7 +192,7 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     bugsTotal(validBody)
       .then(() => bugsTotal(validBody))

@@ -23,7 +23,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     buildDetails({ project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -48,7 +48,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- project_id/build_id inválidos, ausentes, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     buildDetails({ token: validToken, build_id: validBuildId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -89,14 +89,14 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra nos parâmetros', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -110,7 +110,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -123,7 +123,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildDetails({ token: "' OR 1=1 --", project_id: validProjectId, build_id: validBuildId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -131,7 +131,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -139,7 +139,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId })
@@ -150,7 +150,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId })
       .then(() => buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId }))

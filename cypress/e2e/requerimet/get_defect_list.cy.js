@@ -71,7 +71,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     getDefectList({
       token: validToken,
@@ -82,7 +82,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -100,7 +100,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +116,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getDefectList({
       token: "' OR 1=1 --",
@@ -127,7 +127,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     getDefectList({
       token: validToken,
@@ -138,7 +138,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getDefectList({
@@ -152,7 +152,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     getDefectList({
       token: validToken,

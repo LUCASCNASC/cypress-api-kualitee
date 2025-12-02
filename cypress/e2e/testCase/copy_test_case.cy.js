@@ -106,7 +106,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     testCaseCopy({
       token: validToken,
@@ -118,7 +118,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -137,7 +137,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -154,7 +154,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseCopy({
       token: "' OR 1=1 --",
@@ -166,7 +166,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     testCaseCopy({
       token: validToken,
@@ -178,7 +178,7 @@ describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas cópias rápidas (rate limit)', () => {
     const body = {
       token: validToken,

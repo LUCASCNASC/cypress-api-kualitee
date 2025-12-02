@@ -33,7 +33,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     projectUpdate(body).then(response => {
@@ -110,14 +110,14 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     projectUpdate({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -132,7 +132,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -145,7 +145,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectUpdate({ ...validBody, project_name: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -153,7 +153,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     projectUpdate(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -161,7 +161,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectUpdate(validBody)
@@ -172,7 +172,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     projectUpdate(validBody)
       .then(() => projectUpdate(validBody))

@@ -36,7 +36,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Status Code 400, 401, 403 - Falha sem token', () => {
     buildCreate({
       project_id: validProjectId,
@@ -141,7 +141,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Status Code 200 - Ignora campo extra no body', () => {
     buildCreate({
       token: validToken,
@@ -156,7 +156,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Status Code 400, 405, 404 - Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -178,7 +178,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Status Code 400, 415 - Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -198,7 +198,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildCreate({
       token: "' OR 1=1 --",
@@ -213,7 +213,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     buildCreate({
       token: validToken,
@@ -228,7 +228,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Status Code 429 - Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       buildCreate({
@@ -246,7 +246,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Status Code 200, 400, 401, 409 - Permite requisições duplicadas rapidamente', () => {
     buildCreate({
       token: validToken,

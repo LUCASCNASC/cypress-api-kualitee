@@ -25,7 +25,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     dropdownDefect({ project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -94,14 +94,14 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1], extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -116,7 +116,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -129,7 +129,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     dropdownDefect({ token: "' OR 1=1 --", project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       const body = JSON.stringify(response.body);
@@ -137,7 +137,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -145,7 +145,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] })
@@ -156,7 +156,7 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] })
       .then(() => dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }))

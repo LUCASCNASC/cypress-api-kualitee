@@ -145,7 +145,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -161,7 +161,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -184,7 +184,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -207,7 +207,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplos uploads rápidos (rate limit)', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();

@@ -46,7 +46,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     testcaseTotal({ project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -140,7 +140,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     testcaseTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -148,7 +148,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -163,7 +163,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -176,7 +176,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testcaseTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -184,7 +184,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     testcaseTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -192,7 +192,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testcaseTotal({ ...validBody, project_id: validProjectId, module_id: validModuleId })
@@ -203,7 +203,7 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     testcaseTotal(validBody)
       .then(() => testcaseTotal(validBody))

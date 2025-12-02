@@ -71,14 +71,14 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -93,7 +93,7 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -106,7 +106,7 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeTestCases({ token: "' OR 1=1 --", project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -114,7 +114,7 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -122,7 +122,7 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId })
@@ -133,7 +133,7 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId })
       .then(() => treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }))

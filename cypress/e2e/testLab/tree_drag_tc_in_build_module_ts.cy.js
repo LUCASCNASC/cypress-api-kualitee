@@ -92,7 +92,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,
@@ -104,7 +104,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -123,7 +123,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -140,7 +140,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeDragTcInBuildModuleTs({
       token: "' OR 1=1 --",
@@ -152,7 +152,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,
@@ -164,7 +164,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDragTcInBuildModuleTs({
@@ -179,7 +179,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,

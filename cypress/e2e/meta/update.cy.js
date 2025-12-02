@@ -103,14 +103,14 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -125,7 +125,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -138,7 +138,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasUpdate({ token: "' OR 1=1 --", project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       const body = JSON.stringify(response.body);
@@ -146,7 +146,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -154,7 +154,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
@@ -165,7 +165,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
       .then(() => metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }))

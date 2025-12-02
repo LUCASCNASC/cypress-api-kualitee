@@ -21,7 +21,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     userProject({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -58,14 +58,14 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra nos parâmetros', () => {
     userProject({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -79,7 +79,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json no GET', () => {
     cy.request({
       method: 'GET',
@@ -92,7 +92,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     userProject({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -100,7 +100,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     userProject({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -108,7 +108,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       userProject({ token: validToken })
@@ -119,7 +119,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     userProject({ token: validToken })
       .then(() => userProject({ token: validToken }))

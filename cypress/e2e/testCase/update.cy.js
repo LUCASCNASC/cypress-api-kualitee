@@ -148,7 +148,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     testCaseUpdate({
       token: validToken,
@@ -165,7 +165,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -189,7 +189,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -211,7 +211,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseUpdate({
       token: "' OR 1=1 --",
@@ -228,7 +228,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     testCaseUpdate({
       token: validToken,
@@ -245,7 +245,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseUpdate({
@@ -265,7 +265,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseUpdate({
       token: validToken,

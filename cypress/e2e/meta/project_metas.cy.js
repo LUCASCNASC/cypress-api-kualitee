@@ -54,14 +54,14 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -76,7 +76,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -89,7 +89,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasProjectMetas({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -97,7 +97,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -105,7 +105,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasProjectMetas({ token: validToken, project_id: validProjectId })
@@ -116,7 +116,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId })
       .then(() => metasProjectMetas({ token: validToken, project_id: validProjectId }))

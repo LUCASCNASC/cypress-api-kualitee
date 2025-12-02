@@ -29,7 +29,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     moduleDelete({
       project_id: validProjectId,
@@ -132,7 +132,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     moduleDelete({
       token: validToken,
@@ -144,7 +144,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -163,7 +163,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -180,7 +180,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleDelete({
       token: "' OR 1=1 --",
@@ -192,7 +192,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     moduleDelete({
       token: validToken,
@@ -204,7 +204,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleDelete({
@@ -219,7 +219,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleDelete({
       token: validToken,

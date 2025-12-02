@@ -29,7 +29,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     buildDelete({
       project_id: validProjectId,
@@ -69,7 +69,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- project_id/build_id inválidos, ausentes, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     buildDelete({
       token: validToken,
@@ -132,7 +132,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     buildDelete({
       token: validToken,
@@ -144,7 +144,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -163,7 +163,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -180,7 +180,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildDelete({
       token: "' OR 1=1 --",
@@ -192,7 +192,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     buildDelete({
       token: validToken,
@@ -204,7 +204,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       buildDelete({
@@ -219,7 +219,7 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     buildDelete({
       token: validToken,

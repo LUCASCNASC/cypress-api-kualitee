@@ -70,14 +70,14 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -92,7 +92,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +105,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskTimeLogDelete({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +113,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +121,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId })
@@ -132,7 +132,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }))

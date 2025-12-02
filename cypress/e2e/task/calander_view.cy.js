@@ -60,7 +60,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -87,7 +87,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskCalanderView({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -95,7 +95,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -103,7 +103,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskCalanderView({ token: validToken, project_id: validProjectId })
@@ -114,7 +114,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId })
       .then(() => taskCalanderView({ token: validToken, project_id: validProjectId }))

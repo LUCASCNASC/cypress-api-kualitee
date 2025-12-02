@@ -34,7 +34,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     deleteUser({ 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -95,14 +95,14 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -117,7 +117,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -130,7 +130,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     deleteUser({ token: "' OR 1=1 --", 'user_id[0]': validUserId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -138,7 +138,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -146,7 +146,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteUser({ token: validToken, 'user_id[0]': validUserId })

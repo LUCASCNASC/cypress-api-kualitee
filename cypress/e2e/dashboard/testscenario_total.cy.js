@@ -42,7 +42,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     scenarioTotal({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -133,7 +133,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     scenarioTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -141,7 +141,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -156,7 +156,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -169,7 +169,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     scenarioTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -177,7 +177,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     scenarioTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -185,7 +185,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       scenarioTotal({ ...validBody, project_id: validProjectId })
@@ -196,7 +196,7 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     scenarioTotal(validBody)
       .then(() => scenarioTotal(validBody))

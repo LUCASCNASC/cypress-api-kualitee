@@ -86,7 +86,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra na query', () => {
     testCaseDetails({
       token: validToken,
@@ -98,7 +98,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -116,7 +116,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseDetails({
       token: "' OR 1=1 --",
@@ -128,7 +128,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     testCaseDetails({
       token: validToken,
@@ -140,7 +140,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
@@ -154,7 +154,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseDetails({
       token: validToken,

@@ -93,7 +93,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     treeTestcaseInCycle({
       token: validToken,
@@ -105,7 +105,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -124,7 +124,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -141,7 +141,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeTestcaseInCycle({
       token: "' OR 1=1 --",
@@ -153,7 +153,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     treeTestcaseInCycle({
       token: validToken,
@@ -165,7 +165,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseInCycle({
@@ -180,7 +180,7 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     treeTestcaseInCycle({
       token: validToken,

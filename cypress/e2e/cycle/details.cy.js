@@ -91,7 +91,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora parâmetro extra na query', () => {
     defectsDetails({
       token: validToken,
@@ -103,7 +103,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -121,7 +121,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
@@ -138,7 +138,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsDetails({
       token: "' OR 1=1 --",
@@ -150,7 +150,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     defectsDetails({
       token: validToken,
@@ -162,7 +162,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas consultas rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDetails({

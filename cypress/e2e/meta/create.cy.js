@@ -87,14 +87,14 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -109,7 +109,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -122,7 +122,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasCreate({ token: "' OR 1=1 --", project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       const body = JSON.stringify(response.body);
@@ -130,7 +130,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -138,7 +138,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue })
@@ -149,7 +149,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue })
       .then(() => metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }))

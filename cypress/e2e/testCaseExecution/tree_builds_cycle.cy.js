@@ -71,14 +71,14 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -93,7 +93,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -106,7 +106,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeBuildsCycle({ token: "' OR 1=1 --", project_id: validProjectId, build_id: validBuildId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -114,7 +114,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -122,7 +122,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId })
@@ -133,7 +133,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId })
       .then(() => treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }))

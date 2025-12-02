@@ -49,7 +49,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     createUser(body).then(response => {
@@ -131,7 +131,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     createUser({ ...validBody, extra: 'foo', profile_username: 'user' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
@@ -159,7 +159,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach((method) => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -172,7 +172,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -185,7 +185,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     createUser({ ...validBody, token: "' OR 1=1 --", profile_username: 'user' + Date.now(), email: `sec${Date.now()}@test.com` }).then((response) => {
       const body = JSON.stringify(response.body);
@@ -193,7 +193,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     createUser({ ...validBody, profile_username: 'user' + Date.now(), email: `hdr${Date.now()}@test.com` }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -201,7 +201,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       createUser({ ...validBody, profile_username: 'user' + Math.random(), email: `rl${Math.random()}@test.com` })

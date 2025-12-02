@@ -105,7 +105,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     testCaseDelete({
       token: validToken,
@@ -117,7 +117,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -136,7 +136,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -153,7 +153,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseDelete({
       token: "' OR 1=1 --",
@@ -165,7 +165,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     testCaseDelete({
       token: validToken,
@@ -177,7 +177,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
     const body = {
       token: validToken,

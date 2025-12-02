@@ -24,7 +24,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     metasDelete({ meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -70,14 +70,14 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasDelete({ token: validToken, meta_id: validMetaId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -92,7 +92,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +105,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasDelete({ token: "' OR 1=1 --", meta_id: validMetaId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +113,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +121,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasDelete({ token: validToken, meta_id: validMetaId })
@@ -132,7 +132,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasDelete({ token: validToken, meta_id: validMetaId })
       .then(() => metasDelete({ token: validToken, meta_id: validMetaId }))

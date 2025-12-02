@@ -70,14 +70,14 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -92,7 +92,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +105,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsDelete({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +113,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +121,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId })
@@ -132,7 +132,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }))

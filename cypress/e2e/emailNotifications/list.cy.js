@@ -37,14 +37,14 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     emailNotificationList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -59,7 +59,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -72,7 +72,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     emailNotificationList({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -80,7 +80,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     emailNotificationList({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -88,7 +88,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       emailNotificationList({ token: validToken })
@@ -99,7 +99,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     emailNotificationList({ token: validToken })
       .then(() => emailNotificationList({ token: validToken }))

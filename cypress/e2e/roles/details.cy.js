@@ -60,7 +60,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -87,7 +87,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesDetails({ token: "' OR 1=1 --", id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -95,7 +95,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     rolesDetails({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -103,7 +103,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesDetails({ token: validToken, id: validId })
@@ -114,7 +114,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesDetails({ token: validToken, id: validId })
       .then(() => rolesDetails({ token: validToken, id: validId }))

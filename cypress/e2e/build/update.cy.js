@@ -38,7 +38,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     buildUpdate({
       project_id: validProjectId,
@@ -182,7 +182,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     buildUpdate({
       token: validToken,
@@ -198,7 +198,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -221,7 +221,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -242,7 +242,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildUpdate({
       token: "' OR 1=1 --",
@@ -258,7 +258,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     buildUpdate({
       token: validToken,
@@ -274,7 +274,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       buildUpdate({
@@ -293,7 +293,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     buildUpdate({
       token: validToken,

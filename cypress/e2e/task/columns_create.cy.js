@@ -71,14 +71,14 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -93,7 +93,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -106,7 +106,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsCreate({ token: "' OR 1=1 --", project_id: validProjectId, column_name: validColumnName }).then(response => {
       const body = JSON.stringify(response.body);
@@ -114,7 +114,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -122,7 +122,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName })
@@ -133,7 +133,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName })
       .then(() => taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }))

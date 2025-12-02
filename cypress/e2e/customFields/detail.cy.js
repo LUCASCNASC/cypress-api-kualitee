@@ -53,14 +53,14 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra na query', () => {
     customfieldsDetail({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -74,7 +74,7 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsDetail({ token: "' OR 1=1 --", id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -82,7 +82,7 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     customfieldsDetail({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -90,7 +90,7 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsDetail({ token: validToken, id: validId })
@@ -101,7 +101,7 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsDetail({ token: validToken, id: validId })
       .then(() => customfieldsDetail({ token: validToken, id: validId }))

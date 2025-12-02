@@ -23,7 +23,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     projectMetas({ meta_type: validMetaType }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -63,14 +63,14 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra nos parâmetros', () => {
     projectMetas({ token: validToken, meta_type: validMetaType, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -84,7 +84,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -97,7 +97,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectMetas({ token: "' OR 1=1 --", meta_type: validMetaType }).then(response => {
       const body = JSON.stringify(response.body);
@@ -105,7 +105,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -113,7 +113,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectMetas({ token: validToken, meta_type: validMetaType })
@@ -124,7 +124,7 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     projectMetas({ token: validToken, meta_type: validMetaType })
       .then(() => projectMetas({ token: validToken, meta_type: validMetaType }))

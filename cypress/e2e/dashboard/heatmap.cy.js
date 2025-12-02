@@ -24,7 +24,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     dashboardHeatmap({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -82,14 +82,14 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     dashboardHeatmap({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -104,7 +104,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -117,7 +117,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     dashboardHeatmap({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -125,7 +125,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     dashboardHeatmap({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -133,7 +133,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       dashboardHeatmap({ token: validToken, project_id: validProjectId })
@@ -144,7 +144,7 @@ describe('API rest - Dashboard - Dashboard Heatmap - /dashboard/heatmap', () => 
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     dashboardHeatmap({ token: validToken, project_id: validProjectId })
       .then(() => dashboardHeatmap({ token: validToken, project_id: validProjectId }))

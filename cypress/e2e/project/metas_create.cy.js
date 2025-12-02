@@ -29,7 +29,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     metasCreate({
       meta_key: validMetaKey,
@@ -101,7 +101,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasCreate({
       token: validToken,
@@ -113,7 +113,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -132,7 +132,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -149,7 +149,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasCreate({
       token: "' OR 1=1 --",
@@ -161,7 +161,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasCreate({
       token: validToken,
@@ -173,7 +173,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasCreate({
@@ -188,7 +188,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasCreate({
       token: validToken,

@@ -71,7 +71,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     defectsList({
       project_id: validProjectId
@@ -185,7 +185,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     defectsList({
       token: validToken,
@@ -196,7 +196,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -214,7 +214,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -230,7 +230,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsList({
       token: "' OR 1=1 --",
@@ -241,7 +241,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     defectsList({
       token: validToken,
@@ -252,7 +252,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsList({
@@ -266,7 +266,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     defectsList({
       token: validToken,

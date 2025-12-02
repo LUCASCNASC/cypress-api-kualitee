@@ -32,7 +32,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     dashboardActivities({ project_id: validProjectId, show: 'all' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -114,14 +114,14 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all', extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -136,7 +136,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -149,7 +149,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     dashboardActivities({ token: "' OR 1=1 --", project_id: validProjectId, show: 'all' }).then(response => {
       const body = JSON.stringify(response.body);
@@ -157,7 +157,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -165,7 +165,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' })
@@ -176,7 +176,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' })
       .then(() => dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }))

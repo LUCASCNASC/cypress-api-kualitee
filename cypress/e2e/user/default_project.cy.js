@@ -25,7 +25,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     setDefaultProject({ updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -86,7 +86,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -94,7 +94,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -109,7 +109,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -122,7 +122,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     setDefaultProject({ token: "' OR 1=1 --", updated_project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -130,7 +130,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -138,7 +138,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       setDefaultProject({ token: validToken, updated_project_id: validProjectId })
@@ -149,7 +149,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId })
       .then(() => setDefaultProject({ token: validToken, updated_project_id: validProjectId }))

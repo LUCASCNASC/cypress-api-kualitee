@@ -34,7 +34,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     moduleCreate({
       project_id: validProjectId,
@@ -146,7 +146,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     moduleCreate({
       token: validToken,
@@ -160,7 +160,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -181,7 +181,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -200,7 +200,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleCreate({
       token: "' OR 1=1 --",
@@ -214,7 +214,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     moduleCreate({
       token: validToken,
@@ -228,7 +228,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleCreate({
@@ -245,7 +245,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleCreate({
       token: validToken,

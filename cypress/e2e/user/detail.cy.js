@@ -88,14 +88,14 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra na query', () => {
     getUserDetail({ token: validToken, user_id: validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -122,7 +122,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getUserDetail({ token: "' OR 1=1 --", user_id: validUserId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -130,7 +130,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -138,7 +138,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getUserDetail({ token: validToken, user_id: validUserId })
@@ -149,7 +149,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     getUserDetail({ token: validToken, user_id: validUserId })
       .then(() => getUserDetail({ token: validToken, user_id: validUserId }))

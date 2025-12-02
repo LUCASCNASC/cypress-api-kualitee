@@ -71,7 +71,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     requirementsTree({
       token: validToken,
@@ -82,7 +82,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -100,7 +100,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +116,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsTree({
       token: "' OR 1=1 --",
@@ -127,7 +127,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     requirementsTree({
       token: validToken,
@@ -138,7 +138,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsTree({
@@ -152,7 +152,7 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsTree({
       token: validToken,

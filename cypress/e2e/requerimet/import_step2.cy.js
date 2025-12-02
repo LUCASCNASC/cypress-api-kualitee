@@ -123,7 +123,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -141,7 +141,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.fixture(validCsvPath, 'binary').then(CSVContent => {
@@ -165,7 +165,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -187,7 +187,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -204,7 +204,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -221,7 +221,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -240,7 +240,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');

@@ -22,7 +22,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     archivedProjects({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -59,14 +59,14 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     archivedProjects({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -81,7 +81,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -94,7 +94,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     archivedProjects({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -102,7 +102,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     archivedProjects({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -110,7 +110,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       archivedProjects({ token: validToken })
@@ -121,7 +121,7 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     archivedProjects({ token: validToken })
       .then(() => archivedProjects({ token: validToken }))

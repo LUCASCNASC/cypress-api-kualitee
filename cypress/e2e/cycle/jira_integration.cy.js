@@ -68,7 +68,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     jiraIntegration({
       token: validToken,
@@ -79,7 +79,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -97,7 +97,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -113,7 +113,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     jiraIntegration({
       token: "' OR 1=1 --",
@@ -124,7 +124,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     jiraIntegration({
       token: validToken,
@@ -135,7 +135,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas integrações rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       jiraIntegration({

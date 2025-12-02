@@ -81,14 +81,14 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     metasList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -103,7 +103,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +116,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasList({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -124,7 +124,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     metasList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -132,7 +132,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasList({ token: validToken, project_id: validProjectId })
@@ -143,7 +143,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     metasList({ token: validToken, project_id: validProjectId })
       .then(() => metasList({ token: validToken, project_id: validProjectId }))

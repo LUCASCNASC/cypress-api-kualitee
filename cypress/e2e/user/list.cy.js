@@ -69,7 +69,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     listUsers({ token: validToken, user_status: 0, extra: 'foo' }).then((response) => {
       expect(response.status).to.eq(200);
@@ -90,7 +90,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach((method) => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -103,7 +103,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +116,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     listUsers({ token: "' OR 1=1 --", user_status: 0 }).then((response) => {
       const body = JSON.stringify(response.body);
@@ -124,7 +124,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     listUsers({ token: validToken, user_status: 0 }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -132,7 +132,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() => listUsers({ token: validToken, user_status: 0 }));
     cy.wrap(Promise.all(requests)).then((responses) => {

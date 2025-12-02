@@ -76,7 +76,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -103,7 +103,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsDetails({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -111,7 +111,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -119,7 +119,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId })
@@ -130,7 +130,7 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }))

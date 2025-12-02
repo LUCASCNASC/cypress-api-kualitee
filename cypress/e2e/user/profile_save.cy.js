@@ -113,7 +113,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     saveProfile({ ...validBody, extra: 'foo', profile_username: 'profileuser' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
@@ -150,7 +150,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -163,7 +163,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -176,7 +176,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     saveProfile({ ...validBody, profile_username: "' OR 1=1 --", email: `sec${Date.now()}@test.com` }).then(response => {
       const body = JSON.stringify(response.body);
@@ -184,7 +184,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     saveProfile({ ...validBody, profile_username: 'profileuser' + Date.now(), email: `hdr${Date.now()}@test.com` }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -192,7 +192,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplos saves rápidos (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       saveProfile({ ...validBody, profile_username: 'profileuser' + Math.random(), email: `rl${Math.random()}@test.com` })

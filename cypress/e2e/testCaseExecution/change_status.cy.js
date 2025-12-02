@@ -34,7 +34,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     changeStatus({
       project_id: validProjectId,
@@ -151,7 +151,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     changeStatus({
       token: validToken,
@@ -166,7 +166,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -188,7 +188,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -208,7 +208,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     changeStatus({
       token: "' OR 1=1 --",
@@ -223,7 +223,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     changeStatus({
       token: validToken,
@@ -238,7 +238,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       changeStatus({
@@ -256,7 +256,7 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     changeStatus({
       token: validToken,

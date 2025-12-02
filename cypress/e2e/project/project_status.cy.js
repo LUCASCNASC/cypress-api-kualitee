@@ -31,7 +31,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     projectStatus({
       project_status: validProjectStatus,
@@ -127,7 +127,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     projectStatus({
       token: validToken,
@@ -140,7 +140,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -160,7 +160,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type text/plain', () => {
     projectStatus({
       token: validToken,
@@ -172,7 +172,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectStatus({
       token: "' OR 1=1 --",
@@ -185,7 +185,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     projectStatus({
       token: validToken,
@@ -198,7 +198,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectStatus({
@@ -214,7 +214,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     projectStatus({
       token: validToken,

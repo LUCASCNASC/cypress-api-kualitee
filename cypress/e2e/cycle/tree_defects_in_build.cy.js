@@ -91,7 +91,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     treeDefectsInBuild({
       token: validToken,
@@ -103,7 +103,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -122,7 +122,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -139,7 +139,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeDefectsInBuild({
       token: "' OR 1=1 --",
@@ -151,7 +151,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     treeDefectsInBuild({
       token: validToken,
@@ -163,7 +163,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDefectsInBuild({
@@ -178,7 +178,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     treeDefectsInBuild({
       token: validToken,

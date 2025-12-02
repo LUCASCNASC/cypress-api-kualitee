@@ -204,7 +204,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     integrationSave({
       token: validToken,
@@ -219,7 +219,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -241,7 +241,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -261,7 +261,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     integrationSave({
       token: "' OR 1=1 --",
@@ -276,7 +276,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     integrationSave({
       token: validToken,
@@ -291,7 +291,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       integrationSave({
@@ -309,7 +309,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     integrationSave({
       token: validToken,

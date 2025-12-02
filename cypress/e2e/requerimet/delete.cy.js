@@ -100,7 +100,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     requirementsDelete({
       token: validToken,
@@ -112,7 +112,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -131,7 +131,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -148,7 +148,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsDelete({
       token: "' OR 1=1 --",
@@ -160,7 +160,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     requirementsDelete({
       token: validToken,
@@ -172,7 +172,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsDelete({
@@ -187,7 +187,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsDelete({
       token: validToken,

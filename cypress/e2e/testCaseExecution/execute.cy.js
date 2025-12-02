@@ -42,7 +42,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- NEGATIVOS: Auth ---
+  
   it('Falha sem token', () => {
     executeTest({
       project_id: validProjectId,
@@ -333,7 +333,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Campos extras ---
+  
   it('Ignora campo extra no body', () => {
     executeTest({
       token: validToken,
@@ -351,7 +351,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- HTTP Method errado ---
+  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -376,7 +376,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Content-Type errado ---
+  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -399,7 +399,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Contrato: Não vazar informações sensíveis ---
+  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     executeTest({
       token: "' OR 1=1 --",
@@ -417,7 +417,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Headers ---
+  
   it('Headers devem conter CORS e content-type', () => {
     executeTest({
       token: validToken,
@@ -435,7 +435,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Rate limit (se aplicável) ---
+  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       executeTest({
@@ -456,7 +456,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- Duplicidade: Aceita requisições idênticas sequenciais ---
+  
   it('Permite requisições duplicadas rapidamente', () => {
     executeTest({
       token: validToken,

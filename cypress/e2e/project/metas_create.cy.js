@@ -69,7 +69,7 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['meta_key', 'meta_value'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {

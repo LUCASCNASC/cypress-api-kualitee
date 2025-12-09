@@ -75,7 +75,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_status', 'project_id[0]', 'project_id[1]'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {

@@ -31,7 +31,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseDetails({
       project_id: validProjectId,
@@ -68,7 +68,7 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'tc_id'].forEach(field => {
     invalidValues.forEach(value => {

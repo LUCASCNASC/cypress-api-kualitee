@@ -29,7 +29,7 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     getTestcasesList({
       project_id: validProjectId
@@ -58,7 +58,7 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   invalidValues.forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {

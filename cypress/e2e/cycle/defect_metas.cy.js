@@ -26,7 +26,7 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     defectMetas({
       project_id: validProjectId
@@ -46,7 +46,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
   it('Falha sem project_id', () => {
     defectMetas({
       token: validToken
@@ -55,7 +54,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       defectMetas({
@@ -66,7 +64,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     defectMetas({
@@ -77,7 +74,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -95,7 +91,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -111,7 +106,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectMetas({
@@ -122,7 +116,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectMetas({
@@ -133,7 +126,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -147,7 +139,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     defectMetas({
@@ -162,5 +153,4 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

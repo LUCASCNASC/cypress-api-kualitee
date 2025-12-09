@@ -26,7 +26,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   });
 
-  // --- NEGATIVO: Auth ---
   it('Falha sem token', () => {
     customfieldsDelete({ project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -41,7 +40,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
   it('Falha sem project_id', () => {
     customfieldsDelete({ token: validToken, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -56,7 +54,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   });
 
-  // --- custom_field_id[0] inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_id[0]', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -70,14 +67,12 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -92,7 +87,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -105,7 +99,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsDelete({ token: "' OR 1=1 --", project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
@@ -113,7 +106,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
@@ -121,7 +113,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -132,7 +123,6 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId })
@@ -141,5 +131,4 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

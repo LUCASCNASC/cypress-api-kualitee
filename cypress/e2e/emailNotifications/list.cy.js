@@ -22,7 +22,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     emailNotificationList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

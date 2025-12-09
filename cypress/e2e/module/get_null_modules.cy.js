@@ -75,7 +75,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'build_id', 'module_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -91,7 +91,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       getNullModules({

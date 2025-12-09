@@ -31,7 +31,7 @@ describe('API rest - Metas Delete - /metas/delete', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     metasDelete({ project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -46,7 +46,7 @@ describe('API rest - Metas Delete - /metas/delete', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     metasDelete({ token: validToken, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

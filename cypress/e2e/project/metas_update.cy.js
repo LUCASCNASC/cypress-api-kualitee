@@ -75,7 +75,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['meta_key', 'meta_value', 'meta_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {

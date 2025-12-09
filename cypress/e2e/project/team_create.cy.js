@@ -85,7 +85,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'project_user[0]', 'project_user[1]', 'project_user[2]', 'project_user[3]'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {

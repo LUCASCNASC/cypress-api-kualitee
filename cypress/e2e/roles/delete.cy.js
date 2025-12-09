@@ -33,7 +33,7 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     rolesDelete({ 'id[0]': validIdSingle }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

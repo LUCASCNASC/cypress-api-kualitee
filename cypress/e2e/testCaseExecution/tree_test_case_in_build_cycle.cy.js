@@ -33,7 +33,7 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     treeTestCaseInBuildCycle({
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     treeTestCaseInBuildCycle({
       token: validToken,

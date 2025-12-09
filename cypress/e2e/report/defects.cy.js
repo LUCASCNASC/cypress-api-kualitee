@@ -58,7 +58,7 @@ describe('API rest - Report Defects - /report/defects', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     reportDefects({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

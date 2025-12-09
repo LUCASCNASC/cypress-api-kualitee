@@ -100,7 +100,7 @@ describe('API rest - Cycle - Defects Update - /defects/update', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     defectsUpdate({
       project_id: validProjectId,
@@ -124,7 +124,7 @@ describe('API rest - Cycle - Defects Update - /defects/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'id', 'description'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -140,7 +140,7 @@ describe('API rest - Cycle - Defects Update - /defects/update', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       defectsUpdate({

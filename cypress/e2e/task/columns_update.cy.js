@@ -32,7 +32,7 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskColumnsUpdate({
       project_id: validProjectId,
@@ -56,7 +56,7 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskColumnsUpdate({
       token: validToken,

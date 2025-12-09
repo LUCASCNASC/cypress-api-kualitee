@@ -33,7 +33,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     treeRequirementInBuildModules({
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'build_id', 'module_id'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -73,7 +73,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'build_id', 'module_id'].forEach(field => {
     invalidValues.forEach(value => {

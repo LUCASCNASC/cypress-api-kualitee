@@ -36,7 +36,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  
   it('Status Code 400, 401, 403 - Falha sem token', () => {
     buildCreate({
       project_id: validProjectId,
@@ -88,7 +87,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
   ['project_id', 'start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
     it(`Status Code 400, 422 - Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -106,7 +104,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
   [null, '', {}, [], true, false].forEach(invalidValue => {
     ['start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
       it(`Status Code 400, 422, 404 - Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
@@ -141,7 +138,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  
   it('Status Code 200 - Ignora campo extra no body', () => {
     buildCreate({
       token: validToken,
@@ -156,7 +152,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Status Code 400, 405, 404 - Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -178,7 +173,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  
   it('Status Code 400, 415 - Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -197,7 +191,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildCreate({
@@ -212,7 +205,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     buildCreate({
@@ -227,7 +219,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Status Code 429 - Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -245,7 +236,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Status Code 200, 400, 401, 409 - Permite requisições duplicadas rapidamente', () => {
     buildCreate({

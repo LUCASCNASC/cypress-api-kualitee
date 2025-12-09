@@ -40,7 +40,7 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskLogtimeList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

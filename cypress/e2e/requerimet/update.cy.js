@@ -117,7 +117,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'id', 'requirement_title', 'requirement_summary', 'assignedto'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -135,7 +135,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   [
     { field: 'project_id', valid: validProjectId },

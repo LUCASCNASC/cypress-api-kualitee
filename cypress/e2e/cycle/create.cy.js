@@ -97,7 +97,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
   it('Falha sem token', () => {
     defectsCreate({
       project_id: validProjectId,
@@ -119,7 +118,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
   it('Falha sem project_id', () => {
     defectsCreate({
       token: validToken,
@@ -138,7 +136,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       defectsCreate({
@@ -163,7 +160,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  // --- Campos opcionais inválidos ---
   const invalidArray = [null, '', {}, true, false];
   [
     'build_id', 'module_id', 'source_name', 'defect_status', 'defect_type', 'editor', 'steps_to_reproduce',
@@ -185,32 +181,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  // --- Teste de Upload de Imagem (se suportado) ---
-  // Exemplo: adapte para seu plugin de upload, se necessário
-  /* 
-  it('Cria defeito com upload de imagem', () => {
-    cy.fixture('defect_image.png', 'base64').then(fileContent => {
-      cy.form_request(
-        'POST',
-        '/Defect/Create',
-        {
-          token: validToken,
-          project_id: validProjectId,
-          description: validDescription
-        },
-        [
-          { name: 'defect_image[]', fileName: 'defect_image.png', mimeType: 'image/png', fileContent, encoding: 'base64' }
-        ]
-      ).then(response => {
-        expect(response.status).to.eq(200);
-        expect(response.body).to.be.an('object');
-        expect(response.headers['content-type']).to.include('application/json');
-      });
-    });
-  });
-  */
-
-  
   it('Ignora campo extra no body', () => {
     defectsCreate({
       token: validToken,
@@ -221,7 +191,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -240,7 +209,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -257,7 +225,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsCreate({
@@ -270,7 +237,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     defectsCreate({
       token: validToken,
@@ -281,7 +247,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -296,7 +261,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     defectsCreate({
@@ -313,5 +277,4 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

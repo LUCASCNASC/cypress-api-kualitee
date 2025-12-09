@@ -26,7 +26,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskTimeHistory({ project_id: validProjectId, id: validTaskId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -41,7 +41,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskTimeHistory({ token: validToken, id: validTaskId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

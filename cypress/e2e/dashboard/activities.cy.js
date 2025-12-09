@@ -69,7 +69,7 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     dashboardActivities({ token: validToken, show: 'all' }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

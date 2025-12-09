@@ -36,7 +36,7 @@ describe('API rest - Task Time Log - /task/time/log', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskTimeLog({
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('API rest - Task Time Log - /task/time/log', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskTimeLog({
       token: validToken,

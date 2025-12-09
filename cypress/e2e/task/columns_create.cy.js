@@ -26,7 +26,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskColumnsCreate({ project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -41,7 +41,7 @@ describe('API rest - Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskColumnsCreate({ token: validToken, column_name: validColumnName }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

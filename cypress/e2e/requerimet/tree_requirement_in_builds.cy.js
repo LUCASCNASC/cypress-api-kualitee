@@ -31,7 +31,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     treeRequirementInBuilds({
       project_id: validProjectId,
@@ -68,7 +68,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'build_id'].forEach(field => {
     invalidValues.forEach(value => {

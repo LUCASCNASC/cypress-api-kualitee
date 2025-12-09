@@ -73,7 +73,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseUpdate({
       project_id: validProjectId,
@@ -105,7 +105,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'id', 't_name', 'summary', 't_execution_type', 't_testing_type', 't_priority'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -125,7 +125,7 @@ describe('API rest - Test Case Update - /test_case/update', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'id'].forEach(field => {
     invalidValues.forEach(value => {

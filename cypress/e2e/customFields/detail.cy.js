@@ -23,7 +23,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- NEGATIVO: Auth ---
   it('Falha sem token', () => {
     customfieldsDetail({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -38,7 +37,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  // --- id inválido, ausente, tipos errados, limites ---
   it('Falha sem id', () => {
     customfieldsDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -52,14 +50,12 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       });
     });
   });
-
   
   it('Ignora campo extra na query', () => {
     customfieldsDetail({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -73,7 +69,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       });
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsDetail({ token: "' OR 1=1 --", id: validId }).then(response => {
@@ -81,7 +76,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     customfieldsDetail({ token: validToken, id: validId }).then(response => {
@@ -89,7 +83,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -100,7 +93,6 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsDetail({ token: validToken, id: validId })
@@ -109,5 +101,4 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

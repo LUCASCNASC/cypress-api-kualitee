@@ -77,7 +77,7 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     approvedTc({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

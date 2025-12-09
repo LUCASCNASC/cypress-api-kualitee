@@ -33,7 +33,7 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     treeTestcaseInBuildCycleTs({
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'cycle_id', 'test_scenario_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -73,7 +73,7 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       treeTestcaseInBuildCycleTs({

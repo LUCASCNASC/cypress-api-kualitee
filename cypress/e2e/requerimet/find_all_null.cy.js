@@ -46,7 +46,7 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     findAllNull({
       project_id: validProjectId
@@ -75,7 +75,7 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'build_id', 'module_id'].forEach(field => {
     invalidValues.forEach(value => {

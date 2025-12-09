@@ -61,7 +61,7 @@ describe('API rest - Dashboard - Dashboard Tester Tray - /dashboard/tester_tray'
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     testerTray({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

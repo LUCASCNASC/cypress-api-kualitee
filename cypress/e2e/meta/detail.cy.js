@@ -25,7 +25,7 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     metasDetail({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +40,7 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     metasDetail({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

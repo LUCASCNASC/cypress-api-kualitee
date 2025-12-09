@@ -56,7 +56,7 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskCreate({
       project_id: validProjectId,

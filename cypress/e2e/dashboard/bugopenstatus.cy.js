@@ -79,7 +79,7 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     bugOpenStatus({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

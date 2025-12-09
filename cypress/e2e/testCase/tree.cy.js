@@ -29,7 +29,7 @@ describe('API rest - Test Case Tree - /test_case/tree', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseTree({
       project_id: validProjectId
@@ -58,7 +58,7 @@ describe('API rest - Test Case Tree - /test_case/tree', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id'].forEach(field => {
     invalidValues.forEach(value => {

@@ -48,7 +48,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     defectViewers({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

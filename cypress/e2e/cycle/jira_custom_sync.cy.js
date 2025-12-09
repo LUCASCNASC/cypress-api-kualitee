@@ -30,7 +30,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     jiraCustomSync({
       project_id: validProjectId,
@@ -52,7 +52,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'plugin_name'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -67,7 +67,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       jiraCustomSync({

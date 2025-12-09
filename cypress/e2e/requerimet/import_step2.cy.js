@@ -48,7 +48,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -65,7 +65,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'import_csv_file', 'assignedto', 'created_new'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       cy.fixture(validCsvPath, 'binary').then(CSVContent => {
@@ -88,7 +88,7 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
 
   invalidValues.forEach(project_id => {

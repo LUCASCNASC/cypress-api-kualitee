@@ -24,7 +24,7 @@ describe('API rest - Task List - /task/list', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

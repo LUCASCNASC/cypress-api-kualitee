@@ -48,7 +48,7 @@ describe('API rest - Project Detail - /project/details', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     projectDetails({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

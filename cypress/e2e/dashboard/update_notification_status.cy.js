@@ -62,7 +62,7 @@ describe('API rest - Dashboard - Dashboard Update Notification Status - /dashboa
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     updateNotificationStatus({ token: validToken, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

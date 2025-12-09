@@ -58,7 +58,7 @@ describe('API rest - Module List - /module/list', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     moduleList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

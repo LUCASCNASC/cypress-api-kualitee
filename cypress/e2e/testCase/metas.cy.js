@@ -29,7 +29,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseMetas({
       project_id: validProjectId
@@ -58,7 +58,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id'].forEach(field => {
     invalidValues.forEach(value => {

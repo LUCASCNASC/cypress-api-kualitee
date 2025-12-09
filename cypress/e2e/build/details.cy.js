@@ -22,7 +22,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     buildDetails({ project_id: validProjectId, build_id: validBuildId }).then(response => {
@@ -47,7 +46,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
-
   
   it('Falha sem project_id', () => {
     buildDetails({ token: validToken, build_id: validBuildId }).then(response => {
@@ -88,14 +86,12 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
-
   
   it('Ignora campo extra nos parâmetros', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -109,7 +105,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -122,7 +117,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam, outras não
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildDetails({ token: "' OR 1=1 --", project_id: validProjectId, build_id: validBuildId }).then(response => {
@@ -130,7 +124,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
@@ -138,7 +131,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -149,7 +141,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId })

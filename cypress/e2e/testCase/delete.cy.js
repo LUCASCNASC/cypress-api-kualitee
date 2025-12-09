@@ -46,7 +46,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseDelete({
       project_id: validProjectId,
@@ -87,7 +87,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'id[0]'].forEach(field => {
     invalidValues.forEach(value => {

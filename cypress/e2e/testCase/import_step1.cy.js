@@ -44,7 +44,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();

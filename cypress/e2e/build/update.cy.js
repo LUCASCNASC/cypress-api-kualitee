@@ -37,7 +37,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     buildUpdate({
@@ -94,7 +93,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
   ['project_id', 'start_date', 'end_date', 'build_id', 'id', 'description'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -113,7 +111,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
   [null, '', {}, [], true, false].forEach(invalidValue => {
     ['start_date', 'end_date', 'description'].forEach(field => {
       it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
@@ -181,7 +178,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     buildUpdate({
@@ -197,7 +193,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -220,7 +215,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -241,7 +235,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildUpdate({
@@ -257,7 +250,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     buildUpdate({
@@ -273,7 +265,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -292,7 +283,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     buildUpdate({
@@ -317,5 +307,4 @@ describe('API rest - Build - Builds Update - /build/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

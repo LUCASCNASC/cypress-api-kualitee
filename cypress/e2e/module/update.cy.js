@@ -88,7 +88,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'module_id', 'module_name', 'build_id', 'module_description'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -106,7 +106,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', {}, [], true, false].forEach(invalidValue => {
     ['module_name', 'module_description'].forEach(field => {
       it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {

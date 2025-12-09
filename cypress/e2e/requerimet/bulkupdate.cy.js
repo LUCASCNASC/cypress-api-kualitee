@@ -48,7 +48,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     bulkUpdate({
       project_id: validProjectId,
@@ -74,7 +74,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'requirement_id[0]', 'requirement_id[1]', 'module_id'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -91,7 +91,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   [
     { field: 'project_id', valid: validProjectId },

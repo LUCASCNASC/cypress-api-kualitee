@@ -32,7 +32,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     duplicateTestCase({
       project_id: validProjectId,
@@ -69,7 +69,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id'].forEach(field => {
     invalidValues.forEach(value => {

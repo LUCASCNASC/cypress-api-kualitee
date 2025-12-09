@@ -59,7 +59,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_name', 'project_description', 'project_type', 'project_os', 'project_devices', 'project_browser', 'project_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = { ...validBody };

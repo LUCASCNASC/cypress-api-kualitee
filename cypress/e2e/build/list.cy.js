@@ -32,7 +32,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(response.body).to.be.an('object');
     });
   });
-
   
   it('Falha sem token', () => {
     buildList({ project_id: validProjectId }).then(response => {
@@ -58,7 +57,7 @@ describe('API rest - Build - Build List - /build/list', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     buildList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -79,7 +78,6 @@ describe('API rest - Build - Build List - /build/list', () => {
     });
   });
 
-  // --- keyword inválida, limites ---
   [null, '', {}, [], true, false, 12345].forEach(keyword => {
     it(`Falha (ou ignora) com keyword inválida (${JSON.stringify(keyword)})`, () => {
       buildList({ token: validToken, project_id: validProjectId, keyword }).then(response => {
@@ -87,7 +85,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     buildList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
@@ -109,7 +106,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -122,7 +118,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     buildList({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
@@ -130,7 +125,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     buildList({ token: validToken, project_id: validProjectId }).then(response => {
@@ -138,7 +132,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -149,7 +142,6 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     buildList({ token: validToken, project_id: validProjectId })
@@ -158,5 +150,4 @@ describe('API rest - Build - Build List - /build/list', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -56,7 +56,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     defectsImportStep2(
       {
@@ -86,7 +86,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'import_csv_file', 'db_columns'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -102,7 +102,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       defectsImportStep2(

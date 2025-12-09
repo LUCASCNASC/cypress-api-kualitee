@@ -23,7 +23,7 @@ describe('API rest - Task Quik View - /task/quik/view', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskQuikView({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -38,7 +38,7 @@ describe('API rest - Task Quik View - /task/quik/view', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskQuikView({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

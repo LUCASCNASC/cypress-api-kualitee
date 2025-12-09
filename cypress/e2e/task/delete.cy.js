@@ -25,7 +25,7 @@ describe('API rest - Task Delete - /task/delete', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskDelete({ project_id: validProjectId, 'id[0]': validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +40,7 @@ describe('API rest - Task Delete - /task/delete', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskDelete({ token: validToken, 'id[0]': validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

@@ -49,7 +49,7 @@ describe('API rest - Project Integrations - /project/integrations', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     projectIntegrations({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

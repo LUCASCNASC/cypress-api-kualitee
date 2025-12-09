@@ -47,7 +47,7 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseTemplate({
       project_id: validProjectId,
@@ -88,7 +88,7 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id', 'testcase_id[0]'].forEach(field => {
     invalidValues.forEach(value => {

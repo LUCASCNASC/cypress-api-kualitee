@@ -61,7 +61,7 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskUpdate({
       project_id: validProjectId,

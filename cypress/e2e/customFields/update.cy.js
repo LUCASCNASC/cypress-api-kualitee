@@ -50,7 +50,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- NEGATIVO: Auth ---
   it('Falha sem token', () => {
     customfieldsUpdate({
       custom_field_id: validCustomFieldId,
@@ -76,7 +75,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- custom_field_id inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_id', () => {
     customfieldsUpdate({
       token: validToken,
@@ -102,7 +100,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- project_id[0] inválido, ausente, tipos errados, limites ---
   it('Falha sem project_id[0]', () => {
     customfieldsUpdate({
       token: validToken,
@@ -128,7 +125,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- custom_field_name inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_name', () => {
     customfieldsUpdate({
       token: validToken,
@@ -154,7 +150,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- custom_field_desc inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_desc', () => {
     customfieldsUpdate({
       token: validToken,
@@ -180,7 +175,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- field_type inválido (valores não permitidos) ---
   ['INVALID', 123, {}, [], true, false].forEach(field_type => {
     it(`Falha com field_type inválido (${JSON.stringify(field_type)})`, () => {
       customfieldsUpdate({
@@ -196,7 +190,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  // --- custom_field_module[0] inválido (valores não permitidos) ---
   ['INVALID', 123, {}, [], true, false].forEach(custom_field_module => {
     it(`Falha com custom_field_module[0] inválido (${JSON.stringify(custom_field_module)})`, () => {
       customfieldsUpdate({
@@ -212,7 +205,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     customfieldsUpdate({
@@ -226,7 +218,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -247,7 +238,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -266,7 +256,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsUpdate({
@@ -280,7 +269,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     customfieldsUpdate({
@@ -294,7 +282,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -311,7 +298,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsUpdate({
@@ -333,5 +319,4 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

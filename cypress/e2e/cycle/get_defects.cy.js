@@ -42,7 +42,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     getDefects({
       project_id: validProjectId
@@ -62,7 +62,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   it('Falha sem project_id', () => {
     getDefects({
       token: validToken
@@ -71,7 +71,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       getDefects({

@@ -23,7 +23,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     rolesEditPermission({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

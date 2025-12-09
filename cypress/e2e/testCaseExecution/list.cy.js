@@ -59,7 +59,7 @@ describe('API rest - Test Case Execution List - /test_case_execution/list', () =
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     execList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

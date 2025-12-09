@@ -68,7 +68,7 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     findNextTestCase({
       token: validToken,

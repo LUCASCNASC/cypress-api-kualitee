@@ -57,7 +57,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     rolesUpdate({
       id: validId,

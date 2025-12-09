@@ -24,7 +24,7 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     integrationDetail({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

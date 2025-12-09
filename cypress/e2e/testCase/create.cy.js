@@ -70,7 +70,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     testCaseCreate({
       project_id: validProjectId,
@@ -100,7 +100,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 't_name', 'summary', 't_execution_type', 't_testing_type', 't_priority'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -119,7 +119,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
   ['project_id'].forEach(field => {
     invalidValues.forEach(value => {

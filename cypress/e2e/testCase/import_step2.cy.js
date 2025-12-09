@@ -53,7 +53,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -94,7 +94,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'import_csv_file', 'assignedto', ...dbColumns.map((_, i) => `db_columns[${i}]`)].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {

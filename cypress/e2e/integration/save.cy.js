@@ -36,7 +36,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     integrationSave({
       plugin_name: validPluginName,

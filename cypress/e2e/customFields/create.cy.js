@@ -47,7 +47,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     customfieldsCreate({
       'project_id[0]': validProjectId,
@@ -71,7 +71,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- project_id[0] inválido, ausente, tipos errados, limites ---
   it('Falha sem project_id[0]', () => {
     customfieldsCreate({
       token: validToken,
@@ -95,7 +94,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- custom_field_name inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_name', () => {
     customfieldsCreate({
       token: validToken,
@@ -119,7 +117,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- custom_field_desc inválido, ausente, tipos errados, limites ---
   it('Falha sem custom_field_desc', () => {
     customfieldsCreate({
       token: validToken,
@@ -143,7 +140,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- field_type inválido (valores não permitidos) ---
   ['INVALID', 123, {}, [], true, false].forEach(field_type => {
     it(`Falha com field_type inválido (${JSON.stringify(field_type)})`, () => {
       customfieldsCreate({
@@ -158,7 +154,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  // --- custom_field_module[0] inválido (valores não permitidos) ---
   ['INVALID', 123, {}, [], true, false].forEach(custom_field_module => {
     it(`Falha com custom_field_module[0] inválido (${JSON.stringify(custom_field_module)})`, () => {
       customfieldsCreate({
@@ -174,7 +169,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     customfieldsCreate({
       token: validToken,
@@ -186,7 +180,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -206,7 +199,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -224,7 +216,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsCreate({
@@ -237,7 +228,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     customfieldsCreate({
@@ -250,7 +240,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -266,7 +255,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsCreate({
@@ -286,5 +274,4 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

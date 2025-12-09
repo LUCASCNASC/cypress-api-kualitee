@@ -22,7 +22,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
     });
   });
 
-  // --- NEGATIVO: Auth ---
   it('Falha sem token', () => {
     customfieldsList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -36,14 +35,12 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     customfieldsList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -58,7 +55,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -71,7 +67,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     customfieldsList({ token: "' OR 1=1 --" }).then(response => {
@@ -79,7 +74,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     customfieldsList({ token: validToken }).then(response => {
@@ -87,7 +81,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -98,7 +91,6 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     customfieldsList({ token: validToken })
@@ -107,5 +99,4 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

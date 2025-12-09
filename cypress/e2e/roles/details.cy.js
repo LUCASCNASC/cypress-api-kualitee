@@ -23,7 +23,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     rolesDetails({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

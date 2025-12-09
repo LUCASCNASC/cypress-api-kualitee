@@ -34,7 +34,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     metasUpdate({ project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -49,7 +49,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     metasUpdate({ token: validToken, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

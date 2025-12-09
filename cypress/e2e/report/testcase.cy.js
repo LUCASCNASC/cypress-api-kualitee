@@ -49,7 +49,7 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     reportTestcase({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

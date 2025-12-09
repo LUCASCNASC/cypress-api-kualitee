@@ -26,7 +26,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     treeBuildsCycle({ project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -41,7 +41,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     treeBuildsCycle({ token: validToken, build_id: validBuildId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

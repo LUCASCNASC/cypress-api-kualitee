@@ -76,7 +76,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     executeTest({
       token: validToken,

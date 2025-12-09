@@ -32,7 +32,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- NEGATIVO: AUTH ---
+  
   it('Falha sem token', () => {
     requirementsDelete({
       project_id: validProjectId,
@@ -54,7 +54,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'id[0]'].forEach(field => {
     it(`Falha sem campo obrigatório: ${field}`, () => {
       const body = {
@@ -69,7 +69,7 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
 
   ['project_id', 'id[0]'].forEach(field => {

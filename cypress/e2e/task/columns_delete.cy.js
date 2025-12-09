@@ -25,7 +25,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskColumnsDelete({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +40,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     taskColumnsDelete({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

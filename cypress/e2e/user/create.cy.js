@@ -88,7 +88,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['profile_username', 'first_name', 'last_name', 'email', 'role'].forEach(field => {
     it(`Falha com campo obrigatório ausente: ${field}`, () => {
       const body = { ...validBody };

@@ -34,7 +34,7 @@ describe('API rest - Task Columns View - /task/columns/view', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     taskColumnsView({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

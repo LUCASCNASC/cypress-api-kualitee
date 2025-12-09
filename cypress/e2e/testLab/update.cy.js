@@ -32,7 +32,7 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     manageTestCaseUpdate({
       project_id: validProjectId,
@@ -56,7 +56,7 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'node[to]', 'node[from]'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -72,7 +72,7 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       manageTestCaseUpdate({

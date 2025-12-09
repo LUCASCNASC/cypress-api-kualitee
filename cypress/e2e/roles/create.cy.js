@@ -38,7 +38,7 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     rolesCreate({ role_name: validRoleName, description: validDescription }).then(response => {
       expect([400, 401, 403]).to.include(response.status);

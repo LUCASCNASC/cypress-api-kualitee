@@ -60,7 +60,7 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     deleteAttachDefects({
       token: validToken,

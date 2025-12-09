@@ -48,7 +48,7 @@ describe('API rest - Project Delete - /project/delete', () => {
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     projectDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

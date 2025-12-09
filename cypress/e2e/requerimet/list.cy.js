@@ -66,7 +66,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect(response.body).to.be.an('object');
     });
   });
-
   
   it('Falha sem token', () => {
     requirementsList({ project_id: validProjectId }).then(response => {
@@ -91,8 +90,7 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
-
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     requirementsList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -112,8 +110,7 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
-
-  // --- Parâmetros opcionais inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(build_id => {
     it(`Falha (ou ignora) com build_id inválido (${JSON.stringify(build_id)})`, () => {
       requirementsList({ token: validToken, project_id: validProjectId, build_id }).then(response => {
@@ -129,14 +126,12 @@ describe('API rest - Requirements List - /requirements/list', () => {
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     requirementsList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -152,7 +147,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -164,7 +158,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsList({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
@@ -172,7 +165,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {
@@ -180,7 +172,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -192,7 +183,6 @@ describe('API rest - Requirements List - /requirements/list', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsList({ token: validToken, project_id: validProjectId })
       .then(() => requirementsList({ token: validToken, project_id: validProjectId }))
@@ -200,5 +190,4 @@ describe('API rest - Requirements List - /requirements/list', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

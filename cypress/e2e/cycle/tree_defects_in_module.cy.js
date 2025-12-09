@@ -29,7 +29,7 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
     });
   });
 
-  // --- NEGATIVO: Auth ---
+  
   it('Falha sem token', () => {
     treeDefectsInModule({
       project_id: validProjectId,
@@ -51,7 +51,7 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
     });
   });
 
-  // --- Campos obrigatórios ausentes ---
+  
   ['project_id', 'module_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
       const body = {
@@ -66,7 +66,7 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
     });
   });
 
-  // --- Campos obrigatórios inválidos ---
+  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       treeDefectsInModule({

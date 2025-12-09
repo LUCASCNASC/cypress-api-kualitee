@@ -61,7 +61,7 @@ describe('API rest - Dashboard - Dashboard Dropdown List - /dashboard/dropdown_l
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     dropdownList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

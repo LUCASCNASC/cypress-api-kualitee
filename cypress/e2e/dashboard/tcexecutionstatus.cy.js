@@ -76,7 +76,7 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   });
 
-  // --- project_id inválido, ausente, tipos errados, limites ---
+  
   it('Falha sem project_id', () => {
     tcExecutionStatus({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

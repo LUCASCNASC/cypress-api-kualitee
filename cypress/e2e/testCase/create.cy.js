@@ -70,7 +70,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseCreate({
       project_id: validProjectId,
@@ -141,7 +140,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     testCaseCreate({
       token: validToken,
@@ -180,7 +178,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -201,7 +198,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseCreate({
       token: "' OR 1=1 --",
@@ -217,7 +213,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseCreate({
       token: validToken,
@@ -233,7 +228,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseCreate({
@@ -252,7 +246,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseCreate({
       token: validToken,

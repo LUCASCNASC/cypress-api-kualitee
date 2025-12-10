@@ -36,7 +36,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     requirementsUpdate({
       token: validToken,
@@ -89,7 +89,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     requirementsUpdate({
       project_id: validProjectId,
@@ -216,7 +215,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     requirementsUpdate({
       token: validToken,
@@ -253,7 +251,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -273,7 +270,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsUpdate({
       token: "' OR 1=1 --",
@@ -288,7 +284,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     requirementsUpdate({
       token: validToken,
@@ -303,7 +298,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsUpdate({
@@ -321,7 +315,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsUpdate({
       token: validToken,

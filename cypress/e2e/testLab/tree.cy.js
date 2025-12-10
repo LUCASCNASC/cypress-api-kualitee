@@ -27,7 +27,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     manageTestCaseTree({
       project_id: validProjectId
@@ -47,7 +46,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     manageTestCaseTree({
       token: validToken
@@ -68,7 +66,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     manageTestCaseTree({
       token: validToken,
@@ -97,7 +94,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -113,7 +109,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     manageTestCaseTree({
       token: "' OR 1=1 --",
@@ -124,7 +119,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     manageTestCaseTree({
       token: validToken,
@@ -135,7 +129,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       manageTestCaseTree({
@@ -149,7 +142,6 @@ describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     manageTestCaseTree({
       token: validToken,

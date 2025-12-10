@@ -33,7 +33,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseTreeInBuildModules({
       project_id: validProjectId,
@@ -92,7 +91,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     testCaseTreeInBuildModules({
       token: validToken,
@@ -125,7 +123,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -143,7 +140,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseTreeInBuildModules({
       token: "' OR 1=1 --",
@@ -156,7 +152,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseTreeInBuildModules({
       token: validToken,
@@ -169,7 +164,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInBuildModules({
@@ -185,7 +179,6 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseTreeInBuildModules({
       token: validToken,

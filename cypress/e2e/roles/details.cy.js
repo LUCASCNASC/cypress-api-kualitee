@@ -23,7 +23,6 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     rolesDetails({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -87,7 +86,6 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesDetails({ token: "' OR 1=1 --", id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -95,7 +93,6 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     rolesDetails({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -103,7 +100,6 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesDetails({ token: validToken, id: validId })
@@ -114,7 +110,6 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesDetails({ token: validToken, id: validId })
       .then(() => rolesDetails({ token: validToken, id: validId }))

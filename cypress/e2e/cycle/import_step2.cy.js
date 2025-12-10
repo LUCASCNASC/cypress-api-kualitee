@@ -55,7 +55,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     defectsImportStep2(
@@ -85,7 +84,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       });
     });
   });
-
   
   ['project_id', 'import_csv_file', 'db_columns'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
@@ -101,7 +99,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       });
     });
   });
-
   
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
@@ -150,7 +147,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     defectsImportStep2(
@@ -166,7 +162,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -186,7 +181,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -204,7 +198,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsImportStep2(
@@ -220,7 +213,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectsImportStep2(
@@ -236,7 +228,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas importações rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -256,7 +247,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  // --- Duplicidade: Aceita importações idênticas sequenciais ---
   it('Permite importações duplicadas rapidamente', () => {
     defectsImportStep2(
       {
@@ -280,5 +270,4 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

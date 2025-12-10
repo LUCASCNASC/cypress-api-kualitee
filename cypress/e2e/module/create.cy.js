@@ -34,7 +34,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     moduleCreate({
       project_id: validProjectId,
@@ -146,7 +145,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     moduleCreate({
       token: validToken,
@@ -181,7 +179,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -200,7 +197,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleCreate({
       token: "' OR 1=1 --",
@@ -214,7 +210,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     moduleCreate({
       token: validToken,
@@ -228,7 +223,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleCreate({
@@ -245,7 +239,6 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleCreate({
       token: validToken,

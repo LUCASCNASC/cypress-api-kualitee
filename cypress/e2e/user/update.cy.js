@@ -29,7 +29,7 @@ describe('API rest - Users Update - /users/update', () => {
     user_id: 101 // Altere para um user_id válido no seu ambiente!
   };
 
-  // --- POSITIVOS ---
+  
   [7, 6, 2].forEach(role => {
     it(`Atualiza usuário com role válida (${role})`, () => {
       updateUser({ ...validBody, role, profile_username: 'updateuser' + Date.now(), email: `role${role}${Date.now()}@test.com` }).then(response => {
@@ -49,7 +49,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     updateUser(body).then(response => {
@@ -140,7 +139,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     updateUser({ ...validBody, extra: 'bar', profile_username: 'updateuser' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
@@ -180,7 +178,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -193,7 +190,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     updateUser({ ...validBody, token: "' OR 1=1 --", profile_username: 'updateuser' + Date.now(), email: `sec${Date.now()}@test.com` }).then((response) => {
       const body = JSON.stringify(response.body);
@@ -201,7 +197,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     updateUser({ ...validBody, profile_username: 'updateuser' + Date.now(), email: `hdr${Date.now()}@test.com` }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -209,7 +204,6 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       updateUser({ ...validBody, profile_username: 'updateuser' + Math.random(), email: `rl${Math.random()}@test.com` })

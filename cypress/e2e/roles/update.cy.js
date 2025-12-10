@@ -57,7 +57,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     rolesUpdate({
       id: validId,
@@ -168,7 +167,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     rolesUpdate({
       token: validToken,
@@ -202,7 +200,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -220,7 +217,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesUpdate({
       token: "' OR 1=1 --",
@@ -233,7 +229,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     rolesUpdate({
       token: validToken,
@@ -246,7 +241,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesUpdate({
@@ -262,7 +256,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesUpdate({
       token: validToken,

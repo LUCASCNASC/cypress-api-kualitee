@@ -32,7 +32,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     projectCreate(body).then(response => {
@@ -100,7 +99,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     projectCreate({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -122,7 +120,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -135,7 +132,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectCreate({ ...validBody, project_name: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -143,7 +139,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     projectCreate(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -151,7 +146,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectCreate(validBody)
@@ -162,7 +156,6 @@ describe('API rest - Project Create - /project/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     projectCreate(validBody)
       .then(() => projectCreate(validBody))

@@ -22,7 +22,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     archivedProjects({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -59,7 +58,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     archivedProjects({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -81,7 +79,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -94,7 +91,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     archivedProjects({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -102,7 +98,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     archivedProjects({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -110,7 +105,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       archivedProjects({ token: validToken })
@@ -121,7 +115,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     archivedProjects({ token: validToken })
       .then(() => archivedProjects({ token: validToken }))

@@ -22,7 +22,7 @@ describe('API rest - Update Password - /update_password', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     updatePassword({ ...validBody, activated_user_email: 'user'+Date.now()+'@test.com' }).then(response => {
       expect(response.status).to.eq(200);
@@ -107,7 +107,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     updatePassword({ ...validBody, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
@@ -129,7 +128,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -142,7 +140,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     updatePassword({ ...validBody, activated_tenant_id: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -150,7 +147,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     updatePassword(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -158,7 +154,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  
   it('Falha após múltiplas trocas rápidas de senha (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       updatePassword({ ...validBody, activated_user_email: 'user'+Math.random()+'@test.com' })

@@ -38,7 +38,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     rolesCreate({ role_name: validRoleName, description: validDescription }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -91,7 +90,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -113,7 +111,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -126,7 +123,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesCreate({ token: "' OR 1=1 --", role_name: validRoleName, description: validDescription }).then(response => {
       const body = JSON.stringify(response.body);
@@ -134,7 +130,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -142,7 +137,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
@@ -153,7 +147,6 @@ describe('API rest - Roles Create - /roles/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
       .then(() => rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }))

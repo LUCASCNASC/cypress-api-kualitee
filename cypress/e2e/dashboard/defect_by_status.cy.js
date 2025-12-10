@@ -42,7 +42,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Falha sem token', () => {
     defectByStatus({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -79,7 +78,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Falha sem project_id', () => {
     defectByStatus({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -100,7 +98,7 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  // --- Campos opcionais: tipos errados, limites, valores inválidos ---
+  
   const optionalFields = [
     { key: 'build_id', valid: 1, invalids: [null, '', 'abc', -1, {}, [], true, false] },
     { key: 'module_id', valid: 2, invalids: [null, '', 'abc', -1, {}, [], true, false] },
@@ -122,7 +120,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     defectByStatus({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -144,7 +141,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -157,7 +153,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectByStatus({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -165,7 +160,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     defectByStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -173,7 +167,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectByStatus({ token: validToken, project_id: validProjectId })
@@ -184,7 +177,6 @@ describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     defectByStatus({ token: validToken, project_id: validProjectId })
       .then(() => defectByStatus({ token: validToken, project_id: validProjectId }))

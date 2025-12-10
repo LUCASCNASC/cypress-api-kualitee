@@ -31,7 +31,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     projectStatus({
       project_status: validProjectStatus,
@@ -127,7 +126,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     projectStatus({
       token: validToken,
@@ -160,7 +158,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Falha com Content-Type text/plain', () => {
     projectStatus({
       token: validToken,
@@ -172,7 +169,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectStatus({
       token: "' OR 1=1 --",
@@ -185,7 +181,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     projectStatus({
       token: validToken,
@@ -198,7 +193,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectStatus({
@@ -214,7 +208,6 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     projectStatus({
       token: validToken,

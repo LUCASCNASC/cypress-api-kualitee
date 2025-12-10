@@ -57,7 +57,6 @@ describe('API rest - Build - Build List - /build/list', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     buildList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);

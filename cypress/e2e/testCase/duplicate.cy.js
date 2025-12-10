@@ -32,7 +32,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     duplicateTestCase({
       project_id: validProjectId,
@@ -103,7 +102,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     duplicateTestCase({
       token: validToken,
@@ -134,7 +132,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -151,7 +148,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     duplicateTestCase({
       token: "' OR 1=1 --",
@@ -163,7 +159,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     duplicateTestCase({
       token: validToken,
@@ -175,7 +170,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       duplicateTestCase({
@@ -190,7 +184,6 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  
   it('Permite duplicar o mesmo caso de teste rapidamente', () => {
     duplicateTestCase({
       token: validToken,

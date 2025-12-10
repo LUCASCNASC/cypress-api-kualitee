@@ -29,7 +29,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     moduleDelete({
       project_id: validProjectId,
@@ -132,7 +131,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     moduleDelete({
       token: validToken,
@@ -163,7 +161,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -180,7 +177,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleDelete({
       token: "' OR 1=1 --",
@@ -192,7 +188,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     moduleDelete({
       token: validToken,
@@ -204,7 +199,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleDelete({
@@ -219,7 +213,6 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleDelete({
       token: validToken,

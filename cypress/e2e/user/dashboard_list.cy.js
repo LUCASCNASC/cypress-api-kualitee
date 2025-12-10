@@ -25,7 +25,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     dashboardList({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -65,7 +64,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     dashboardList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -86,7 +84,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -99,7 +96,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     dashboardList({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -107,7 +103,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     dashboardList({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -115,7 +110,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       dashboardList({ token: validToken })
@@ -126,7 +120,6 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     dashboardList({ token: validToken })
       .then(() => dashboardList({ token: validToken }))

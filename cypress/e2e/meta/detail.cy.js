@@ -25,7 +25,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     metasDetail({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +39,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     metasDetail({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -70,7 +68,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -92,7 +89,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +101,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasDetail({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +108,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +115,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasDetail({ token: validToken, project_id: validProjectId, id: validId })
@@ -132,7 +125,6 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => metasDetail({ token: validToken, project_id: validProjectId, id: validId }))

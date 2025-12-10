@@ -29,7 +29,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     requirementsParents({
       project_id: validProjectId
@@ -71,7 +70,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     requirementsParents({
       token: validToken,
@@ -100,7 +98,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +113,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsParents({
       token: "' OR 1=1 --",
@@ -127,7 +123,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     requirementsParents({
       token: validToken,
@@ -138,7 +133,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsParents({
@@ -152,7 +146,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsParents({
       token: validToken,

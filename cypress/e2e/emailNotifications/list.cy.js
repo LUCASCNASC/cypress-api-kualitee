@@ -21,7 +21,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     emailNotificationList({ }).then(response => {
@@ -36,14 +35,12 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     emailNotificationList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -58,7 +55,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -71,7 +67,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     emailNotificationList({ token: "' OR 1=1 --" }).then(response => {
@@ -79,7 +74,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     emailNotificationList({ token: validToken }).then(response => {
@@ -87,7 +81,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -98,7 +91,6 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     emailNotificationList({ token: validToken })
@@ -107,5 +99,4 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -46,7 +46,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Falha sem token', () => {
     findAllNull({
       project_id: validProjectId
@@ -94,7 +93,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     findAllNull({
       token: validToken,
@@ -123,7 +121,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -139,7 +136,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     findAllNull({
       token: "' OR 1=1 --",
@@ -150,7 +146,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     findAllNull({
       token: validToken,
@@ -161,7 +156,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       findAllNull({
@@ -175,7 +169,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     findAllNull({
       token: validToken,

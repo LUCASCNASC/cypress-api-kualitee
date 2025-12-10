@@ -40,7 +40,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskLogtimeList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -70,7 +69,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskLogtimeList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -92,7 +90,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +102,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskLogtimeList({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +109,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskLogtimeList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +116,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskLogtimeList({ token: validToken, project_id: validProjectId })
@@ -132,7 +126,6 @@ describe('API rest - Task Logtime List - /task/logtime_list', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskLogtimeList({ token: validToken, project_id: validProjectId })
       .then(() => taskLogtimeList({ token: validToken, project_id: validProjectId }))

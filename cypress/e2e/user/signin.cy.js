@@ -18,7 +18,7 @@ describe('API rest - Login - /auth/signin - Testes Avançados', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     login({ email_id: validEmail, password: validPassword, subdomain: validSubdomain }).then((response) => {
       expect(response.status).to.eq(200);

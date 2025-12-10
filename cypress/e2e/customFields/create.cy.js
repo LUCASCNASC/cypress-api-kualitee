@@ -47,7 +47,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  
   it('Falha sem token', () => {
     customfieldsCreate({
       'project_id[0]': validProjectId,

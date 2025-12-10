@@ -33,7 +33,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Falha sem token', () => {
     treeTestcaseInCycleTs({
       project_id: validProjectId,
@@ -113,7 +112,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     treeTestcaseInCycleTs({
       token: validToken,
@@ -146,7 +144,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -164,7 +161,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeTestcaseInCycleTs({
       token: "' OR 1=1 --",
@@ -177,7 +173,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     treeTestcaseInCycleTs({
       token: validToken,
@@ -190,7 +185,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseInCycleTs({
@@ -206,7 +200,6 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     treeTestcaseInCycleTs({
       token: validToken,

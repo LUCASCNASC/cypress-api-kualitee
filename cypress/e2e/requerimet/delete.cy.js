@@ -32,7 +32,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     requirementsDelete({
       project_id: validProjectId,
@@ -100,7 +99,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     requirementsDelete({
       token: validToken,
@@ -131,7 +129,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -148,7 +145,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     requirementsDelete({
       token: "' OR 1=1 --",
@@ -160,7 +156,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     requirementsDelete({
       token: validToken,
@@ -172,7 +167,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsDelete({
@@ -187,7 +181,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     requirementsDelete({
       token: validToken,

@@ -23,7 +23,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     projectMetas({ meta_type: validMetaType }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -63,7 +62,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Ignora campo extra nos parâmetros', () => {
     projectMetas({ token: validToken, meta_type: validMetaType, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -84,7 +82,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -97,7 +94,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectMetas({ token: "' OR 1=1 --", meta_type: validMetaType }).then(response => {
       const body = JSON.stringify(response.body);
@@ -105,7 +101,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -113,7 +108,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectMetas({ token: validToken, meta_type: validMetaType })
@@ -124,7 +118,6 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     projectMetas({ token: validToken, meta_type: validMetaType })
       .then(() => projectMetas({ token: validToken, meta_type: validMetaType }))

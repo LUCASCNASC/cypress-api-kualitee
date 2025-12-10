@@ -31,7 +31,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     metasUpdate({
       meta_key: validMetaKey,
@@ -133,7 +132,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     metasUpdate({
       token: validToken,
@@ -166,7 +164,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -184,7 +181,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasUpdate({
       token: "' OR 1=1 --",
@@ -197,7 +193,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     metasUpdate({
       token: validToken,
@@ -210,7 +205,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasUpdate({
@@ -226,7 +220,6 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     metasUpdate({
       token: validToken,

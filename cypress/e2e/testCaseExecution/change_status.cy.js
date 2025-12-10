@@ -34,7 +34,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Falha sem token', () => {
     changeStatus({
       project_id: validProjectId,
@@ -62,7 +61,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Falha sem project_id', () => {
     changeStatus({
       token: validToken,
@@ -151,7 +149,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     changeStatus({
       token: validToken,
@@ -188,7 +185,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -208,7 +204,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     changeStatus({
       token: "' OR 1=1 --",
@@ -223,7 +218,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     changeStatus({
       token: validToken,
@@ -238,7 +232,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       changeStatus({
@@ -256,7 +249,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     changeStatus({
       token: validToken,

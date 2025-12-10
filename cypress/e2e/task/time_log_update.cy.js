@@ -39,7 +39,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskTimeLogUpdate({
       project_id: validProjectId,
@@ -77,7 +76,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskTimeLogUpdate({
       token: validToken,
@@ -252,7 +250,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskTimeLogUpdate({
       token: validToken,
@@ -299,7 +296,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -324,7 +320,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskTimeLogUpdate({
       token: "' OR 1=1 --",
@@ -344,7 +339,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskTimeLogUpdate({
       token: validToken,
@@ -364,7 +358,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskTimeLogUpdate({
@@ -387,7 +380,6 @@ describe('API rest - Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskTimeLogUpdate({
       token: validToken,

@@ -24,7 +24,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     metasProjectMetas({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -39,7 +38,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     metasProjectMetas({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -54,7 +52,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -76,7 +73,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -89,7 +85,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasProjectMetas({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -97,7 +92,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -105,7 +99,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasProjectMetas({ token: validToken, project_id: validProjectId })
@@ -116,7 +109,6 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId })
       .then(() => metasProjectMetas({ token: validToken, project_id: validProjectId }))

@@ -41,7 +41,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       expect(response.body).to.have.property('success', true);
     });
   });
-
   
   it('Falha sem token', () => {
     scenarioTotal({ project_id: validProjectId }).then(response => {
@@ -82,7 +81,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- NEGATIVOS: project_id inválido, ausente, tipos errados ---
   it('Falha sem project_id', () => {
     const { project_id, ...body } = validBody;
     scenarioTotal(body).then(response => {
@@ -106,7 +104,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  // --- Demais campos: build_id, module_id, requirement, created_by ---
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(val => {
     ['build_id', 'module_id'].forEach(field => {
       it(`Aceita/rejeita ${field} com valor ${JSON.stringify(val)}`, () => {
@@ -132,7 +129,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     scenarioTotal({ ...validBody, extra: 'foo' }).then(response => {
@@ -141,7 +137,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
     });
   });
 
-  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -155,7 +150,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -168,7 +162,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     scenarioTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
@@ -176,7 +169,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     scenarioTotal(validBody).then(response => {
@@ -184,7 +176,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -195,7 +186,6 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     scenarioTotal(validBody)
@@ -204,5 +194,4 @@ describe('API rest - Dashboard - Dashboard Test Scenario Total - /dashboard/test
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

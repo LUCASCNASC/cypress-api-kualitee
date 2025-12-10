@@ -23,7 +23,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     defectViewers({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -48,7 +47,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     defectViewers({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -69,7 +67,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Ignora campo extra nos parâmetros', () => {
     defectViewers({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -90,7 +87,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -103,7 +99,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectViewers({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -111,7 +106,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     defectViewers({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -119,7 +113,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectViewers({ token: validToken, project_id: validProjectId })
@@ -130,7 +123,6 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     defectViewers({ token: validToken, project_id: validProjectId })
       .then(() => defectViewers({ token: validToken, project_id: validProjectId }))

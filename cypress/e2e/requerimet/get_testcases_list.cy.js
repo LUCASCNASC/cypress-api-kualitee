@@ -29,7 +29,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Falha sem token', () => {
     getTestcasesList({
       project_id: validProjectId
@@ -71,7 +70,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     getTestcasesList({
       token: validToken,
@@ -100,7 +98,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +113,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getTestcasesList({
       token: "' OR 1=1 --",
@@ -127,7 +123,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     getTestcasesList({
       token: validToken,
@@ -138,7 +133,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getTestcasesList({
@@ -152,7 +146,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     getTestcasesList({
       token: validToken,

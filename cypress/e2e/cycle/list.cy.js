@@ -71,7 +71,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     defectsList({
       project_id: validProjectId
@@ -90,7 +89,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       });
     });
   });
-
   
   it('Falha sem project_id', () => {
     defectsList({
@@ -100,7 +98,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
       defectsList({
@@ -112,7 +109,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Campos opcionais inválidos ---
   const invalidArray = [null, '', 'abc', 0, -1, {}, true, false];
   ['build_id', 'module_id', 'test_scenario_id', 'defect_viewers'].forEach(field => {
     invalidArray.forEach(value => {
@@ -129,7 +125,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // Array e tipos alternativos para os arrays opcionais
   [null, '', 'abc', {}, true, false].forEach(value => {
     ['assignto', 'status', 'created_by'].forEach(field => {
       it(`Falha com campo ${field} inválido (${JSON.stringify(value)})`, () => {
@@ -145,7 +140,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  // --- Exportação ---
   it('Exporta lista de defeitos para CSV', () => {
     defectsList({
       token: validToken,
@@ -184,7 +178,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     defectsList({
@@ -195,7 +188,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -213,7 +205,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -229,7 +220,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsList({
@@ -240,7 +230,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectsList({
@@ -251,7 +240,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -265,7 +253,6 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     defectsList({
@@ -280,5 +267,4 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

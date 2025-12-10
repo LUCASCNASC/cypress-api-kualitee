@@ -26,7 +26,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  
   it('Falha sem token', () => {
     defectMetas({
       project_id: validProjectId

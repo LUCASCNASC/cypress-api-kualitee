@@ -64,7 +64,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseApprove({
       project_id: validProjectId,
@@ -152,7 +151,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     testCaseApprove({
       token: validToken,
@@ -185,7 +183,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -203,7 +200,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseApprove({
       token: "' OR 1=1 --",
@@ -216,7 +212,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseApprove({
       token: validToken,
@@ -229,7 +224,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const body = {
       token: validToken,
@@ -244,7 +238,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
   it('Permite aprovações duplicadas rapidamente', () => {
     testCaseApprove({
       token: validToken,

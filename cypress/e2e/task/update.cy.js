@@ -61,7 +61,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskUpdate({
       project_id: validProjectId,
@@ -210,7 +209,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskUpdate({
       token: validToken,
@@ -253,7 +251,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -276,7 +273,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskUpdate({
       token: "' OR 1=1 --",
@@ -294,7 +290,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskUpdate({
       token: validToken,
@@ -312,7 +307,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskUpdate({
@@ -333,7 +327,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskUpdate({
       token: validToken,

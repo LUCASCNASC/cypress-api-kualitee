@@ -34,7 +34,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Falha sem token', () => {
     deleteAttachDefects({
       project_id: validProjectId,
@@ -60,7 +59,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Falha sem project_id', () => {
     deleteAttachDefects({
       token: validToken,
@@ -164,7 +162,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     deleteAttachDefects({
       token: validToken,
@@ -199,7 +196,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -218,7 +214,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     deleteAttachDefects({
       token: "' OR 1=1 --",
@@ -232,7 +227,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     deleteAttachDefects({
       token: validToken,
@@ -246,7 +240,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteAttachDefects({
@@ -263,7 +256,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     deleteAttachDefects({
       token: validToken,

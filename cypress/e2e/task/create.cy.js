@@ -56,7 +56,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskCreate({
       project_id: validProjectId,
@@ -158,7 +157,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskCreate({
       token: validToken,
@@ -195,7 +193,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -215,7 +212,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskCreate({
       token: "' OR 1=1 --",
@@ -230,7 +226,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskCreate({
       token: validToken,
@@ -245,7 +240,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskCreate({
@@ -263,7 +257,6 @@ describe('API rest - Task Create - /task/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskCreate({
       token: validToken,

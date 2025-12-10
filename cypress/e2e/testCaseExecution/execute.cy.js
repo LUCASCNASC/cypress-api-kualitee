@@ -42,7 +42,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Falha sem token', () => {
     executeTest({
       project_id: validProjectId,
@@ -76,7 +75,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Falha sem project_id', () => {
     executeTest({
       token: validToken,
@@ -333,7 +331,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     executeTest({
       token: validToken,
@@ -376,7 +373,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -399,7 +395,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     executeTest({
       token: "' OR 1=1 --",
@@ -417,7 +412,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     executeTest({
       token: validToken,
@@ -435,7 +429,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       executeTest({
@@ -456,7 +449,6 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     executeTest({
       token: validToken,

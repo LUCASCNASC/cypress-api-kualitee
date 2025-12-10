@@ -24,7 +24,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskColumnsDetails({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -39,7 +38,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskColumnsDetails({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -103,7 +101,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsDetails({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -111,7 +108,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -119,7 +115,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId })
@@ -130,7 +125,6 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }))

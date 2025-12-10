@@ -25,7 +25,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskColumnsDelete({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +39,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskColumnsDelete({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -70,7 +68,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -92,7 +89,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -105,7 +101,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsDelete({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -113,7 +108,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -121,7 +115,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId })
@@ -132,7 +125,6 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }))

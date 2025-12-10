@@ -29,7 +29,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     metasCreate({
       meta_key: validMetaKey,
@@ -101,7 +100,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     metasCreate({
       token: validToken,
@@ -132,7 +130,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -149,7 +146,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasCreate({
       token: "' OR 1=1 --",
@@ -161,7 +157,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     metasCreate({
       token: validToken,
@@ -173,7 +168,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasCreate({
@@ -188,7 +182,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     metasCreate({
       token: validToken,

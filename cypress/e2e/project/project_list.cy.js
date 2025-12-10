@@ -22,7 +22,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     projectList({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -47,14 +46,12 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     projectList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  
   it('Falha com Content-Type text/plain', () => {
     projectList({ token: validToken }, { headers: { 'Content-Type': 'text/plain' } }).then(response => {
       expect([400, 415]).to.include(response.status);
@@ -76,7 +73,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectList({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -84,7 +80,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     projectList({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -92,7 +87,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectList({ token: validToken })
@@ -103,7 +97,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     projectList({ token: validToken })
       .then(() => projectList({ token: validToken }))

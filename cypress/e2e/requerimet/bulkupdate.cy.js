@@ -48,7 +48,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Falha sem token', () => {
     bulkUpdate({
       project_id: validProjectId,
@@ -116,7 +115,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     bulkUpdate({
       token: validToken,
@@ -151,7 +149,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -170,7 +167,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     bulkUpdate({
       token: "' OR 1=1 --",
@@ -184,7 +180,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     bulkUpdate({
       token: validToken,
@@ -198,7 +193,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       bulkUpdate({
@@ -215,7 +209,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     bulkUpdate({
       token: validToken,

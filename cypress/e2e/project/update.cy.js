@@ -33,7 +33,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     projectUpdate(body).then(response => {
@@ -110,7 +109,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     projectUpdate({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -132,7 +130,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -145,7 +142,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectUpdate({ ...validBody, project_name: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -153,7 +149,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     projectUpdate(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -161,7 +156,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       projectUpdate(validBody)
@@ -172,7 +166,6 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     projectUpdate(validBody)
       .then(() => projectUpdate(validBody))

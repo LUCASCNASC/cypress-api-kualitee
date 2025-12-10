@@ -29,7 +29,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     defectsDeleteImage({
@@ -51,7 +50,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       });
     });
   });
-
   
   ['project_id', 'id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
@@ -66,7 +64,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       });
     });
   });
-
   
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
@@ -91,7 +88,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     defectsDeleteImage({
@@ -104,7 +100,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
       cy.request({
@@ -122,7 +117,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -140,7 +134,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsDeleteImage({
       token: "' OR 1=1 --",
@@ -151,7 +144,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectsDeleteImage({
@@ -164,7 +156,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDeleteImage({
@@ -179,7 +170,6 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  // --- Duplicidade: Aceita deleções idênticas sequenciais ---
   it('Permite deleções duplicadas rapidamente', () => {
     defectsDeleteImage({
       token: validToken,
@@ -195,5 +185,4 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

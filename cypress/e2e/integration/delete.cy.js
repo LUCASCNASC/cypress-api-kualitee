@@ -35,7 +35,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     integrationSave({
@@ -64,7 +63,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- plugin_name inválido, ausente, tipos errados, limites ---
   it('Falha sem plugin_name', () => {
     integrationSave({
       token: validToken,
@@ -92,7 +90,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- username inválido, ausente, tipos errados, limites ---
   it('Falha sem username', () => {
     integrationSave({
       token: validToken,
@@ -120,7 +117,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- password inválido, ausente, tipos errados, limites ---
   it('Falha sem password', () => {
     integrationSave({
       token: validToken,
@@ -148,7 +144,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- plugin_url inválido, ausente, tipos errados, limites ---
   it('Falha sem plugin_url', () => {
     integrationSave({
       token: validToken,
@@ -176,7 +171,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  // --- id inválido, ausente, tipos errados, limites ---
   it('Falha sem id', () => {
     integrationSave({
       token: validToken,
@@ -203,7 +197,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     integrationSave({
@@ -218,7 +211,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -240,7 +232,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -261,7 +252,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     integrationSave({
       token: "' OR 1=1 --",
@@ -275,7 +265,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     integrationSave({
@@ -290,7 +279,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -308,7 +296,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     integrationSave({
@@ -331,5 +318,4 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

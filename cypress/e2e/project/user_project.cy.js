@@ -21,7 +21,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     userProject({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -58,7 +57,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Ignora campo extra nos parâmetros', () => {
     userProject({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -79,7 +77,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json no GET', () => {
     cy.request({
       method: 'GET',
@@ -92,7 +89,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     userProject({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -100,7 +96,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     userProject({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -108,7 +103,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       userProject({ token: validToken })
@@ -119,7 +113,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     userProject({ token: validToken })
       .then(() => userProject({ token: validToken }))

@@ -41,7 +41,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect(response.body).to.be.an('object');
     });
   });
-
   
   it('Falha sem token', () => {
     bugOpenStatus({ project_id: validProjectId }).then(response => {
@@ -78,7 +77,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect([400, 401, 403]).to.include(response.status);
     });
   });
-
   
   it('Falha sem project_id', () => {
     bugOpenStatus({ token: validToken }).then(response => {
@@ -100,7 +98,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
     });
   });
 
-  // --- Campos opcionais: tipos errados, limites, valores inválidos ---
   const optionalFields = [
     { key: 'build_id', valid: 1, invalids: [null, '', 'abc', -1, {}, [], true, false] },
     { key: 'module_id', valid: 2, invalids: [null, '', 'abc', -1, {}, [], true, false] },
@@ -121,14 +118,12 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     bugOpenStatus({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -143,7 +138,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -156,7 +150,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     bugOpenStatus({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
@@ -164,7 +157,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     bugOpenStatus({ token: validToken, project_id: validProjectId }).then(response => {
@@ -172,7 +164,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -183,7 +174,6 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     bugOpenStatus({ token: validToken, project_id: validProjectId })
@@ -192,5 +182,4 @@ describe('API rest - Dashboard - Dashboard Bug Open Status - /dashboard/bugopens
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

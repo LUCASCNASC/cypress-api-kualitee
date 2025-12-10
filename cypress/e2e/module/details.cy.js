@@ -24,7 +24,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     moduleDetails({ project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -90,7 +89,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Ignora campo extra nos parâmetros', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -111,7 +109,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -124,7 +121,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleDetails({ token: "' OR 1=1 --", project_id: validProjectId, module_id: validModuleId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -132,7 +128,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -140,7 +135,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId })
@@ -151,7 +145,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId })
       .then(() => moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }))

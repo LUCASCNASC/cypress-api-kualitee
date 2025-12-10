@@ -14,7 +14,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   [0, 1, 2, undefined].forEach((status) => {
     it(`Status Code 200 ${status === undefined ? 'default' : status}`, () => {
       listUsers({ token: validToken, ...(status !== undefined ? { user_status: status } : {}) }).then((response) => {
@@ -69,7 +69,6 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     listUsers({ token: validToken, user_status: 0, extra: 'foo' }).then((response) => {
       expect(response.status).to.eq(200);
@@ -103,7 +102,6 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -116,7 +114,6 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     listUsers({ token: "' OR 1=1 --", user_status: 0 }).then((response) => {
       const body = JSON.stringify(response.body);
@@ -124,7 +121,6 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     listUsers({ token: validToken, user_status: 0 }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -132,7 +128,6 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() => listUsers({ token: validToken, user_status: 0 }));
     cy.wrap(Promise.all(requests)).then((responses) => {

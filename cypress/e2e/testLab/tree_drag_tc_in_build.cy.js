@@ -29,7 +29,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Falha sem token', () => {
     treeDragTcInBuild({
       project_id: validProjectId,
@@ -91,7 +90,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     treeDragTcInBuild({
       token: validToken,
@@ -122,7 +120,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -139,7 +136,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeDragTcInBuild({
       token: "' OR 1=1 --",
@@ -151,7 +147,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     treeDragTcInBuild({
       token: validToken,
@@ -163,7 +158,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDragTcInBuild({
@@ -178,7 +172,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     treeDragTcInBuild({
       token: validToken,

@@ -42,7 +42,7 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     }
   }
 
-  // --- POSITIVOS ---
+  
   [7, 6, 2].forEach(role => {
     it(`Salva perfil com role válida (${role})`, () => {
       saveProfile({ ...validBody, role, profile_username: 'profileuser' + Date.now(), email: `role${role}${Date.now()}@test.com` }).then(response => {
@@ -113,7 +113,6 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     saveProfile({ ...validBody, extra: 'foo', profile_username: 'profileuser' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
@@ -150,7 +149,6 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -176,7 +174,6 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     saveProfile({ ...validBody, profile_username: "' OR 1=1 --", email: `sec${Date.now()}@test.com` }).then(response => {
       const body = JSON.stringify(response.body);
@@ -184,7 +181,6 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     saveProfile({ ...validBody, profile_username: 'profileuser' + Date.now(), email: `hdr${Date.now()}@test.com` }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -192,7 +188,6 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  
   it('Falha após múltiplos saves rápidos (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       saveProfile({ ...validBody, profile_username: 'profileuser' + Math.random(), email: `rl${Math.random()}@test.com` })

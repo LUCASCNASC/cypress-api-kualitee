@@ -29,7 +29,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseMetas({
       project_id: validProjectId
@@ -75,7 +74,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     testCaseMetas({
       token: validToken,
@@ -104,7 +102,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -120,7 +117,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseMetas({
       token: "' OR 1=1 --",
@@ -131,7 +127,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseMetas({
       token: validToken,
@@ -142,7 +137,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseMetas({
@@ -156,7 +150,6 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseMetas({
       token: validToken,

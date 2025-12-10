@@ -28,7 +28,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     defectsDetails({
@@ -50,7 +49,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       });
     });
   });
-
   
   ['project_id', 'defect_id'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
@@ -65,7 +63,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       });
     });
   });
-
   
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
@@ -90,7 +87,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       });
     });
   });
-
   
   it('Ignora parâmetro extra na query', () => {
     defectsDetails({
@@ -102,7 +98,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -121,7 +116,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
@@ -137,7 +131,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectsDetails({
@@ -149,7 +142,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectsDetails({
@@ -161,7 +153,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas consultas rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -177,7 +168,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  // --- Duplicidade: Aceita consultas idênticas sequenciais ---
   it('Permite consultas duplicadas rapidamente', () => {
     defectsDetails({
       token: validToken,

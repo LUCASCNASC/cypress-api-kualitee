@@ -32,7 +32,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Falha sem token', () => {
     manageTestCaseUpdate({
       project_id: validProjectId,
@@ -114,7 +113,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     manageTestCaseUpdate({
       token: validToken,
@@ -147,7 +145,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -165,7 +162,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     manageTestCaseUpdate({
       token: "' OR 1=1 --",
@@ -178,7 +174,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     manageTestCaseUpdate({
       token: validToken,
@@ -191,7 +186,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       manageTestCaseUpdate({
@@ -207,7 +201,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     manageTestCaseUpdate({
       token: validToken,

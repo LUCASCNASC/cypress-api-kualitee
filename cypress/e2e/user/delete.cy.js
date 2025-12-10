@@ -16,7 +16,7 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.status).to.eq(200);
@@ -34,7 +34,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     deleteUser({ 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -95,7 +94,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
@@ -117,7 +115,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -130,7 +127,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     deleteUser({ token: "' OR 1=1 --", 'user_id[0]': validUserId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -138,7 +134,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -146,7 +141,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteUser({ token: validToken, 'user_id[0]': validUserId })

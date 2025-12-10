@@ -31,7 +31,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     getNullModules({
       project_id: validProjectId,
@@ -131,7 +130,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     getNullModules({
       token: validToken,
@@ -164,7 +162,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -182,7 +179,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getNullModules({
       token: "' OR 1=1 --",
@@ -195,7 +191,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     getNullModules({
       token: validToken,
@@ -208,7 +203,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getNullModules({
@@ -224,7 +218,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     getNullModules({
       token: validToken,

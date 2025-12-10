@@ -32,7 +32,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskColumnsUpdate({
       project_id: validProjectId,
@@ -56,7 +55,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskColumnsUpdate({
       token: validToken,
@@ -128,7 +126,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     taskColumnsUpdate({
       token: validToken,
@@ -161,7 +158,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -179,7 +175,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskColumnsUpdate({
       token: "' OR 1=1 --",
@@ -192,7 +187,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskColumnsUpdate({
       token: validToken,
@@ -205,7 +199,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsUpdate({
@@ -221,7 +214,6 @@ describe('API rest - Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskColumnsUpdate({
       token: validToken,

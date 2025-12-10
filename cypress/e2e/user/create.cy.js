@@ -28,7 +28,7 @@ describe('API rest - Users Create - /users/create', () => {
     role: 7
   };
 
-  // --- POSITIVOS ---
+  
   [7, 6, 2].forEach(role => {
     it(`Status Code 200 (${role})`, () => {
       createUser({ ...validBody, role, profile_username: 'user' + Date.now(), email: `user${role}${Date.now()}@test.com` }).then(response => {
@@ -49,7 +49,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     const { token, ...body } = validBody;
     createUser(body).then(response => {
@@ -131,7 +130,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     createUser({ ...validBody, extra: 'foo', profile_username: 'user' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
@@ -172,7 +170,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -185,7 +182,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     createUser({ ...validBody, token: "' OR 1=1 --", profile_username: 'user' + Date.now(), email: `sec${Date.now()}@test.com` }).then((response) => {
       const body = JSON.stringify(response.body);
@@ -193,7 +189,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     createUser({ ...validBody, profile_username: 'user' + Date.now(), email: `hdr${Date.now()}@test.com` }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -201,7 +196,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       createUser({ ...validBody, profile_username: 'user' + Math.random(), email: `rl${Math.random()}@test.com` })

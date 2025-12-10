@@ -36,7 +36,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Falha sem token', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -131,7 +130,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -169,7 +167,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -189,7 +186,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -204,7 +200,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -219,7 +214,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -236,7 +230,6 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');

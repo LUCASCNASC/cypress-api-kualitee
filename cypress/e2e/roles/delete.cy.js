@@ -33,7 +33,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     rolesDelete({ 'id[0]': validIdSingle }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -63,7 +62,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -85,7 +83,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -98,7 +95,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     rolesDelete({ token: "' OR 1=1 --", 'id[0]': validIdSingle }).then(response => {
       const body = JSON.stringify(response.body);
@@ -106,7 +102,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -114,7 +109,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesDelete({ token: validToken, 'id[0]': validIdSingle })
@@ -125,7 +119,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle })
       .then(() => rolesDelete({ token: validToken, 'id[0]': validIdSingle }))

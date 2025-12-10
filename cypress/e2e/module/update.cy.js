@@ -36,7 +36,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     moduleUpdate({
       project_id: validProjectId,
@@ -171,7 +170,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     moduleUpdate({
       token: validToken,
@@ -208,7 +206,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -228,7 +225,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     moduleUpdate({
       token: "' OR 1=1 --",
@@ -243,7 +239,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     moduleUpdate({
       token: validToken,
@@ -258,7 +253,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleUpdate({
@@ -276,7 +270,6 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     moduleUpdate({
       token: validToken,

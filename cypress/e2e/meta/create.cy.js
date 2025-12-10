@@ -33,7 +33,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     metasCreate({ project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -48,7 +47,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     metasCreate({ token: validToken, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -87,7 +85,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -109,7 +106,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -122,7 +118,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     metasCreate({ token: "' OR 1=1 --", project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       const body = JSON.stringify(response.body);
@@ -130,7 +125,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -138,7 +132,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue })
@@ -149,7 +142,6 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue })
       .then(() => metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }))

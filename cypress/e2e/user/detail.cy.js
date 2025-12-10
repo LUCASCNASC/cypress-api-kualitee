@@ -15,7 +15,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   }
 
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.status).to.eq(200);
@@ -88,7 +88,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
   it('Ignora campo extra na query', () => {
     getUserDetail({ token: validToken, user_id: validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
@@ -122,7 +121,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getUserDetail({ token: "' OR 1=1 --", user_id: validUserId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -130,7 +128,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -138,7 +135,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getUserDetail({ token: validToken, user_id: validUserId })
@@ -149,7 +145,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     getUserDetail({ token: validToken, user_id: validUserId })
       .then(() => getUserDetail({ token: validToken, user_id: validUserId }))

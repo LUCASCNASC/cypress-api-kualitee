@@ -26,7 +26,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Falha sem token', () => {
     treeTestCases({ project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -41,7 +40,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Falha sem project_id', () => {
     treeTestCases({ token: validToken, cycle_id: validCycleId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -71,7 +69,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
@@ -93,7 +90,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -106,7 +102,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeTestCases({ token: "' OR 1=1 --", project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -114,7 +109,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -122,7 +116,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId })
@@ -133,7 +126,6 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId })
       .then(() => treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }))

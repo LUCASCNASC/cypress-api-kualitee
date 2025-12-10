@@ -23,7 +23,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskCalanderView({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -38,7 +37,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskCalanderView({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -87,7 +85,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskCalanderView({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -95,7 +92,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -103,7 +99,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskCalanderView({ token: validToken, project_id: validProjectId })
@@ -114,7 +109,6 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId })
       .then(() => taskCalanderView({ token: validToken, project_id: validProjectId }))

@@ -31,7 +31,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Falha sem token', () => {
     treeRequirements({
       project_id: validProjectId,
@@ -86,7 +85,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     treeRequirements({
       token: validToken,
@@ -117,7 +115,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -134,7 +131,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeRequirements({
       token: "' OR 1=1 --",
@@ -146,7 +142,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     treeRequirements({
       token: validToken,
@@ -158,7 +153,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeRequirements({
@@ -173,7 +167,6 @@ describe('API rest - Requirements Tree Requirements - /requirements/tree_require
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     treeRequirements({
       token: validToken,

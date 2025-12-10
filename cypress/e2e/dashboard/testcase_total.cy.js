@@ -27,15 +27,13 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       ...options,
     });
   }
-
-  // --- POSITIVOS ---
+  
   it('Status Code 200', () => {
     testcaseTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
       expect(response.body).to.have.property('success', true);
       expect(response.headers['content-type']).to.include('application/json');
-      // Ajuste conforme contrato real
     });
   });
 
@@ -45,7 +43,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(response.body).to.have.property('success', true);
     });
   });
-
   
   it('Falha sem token', () => {
     testcaseTotal({ project_id: validProjectId, module_id: validModuleId }).then(response => {
@@ -86,7 +83,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- NEGATIVOS: project_id/module_id inválido, ausente, tipos errados ---
   ['project_id', 'module_id'].forEach(param => {
     it(`Falha sem ${param}`, () => {
       const body = { ...validBody };
@@ -113,7 +109,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  // --- Demais campos: build_id, approved, test_scenario_id, created_by, requirement ---
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(val => {
     ['build_id', 'test_scenario_id', 'created_by'].forEach(field => {
       it(`Aceita/rejeita ${field} com valor ${JSON.stringify(val)}`, () => {
@@ -139,7 +134,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     testcaseTotal({ ...validBody, extra: 'foo' }).then(response => {
@@ -147,7 +141,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(response.body).to.have.property('success', true);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -162,7 +155,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -175,7 +167,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testcaseTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
@@ -183,7 +174,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     testcaseTotal(validBody).then(response => {
@@ -191,7 +181,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -202,7 +191,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     testcaseTotal(validBody)
@@ -211,5 +199,4 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -41,7 +41,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect(response.body).to.be.an('object');
     });
   });
-
   
   it('Falha sem token', () => {
     defectBySeverity({ project_id: validProjectId }).then(response => {
@@ -79,7 +78,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
     });
   });
 
-  
   it('Falha sem project_id', () => {
     defectBySeverity({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -99,8 +97,7 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect([404, 422, 400]).to.include(response.status);
     });
   });
-
-  // --- Campos opcionais: tipos errados, limites, valores inválidos ---
+  
   const optionalFields = [
     { key: 'build_id', valid: 1, invalids: [null, '', 'abc', -1, {}, [], true, false] },
     { key: 'module_id', valid: 2, invalids: [null, '', 'abc', -1, {}, [], true, false] },
@@ -121,14 +118,12 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     defectBySeverity({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -143,7 +138,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -156,7 +150,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     defectBySeverity({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
@@ -164,7 +157,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     defectBySeverity({ token: validToken, project_id: validProjectId }).then(response => {
@@ -172,7 +164,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -183,7 +174,6 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     defectBySeverity({ token: validToken, project_id: validProjectId })
@@ -192,5 +182,4 @@ describe('API rest - Dashboard - Dashboard Defect by Severity - /dashboard/defec
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

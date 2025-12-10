@@ -44,7 +44,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -145,7 +144,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -161,7 +159,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -184,7 +181,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -207,7 +203,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  
   it('Falha após múltiplos uploads rápidos (rate limit)', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();

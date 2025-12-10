@@ -47,7 +47,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseTemplate({
       project_id: validProjectId,
@@ -106,7 +105,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Ignora campo extra no body', () => {
     testCaseTemplate({
       token: validToken,
@@ -137,7 +135,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -154,7 +151,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseTemplate({
       token: "' OR 1=1 --",
@@ -166,7 +162,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseTemplate({
       token: validToken,
@@ -178,7 +173,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const body = {
       token: validToken,

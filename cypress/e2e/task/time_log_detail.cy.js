@@ -25,7 +25,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     taskTimeLogDetail({ project_id: validProjectId, id: validTaskId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -40,7 +39,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Falha sem project_id', () => {
     taskTimeLogDetail({ token: validToken, id: validTaskId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -104,7 +102,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     taskTimeLogDetail({ token: "' OR 1=1 --", project_id: validProjectId, id: validTaskId }).then(response => {
       const body = JSON.stringify(response.body);
@@ -112,7 +109,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
@@ -120,7 +116,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId })
@@ -131,7 +126,6 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId })
       .then(() => taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }))

@@ -29,7 +29,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha sem token', () => {
     jiraCustomSync({
@@ -51,7 +50,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       });
     });
   });
-
   
   ['project_id', 'plugin_name'].forEach(field => {
     it(`Falha sem campo obrigatório ${field}`, () => {
@@ -66,7 +64,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       });
     });
   });
-
   
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
     it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
@@ -91,7 +88,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     jiraCustomSync({
@@ -103,7 +99,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -122,7 +117,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -139,7 +133,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     jiraCustomSync({
@@ -151,7 +144,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     jiraCustomSync({
@@ -163,7 +155,6 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas sincronizações rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -178,8 +169,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(rateLimited).to.be.true;
     });
   });
-
-  // --- Duplicidade: Aceita sincronizações idênticas sequenciais ---
+  
   it('Permite sincronizações duplicadas rapidamente', () => {
     jiraCustomSync({
       token: validToken,
@@ -195,5 +185,5 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
+  
 });

@@ -31,7 +31,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect(response.body).to.be.an('object');
     });
   });
-
   
   it('Falha sem token', () => {
     dashboardActivities({ project_id: validProjectId, show: 'all' }).then(response => {
@@ -68,7 +67,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect([400, 401, 403]).to.include(response.status);
     });
   });
-
   
   it('Falha sem project_id', () => {
     dashboardActivities({ token: validToken, show: 'all' }).then(response => {
@@ -90,7 +88,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- id inválido ---
   [null, '', 123, {}, [], true, false].forEach(invalidId => {
     it(`Falha com id inválido (${JSON.stringify(invalidId)})`, () => {
       dashboardActivities({ token: validToken, project_id: validProjectId, id: invalidId, show: 'me' }).then(response => {
@@ -99,7 +96,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
     });
   });
 
-  // --- show inválido, ausente ---
   it('Falha sem show', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -113,14 +109,12 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       });
     });
   });
-
   
   it('Ignora campo extra no body', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all', extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
@@ -135,7 +129,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       });
     });
   });
-
   
   it('Falha com Content-Type application/json', () => {
     cy.request({
@@ -148,7 +141,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect([400, 415]).to.include(response.status);
     });
   });
-
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     dashboardActivities({ token: "' OR 1=1 --", project_id: validProjectId, show: 'all' }).then(response => {
@@ -156,7 +148,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect(body).not.to.match(/exception|trace|sql|database/i);
     });
   });
-
   
   it('Headers devem conter CORS e content-type', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {
@@ -164,7 +155,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-
   
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
@@ -175,7 +165,6 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
       expect(rateLimited).to.be.true;
     });
   });
-
   
   it('Permite requisições duplicadas rapidamente', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' })
@@ -184,5 +173,4 @@ describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

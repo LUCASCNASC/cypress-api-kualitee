@@ -31,7 +31,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Falha sem token', () => {
     testCaseDetails({
       project_id: validProjectId,
@@ -86,7 +85,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Ignora campo extra na query', () => {
     testCaseDetails({
       token: validToken,
@@ -116,7 +114,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testCaseDetails({
       token: "' OR 1=1 --",
@@ -128,7 +125,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Headers devem conter CORS e content-type', () => {
     testCaseDetails({
       token: validToken,
@@ -140,7 +136,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
@@ -154,7 +149,6 @@ describe('API rest - Test Case Details - /test_case/details', () => {
     });
   });
 
-  
   it('Permite requisições duplicadas rapidamente', () => {
     testCaseDetails({
       token: validToken,

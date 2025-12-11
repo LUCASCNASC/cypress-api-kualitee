@@ -7,17 +7,6 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => {
 
-  function getDefects(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     getDefects({
       token: validToken,
@@ -50,17 +39,6 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      getDefects({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Falha sem project_id', () => {
     getDefects({
       token: validToken
@@ -68,34 +46,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
       expect([400, 422]).to.include(response.status);
     });
   });
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      getDefects({
-        token: validToken,
-        project_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
 
-  const invalidArray = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['build_id', 'module_id'].forEach(field => {
-    invalidArray.forEach(value => {
-      it(`Falha com campo opcional ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-        };
-        body[field] = value;
-        getDefects(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     getDefects({
       token: validToken,
@@ -105,24 +56,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

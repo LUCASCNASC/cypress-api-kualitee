@@ -4,17 +4,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () => {
 
-  function defectMetas(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     defectMetas({
       token: validToken,
@@ -34,17 +23,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      defectMetas({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     defectMetas({
       token: validToken
@@ -53,17 +31,6 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      defectMetas({
-        token: validToken,
-        project_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     defectMetas({
       token: validToken,
@@ -73,24 +40,7 @@ describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () =
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

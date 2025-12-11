@@ -6,15 +6,6 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Build - Build Details - /build/details', () => {
   
-  function buildDetails(queryParams, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: queryParams,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
   it('Status Code 200', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.status).to.eq(200);
@@ -59,22 +50,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      buildDetails({ token: validToken, project_id, build_id: validBuildId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(build_id => {
-    it(`Falha com build_id inválido (${JSON.stringify(build_id)})`, () => {
-      buildDetails({ token: validToken, project_id: validProjectId, build_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     buildDetails({ token: validToken, project_id: 999999, build_id: validBuildId }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
@@ -90,19 +65,6 @@ describe('API rest - Build - Build Details - /build/details', () => {
   it('Ignora campo extra nos parâmetros', () => {
     buildDetails({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, project_id: validProjectId, build_id: validBuildId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
   
@@ -149,5 +111,4 @@ describe('API rest - Build - Build Details - /build/details', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

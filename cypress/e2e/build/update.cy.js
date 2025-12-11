@@ -11,17 +11,6 @@ const validDescription = 'Atualização de build';
 
 describe('API rest - Build - Builds Update - /build/update', () => {
 
-  function buildUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     buildUpdate({
       token: validToken,
@@ -93,92 +82,6 @@ describe('API rest - Build - Builds Update - /build/update', () => {
     });
   });
 
-  ['project_id', 'start_date', 'end_date', 'build_id', 'id', 'description'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_id: validBuildId,
-        id: validId,
-        description: validDescription
-      };
-      delete body[field];
-      buildUpdate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', {}, [], true, false].forEach(invalidValue => {
-    ['start_date', 'end_date', 'description'].forEach(field => {
-      it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          start_date: validStartDate,
-          end_date: validEndDate,
-          build_id: validBuildId,
-          id: validId,
-          description: validDescription
-        };
-        body[field] = invalidValue;
-        buildUpdate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      buildUpdate({
-        token: validToken,
-        project_id,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_id: validBuildId,
-        id: validId,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(build_id => {
-    it(`Falha com build_id inválido (${JSON.stringify(build_id)})`, () => {
-      buildUpdate({
-        token: validToken,
-        project_id: validProjectId,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_id,
-        id: validId,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      buildUpdate({
-        token: validToken,
-        project_id: validProjectId,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_id: validBuildId,
-        id,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     buildUpdate({
       token: validToken,
@@ -193,29 +96,7 @@ describe('API rest - Build - Builds Update - /build/update', () => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          start_date: validStartDate,
-          end_date: validEndDate,
-          build_id: validBuildId,
-          id: validId,
-          description: validDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

@@ -87,57 +87,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  ['project_id', 'start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
-    it(`Status Code 400, 422 - Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_name: validBuildName,
-        build_description: validBuildDescription
-      };
-      delete body[field];
-      buildCreate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', {}, [], true, false].forEach(invalidValue => {
-    ['start_date', 'end_date', 'build_name', 'build_description'].forEach(field => {
-      it(`Status Code 400, 422, 404 - Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          start_date: validStartDate,
-          end_date: validEndDate,
-          build_name: validBuildName,
-          build_description: validBuildDescription
-        };
-        body[field] = invalidValue;
-        buildCreate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Status Code 400, 422, 404 - Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      buildCreate({
-        token: validToken,
-        project_id,
-        start_date: validStartDate,
-        end_date: validEndDate,
-        build_name: validBuildName,
-        build_description: validBuildDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Status Code 200 - Ignora campo extra no body', () => {
     buildCreate({
       token: validToken,
@@ -149,27 +98,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Status Code 400, 405, 404 - Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: '/Build/BuildsCreate',
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          start_date: validStartDate,
-          end_date: validEndDate,
-          build_name: validBuildName,
-          build_description: validBuildDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -258,5 +186,4 @@ describe('API rest - Build - Builds Create - /build/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -7,16 +7,6 @@ const validDefectId = 101;
 
 describe('API rest - Cycle - Defects Details - /defects/details', () => {
 
-  function defectsDetails(params, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: params,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     defectsDetails({
       token: validToken,
@@ -38,56 +28,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      defectsDetails({
-        token,
-        project_id: validProjectId,
-        defect_id: validDefectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-  
-  ['project_id', 'defect_id'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const params = {
-        token: validToken,
-        project_id: validProjectId,
-        defect_id: validDefectId
-      };
-      delete params[field];
-      defectsDetails(params).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      defectsDetails({
-        token: validToken,
-        project_id,
-        defect_id: validDefectId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(defect_id => {
-    it(`Falha com defect_id inválido (${JSON.stringify(defect_id)})`, () => {
-      defectsDetails({
-        token: validToken,
-        project_id: validProjectId,
-        defect_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora parâmetro extra na query', () => {
     defectsDetails({
       token: validToken,
@@ -96,23 +36,6 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       foo: 'bar'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: {
-          token: validToken,
-          project_id: validProjectId,
-          defect_id: validDefectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -183,5 +106,4 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

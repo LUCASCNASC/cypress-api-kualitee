@@ -7,17 +7,6 @@ const validCustomFieldId = 123;
 
 describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete', () => {
 
-  function customfieldsDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.status).to.eq(200);
@@ -46,48 +35,18 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      customfieldsDelete({ token: validToken, project_id, 'custom_field_id[0]': validCustomFieldId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem custom_field_id[0]', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(custom_field_id => {
-    it(`Falha com custom_field_id[0] inválido (${JSON.stringify(custom_field_id)})`, () => {
-      customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': custom_field_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

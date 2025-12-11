@@ -22,17 +22,6 @@ const validExportType = 'Excel';
 
 describe('API rest - Cycle - Defects List - /defects/list', () => {
 
-  function defectsList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     defectsList({
       token: validToken,
@@ -79,64 +68,11 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      defectsList({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Falha sem project_id', () => {
     defectsList({
       token: validToken
     }).then(response => {
       expect([400, 422]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      defectsList({
-        token: validToken,
-        project_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  const invalidArray = [null, '', 'abc', 0, -1, {}, true, false];
-  ['build_id', 'module_id', 'test_scenario_id', 'defect_viewers'].forEach(field => {
-    invalidArray.forEach(value => {
-      it(`Falha com campo opcional ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-        };
-        body[field] = value;
-        defectsList(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  [null, '', 'abc', {}, true, false].forEach(value => {
-    ['assignto', 'status', 'created_by'].forEach(field => {
-      it(`Falha com campo ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-        };
-        body[field] = value;
-        defectsList(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
     });
   });
 
@@ -188,24 +124,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

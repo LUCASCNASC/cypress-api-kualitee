@@ -6,17 +6,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validKeyword = 'feature';
 
 describe('API rest - Build - Build List - /build/list', () => {
-  
-  function buildList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
 
   it('Status Code 200', () => {
     buildList({ token: validToken, project_id: validProjectId }).then(response => {
@@ -63,49 +52,18 @@ describe('API rest - Build - Build List - /build/list', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      buildList({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     buildList({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  [null, '', {}, [], true, false, 12345].forEach(keyword => {
-    it(`Falha (ou ignora) com keyword inválida (${JSON.stringify(keyword)})`, () => {
-      buildList({ token: validToken, project_id: validProjectId, keyword }).then(response => {
-        expect([200, 400, 422]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     buildList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

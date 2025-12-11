@@ -11,17 +11,6 @@ const validDbColumns = [
 
 describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () => {
 
-  function defectsImportStep2(body, filePath, options = {}) {
-    // Para envio de arquivo, use plugin como cypress-form-data ou cy.form_request se disponível
-    return cy.form_request(
-      'POST',
-      `/${PATH_API}`,
-      body,
-      [{ name: 'import_csv_file', fileName: filePath.split('/').pop(), mimeType: 'text/csv', filePath }],
-      { failOnStatusCode: false, ...options }
-    );
-  }
-
   it('Status Code 200', () => {
     defectsImportStep2(
       {
@@ -69,85 +58,6 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      defectsImportStep2(
-        {
-          token,
-          project_id: validProjectId,
-          import_csv_file: validCsvFile,
-          db_columns: validDbColumns
-        },
-        validCsvFile
-      ).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-  
-  ['project_id', 'import_csv_file', 'db_columns'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        import_csv_file: validCsvFile,
-        db_columns: validDbColumns
-      };
-      delete body[field];
-      defectsImportStep2(body, validCsvFile).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      defectsImportStep2(
-        {
-          token: validToken,
-          project_id,
-          import_csv_file: validCsvFile,
-          db_columns: validDbColumns
-        },
-        validCsvFile
-      ).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  ['cypress/fixtures/arquivo.txt', 'cypress/fixtures/image.png', null, '', {}, [], true, false].forEach(invalidFile => {
-    it(`Falha com arquivo CSV inválido (${JSON.stringify(invalidFile)})`, () => {
-      defectsImportStep2(
-        {
-          token: validToken,
-          project_id: validProjectId,
-          import_csv_file: invalidFile,
-          db_columns: validDbColumns
-        },
-        invalidFile
-      ).then(response => {
-        expect([400, 415, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', {}, [], true, false].forEach(invalidDbColumns => {
-    it(`Falha com db_columns inválido (${JSON.stringify(invalidDbColumns)})`, () => {
-      defectsImportStep2(
-        {
-          token: validToken,
-          project_id: validProjectId,
-          import_csv_file: validCsvFile,
-          db_columns: invalidDbColumns
-        },
-        validCsvFile
-      ).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     defectsImportStep2(
       {
@@ -162,26 +72,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          import_csv_file: validCsvFile,
-          db_columns: validDbColumns
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

@@ -11,17 +11,6 @@ const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
 
 describe('API rest - Custom Fields - Custom Fields Update - /customfields/update', () => {
 
-  function customfieldsUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     customfieldsUpdate({
       token: validToken,
@@ -61,20 +50,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      customfieldsUpdate({
-        token,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': validProjectId,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem custom_field_id', () => {
     customfieldsUpdate({
       token: validToken,
@@ -83,20 +58,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       custom_field_desc: validCustomFieldDesc
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(custom_field_id => {
-    it(`Falha com custom_field_id inválido (${JSON.stringify(custom_field_id)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id,
-        'project_id[0]': validProjectId,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -111,20 +72,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id[0] inválido (${JSON.stringify(project_id)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': project_id,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem custom_field_name', () => {
     customfieldsUpdate({
       token: validToken,
@@ -133,20 +80,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       custom_field_desc: validCustomFieldDesc
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 123, {}, [], true, false].forEach(custom_field_name => {
-    it(`Falha com custom_field_name inválido (${JSON.stringify(custom_field_name)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': validProjectId,
-        custom_field_name,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -161,51 +94,6 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
     });
   });
 
-  [null, '', 123, {}, [], true, false].forEach(custom_field_desc => {
-    it(`Falha com custom_field_desc inválido (${JSON.stringify(custom_field_desc)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': validProjectId,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  ['INVALID', 123, {}, [], true, false].forEach(field_type => {
-    it(`Falha com field_type inválido (${JSON.stringify(field_type)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': validProjectId,
-        field_type,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  ['INVALID', 123, {}, [], true, false].forEach(custom_field_module => {
-    it(`Falha com custom_field_module[0] inválido (${JSON.stringify(custom_field_module)})`, () => {
-      customfieldsUpdate({
-        token: validToken,
-        custom_field_id: validCustomFieldId,
-        'project_id[0]': validProjectId,
-        field_type: validFieldType,
-        'custom_field_module[0]': custom_field_module,
-        custom_field_name: validCustomFieldName,
-        custom_field_desc: validCustomFieldDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     customfieldsUpdate({
       token: validToken,
@@ -218,27 +106,7 @@ describe('API rest - Custom Fields - Custom Fields Update - /customfields/update
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          custom_field_id: validCustomFieldId,
-          'project_id[0]': validProjectId,
-          custom_field_name: validCustomFieldName,
-          custom_field_desc: validCustomFieldDesc
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

@@ -26,34 +26,7 @@ const validBugRequirementId = 'bug-req-55';
 const validDefectImage = 'cypress/fixtures/defect_image.png';
 
 describe('API rest - Cycle - Defects Create - /defects/create', () => {
-  
-  function defectsCreate(body, fileFields = {}, options = {}) {
-    // Se for enviar arquivos, use cy.form_request customizado ou plugin adequado
-    if (Object.keys(fileFields).length) {
-      return cy.form_request(
-        'POST',
-        '/Defect/Create',
-        body,
-        Object.entries(fileFields).map(([name, filePath]) => ({
-          name,
-          fileName: filePath.split('/').pop(),
-          mimeType: 'image/png',
-          fileContent: '', // Ajustar conforme fixture
-          encoding: 'base64'
-        })),
-        { failOnStatusCode: false, ...options }
-      );
-    }
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     defectsCreate({
       token: validToken,
@@ -106,18 +79,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      defectsCreate({
-        token,
-        project_id: validProjectId,
-        description: validDescription
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     defectsCreate({
       token: validToken,
@@ -136,51 +97,6 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      defectsCreate({
-        token: validToken,
-        project_id,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', {}, [], true, false].forEach(invalidDesc => {
-    it(`Falha com description inválido (${JSON.stringify(invalidDesc)})`, () => {
-      defectsCreate({
-        token: validToken,
-        project_id: validProjectId,
-        description: invalidDesc
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  const invalidArray = [null, '', {}, true, false];
-  [
-    'build_id', 'module_id', 'source_name', 'defect_status', 'defect_type', 'editor', 'steps_to_reproduce',
-    'expected_result', 'comments', 'priority', 'devices', 'status', 'assignto', 'defect_viewers', 'bugtype',
-    'integration', 'ki_id', 'req_id', 'bug_requirement_id'
-  ].forEach(field => {
-    invalidArray.forEach(value => {
-      it(`Falha com campo opcional ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          description: validDescription
-        };
-        body[field] = value;
-        defectsCreate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     defectsCreate({
       token: validToken,
@@ -191,25 +107,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          description: validDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

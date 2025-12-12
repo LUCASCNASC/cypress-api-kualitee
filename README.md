@@ -1,9 +1,7 @@
 # cypress-api-kualitee
-
 Projeto de automação de testes de APIs utilizando Cypress.
 
 ## Descrição
-
 Este repositório tem como objetivo automatizar testes de APIs, facilitando a validação de endpoints e garantindo a qualidade das integrações. Utiliza o Cypress como framework principal para escrita e execução dos testes.
 
 ## Tecnologias Utilizadas
@@ -53,13 +51,11 @@ cypress-api-kualitee/
 ```
 
 ## Contribuição
-
 Sinta-se à vontade para abrir issues e pull requests para sugerir melhorias, reportar bugs ou contribuir com novos testes.
 
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ---
 
 Desenvolvido por [LUCASCNASC](https://github.com/LUCASCNASC)

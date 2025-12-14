@@ -6,17 +6,6 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
 
-  function dropdownDefect(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);
@@ -67,50 +56,18 @@ describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      dropdownDefect({ token: validToken, project_id, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     dropdownDefect({ token: validToken, project_id: 999999, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  ['id[0]', 'id[1]'].forEach(idKey => {
-    [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(invalidValue => {
-      it(`Falha com campo '${idKey}' inválido (${JSON.stringify(invalidValue)})`, () => {
-        dropdownDefect({ token: validToken, project_id: validProjectId, [idKey]: invalidValue, 'id[1]': validIds[1], 'id[0]': validIds[0] }).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1], extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

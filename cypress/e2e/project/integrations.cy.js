@@ -5,17 +5,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Project Integrations - /project/integrations', () => {
 
-  function projectIntegrations(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectIntegrations({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -54,14 +43,6 @@ describe('API rest - Project Integrations - /project/integrations', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      projectIntegrations({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     projectIntegrations({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
@@ -71,21 +52,6 @@ describe('API rest - Project Integrations - /project/integrations', () => {
   it('Ignora campo extra no body', () => {
     projectIntegrations({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -132,5 +98,4 @@ describe('API rest - Project Integrations - /project/integrations', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

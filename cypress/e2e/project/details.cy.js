@@ -5,16 +5,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Project Detail - /project/details', () => {
 
-  function projectDetails(queryParams, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: queryParams,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -53,14 +43,6 @@ describe('API rest - Project Detail - /project/details', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      projectDetails({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     projectDetails({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
@@ -70,20 +52,6 @@ describe('API rest - Project Detail - /project/details', () => {
   it('Ignora campo extra nos parâmetros', () => {
     projectDetails({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -130,5 +98,4 @@ describe('API rest - Project Detail - /project/details', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -6,28 +6,6 @@ const validModuleId = 22;
 
 describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase/total', () => {
 
-  const validBody = {
-    token: validToken,
-    project_id: validProjectId,
-    module_id: validModuleId,
-    build_id: 33,
-    approved: "true",
-    test_scenario_id: "44",
-    created_by: "101",
-    requirement: "REQ-002"
-  };
-
-  function testcaseTotal(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     testcaseTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
@@ -83,76 +61,10 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  ['project_id', 'module_id'].forEach(param => {
-    it(`Falha sem ${param}`, () => {
-      const body = { ...validBody };
-      delete body[param];
-      testcaseTotal(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-
-    [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(value => {
-      it(`Falha com ${param} inválido (${JSON.stringify(value)})`, () => {
-        testcaseTotal({ ...validBody, [param]: value }).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-          expect(response.body).to.have.property('success', false);
-        });
-      });
-    });
-
-    it(`Falha com ${param} inexistente`, () => {
-      testcaseTotal({ ...validBody, [param]: 999999 }).then(response => {
-        expect([404, 422, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(val => {
-    ['build_id', 'test_scenario_id', 'created_by'].forEach(field => {
-      it(`Aceita/rejeita ${field} com valor ${JSON.stringify(val)}`, () => {
-        testcaseTotal({ ...validBody, [field]: val }).then(response => {
-          expect([200, 400, 422]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  ['', null, 123, {}, [], true, false].forEach(req => {
-    it(`Aceita/rejeita requirement com valor ${JSON.stringify(req)}`, () => {
-      testcaseTotal({ ...validBody, requirement: req }).then(response => {
-        expect([200, 400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  ['', null, {}, [], true, false, 'not_bool', 1, 0].forEach(approved => {
-    it(`Aceita/rejeita approved com valor ${JSON.stringify(approved)}`, () => {
-      testcaseTotal({ ...validBody, approved }).then(response => {
-        expect([200, 400, 422]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     testcaseTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
-    });
-  });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: validBody,
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
   

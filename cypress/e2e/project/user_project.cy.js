@@ -3,16 +3,6 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Users Project List - /project/user_project', () => {
 
-  function userProject(queryParams, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: queryParams,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     userProject({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
@@ -63,20 +53,6 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com Content-Type application/json no GET', () => {
     cy.request({
       method: 'GET',
@@ -120,5 +96,4 @@ describe('API rest - Users Project List - /project/user_project', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

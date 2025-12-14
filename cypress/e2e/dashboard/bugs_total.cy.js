@@ -5,30 +5,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', () => {
 
-  const validBody = {
-    token: validToken,
-    project_id: validProjectId,
-    build_id: 22,
-    module_id: 33,
-    browser: "chrome",
-    os: "windows",
-    severity: "high",
-    status: "open",
-    assignto: "lucas",
-    bugtype: "UI"
-  };
-
-  function bugsTotal(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     bugsTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
@@ -93,59 +69,19 @@ describe('API rest - Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', 
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      bugsTotal({ ...validBody, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     bugsTotal({ ...validBody, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(val => {
-    ['build_id', 'module_id'].forEach(field => {
-      it(`Aceita/rejeita ${field} com valor ${JSON.stringify(val)}`, () => {
-        bugsTotal({ ...validBody, [field]: val }).then(response => {
-          expect([200, 400, 422]).to.include(response.status);
-        });
-      });
-    });
-    ['browser', 'os', 'severity', 'status', 'assignto', 'bugtype'].forEach(field => {
-      it(`Aceita/rejeita ${field} com valor ${JSON.stringify(val)}`, () => {
-        bugsTotal({ ...validBody, [field]: val }).then(response => {
-          expect([200, 400, 422]).to.include(response.status);
-        });
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     bugsTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: validBody,
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

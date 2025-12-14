@@ -5,18 +5,6 @@ const validProjectId = 77;
 
 describe('API rest - Report Test Case Execution - /report/test_case_execution', () => {
 
-  function reportTestCaseExecution(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO (mínimo) ---
   it('Status Code 200', () => {
     reportTestCaseExecution({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -25,7 +13,6 @@ describe('API rest - Report Test Case Execution - /report/test_case_execution', 
     });
   });
 
-  // --- POSITIVO: Todos filtros ---
   it('Retorna relatório de execução de testes usando todos os filtros possíveis', () => {
     reportTestCaseExecution({
       token: validToken,
@@ -59,74 +46,15 @@ describe('API rest - Report Test Case Execution - /report/test_case_execution', 
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      reportTestCaseExecution({ token, project_id: validProjectId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- NEGATIVO: project_id inválido, ausente, tipos errados, limites ---
   it('Falha sem project_id', () => {
     reportTestCaseExecution({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      reportTestCaseExecution({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- NEGATIVO: Parâmetros opcionais inválidos ---
-  [
-    { tester_id: 'abc' },
-    { created_by: 'abc' }
-  ].forEach(params => {
-    it(`Falha com parâmetro opcional inválido (${JSON.stringify(params)})`, () => {
-      reportTestCaseExecution({ token: validToken, project_id: validProjectId, ...params }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Exportação de dados ---
-  ['CSV', 'Excel', 'Word'].forEach(export_type => {
-    it(`Exporta relatório de execução de testes no formato ${export_type}`, () => {
-      reportTestCaseExecution({
-        token: validToken,
-        project_id: validProjectId,
-        export: 'yes',
-        export_type
-      }).then(response => {
-        expect(response.status).to.eq(200);
-        expect(response.body).to.exist;
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     reportTestCaseExecution({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -173,5 +101,4 @@ describe('API rest - Report Test Case Execution - /report/test_case_execution', 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

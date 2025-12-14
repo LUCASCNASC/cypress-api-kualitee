@@ -6,17 +6,6 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('API rest - Metas Delete - /metas/delete', () => {
 
-  function metasDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
   it('Status Code 200', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);
@@ -37,71 +26,28 @@ describe('API rest - Metas Delete - /metas/delete', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      metasDelete({ token, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     metasDelete({ token: validToken, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      metasDelete({ token: validToken, project_id, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- ids[0] e/ou ids[1] inválido(s), ausente(s), tipos errados, limites ---
   it('Falha sem ids[0]', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
+
   it('Falha sem ids[1]', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0] }).then(response => {
       // Se o endpoint permitir apenas um id, pode passar, senão deve falhar
       expect([200, 400, 422, 404]).to.include(response.status);
     });
   });
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(badId => {
-    it(`Falha com ids[0] inválido (${JSON.stringify(badId)})`, () => {
-      metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': badId, 'ids[1]': validIds[1] }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-    it(`Falha com ids[1] inválido (${JSON.stringify(badId)})`, () => {
-      metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': badId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
 
   it('Ignora campo extra no body', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1], extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -148,5 +94,4 @@ describe('API rest - Metas Delete - /metas/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

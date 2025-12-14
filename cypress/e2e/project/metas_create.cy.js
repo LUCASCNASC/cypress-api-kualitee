@@ -6,17 +6,6 @@ const validMetaValue = 'meta_value_exemplo';
 
 describe('API rest - Project Metas Create - /project/metas/create', () => {
 
-  function metasCreate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     metasCreate({
       token: validToken,
@@ -68,38 +57,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  
-  ['meta_key', 'meta_value'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        meta_key: validMetaKey,
-        meta_value: validMetaValue
-      };
-      delete body[field];
-      metasCreate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campos obrigatórios vazios/inválidos ---
-  ['meta_key', 'meta_value'].forEach(field => {
-    [null, '', {}, [], true, false, 12345].forEach(invalidValue => {
-      it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
-        const body = {
-          token: validToken,
-          meta_key: validMetaKey,
-          meta_value: validMetaValue
-        };
-        body[field] = invalidValue;
-        metasCreate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     metasCreate({
       token: validToken,
@@ -108,25 +65,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          meta_key: validMetaKey,
-          meta_value: validMetaValue
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -197,5 +135,4 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

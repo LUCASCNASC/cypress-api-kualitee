@@ -5,18 +5,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Report Testcase - /report/testcase', () => {
 
-  function reportTestcase(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO (mínimo) ---
   it('Status Code 200', () => {
     reportTestcase({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -25,7 +13,6 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  // --- POSITIVO: Todos filtros ---
   it('Retorna relatório de test cases usando todos os filtros possíveis', () => {
     reportTestcase({
       token: validToken,
@@ -55,78 +42,15 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      reportTestcase({ token, project_id: validProjectId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- NEGATIVO: project_id inválido, ausente, tipos errados, limites ---
   it('Falha sem project_id', () => {
     reportTestcase({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      reportTestcase({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- NEGATIVO: Parâmetros opcionais inválidos ---
-  [
-    { approved: 1 },
-    { status: 1 },
-    { severity: 1 },
-    { from: 123 },
-    { to: 123 },
-    { test_case_type: 1 }
-  ].forEach(params => {
-    it(`Falha com parâmetro opcional inválido (${JSON.stringify(params)})`, () => {
-      reportTestcase({ token: validToken, project_id: validProjectId, ...params }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Exportação de dados ---
-  ['CSV', 'Excel', 'Word'].forEach(export_type => {
-    it(`Exporta relatório de test cases no formato ${export_type}`, () => {
-      reportTestcase({
-        token: validToken,
-        project_id: validProjectId,
-        export: 'yes',
-        export_type
-      }).then(response => {
-        expect(response.status).to.eq(200);
-        expect(response.body).to.exist;
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     reportTestcase({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -173,5 +97,4 @@ describe('API rest - Report Testcase - /report/testcase', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

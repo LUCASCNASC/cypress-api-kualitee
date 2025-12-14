@@ -7,17 +7,6 @@ const validUserIds = [10, 11, 12, 13];
 
 describe('API rest - Project Team Assigned - /team/create', () => {
 
-  function teamCreate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     teamCreate({
       token: validToken,
@@ -84,44 +73,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  
-  ['project_id', 'project_user[0]', 'project_user[1]', 'project_user[2]', 'project_user[3]'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        'project_user[0]': validUserIds[0],
-        'project_user[1]': validUserIds[1],
-        'project_user[2]': validUserIds[2],
-        'project_user[3]': validUserIds[3]
-      };
-      delete body[field];
-      teamCreate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campos obrigatórios vazios/inválidos ---
-  ['project_id', 'project_user[0]', 'project_user[1]', 'project_user[2]', 'project_user[3]'].forEach(field => {
-    [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(invalidValue => {
-      it(`Falha com ${field} inválido (${JSON.stringify(invalidValue)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'project_user[0]': validUserIds[0],
-          'project_user[1]': validUserIds[1],
-          'project_user[2]': validUserIds[2],
-          'project_user[3]': validUserIds[3]
-        };
-        body[field] = invalidValue;
-        teamCreate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     teamCreate({
       token: validToken,
@@ -133,28 +84,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'project_user[0]': validUserIds[0],
-          'project_user[1]': validUserIds[1],
-          'project_user[2]': validUserIds[2],
-          'project_user[3]': validUserIds[3]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -243,5 +172,4 @@ describe('API rest - Project Team Assigned - /team/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

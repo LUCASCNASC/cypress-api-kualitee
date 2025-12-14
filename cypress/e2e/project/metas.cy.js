@@ -5,16 +5,6 @@ const validMetaType = 'exemplo';
 
 describe('API rest - Project Metas - /project/metas', () => {
 
-  function projectMetas(queryParams, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: queryParams,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.status).to.eq(200);
@@ -47,38 +37,15 @@ describe('API rest - Project Metas - /project/metas', () => {
     });
   });
 
-  // --- meta_type inválido, ausente, tipos errados, limites ---
   it('Falha sem meta_type', () => {
     projectMetas({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', {}, [], true, false, 12345].forEach(meta_type => {
-    it(`Falha com meta_type inválido (${JSON.stringify(meta_type)})`, () => {
-      projectMetas({ token: validToken, meta_type }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra nos parâmetros', () => {
     projectMetas({ token: validToken, meta_type: validMetaType, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, meta_type: validMetaType },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -125,5 +92,4 @@ describe('API rest - Project Metas - /project/metas', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

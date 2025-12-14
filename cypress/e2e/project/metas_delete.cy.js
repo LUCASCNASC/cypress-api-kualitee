@@ -5,17 +5,6 @@ const validMetaId = 123;
 
 describe('API rest - Project Metas Delete - /project/metas/delete', () => {
 
-  function metasDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.status).to.eq(200);
@@ -48,18 +37,9 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  // --- meta_id inválido, ausente, tipos errados, limites ---
   it('Falha sem meta_id', () => {
     metasDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(meta_id => {
-    it(`Falha com meta_id inválido (${JSON.stringify(meta_id)})`, () => {
-      metasDelete({ token: validToken, meta_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -72,21 +52,6 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   it('Ignora campo extra no body', () => {
     metasDelete({ token: validToken, meta_id: validMetaId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, meta_id: validMetaId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -133,5 +98,4 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

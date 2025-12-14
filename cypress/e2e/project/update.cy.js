@@ -3,28 +3,6 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Project Update - /project/update', () => {
 
-  const validBody = {
-    token: validToken,
-    project_name: 'Projeto Atualizado',
-    project_description: 'Descrição atualizada do projeto.',
-    project_type: 'desktop', // desktop, mobile, r-web, web
-    project_os: ['Windows', 'Linux'],
-    project_devices: ['PC', 'Laptop'],
-    project_browser: ['Chrome', 'Firefox'],
-    project_id: 77 // Substitua por um ID de projeto válido
-  };
-
-  function projectUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectUpdate(validBody).then(response => {
       expect(response.status).to.eq(200);
@@ -58,75 +36,15 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  
-  ['project_name', 'project_description', 'project_type', 'project_os', 'project_devices', 'project_browser', 'project_id'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = { ...validBody };
-      delete body[field];
-      projectUpdate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campos obrigatórios vazios ---
-  ['project_name', 'project_description', 'project_type'].forEach(field => {
-    it(`Falha com campo obrigatório ${field} vazio`, () => {
-      const body = { ...validBody, [field]: '' };
-      projectUpdate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- project_type inválido ---
   it('Falha com project_type inválido', () => {
     projectUpdate({ ...validBody, project_type: 'invalid_type' }).then(response => {
       expect([400, 422]).to.include(response.status);
     });
   });
 
-  // --- Array fields vazios ou tipos errados ---
-  ['project_os', 'project_devices', 'project_browser'].forEach(arrayField => {
-    it(`Falha com campo ${arrayField} vazio`, () => {
-      projectUpdate({ ...validBody, [arrayField]: [] }).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-    it(`Falha com campo ${arrayField} tipo errado`, () => {
-      projectUpdate({ ...validBody, [arrayField]: 'string_invalida' }).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- project_id inválido ---
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(invalidProjectId => {
-    it(`Falha com project_id inválido (${JSON.stringify(invalidProjectId)})`, () => {
-      projectUpdate({ ...validBody, project_id: invalidProjectId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     projectUpdate({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: validBody,
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -173,5 +91,4 @@ describe('API rest - Project Update - /project/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

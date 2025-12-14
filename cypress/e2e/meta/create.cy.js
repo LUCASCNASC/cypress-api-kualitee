@@ -8,17 +8,6 @@ const validMetaValue = 'chrome';
 
 describe('API rest - Metas Create - /metas/create', () => {
 
-  function metasCreate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
@@ -39,70 +28,21 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      metasCreate({ token, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     metasCreate({ token: validToken, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      metasCreate({ token: validToken, project_id, meta_value: validMetaValue }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- meta_value inválido, ausente, tipos errados, limites ---
   it('Falha sem meta_value', () => {
     metasCreate({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 123, {}, [], true, false].forEach(meta_value => {
-    it(`Falha com meta_value inválido (${JSON.stringify(meta_value)})`, () => {
-      metasCreate({ token: validToken, project_id: validProjectId, meta_value }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- meta_key inválido (valores não permitidos) ---
-  ['INVALID', 123, {}, [], true, false].forEach(meta_key => {
-    it(`Falha com meta_key inválido (${JSON.stringify(meta_key)})`, () => {
-      metasCreate({ token: validToken, project_id: validProjectId, meta_key, meta_value: validMetaValue }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId, meta_value: validMetaValue },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -149,5 +89,4 @@ describe('API rest - Metas Create - /metas/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

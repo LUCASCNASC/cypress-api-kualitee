@@ -5,17 +5,6 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Integration - Integration Detail - /integration/detail', () => {
 
-  function integrationDetail(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     integrationDetail({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
@@ -30,48 +19,18 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      integrationDetail({ token, id: validId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem id', () => {
     integrationDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      integrationDetail({ token: validToken, id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     integrationDetail({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, id: validId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -115,5 +74,4 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

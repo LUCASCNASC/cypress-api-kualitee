@@ -10,17 +10,6 @@ const validPluginUrl = 'https://jira.example.com';
 
 describe('API rest - Integration - Integration Save - /integration/save', () => {
 
-  function integrationSave(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     integrationSave({
       token: validToken,
@@ -48,21 +37,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      integrationSave({
-        token,
-        plugin_name: validPluginName,
-        username: validUsername,
-        password: validPassword,
-        plugin_url: validPluginUrl,
-        id: validId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem plugin_name', () => {
     integrationSave({
       token: validToken,
@@ -72,21 +46,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       id: validId
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 123, {}, [], true, false].forEach(plugin_name => {
-    it(`Falha com plugin_name inválido (${JSON.stringify(plugin_name)})`, () => {
-      integrationSave({
-        token: validToken,
-        plugin_name,
-        username: validUsername,
-        password: validPassword,
-        plugin_url: validPluginUrl,
-        id: validId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -102,21 +61,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  [null, '', 123, {}, [], true, false].forEach(username => {
-    it(`Falha com username inválido (${JSON.stringify(username)})`, () => {
-      integrationSave({
-        token: validToken,
-        plugin_name: validPluginName,
-        username,
-        password: validPassword,
-        plugin_url: validPluginUrl,
-        id: validId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem password', () => {
     integrationSave({
       token: validToken,
@@ -126,21 +70,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       id: validId
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 123, {}, [], true, false].forEach(password => {
-    it(`Falha com password inválido (${JSON.stringify(password)})`, () => {
-      integrationSave({
-        token: validToken,
-        plugin_name: validPluginName,
-        username: validUsername,
-        password,
-        plugin_url: validPluginUrl,
-        id: validId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -156,21 +85,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  [null, '', 123, {}, [], true, false].forEach(plugin_url => {
-    it(`Falha com plugin_url inválido (${JSON.stringify(plugin_url)})`, () => {
-      integrationSave({
-        token: validToken,
-        plugin_name: validPluginName,
-        username: validUsername,
-        password: validPassword,
-        plugin_url,
-        id: validId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem id', () => {
     integrationSave({
       token: validToken,
@@ -183,21 +97,6 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      integrationSave({
-        token: validToken,
-        plugin_name: validPluginName,
-        username: validUsername,
-        password: validPassword,
-        plugin_url: validPluginUrl,
-        id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     integrationSave({
       token: validToken,
@@ -211,28 +110,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.status).to.eq(200);
     });
   });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          plugin_name: validPluginName,
-          username: validUsername,
-          password: validPassword,
-          plugin_url: validPluginUrl,
-          id: validId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-  
+
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',

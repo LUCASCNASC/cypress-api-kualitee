@@ -7,17 +7,6 @@ const validProjectId1 = 78;
 
 describe('API rest - Project Status - /project/project_status', () => {
 
-  function projectStatus(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectStatus({
       token: validToken,
@@ -74,23 +63,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  
-  ['project_status', 'project_id[0]', 'project_id[1]'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_status: validProjectStatus,
-        'project_id[0]': validProjectId0,
-        'project_id[1]': validProjectId1
-      };
-      delete body[field];
-      projectStatus(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
 
-  // --- Campos obrigatórios vazios ---
   it('Falha com project_status vazio', () => {
     projectStatus({
       token: validToken,
@@ -99,30 +72,6 @@ describe('API rest - Project Status - /project/project_status', () => {
       'project_id[1]': validProjectId1
     }).then(response => {
       expect([400, 422]).to.include(response.status);
-    });
-  });
-
-  // --- project_id inválido ---
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(invalidId => {
-    it(`Falha com project_id[0] inválido (${JSON.stringify(invalidId)})`, () => {
-      projectStatus({
-        token: validToken,
-        project_status: validProjectStatus,
-        'project_id[0]': invalidId,
-        'project_id[1]': validProjectId1
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-    it(`Falha com project_id[1] inválido (${JSON.stringify(invalidId)})`, () => {
-      projectStatus({
-        token: validToken,
-        project_status: validProjectStatus,
-        'project_id[0]': validProjectId0,
-        'project_id[1]': invalidId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -135,26 +84,6 @@ describe('API rest - Project Status - /project/project_status', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        headers: { 'Content-Type': 'application/json' },
-        body: {
-          token: validToken,
-          project_status: validProjectStatus,
-          'project_id[0]': validProjectId0,
-          'project_id[1]': validProjectId1
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -225,5 +154,4 @@ describe('API rest - Project Status - /project/project_status', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

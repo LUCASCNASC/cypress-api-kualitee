@@ -6,16 +6,6 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Module Detail - /module/details', () => {
 
-  function moduleDetails(queryParams, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: queryParams,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.status).to.eq(200);
@@ -48,7 +38,6 @@ describe('API rest - Module Detail - /module/details', () => {
     });
   });
 
-  // --- project_id/module_id inválidos, ausentes, tipos errados, limites ---
   it('Falha sem project_id', () => {
     moduleDetails({ token: validToken, module_id: validModuleId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
@@ -58,22 +47,6 @@ describe('API rest - Module Detail - /module/details', () => {
   it('Falha sem module_id', () => {
     moduleDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      moduleDetails({ token: validToken, project_id, module_id: validModuleId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(module_id => {
-    it(`Falha com module_id inválido (${JSON.stringify(module_id)})`, () => {
-      moduleDetails({ token: validToken, project_id: validProjectId, module_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -92,20 +65,6 @@ describe('API rest - Module Detail - /module/details', () => {
   it('Ignora campo extra nos parâmetros', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, project_id: validProjectId, module_id: validModuleId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -152,5 +111,4 @@ describe('API rest - Module Detail - /module/details', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

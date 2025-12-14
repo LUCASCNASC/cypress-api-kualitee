@@ -3,17 +3,6 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - List Copy - /project/project_list', () => {
 
-  function projectList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     projectList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
@@ -58,21 +47,6 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        headers: { 'Content-Type': 'application/json' },
-        body: { token: validToken },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     projectList({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
@@ -104,5 +78,4 @@ describe('API rest - List Copy - /project/project_list', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

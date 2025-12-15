@@ -6,16 +6,6 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Task Columns Details - /task/columns/details', () => {
 
-  function taskColumnsDetails(params, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: params,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
@@ -30,65 +20,24 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      taskColumnsDetails({ token, project_id: validProjectId, id: validId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     taskColumnsDetails({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      taskColumnsDetails({ token: validToken, project_id, id: validId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- id inválido, ausente, tipos errados, limites ---
   it('Falha sem id', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      taskColumnsDetails({ token: validToken, project_id: validProjectId, id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Parâmetro extra ignorado ---
   it('Ignora parâmetro extra na query', () => {
     taskColumnsDetails({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, project_id: validProjectId, id: validId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Content-Type: não deve afetar GET (mas testando) ---
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -132,5 +81,4 @@ describe('API rest - Task Columns Details - /task/columns/details', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

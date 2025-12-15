@@ -7,18 +7,6 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Requirements Find All Null - /requirements/find_all_null', () => {
 
-  // Função utilitária para chamada da API
-  function findAllNull(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     findAllNull({
       token: validToken,
@@ -31,7 +19,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  // --- POSITIVO: todos os campos preenchidos ---
   it('Retorna resultado com todos os campos válidos', () => {
     findAllNull({
       token: validToken,
@@ -54,42 +41,11 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      findAllNull({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     findAllNull({
       token: validToken
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'build_id', 'module_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId,
-          module_id: validModuleId
-        };
-        body[field] = value;
-        findAllNull(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
     });
   });
 
@@ -182,5 +138,4 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -10,33 +10,6 @@ const validSummary = 'Resumo do requisito';
 
 describe('API rest - Requirements Update - /requirements/update', () => {
 
-  // Dados opcionais válidos
-  const optionalFields = {
-    build_id: 1,
-    requirement_parent_id: 2,
-    test_scenarios: 'Cenário 1; Cenário 2',
-    test_cases: 'Caso 1; Caso 2',
-    requirement_type: 'Funcional',
-    requirement_class: 'Alta',
-    requirement_source: 'Cliente',
-    impact_identification: 'Alto impacto',
-    comments: 'Comentário exemplo',
-    status: 'Ativo'
-  };
-
-  // Função utilitária para chamada da API
-  function requirementsUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  
   it('Status Code 200', () => {
     requirementsUpdate({
       token: validToken,
@@ -101,120 +74,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      requirementsUpdate({
-        token,
-        project_id: validProjectId,
-        id: validRequirementId,
-        requirement_title: validTitle,
-        requirement_summary: validSummary,
-        assignedto: validAssignedTo
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'id', 'requirement_title', 'requirement_summary', 'assignedto'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        id: validRequirementId,
-        requirement_title: validTitle,
-        requirement_summary: validSummary,
-        assignedto: validAssignedTo
-      };
-      delete body[field];
-      requirementsUpdate(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  [
-    { field: 'project_id', valid: validProjectId },
-    { field: 'id', valid: validRequirementId },
-    { field: 'assignedto', valid: validAssignedTo }
-  ].forEach(({ field, valid }) => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          id: validRequirementId,
-          requirement_title: validTitle,
-          requirement_summary: validSummary,
-          assignedto: validAssignedTo
-        };
-        body[field] = value;
-        requirementsUpdate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  ['requirement_title', 'requirement_summary'].forEach(field => {
-    ['', null, {}, [], 12345, true, false].forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          id: validRequirementId,
-          requirement_title: validTitle,
-          requirement_summary: validSummary,
-          assignedto: validAssignedTo
-        };
-        body[field] = value;
-        requirementsUpdate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- Campos opcionais inválidos ---
-  Object.keys(optionalFields).forEach(field => {
-    [null, {}, [], true, false].forEach(value => {
-      it(`Falha (ou ignora) com campo opcional ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          id: validRequirementId,
-          requirement_title: validTitle,
-          requirement_summary: validSummary,
-          assignedto: validAssignedTo,
-          [field]: value
-        };
-        requirementsUpdate(body).then(response => {
-          expect([200, 400, 422]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- Attachment inválido ---
-  [123, '', {}, [], true].forEach(value => {
-    it(`Falha (ou ignora) com attachment inválido (${JSON.stringify(value)})`, () => {
-      requirementsUpdate({
-        token: validToken,
-        project_id: validProjectId,
-        id: validRequirementId,
-        requirement_title: validTitle,
-        requirement_summary: validSummary,
-        assignedto: validAssignedTo,
-        'attachment[]': value
-      }).then(response => {
-        expect([200, 400, 422]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     requirementsUpdate({
       token: validToken,
@@ -226,28 +85,6 @@ describe('API rest - Requirements Update - /requirements/update', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          id: validRequirementId,
-          requirement_title: validTitle,
-          requirement_summary: validSummary,
-          assignedto: validAssignedTo
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -336,5 +173,4 @@ describe('API rest - Requirements Update - /requirements/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

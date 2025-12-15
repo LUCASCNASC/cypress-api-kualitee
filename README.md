@@ -65,4 +65,4 @@ It is necessary to develop and specify the scenarios.
 - To do documentation of tests scenarios.
 
 Ajustando espaços nos arquivos de teste.
-- ajustado até "report"
+- ajustado até "task"

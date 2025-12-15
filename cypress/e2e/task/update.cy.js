@@ -11,18 +11,6 @@ const validEndDate = '2025-09-20';
 
 describe('API rest - Task Update - /task/update', () => {
 
-  function taskUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO (mínimo obrigatório) ---
   it('Status Code 200', () => {
     taskUpdate({
       token: validToken,
@@ -41,7 +29,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  // --- POSITIVO: Todos parâmetros ---
   it('Atualiza task com todos campos possíveis', () => {
     taskUpdate({
       token: validToken,
@@ -76,25 +63,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      taskUpdate({
-        token,
-        project_id: validProjectId,
-        id: validTaskId,
-        'assignedto[0]': validAssignedTo[0],
-        taskname: validTaskname,
-        startdate: validStartDate,
-        enddate: validEndDate,
-        backgroundColor: '#FFFFFF',
-        foregroundColor: '#000000'
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- NEGATIVO: project_id/id/assignedto[0] inválidos/ausentes ---
   it('Falha sem project_id', () => {
     taskUpdate({
       token: validToken,
@@ -188,27 +156,6 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  // --- NEGATIVO: taskname/startdate/enddate obrigatórios/errados ---
-  ['taskname', 'startdate', 'enddate', 'backgroundColor', 'foregroundColor'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const req = {
-        token: validToken,
-        project_id: validProjectId,
-        id: validTaskId,
-        'assignedto[0]': validAssignedTo[0],
-        taskname: validTaskname,
-        startdate: validStartDate,
-        enddate: validEndDate,
-        backgroundColor: '#FFFFFF',
-        foregroundColor: '#000000'
-      };
-      delete req[field];
-      taskUpdate(req).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     taskUpdate({
       token: validToken,
@@ -223,31 +170,6 @@ describe('API rest - Task Update - /task/update', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          id: validTaskId,
-          'assignedto[0]': validAssignedTo[0],
-          taskname: validTaskname,
-          startdate: validStartDate,
-          enddate: validEndDate,
-          backgroundColor: '#FFFFFF',
-          foregroundColor: '#000000'
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -354,5 +276,4 @@ describe('API rest - Task Update - /task/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

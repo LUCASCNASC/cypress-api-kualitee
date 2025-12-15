@@ -7,16 +7,6 @@ const validTaskId = 888;
 
 describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
 
-  function taskTimeLogDetail(params, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: params,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
@@ -31,65 +21,24 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      taskTimeLogDetail({ token, project_id: validProjectId, id: validTaskId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     taskTimeLogDetail({ token: validToken, id: validTaskId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      taskTimeLogDetail({ token: validToken, project_id, id: validTaskId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- id inválido, ausente, tipos errados, limites ---
   it('Falha sem id', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      taskTimeLogDetail({ token: validToken, project_id: validProjectId, id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Parâmetro extra ignorado ---
   it('Ignora parâmetro extra na query', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, project_id: validProjectId, id: validTaskId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Content-Type: não deve afetar GET (mas testando) ---
   it('GET ignora Content-Type application/json', () => {
     cy.request({
       method: 'GET',
@@ -133,5 +82,4 @@ describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

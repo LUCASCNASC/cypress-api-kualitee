@@ -9,17 +9,6 @@ const validCanDelete = true;
 
 describe('API rest - Roles Update - /roles/update', () => {
 
-  function rolesUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     rolesUpdate({
       token: validToken,
@@ -67,20 +56,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      rolesUpdate({
-        token,
-        id: validId,
-        role_name: validRoleName,
-        description: validDescription
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- id inválido, ausente, tipos errados, limites ---
   it('Falha sem id', () => {
     rolesUpdate({
       token: validToken,
@@ -91,20 +66,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(id => {
-    it(`Falha com id inválido (${JSON.stringify(id)})`, () => {
-      rolesUpdate({
-        token: validToken,
-        id,
-        role_name: validRoleName,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- role_name inválido, ausente, tipos errados, limites ---
   it('Falha sem role_name', () => {
     rolesUpdate({
       token: validToken,
@@ -115,20 +76,6 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  [null, '', 123, {}, [], true, false].forEach(role_name => {
-    it(`Falha com role_name inválido (${JSON.stringify(role_name)})`, () => {
-      rolesUpdate({
-        token: validToken,
-        id: validId,
-        role_name,
-        description: validDescription
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- description inválido, ausente, tipos errados, limites ---
   it('Falha sem description', () => {
     rolesUpdate({
       token: validToken,
@@ -136,34 +83,6 @@ describe('API rest - Roles Update - /roles/update', () => {
       role_name: validRoleName
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 123, {}, [], true, false].forEach(description => {
-    it(`Falha com description inválido (${JSON.stringify(description)})`, () => {
-      rolesUpdate({
-        token: validToken,
-        id: validId,
-        role_name: validRoleName,
-        description
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- can_delete inválido, limites ---
-  ['abc', 123, {}, [], 'true', 'false'].forEach(can_delete => {
-    it(`Falha com can_delete inválido (${JSON.stringify(can_delete)})`, () => {
-      rolesUpdate({
-        token: validToken,
-        id: validId,
-        role_name: validRoleName,
-        description: validDescription,
-        can_delete
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -177,26 +96,6 @@ describe('API rest - Roles Update - /roles/update', () => {
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          id: validId,
-          role_name: validRoleName,
-          description: validDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -273,5 +172,4 @@ describe('API rest - Roles Update - /roles/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

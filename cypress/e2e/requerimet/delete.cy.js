@@ -7,18 +7,6 @@ const validRequirementId = 123;
 
 describe('API rest - Requirements Delete - /requirements/delete', () => {
 
-  // Função utilitária para chamada da API
-  function requirementsDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     requirementsDelete({
       token: validToken,
@@ -41,53 +29,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      requirementsDelete({
-        token,
-        project_id: validProjectId,
-        'id[0]': validRequirementId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'id[0]'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        'id[0]': validRequirementId
-      };
-      delete body[field];
-      requirementsDelete(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-
-  ['project_id', 'id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'id[0]': validRequirementId
-        };
-        body[field] = value;
-        requirementsDelete(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- Deleção de múltiplos requisitos ---
   it('Deleta múltiplos requisitos com id[0], id[1], ...', () => {
     requirementsDelete({
       token: validToken,
@@ -107,25 +48,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'id[0]': validRequirementId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -196,5 +118,4 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

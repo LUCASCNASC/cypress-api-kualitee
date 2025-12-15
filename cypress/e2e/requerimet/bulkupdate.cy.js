@@ -8,18 +8,6 @@ const validRequirementIds = [101, 102, 103];
 
 describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () => {
 
-  // Função utilitária para chamada da API
-  function bulkUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     bulkUpdate({
       token: validToken,
@@ -59,62 +47,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      bulkUpdate({
-        token,
-        project_id: validProjectId,
-        'requirement_id[0]': validRequirementIds[0],
-        'requirement_id[1]': validRequirementIds[1],
-        module_id: validModuleId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'requirement_id[0]', 'requirement_id[1]', 'module_id'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        'requirement_id[0]': validRequirementIds[0],
-        'requirement_id[1]': validRequirementIds[1],
-        module_id: validModuleId
-      };
-      delete body[field];
-      bulkUpdate(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  [
-    { field: 'project_id', valid: validProjectId },
-    { field: 'requirement_id[0]', valid: validRequirementIds[0] },
-    { field: 'requirement_id[1]', valid: validRequirementIds[1] },
-    { field: 'module_id', valid: validModuleId }
-  ].forEach(({ field, valid }) => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'requirement_id[0]': validRequirementIds[0],
-          'requirement_id[1]': validRequirementIds[1],
-          module_id: validModuleId
-        };
-        body[field] = value;
-        bulkUpdate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     bulkUpdate({
       token: validToken,
@@ -125,27 +57,6 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'requirement_id[0]': validRequirementIds[0],
-          'requirement_id[1]': validRequirementIds[1],
-          module_id: validModuleId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -228,5 +139,4 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

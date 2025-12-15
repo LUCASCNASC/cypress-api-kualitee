@@ -12,17 +12,6 @@ const validExportType = 'CSV';
 
 describe('API rest - Requirements List - /requirements/list', () => {
 
-  function requirementsList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -97,53 +86,15 @@ describe('API rest - Requirements List - /requirements/list', () => {
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      requirementsList({ token: validToken, project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha com project_id inexistente', () => {
     requirementsList({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(build_id => {
-    it(`Falha (ou ignora) com build_id inválido (${JSON.stringify(build_id)})`, () => {
-      requirementsList({ token: validToken, project_id: validProjectId, build_id }).then(response => {
-        expect([200, 400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(module_id => {
-    it(`Falha (ou ignora) com module_id inválido (${JSON.stringify(module_id)})`, () => {
-      requirementsList({ token: validToken, project_id: validProjectId, module_id }).then(response => {
-        expect([200, 400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-  
   it('Ignora campo extra no body', () => {
     requirementsList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 

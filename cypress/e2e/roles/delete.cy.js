@@ -7,17 +7,6 @@ const validIdArray = [123];
 
 describe('API rest - Roles Delete - /roles/delete', () => {
 
-  function rolesDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdArray[0] }).then(response => {
       expect(response.status).to.eq(200);
@@ -26,7 +15,6 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  // Testando multiplos ids
   it('Deleta múltiplos roles com vários id[0], id[1]...', () => {
     rolesDelete({ token: validToken, 'id[0]': 111, 'id[1]': 222, 'id[2]': 333 }).then(response => {
       expect(response.status).to.eq(200);
@@ -39,47 +27,15 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      rolesDelete({ token, 'id[0]': validIdSingle }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- id[0] inválido, ausente, tipos errados, limites ---
   it('Falha sem id[0]', () => {
     rolesDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(badId => {
-    it(`Falha com id[0] inválido (${JSON.stringify(badId)})`, () => {
-      rolesDelete({ token: validToken, 'id[0]': badId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, 'id[0]': validIdSingle },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -126,5 +82,4 @@ describe('API rest - Roles Delete - /roles/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

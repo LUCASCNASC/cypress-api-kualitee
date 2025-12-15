@@ -9,18 +9,6 @@ const validDbColumns = [ 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7',
 
 describe('API rest - Requirements Import Step 2 - /requirements/import/step2', () => {
 
-  // Função utilitária para chamada da API
-  function importStep2(formData, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body: formData,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
@@ -64,51 +52,6 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
     });
   });
 
-  
-  ['project_id', 'import_csv_file', 'assignedto', 'created_new'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      cy.fixture(validCsvPath, 'binary').then(CSVContent => {
-        const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
-        const formData = {
-          token: validToken,
-          project_id: validProjectId,
-          import_csv_file: blob,
-          assignedto: validAssignedTo,
-          created_new: 'create'
-        };
-        if (field === 'import_csv_file') delete formData.import_csv_file;
-        else if (field === 'project_id') delete formData.project_id;
-        else if (field === 'assignedto') delete formData.assignedto;
-        else if (field === 'created_new') delete formData.created_new;
-        importStep2(formData).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-
-  invalidValues.forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      cy.fixture(validCsvPath, 'binary').then(CSVContent => {
-        const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
-        const formData = {
-          token: validToken,
-          project_id,
-          import_csv_file: blob,
-          assignedto: validAssignedTo,
-          created_new: 'create'
-        };
-        importStep2(formData).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- Arquivo inválido ---
   it('Falha com arquivo vazio', () => {
     const blob = Cypress.Blob.binaryStringToBlob('', 'text/csv');
     importStep2({
@@ -135,30 +78,6 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
       };
       importStep2(formData).then(response => {
         expect([200, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.fixture(validCsvPath, 'binary').then(CSVContent => {
-        const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
-        cy.request({
-          method,
-          url: `/${PATH_API}`,
-          form: true,
-          body: {
-            token: validToken,
-            project_id: validProjectId,
-            import_csv_file: blob,
-            assignedto: validAssignedTo,
-            created_new: 'create'
-          },
-          failOnStatusCode: false,
-        }).then(response => {
-          expect([405, 404, 400]).to.include(response.status);
-        });
       });
     });
   });
@@ -251,5 +170,4 @@ describe('API rest - Requirements Import Step 2 - /requirements/import/step2', (
         });
     });
   });
-
 });

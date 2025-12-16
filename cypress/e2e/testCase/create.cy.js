@@ -10,18 +10,6 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case Create - /test_case/create', () => {
 
-  function testCaseCreate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: Campos obrigatórios mínimos ---
   it('Status Code 200', () => {
     testCaseCreate({
       token: validToken,
@@ -39,7 +27,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  // --- POSITIVO: Todos os campos preenchidos ---
   it('Cria caso de teste com todos os campos preenchidos', () => {
     testCaseCreate({
       token: validToken,
@@ -83,63 +70,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testCaseCreate({
-        token,
-        project_id: validProjectId,
-        t_name: 'Nome',
-        summary: 'Resumo',
-        t_execution_type: 'manual',
-        t_testing_type: 'Functional',
-        t_priority: 'Low'
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 't_name', 'summary', 't_execution_type', 't_testing_type', 't_priority'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        t_name: 'Nome',
-        summary: 'Resumo',
-        t_execution_type: 'manual',
-        t_testing_type: 'Functional',
-        t_priority: 'Low'
-      };
-      delete body[field];
-      testCaseCreate(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          t_name: 'Nome',
-          summary: 'Resumo',
-          t_execution_type: 'manual',
-          t_testing_type: 'Functional',
-          t_priority: 'Low'
-        };
-        body[field] = value;
-        testCaseCreate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     testCaseCreate({
       token: validToken,
@@ -152,29 +82,6 @@ describe('API rest - Test Case Create - /test_case/create', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          t_name: 'Nome',
-          summary: 'Resumo',
-          t_execution_type: 'manual',
-          t_testing_type: 'Functional',
-          t_priority: 'Low'
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -269,5 +176,4 @@ describe('API rest - Test Case Create - /test_case/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

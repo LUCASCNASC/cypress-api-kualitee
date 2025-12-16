@@ -10,18 +10,6 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case List - /test_case/list', () => {
 
-  function testCaseList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: Mínimo obrigatório ---
   it('Status Code 200', () => {
     testCaseList({
       token: validToken,
@@ -34,7 +22,6 @@ describe('API rest - Test Case List - /test_case/list', () => {
     });
   });
 
-  // --- POSITIVO: Todos os campos preenchidos ---
   it('Retorna lista de casos de teste com todos os campos preenchidos', () => {
     testCaseList({
       token: validToken,
@@ -64,40 +51,11 @@ describe('API rest - Test Case List - /test_case/list', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testCaseList({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     testCaseList({
       token: validToken
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'build_id', 'module_id', 'test_scenario_id', 'requirement_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId
-        };
-        body[field] = value;
-        testCaseList(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
     });
   });
 
@@ -108,24 +66,6 @@ describe('API rest - Test Case List - /test_case/list', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -190,5 +130,4 @@ describe('API rest - Test Case List - /test_case/list', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

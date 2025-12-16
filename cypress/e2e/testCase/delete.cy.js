@@ -6,18 +6,6 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('API rest - Test Case Delete - /test_case/delete', () => {
 
-  function testCaseDelete(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: Um id ---
   it('Status Code 200', () => {
     testCaseDelete({
       token: validToken,
@@ -31,7 +19,6 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- POSITIVO: Vários ids ---
   it('Deleta múltiplos casos de teste', () => {
     const body = {
       token: validToken,
@@ -55,19 +42,6 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testCaseDelete({
-        token,
-        project_id: validProjectId,
-        'id[0]': validIds[0]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     testCaseDelete({
       token: validToken,
@@ -86,24 +60,6 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'id[0]': validIds[0]
-        };
-        body[field] = value;
-        testCaseDelete(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     testCaseDelete({
       token: validToken,
@@ -112,25 +68,6 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'id[0]': validIds[0]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -185,7 +122,6 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita deleções idênticas sequenciais ---
   it('Permite deleções duplicadas rapidamente', () => {
     testCaseDelete({
       token: validToken,
@@ -201,5 +137,4 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

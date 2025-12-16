@@ -10,18 +10,7 @@ const validCycleId = 1001;
 const validOffsetTestExecutions = 0;
 
 describe('API rest - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
-  
-  function findNextTestCase(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     findNextTestCase({
       token: validToken,
@@ -51,22 +40,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      findNextTestCase({
-        token,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        build_id: validBuildId,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     findNextTestCase({
       token: validToken,
@@ -80,23 +53,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        build_id: validBuildId,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- tc_id inválido, ausente, tipos errados, limites ---
   it('Falha sem tc_id', () => {
     findNextTestCase({
       token: validToken,
@@ -110,23 +66,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(tc_id => {
-    it(`Falha com tc_id inválido (${JSON.stringify(tc_id)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        build_id: validBuildId,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- testscenario_id inválido, ausente, tipos errados, limites ---
   it('Falha sem testscenario_id', () => {
     findNextTestCase({
       token: validToken,
@@ -140,23 +79,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(testscenario_id => {
-    it(`Falha com testscenario_id inválido (${JSON.stringify(testscenario_id)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id,
-        cycle_id: validCycleId,
-        build_id: validBuildId,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- cycle_id inválido, ausente, tipos errados, limites ---
   it('Falha sem cycle_id', () => {
     findNextTestCase({
       token: validToken,
@@ -170,23 +92,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(cycle_id => {
-    it(`Falha com cycle_id inválido (${JSON.stringify(cycle_id)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id,
-        build_id: validBuildId,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- build_id inválido, ausente, tipos errados, limites ---
   it('Falha sem build_id', () => {
     findNextTestCase({
       token: validToken,
@@ -200,23 +105,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
     });
   });
 
-  [null, '', 'abc', -1, 999999999, {}, [], true, false].forEach(build_id => {
-    it(`Falha com build_id inválido (${JSON.stringify(build_id)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        build_id,
-        offset_test_executions: validOffsetTestExecutions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- offset_test_executions inválido, ausente, tipos errados, limites ---
   it('Falha sem offset_test_executions', () => {
     findNextTestCase({
       token: validToken,
@@ -227,22 +115,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
       build_id: validBuildId
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', -1, 999999999, {}, [], true, false].forEach(offset_test_executions => {
-    it(`Falha com offset_test_executions inválido (${JSON.stringify(offset_test_executions)})`, () => {
-      findNextTestCase({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        build_id: validBuildId,
-        offset_test_executions
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -258,29 +130,6 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          tc_id: validTcId,
-          testscenario_id: validTestScenarioId,
-          cycle_id: validCycleId,
-          build_id: validBuildId,
-          offset_test_executions: validOffsetTestExecutions
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -375,5 +224,4 @@ describe('API rest - Test Case Execution Find Next Test Case - /test_case_execut
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

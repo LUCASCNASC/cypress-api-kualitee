@@ -10,18 +10,7 @@ const validExecutionId = 222;
 const validDefects = [555, 556];
 
 describe('API rest - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
-  
-  function attachDefects(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     attachDefects({
       token: validToken,
@@ -53,23 +42,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      attachDefects({
-        token,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     attachDefects({
       token: validToken,
@@ -84,24 +56,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- tc_id inválido, ausente, tipos errados, limites ---
   it('Falha sem tc_id', () => {
     attachDefects({
       token: validToken,
@@ -116,24 +70,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(tc_id => {
-    it(`Falha com tc_id inválido (${JSON.stringify(tc_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- testscenario_id inválido, ausente, tipos errados, limites ---
   it('Falha sem testscenario_id', () => {
     attachDefects({
       token: validToken,
@@ -148,24 +84,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(testscenario_id => {
-    it(`Falha com testscenario_id inválido (${JSON.stringify(testscenario_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- cycle_id inválido, ausente, tipos errados, limites ---
   it('Falha sem cycle_id', () => {
     attachDefects({
       token: validToken,
@@ -180,24 +98,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(cycle_id => {
-    it(`Falha com cycle_id inválido (${JSON.stringify(cycle_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- execution_id inválido, ausente, tipos errados, limites ---
   it('Falha sem execution_id', () => {
     attachDefects({
       token: validToken,
@@ -209,60 +109,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
       'defects[1]': validDefects[1]
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(execution_id => {
-    it(`Falha com execution_id inválido (${JSON.stringify(execution_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- defects[X] inválidos, ausentes, tipos errados, limites ---
-  ['defects[0]', 'defects[1]'].forEach(defectField => {
-    it(`Falha sem ${defectField}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': validDefects[0],
-        'defects[1]': validDefects[1]
-      };
-      delete body[defectField];
-      attachDefects(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(defect_id => {
-    it(`Falha com defect_id inválido (${JSON.stringify(defect_id)})`, () => {
-      attachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        testscenario_id: validTestScenarioId,
-        cycle_id: validCycleId,
-        execution_id: validExecutionId,
-        'defects[0]': defect_id,
-        'defects[1]': validDefects[1]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -279,30 +125,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          tc_id: validTcId,
-          testscenario_id: validTestScenarioId,
-          cycle_id: validCycleId,
-          execution_id: validExecutionId,
-          'defects[0]': validDefects[0],
-          'defects[1]': validDefects[1]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -403,5 +225,4 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

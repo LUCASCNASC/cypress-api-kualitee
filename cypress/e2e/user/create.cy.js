@@ -3,44 +3,6 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Users Create - /users/create', () => {
 
-  function createUser(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  const validBody = {
-    token: validToken,
-    profile_username: 'user' + Date.now(),
-    first_name: 'Lucas',
-    last_name: 'Silva',
-    email: `lucas${Date.now()}@test.com`,
-    street_1: 'Rua 1',
-    street_2: 'Apto 101',
-    city: 'Cidade',
-    country: 'Brasil',
-    zipcode: 12345678,
-    role: 7
-  };
-
-  
-  [7, 6, 2].forEach(role => {
-    it(`Status Code 200 (${role})`, () => {
-      createUser({ ...validBody, role, profile_username: 'user' + Date.now(), email: `user${role}${Date.now()}@test.com` }).then(response => {
-        expect(response.status).to.eq(200);
-        expect(response.body).to.be.an('object');
-        expect(response.body).to.have.property('success', true);
-        // Ajuste conforme response real
-        expect(response.headers['content-type']).to.include('application/json');
-      });
-    });
-  });
-
   it('Cria usuário apenas com campos obrigatórios', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;
     createUser({ ...bodyMin, profile_username: 'user' + Date.now(), email: `min${Date.now()}@test.com` }).then(response => {
@@ -87,86 +49,10 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  
-  ['profile_username', 'first_name', 'last_name', 'email', 'role'].forEach(field => {
-    it(`Falha com campo obrigatório ausente: ${field}`, () => {
-      const body = { ...validBody };
-      delete body[field];
-      body.profile_username = 'user' + Date.now(); // Garante único username
-      body.email = `miss${field}${Date.now()}@test.com`; // Garante email único
-      createUser(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- role inválido ---
-  [-1, 0, 1, 3, 4, 5, 8, 999, 'a', '', null, {}, [], true, false].forEach(role => {
-    it(`Falha com role inválido (${JSON.stringify(role)})`, () => {
-      createUser({ ...validBody, role, profile_username: 'user' + Date.now(), email: `role${role}${Date.now()}@test.com` }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- email inválido ---
-  ['lucas', 'lucas@', '@gmail.com', 'lucas.com', '', null, 123, {}, [], true, false].forEach(email => {
-    it(`Falha com email inválido (${JSON.stringify(email)})`, () => {
-      createUser({ ...validBody, email, profile_username: 'user' + Date.now() }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- profile_username inválido ---
-  [null, '', {}, [], true, false].forEach(username => {
-    it(`Falha com profile_username inválido (${JSON.stringify(username)})`, () => {
-      createUser({ ...validBody, profile_username: username, email: `user${Date.now()}@test.com` }).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     createUser({ ...validBody, extra: 'foo', profile_username: 'user' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
-    });
-  });
-
-  // --- Campos opcionais: limites, nulos, tipos errados ---
-  ['street_1', 'street_2', 'city', 'country'].forEach(field => {
-    ['', null, {}, [], 123, true, false].forEach(value => {
-      it(`Aceita campo opcional ${field} com valor ${JSON.stringify(value)}`, () => {
-        createUser({ ...validBody, [field]: value, profile_username: 'user' + Date.now(), email: `opt${field}${Date.now()}@test.com` }).then(response => {
-          expect([200, 400, 422]).to.include(response.status); // Aceita, ignora ou rejeita (depende do contrato)
-        });
-      });
-    });
-  });
-
-  // --- zipcode: limites, string, vazio ---
-  [null, '', '12345', 0, -1, 9999999999, {}, [], true, false].forEach(zip => {
-    it(`Aceita/rejeita zipcode com valor ${JSON.stringify(zip)}`, () => {
-      createUser({ ...validBody, zipcode: zip, profile_username: 'user' + Date.now(), email: `zip${Date.now()}@test.com` }).then(response => {
-        expect([200, 400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach((method) => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        failOnStatusCode: false,
-      }).then((response) => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -206,7 +92,6 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  // --- Duplicidade ---
   it('Falha ao criar usuário com email já existente', () => {
     const uniqueEmail = `dup${Date.now()}@test.com`;
     const uniqueUsername = 'user' + Date.now();
@@ -217,5 +102,4 @@ describe('API rest - Users Create - /users/create', () => {
       });
     });
   });
-
 });

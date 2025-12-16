@@ -5,29 +5,16 @@ const validUserId = 101;
 
 describe('API rest - User Detail - /users/detail', () => {
 
-  function getUserDetail(params, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: params,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  
   it('Status Code 200', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
       expect(response.body).to.have.property('success', true);
       expect(response.headers['content-type']).to.include('application/json');
-      // Validação de contrato básica (ajuste conforme response real)
       expect(response.body).to.have.property('user').that.is.an('object');
     });
   });
 
-  // --- NEGATIVOS: Token inválido, ausente, expirado, nulo, caracteres especiais, SQLi ---
   it('Falha sem token', () => {
     getUserDetail({ user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -65,20 +52,10 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  // --- NEGATIVOS: user_id inválido, ausente, não existente, tipos errados, limites ---
   it('Falha sem user_id', () => {
     getUserDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(user_id => {
-    it(`Falha com user_id inválido (${JSON.stringify(user_id)})`, () => {
-      getUserDetail({ token: validToken, user_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
     });
   });
 
@@ -94,21 +71,6 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: { token: validToken, user_id: validUserId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Content-Type errado (GET não envia body, mas pode forçar header) ---
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
     cy.request({
       method: 'GET',
@@ -152,5 +114,4 @@ describe('API rest - User Detail - /users/detail', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

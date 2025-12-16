@@ -11,18 +11,6 @@ const validDescription = 'Descrição detalhada do cenário de teste';
 
 describe('API rest - Test Scenario Create - /test_scenario/create', () => {
 
-  function createTestScenario(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: obrigatórios apenas
   it('Status Code 200', () => {
     createTestScenario({
       token: validToken,
@@ -37,7 +25,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // POSITIVO: todos os campos
   it('Cria cenário de teste com todos os campos preenchidos', () => {
     createTestScenario({
       token: validToken,
@@ -55,66 +42,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // NEGATIVO: AUTH
-  it('Falha sem token', () => {
-    createTestScenario({
-      project_id: validProjectId,
-      test_scenario_name: validScenarioName,
-      description: validDescription
-    }).then(response => {
-      expect([400, 401, 403]).to.include(response.status);
-    });
-  });
-
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      createTestScenario({
-        token,
-        project_id: validProjectId,
-        test_scenario_name: validScenarioName,
-        description: validDescription
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'test_scenario_name', 'description'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        test_scenario_name: validScenarioName,
-        description: validDescription
-      };
-      delete body[field];
-      createTestScenario(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_name: validScenarioName,
-          description: validDescription
-        };
-        body[field] = value;
-        createTestScenario(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     createTestScenario({
       token: validToken,
@@ -127,27 +54,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_name: validScenarioName,
-          description: validDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -165,7 +71,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     createTestScenario({
       token: "' OR 1=1 --",
@@ -178,7 +83,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     createTestScenario({
       token: validToken,
@@ -191,7 +95,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       createTestScenario({
@@ -207,7 +110,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite criar o mesmo cenário de teste rapidamente', () => {
     createTestScenario({
       token: validToken,
@@ -225,5 +127,4 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

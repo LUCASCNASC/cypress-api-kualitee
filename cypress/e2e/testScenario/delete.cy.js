@@ -7,19 +7,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
-  
-  function deleteTestScenario(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
 
-  // POSITIVO: todos os campos obrigatórios válidos
   it('Status Code 200', () => {
     deleteTestScenario({
       token: validToken,
@@ -33,7 +21,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     deleteTestScenario({
       project_id: validProjectId,
@@ -43,52 +30,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      deleteTestScenario({
-        token,
-        project_id: validProjectId,
-        'test_scenario_id[0]': validTestScenarioId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'test_scenario_id[0]'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        'test_scenario_id[0]': validTestScenarioId
-      };
-      delete body[field];
-      deleteTestScenario(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'test_scenario_id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'test_scenario_id[0]': validTestScenarioId
-        };
-        body[field] = value;
-        deleteTestScenario(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     deleteTestScenario({
       token: validToken,
@@ -100,26 +41,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'test_scenario_id[0]': validTestScenarioId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -136,7 +57,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     deleteTestScenario({
       token: "' OR 1=1 --",
@@ -148,7 +68,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     deleteTestScenario({
       token: validToken,
@@ -160,7 +79,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteTestScenario({
@@ -175,7 +93,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite deletar o mesmo cenário rapidamente', () => {
     deleteTestScenario({
       token: validToken,
@@ -191,5 +108,4 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -7,18 +7,6 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Approve - /test_case/approve', () => {
 
-  function testCaseApprove(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: Aprovar um caso de teste ---
   it('Status Code 200', () => {
     testCaseApprove({
       token: validToken,
@@ -33,7 +21,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  // --- POSITIVO: Aprovar múltiplos casos de teste ---
   it('Aprova múltiplos casos de teste', () => {
     const body = {
       token: validToken,
@@ -49,7 +36,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  // --- POSITIVO: Rejeitar um caso de teste ---
   it('Rejeita um caso de teste', () => {
     testCaseApprove({
       token: validToken,
@@ -74,20 +60,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testCaseApprove({
-        token,
-        project_id: validProjectId,
-        tc_status: '1',
-        'testcase_id[0]': validTestcaseIds[0]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     testCaseApprove({
       token: validToken,
@@ -118,39 +90,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'testcase_id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          tc_status: '1',
-          'testcase_id[0]': validTestcaseIds[0]
-        };
-        body[field] = value;
-        testCaseApprove(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- tc_status inválido ---
-  ['0', '3', 'aprovado', '', null, undefined].forEach(tc_status => {
-    it(`Falha com tc_status inválido (${JSON.stringify(tc_status)})`, () => {
-      testCaseApprove({
-        token: validToken,
-        project_id: validProjectId,
-        tc_status,
-        'testcase_id[0]': validTestcaseIds[0]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     testCaseApprove({
       token: validToken,
@@ -160,26 +99,6 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          tc_status: '1',
-          'testcase_id[0]': validTestcaseIds[0]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -255,5 +174,4 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

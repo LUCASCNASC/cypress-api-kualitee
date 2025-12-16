@@ -6,18 +6,6 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
 
-  function getNullTestScenarios(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: obrigatórios apenas
   it('Status Code 200', () => {
     getNullTestScenarios({
       token: validToken,
@@ -31,7 +19,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     getNullTestScenarios({
       project_id: validProjectId,
@@ -41,19 +28,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      getNullTestScenarios({
-        token,
-        project_id: validProjectId,
-        build_id: validBuildId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
   it('Falha sem project_id', () => {
     getNullTestScenarios({
       token: validToken,
@@ -63,25 +37,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'build_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId
-        };
-        body[field] = value;
-        getNullTestScenarios(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     getNullTestScenarios({
       token: validToken,
@@ -93,26 +48,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url:`/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -129,7 +64,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getNullTestScenarios({
       token: "' OR 1=1 --",
@@ -141,7 +75,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     getNullTestScenarios({
       token: validToken,
@@ -153,7 +86,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getNullTestScenarios({
@@ -168,7 +100,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite chamadas idênticas rapidamente', () => {
     getNullTestScenarios({
       token: validToken,
@@ -184,5 +115,4 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

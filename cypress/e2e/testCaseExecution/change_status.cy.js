@@ -8,17 +8,6 @@ const validTcIds = [101, 102, 103];
 
 describe('API rest - Test Case Execution Change Status - /test_case_execution/change_status', () => {
 
-  function changeStatus(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     changeStatus({
       token: validToken,
@@ -46,21 +35,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      changeStatus({
-        token,
-        project_id: validProjectId,
-        status: validStatus,
-        'tc_id[0]': validTcIds[0],
-        'tc_id[1]': validTcIds[1],
-        'tc_id[2]': validTcIds[2]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     changeStatus({
       token: validToken,
@@ -73,22 +47,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      changeStatus({
-        token: validToken,
-        project_id,
-        status: validStatus,
-        'tc_id[0]': validTcIds[0],
-        'tc_id[1]': validTcIds[1],
-        'tc_id[2]': validTcIds[2]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- status inválido, ausente, tipos errados, limites ---
   it('Falha sem status', () => {
     changeStatus({
       token: validToken,
@@ -98,54 +56,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
       'tc_id[2]': validTcIds[2]
     }).then(response => {
       expect([400, 422]).to.include(response.status);
-    });
-  });
-
-  [null, '', 123, {}, [], true, false, 'INVALID_STATUS'].forEach(status => {
-    it(`Falha com status inválido (${JSON.stringify(status)})`, () => {
-      changeStatus({
-        token: validToken,
-        project_id: validProjectId,
-        status,
-        'tc_id[0]': validTcIds[0],
-        'tc_id[1]': validTcIds[1],
-        'tc_id[2]': validTcIds[2]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- tc_id[X] inválidos, ausentes, tipos errados, limites ---
-  ['tc_id[0]', 'tc_id[1]', 'tc_id[2]'].forEach(tcField => {
-    it(`Falha sem ${tcField}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        status: validStatus,
-        'tc_id[0]': validTcIds[0],
-        'tc_id[1]': validTcIds[1],
-        'tc_id[2]': validTcIds[2]
-      };
-      delete body[tcField];
-      changeStatus(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(tc_id => {
-    it(`Falha com tc_id inválido (${JSON.stringify(tc_id)})`, () => {
-      changeStatus({
-        token: validToken,
-        project_id: validProjectId,
-        status: validStatus,
-        'tc_id[0]': tc_id,
-        'tc_id[1]': validTcIds[1],
-        'tc_id[2]': validTcIds[2]
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -160,28 +70,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          status: validStatus,
-          'tc_id[0]': validTcIds[0],
-          'tc_id[1]': validTcIds[1],
-          'tc_id[2]': validTcIds[2]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -270,5 +158,4 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

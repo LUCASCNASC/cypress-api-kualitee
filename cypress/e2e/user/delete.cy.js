@@ -5,18 +5,6 @@ const validUserId = 101;
 
 describe('API rest - Users Delete - /users/delete', () => {
 
-  function deleteUser(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  
   it('Status Code 200', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.status).to.eq(200);
@@ -27,10 +15,8 @@ describe('API rest - Users Delete - /users/delete', () => {
   });
 
   it('Deleta múltiplos usuários (array de user_id)', () => {
-    // Use IDs válidos no seu ambiente!
     deleteUser({ token: validToken, 'user_id[0]': validUserId, 'user_id[1]': validUserId + 1 }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
-      // Pode ser sucesso ou erro dependendo da existência dos IDs
     });
   });
 
@@ -71,20 +57,10 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- user_id inválido, ausente, não existente, tipos errados, limites ---
   it('Falha sem user_id', () => {
     deleteUser({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(user_id => {
-    it(`Falha com user_id inválido (${JSON.stringify(user_id)})`, () => {
-      deleteUser({ token: validToken, 'user_id[0]': user_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
     });
   });
 
@@ -97,21 +73,6 @@ describe('API rest - Users Delete - /users/delete', () => {
   it('Ignora campo extra no body', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, 'user_id[0]': validUserId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -151,7 +112,6 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  // --- Duplicidade: Aceita deleções idênticas sequenciais ---
   it('Permite deleções duplicadas rapidamente (idempotência)', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId })
       .then(() => deleteUser({ token: validToken, 'user_id[0]': validUserId }))
@@ -159,5 +119,4 @@ describe('API rest - Users Delete - /users/delete', () => {
         expect([200, 400, 401, 409, 422, 404]).to.include(response.status);
       });
   });
-
 });

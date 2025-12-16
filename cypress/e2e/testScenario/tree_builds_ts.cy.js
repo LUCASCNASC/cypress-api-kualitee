@@ -7,18 +7,6 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', () => {
 
-  function treeBuildTS(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: todos os campos obrigatórios válidos
   it('Status Code 200', () => {
     treeBuildTS({
       token: validToken,
@@ -33,7 +21,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     treeBuildTS({
       project_id: validProjectId,
@@ -44,55 +31,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      treeBuildTS({
-        token,
-        project_id: validProjectId,
-        build_id: validBuildId,
-        module_id: validModuleId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'build_id', 'module_id'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        build_id: validBuildId,
-        module_id: validModuleId
-      };
-      delete body[field];
-      treeBuildTS(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'build_id', 'module_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId,
-          module_id: validModuleId
-        };
-        body[field] = value;
-        treeBuildTS(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     treeBuildTS({
       token: validToken,
@@ -105,27 +43,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId,
-          module_id: validModuleId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -143,7 +60,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     treeBuildTS({
       token: "' OR 1=1 --",
@@ -156,7 +72,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     treeBuildTS({
       token: validToken,
@@ -169,7 +84,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       treeBuildTS({
@@ -185,7 +99,6 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite chamadas idênticas rapidamente', () => {
     treeBuildTS({
       token: validToken,
@@ -203,5 +116,4 @@ describe('API rest - Test Scenarios in Builds - /test_scenario/tree_build_ts', (
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

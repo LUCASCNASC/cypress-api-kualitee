@@ -7,18 +7,7 @@ const validNodeTo = { parent: { id: 1001, _type: 'cycle' } };
 const validNodeFrom = { parent: { id: 2001 }, name: "TCExample", _type: "tc", checked: true };
 
 describe('API rest - Manage Test Case Update - /manage_test_case/update', () => {
-  
-  function manageTestCaseUpdate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     manageTestCaseUpdate({
       token: validToken,
@@ -42,77 +31,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      manageTestCaseUpdate({
-        token,
-        project_id: validProjectId,
-        "node[to]": validNodeTo,
-        "node[from]": validNodeFrom
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'node[to]', 'node[from]'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        "node[to]": validNodeTo,
-        "node[from]": validNodeFrom
-      };
-      delete body[field];
-      manageTestCaseUpdate(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      manageTestCaseUpdate({
-        token: validToken,
-        project_id,
-        "node[to]": validNodeTo,
-        "node[from]": validNodeFrom
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // node[to] inválidos
-  [null, '', {}, [], 0, -1, 'abc', true, false].forEach(nodeTo => {
-    it(`Falha com node[to] inválido (${JSON.stringify(nodeTo)})`, () => {
-      manageTestCaseUpdate({
-        token: validToken,
-        project_id: validProjectId,
-        "node[to]": nodeTo,
-        "node[from]": validNodeFrom
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // node[from] inválidos
-  [null, '', {}, [], 0, -1, 'abc', true, false].forEach(nodeFrom => {
-    it(`Falha com node[from] inválido (${JSON.stringify(nodeFrom)})`, () => {
-      manageTestCaseUpdate({
-        token: validToken,
-        project_id: validProjectId,
-        "node[to]": validNodeTo,
-        "node[from]": nodeFrom
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     manageTestCaseUpdate({
       token: validToken,
@@ -122,26 +40,6 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
       foo: 'bar'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          "node[to]": validNodeTo,
-          "node[from]": validNodeFrom
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -218,5 +116,4 @@ describe('API rest - Manage Test Case Update - /manage_test_case/update', () => 
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

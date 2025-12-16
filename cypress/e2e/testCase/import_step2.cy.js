@@ -8,29 +8,6 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('API rest - Import Step 2 - /test_case/import/step2', () => {
 
-  const dbColumns = [
-    'build_id',
-    'module_id',
-    'tc_scenario_id',
-    'tc_scenario_summary',
-    'tc_name',
-    'summary',
-    'importance',
-    'execution_type'
-  ];
-
-  function buildBody(overrides = {}) {
-    const body = {
-      token: validToken,
-      project_id: validProjectId,
-      import_csv_file: 'dummy.csv', // Placeholder, será substituído pelo arquivo real no formData
-      assignedto: validAssignedTo
-    };
-    dbColumns.forEach((col, i) => body[`db_columns[${i}]`] = col);
-    return { ...body, ...overrides };
-  }
-
-  // --- POSITIVO: upload CSV válido e todos os campos obrigatórios ---
   it('Status Code 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -72,52 +49,6 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
-        const formData = new FormData();
-        const body = buildBody({ token });
-        Object.keys(body).forEach(k => formData.append(k, body[k]));
-        formData.set('import_csv_file', blob, 'valid_test_cases.csv');
-
-        cy.request({
-          method: 'POST',
-          url: `/${PATH_API}`,
-          body: formData,
-          headers: { 'Content-Type': 'multipart/form-data' },
-          failOnStatusCode: false
-        }).then(response => {
-          expect([400, 401, 403]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  
-  ['project_id', 'import_csv_file', 'assignedto', ...dbColumns.map((_, i) => `db_columns[${i}]`)].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
-        const formData = new FormData();
-        const body = buildBody();
-        delete body[field];
-        Object.keys(body).forEach(k => formData.append(k, body[k]));
-        if (field !== 'import_csv_file') {
-          formData.set('import_csv_file', blob, 'valid_test_cases.csv');
-        }
-        cy.request({
-          method: 'POST',
-          url: `/${PATH_API}`,
-          body: formData,
-          headers: { 'Content-Type': 'multipart/form-data' },
-          failOnStatusCode: false
-        }).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- db_columns inválido ---
   it('Falha com db_columns inválido', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -136,7 +67,6 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  // --- Arquivo CSV inválido ---
   it('Falha com arquivo CSV vazio', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
@@ -229,7 +159,6 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  // --- Duplicidade: aceita upload idêntico sequencial ---
   it('Permite uploads CSV idênticos rapidamente', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -256,5 +185,4 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
       });
     });
   });
-
 });

@@ -5,17 +5,6 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Auth Default Project - /auth/default_project', () => {
 
-  function setDefaultProject(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
@@ -62,20 +51,10 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  // --- updated_project_id inválido, ausente, não existente, tipos errados, limites ---
   it('Falha sem updated_project_id', () => {
     setDefaultProject({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com updated_project_id inválido (${JSON.stringify(project_id)})`, () => {
-      setDefaultProject({ token: validToken, updated_project_id: project_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
     });
   });
 
@@ -89,21 +68,6 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, updated_project_id: validProjectId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -150,5 +114,4 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

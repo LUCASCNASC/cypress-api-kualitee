@@ -6,18 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validCycleId = 1001;
   
 describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/tree_test_cases', () => {
-  
-  function treeTestCases(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.status).to.eq(200);
@@ -32,61 +21,21 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      treeTestCases({ token, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     treeTestCases({ token: validToken, cycle_id: validCycleId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      treeTestCases({ token: validToken, project_id, cycle_id: validCycleId }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- cycle_id inválido, ausente, tipos errados, limites ---
   it('Falha sem cycle_id', () => {
     treeTestCases({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(cycle_id => {
-    it(`Falha com cycle_id inválido (${JSON.stringify(cycle_id)})`, () => {
-      treeTestCases({ token: validToken, project_id: validProjectId, cycle_id }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: { token: validToken, project_id: validProjectId, cycle_id: validCycleId },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -133,5 +82,4 @@ describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

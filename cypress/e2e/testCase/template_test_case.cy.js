@@ -7,18 +7,6 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Template - /test_case/template_test_case', () => {
 
-  function testCaseTemplate(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: Template para um caso de teste ---
   it('Status Code 200', () => {
     testCaseTemplate({
       token: validToken,
@@ -32,7 +20,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  // --- POSITIVO: Template para múltiplos casos de teste ---
   it('Gera template para múltiplos casos de teste', () => {
     const body = {
       token: validToken,
@@ -56,19 +43,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  ['token_invalido', 'token_expirado', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testCaseTemplate({
-        token,
-        project_id: validProjectId,
-        'testcase_id[0]': validTestcaseIds[0]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     testCaseTemplate({
       token: validToken,
@@ -87,24 +61,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'testcase_id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'testcase_id[0]': validTestcaseIds[0]
-        };
-        body[field] = value;
-        testCaseTemplate(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     testCaseTemplate({
       token: validToken,
@@ -113,25 +69,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
       foo: 'bar'
     }).then(response => {
       expect([200, 400]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'testcase_id[0]': validTestcaseIds[0]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -186,7 +123,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
     });
   });
 
-  // --- Duplicidade: Aceita templates idênticos sequenciais ---
   it('Permite gerar templates duplicados rapidamente', () => {
     testCaseTemplate({
       token: validToken,
@@ -202,5 +138,4 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

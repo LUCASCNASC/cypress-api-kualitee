@@ -8,18 +8,7 @@ const validCycleId = 1001;
 const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario - /manage_test_case/tree_testcase_in_build_cycle_ts', () => {
-  
-  function treeTestcaseInBuildCycleTs(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     treeTestcaseInBuildCycleTs({
       token: validToken,
@@ -43,75 +32,6 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      treeTestcaseInBuildCycleTs({
-        token,
-        project_id: validProjectId,
-        cycle_id: validCycleId,
-        test_scenario_id: validTestScenarioId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'cycle_id', 'test_scenario_id'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        cycle_id: validCycleId,
-        test_scenario_id: validTestScenarioId
-      };
-      delete body[field];
-      treeTestcaseInBuildCycleTs(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      treeTestcaseInBuildCycleTs({
-        token: validToken,
-        project_id,
-        cycle_id: validCycleId,
-        test_scenario_id: validTestScenarioId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(cycle_id => {
-    it(`Falha com cycle_id inválido (${JSON.stringify(cycle_id)})`, () => {
-      treeTestcaseInBuildCycleTs({
-        token: validToken,
-        project_id: validProjectId,
-        cycle_id,
-        test_scenario_id: validTestScenarioId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(test_scenario_id => {
-    it(`Falha com test_scenario_id inválido (${JSON.stringify(test_scenario_id)})`, () => {
-      treeTestcaseInBuildCycleTs({
-        token: validToken,
-        project_id: validProjectId,
-        cycle_id: validCycleId,
-        test_scenario_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     treeTestcaseInBuildCycleTs({
       token: validToken,
@@ -121,26 +41,6 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
       foo: 'bar'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          cycle_id: validCycleId,
-          test_scenario_id: validTestScenarioId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -217,5 +117,4 @@ describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

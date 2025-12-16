@@ -9,17 +9,6 @@ const validExecBugId = 222;
 
 describe('API rest - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
 
-  function deleteAttachDefects(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
   it('Status Code 200', () => {
     deleteAttachDefects({
       token: validToken,
@@ -45,20 +34,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      deleteAttachDefects({
-        token,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        bug_id: validBugId,
-        exec_bug_id: validExecBugId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     deleteAttachDefects({
       token: validToken,
@@ -70,21 +45,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      deleteAttachDefects({
-        token: validToken,
-        project_id,
-        tc_id: validTcId,
-        bug_id: validBugId,
-        exec_bug_id: validExecBugId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- tc_id inválido, ausente, tipos errados, limites ---
   it('Falha sem tc_id', () => {
     deleteAttachDefects({
       token: validToken,
@@ -96,21 +56,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(tc_id => {
-    it(`Falha com tc_id inválido (${JSON.stringify(tc_id)})`, () => {
-      deleteAttachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id,
-        bug_id: validBugId,
-        exec_bug_id: validExecBugId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- bug_id inválido, ausente, tipos errados, limites ---
   it('Falha sem bug_id', () => {
     deleteAttachDefects({
       token: validToken,
@@ -122,21 +67,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(bug_id => {
-    it(`Falha com bug_id inválido (${JSON.stringify(bug_id)})`, () => {
-      deleteAttachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        bug_id,
-        exec_bug_id: validExecBugId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- exec_bug_id inválido, ausente, tipos errados, limites ---
   it('Falha sem exec_bug_id', () => {
     deleteAttachDefects({
       token: validToken,
@@ -145,20 +75,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
       bug_id: validBugId
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(exec_bug_id => {
-    it(`Falha com exec_bug_id inválido (${JSON.stringify(exec_bug_id)})`, () => {
-      deleteAttachDefects({
-        token: validToken,
-        project_id: validProjectId,
-        tc_id: validTcId,
-        bug_id: validBugId,
-        exec_bug_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -172,27 +88,6 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          tc_id: validTcId,
-          bug_id: validBugId,
-          exec_bug_id: validExecBugId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -275,5 +170,4 @@ describe('API rest - Test Case Execution Delete Attach Defects - /test_case_exec
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

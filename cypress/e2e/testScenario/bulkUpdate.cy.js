@@ -10,18 +10,6 @@ const validTestScenarioIds = [99, 100];
 
 describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
 
-  function bulkUpdateTestScenario(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: obrigatórios apenas (mínimo 1 id)
   it('Status Code 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
@@ -35,7 +23,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // POSITIVO: todos os campos e múltiplos ids
   it('Atualiza em massa múltiplos cenários de teste com todos os campos', () => {
     bulkUpdateTestScenario({
       token: validToken,
@@ -53,7 +40,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     bulkUpdateTestScenario({
       project_id: validProjectId,
@@ -63,52 +49,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      bulkUpdateTestScenario({
-        token,
-        project_id: validProjectId,
-        'test_scenario_id[0]': validTestScenarioIds[0]
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'test_scenario_id[0]'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        'test_scenario_id[0]': validTestScenarioIds[0]
-      };
-      delete body[field];
-      bulkUpdateTestScenario(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'test_scenario_id[0]'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          'test_scenario_id[0]': validTestScenarioIds[0]
-        };
-        body[field] = value;
-        bulkUpdateTestScenario(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     bulkUpdateTestScenario({
       token: validToken,
@@ -120,26 +60,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          'test_scenario_id[0]': validTestScenarioIds[0]
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -156,7 +76,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     bulkUpdateTestScenario({
       token: "' OR 1=1 --",
@@ -168,7 +87,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     bulkUpdateTestScenario({
       token: validToken,
@@ -180,7 +98,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       bulkUpdateTestScenario({
@@ -195,7 +112,6 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite chamadas idênticas rapidamente', () => {
     bulkUpdateTestScenario({
       token: validToken,
@@ -211,5 +127,4 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

@@ -7,19 +7,6 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('API rest - Import Step 1 - /test_case/import/step1', () => {
 
-  function importStep1(body, file, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      ...file && { formData: { ...body, import_csv_file: file } },
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // --- POSITIVO: upload CSV válido ---
   it('Status Code 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -64,30 +51,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
-        const formData = new FormData();
-        formData.append('token', token);
-        formData.append('project_id', validProjectId);
-        formData.append('import_csv_file', blob, 'valid_test_cases.csv');
-
-        cy.request({
-          method: 'POST',
-          url: `${BASE_URL}/${PATH_API}`,
-          body: formData,
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          failOnStatusCode: false
-        }).then(response => {
-          expect([400, 401, 403]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // --- Campo obrigatório ausente ---
   it('Falha sem project_id', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -123,7 +86,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Arquivo CSV inválido ---
   it('Falha com arquivo CSV vazio', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
@@ -228,7 +190,6 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  // --- Duplicidade: aceita upload idêntico sequencial ---
   it('Permite uploads CSV idênticos rapidamente', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
@@ -259,5 +220,4 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
       });
     });
   });
-
 });

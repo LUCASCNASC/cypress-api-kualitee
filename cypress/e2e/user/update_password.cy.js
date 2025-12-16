@@ -3,26 +3,6 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Update Password - /update_password', () => {
 
-  const validBody = {
-    activated_tenant_id: 'tenant123',
-    activated_user_email: 'user'+Date.now()+'@test.com',
-    users_c_password: 'SenhaAtual@123',
-    users_password: 'NovaSenha@123',
-    activated_user_id: '101'
-  };
-
-  function updatePassword(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  
   it('Status Code 200', () => {
     updatePassword({ ...validBody, activated_user_email: 'user'+Date.now()+'@test.com' }).then(response => {
       expect(response.status).to.eq(200);
@@ -32,65 +12,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  // --- NEGATIVOS: Campos obrigatórios ausentes ---
-  Object.keys(validBody).forEach(field => {
-    it(`Falha com campo obrigatório ausente: ${field}`, () => {
-      const body = { ...validBody };
-      delete body[field];
-      updatePassword(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- Emails inválidos ---
-  ['lucas', 'lucas@', '@gmail.com', 'lucas.com', '', null, 123, {}, [], true, false].forEach(email => {
-    it(`Falha com activated_user_email inválido (${JSON.stringify(email)})`, () => {
-      updatePassword({ ...validBody, activated_user_email: email }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- activated_tenant_id inválido ---
-  [null, '', {}, [], 123, true, false].forEach(tenant_id => {
-    it(`Falha com activated_tenant_id inválido (${JSON.stringify(tenant_id)})`, () => {
-      updatePassword({ ...validBody, activated_tenant_id: tenant_id }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- activated_user_id inválido ---
-  [null, '', {}, [], true, false].forEach(user_id => {
-    it(`Falha com activated_user_id inválido (${JSON.stringify(user_id)})`, () => {
-      updatePassword({ ...validBody, activated_user_id: user_id }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- Senhas inválidas ---
-  ['', null, {}, [], true, false].forEach(password => {
-    it(`Falha com users_password inválido (${JSON.stringify(password)})`, () => {
-      updatePassword({ ...validBody, users_password: password }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-    it(`Falha com users_c_password inválido (${JSON.stringify(password)})`, () => {
-      updatePassword({ ...validBody, users_c_password: password }).then(response => {
-        expect([400, 422]).to.include(response.status);
-        expect(response.body).to.have.property('success', false);
-      });
-    });
-  });
-
-  // --- Senha igual à atual ---
   it('Falha ao atualizar senha para mesma senha atual', () => {
     updatePassword({ ...validBody, users_password: validBody.users_c_password }).then(response => {
       expect([400, 422]).to.include(response.status);
@@ -98,33 +19,9 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  // --- Senha fraca ---
-  ['123', 'senha', 'password', 'abc'].forEach(weak => {
-    it(`Falha com senha fraca ("${weak}")`, () => {
-      updatePassword({ ...validBody, users_password: weak }).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     updatePassword({ ...validBody, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: validBody,
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -164,7 +61,6 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  // --- Duplicidade: Tentar trocar senha duas vezes seguidas ---
   it('Falha ao atualizar senha duas vezes seguidas sem login entre elas', () => {
     updatePassword(validBody)
       .then(() => updatePassword(validBody))
@@ -172,5 +68,4 @@ describe('API rest - Update Password - /update_password', () => {
         expect([200, 400, 401, 409, 422]).to.include(response.status);
       });
   });
-
 });

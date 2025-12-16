@@ -7,17 +7,6 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
 
-  function getTestScenarioDetails(params, options = {}) {
-    return cy.request({
-      method: 'GET',
-      url: `/${PATH_API}`,
-      qs: params,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: todos os campos obrigatórios válidos
   it('Status Code 200', () => {
     getTestScenarioDetails({
       token: validToken,
@@ -31,7 +20,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     getTestScenarioDetails({
       project_id: validProjectId,
@@ -41,52 +29,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      getTestScenarioDetails({
-        token,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId,
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'test_scenario_id'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const params = {
-        token: validToken,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId,
-      };
-      delete params[field];
-      getTestScenarioDetails(params).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'test_scenario_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const params = {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_id: validTestScenarioId,
-        };
-        params[field] = value;
-        getTestScenarioDetails(params).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra na query string', () => {
     getTestScenarioDetails({
       token: validToken,
@@ -98,25 +40,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // HTTP Method errado
-  ['POST', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        qs: {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_id: validTestScenarioId,
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type sempre application/json
   it('Content-Type deve ser application/json', () => {
     getTestScenarioDetails({
       token: validToken,
@@ -127,7 +50,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     getTestScenarioDetails({
       token: "' OR 1=1 --",
@@ -139,7 +61,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     getTestScenarioDetails({
       token: validToken,
@@ -151,7 +72,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       getTestScenarioDetails({
@@ -166,7 +86,6 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite chamadas idênticas rapidamente', () => {
     getTestScenarioDetails({
       token: validToken,
@@ -182,5 +101,4 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

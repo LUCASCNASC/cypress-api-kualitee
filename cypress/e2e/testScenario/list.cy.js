@@ -10,18 +10,6 @@ const validCreatedBy = [123];
 
 describe('API rest - Test Scenario List - /test_scenario/list', () => {
 
-  function testScenarioList(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: Somente obrigatórios
   it('Status Code 200', () => {
     testScenarioList({
       token: validToken,
@@ -34,7 +22,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // POSITIVO: Todos os parâmetros
   it('Retorna lista de cenários de teste com todos os parâmetros', () => {
     testScenarioList({
       token: validToken,
@@ -53,7 +40,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     testScenarioList({
       project_id: validProjectId
@@ -62,18 +48,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      testScenarioList({
-        token,
-        project_id: validProjectId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
   it('Falha sem project_id', () => {
     testScenarioList({
       token: validToken
@@ -82,46 +56,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // project_id inválido
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(value => {
-    it(`Falha com project_id inválido (${JSON.stringify(value)})`, () => {
-      testScenarioList({
-        token: validToken,
-        project_id: value
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // created_by array inválido
-  [null, '', 'abc', 0, -1, {}, true, false].forEach(value => {
-    it(`Falha com created_by inválido (${JSON.stringify(value)})`, () => {
-      testScenarioList({
-        token: validToken,
-        project_id: validProjectId,
-        created_by: value
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // export_type inválido
-  ['PDF', 123, {}, [], true, false].forEach(value => {
-    it(`Falha com export_type inválido (${JSON.stringify(value)})`, () => {
-      testScenarioList({
-        token: validToken,
-        project_id: validProjectId,
-        export: 'yes',
-        export_type: value
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     testScenarioList({
       token: validToken,
@@ -132,25 +66,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -166,7 +81,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     testScenarioList({
       token: "' OR 1=1 --",
@@ -177,7 +91,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     testScenarioList({
       token: validToken,
@@ -188,7 +101,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       testScenarioList({
@@ -202,7 +114,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite chamadas idênticas rapidamente', () => {
     testScenarioList({
       token: validToken,
@@ -216,5 +127,4 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

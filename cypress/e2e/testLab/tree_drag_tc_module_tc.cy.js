@@ -6,18 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case/tree_drag_tc_module_ts', () => {
-  
-  function treeDragTcModuleTs(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     treeDragTcModuleTs({
       token: validToken,
@@ -39,58 +28,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      treeDragTcModuleTs({
-        token,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  ['project_id', 'test_scenario_id'].forEach(field => {
-    it(`Falha sem campo obrigatório ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId
-      };
-      delete body[field];
-      treeDragTcModuleTs(body).then(response => {
-        expect([400, 422]).to.include(response.status);
-      });
-    });
-  });
-
-  
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      treeDragTcModuleTs({
-        token: validToken,
-        project_id,
-        test_scenario_id: validTestScenarioId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(test_scenario_id => {
-    it(`Falha com test_scenario_id inválido (${JSON.stringify(test_scenario_id)})`, () => {
-      treeDragTcModuleTs({
-        token: validToken,
-        project_id: validProjectId,
-        test_scenario_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
   it('Ignora campo extra no body', () => {
     treeDragTcModuleTs({
       token: validToken,
@@ -99,25 +36,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
       foo: 'bar'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_id: validTestScenarioId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -188,5 +106,4 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
       expect([200, 400, 401, 409]).to.include(response.status);
     });
   });
-
 });

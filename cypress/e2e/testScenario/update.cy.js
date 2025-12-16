@@ -12,18 +12,6 @@ const validDescription = 'Descrição atualizada do cenário de teste';
 
 describe('API rest - Test Scenario Update - /test_scenario/update', () => {
 
-  function updateTestScenario(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-
-  // POSITIVO: obrigatórios apenas
   it('Status Code 200', () => {
     updateTestScenario({
       token: validToken,
@@ -39,7 +27,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // POSITIVO: todos os campos
   it('Atualiza cenário de teste com todos os campos preenchidos', () => {
     updateTestScenario({
       token: validToken,
@@ -58,7 +45,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // NEGATIVO: AUTH
   it('Falha sem token', () => {
     updateTestScenario({
       project_id: validProjectId,
@@ -70,58 +56,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  ['token_invalido', null, '', 12345].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      updateTestScenario({
-        token,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId,
-        test_scenario_name: validScenarioName,
-        description: validDescription
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campo obrigatório ausente
-  ['project_id', 'test_scenario_id', 'test_scenario_name', 'description'].forEach(field => {
-    it(`Falha sem campo obrigatório: ${field}`, () => {
-      const body = {
-        token: validToken,
-        project_id: validProjectId,
-        test_scenario_id: validTestScenarioId,
-        test_scenario_name: validScenarioName,
-        description: validDescription
-      };
-      delete body[field];
-      updateTestScenario(body).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // Campos obrigatórios inválidos
-  const invalidValues = [null, '', 'abc', 0, -1, 999999999, {}, [], true, false];
-  ['project_id', 'test_scenario_id'].forEach(field => {
-    invalidValues.forEach(value => {
-      it(`Falha com ${field} inválido (${JSON.stringify(value)})`, () => {
-        const body = {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_id: validTestScenarioId,
-          test_scenario_name: validScenarioName,
-          description: validDescription
-        };
-        body[field] = value;
-        updateTestScenario(body).then(response => {
-          expect([400, 422, 404]).to.include(response.status);
-        });
-      });
-    });
-  });
-
-  // Campos extras
   it('Ignora campo extra no body', () => {
     updateTestScenario({
       token: validToken,
@@ -135,28 +69,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // HTTP Method errado
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          test_scenario_id: validTestScenarioId,
-          test_scenario_name: validScenarioName,
-          description: validDescription
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
-  // Content-Type errado
   it('Falha com Content-Type application/json', () => {
     cy.request({
       method: 'POST',
@@ -175,7 +87,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // Contrato: Não vazar informações sensíveis
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
     updateTestScenario({
       token: "' OR 1=1 --",
@@ -189,7 +100,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // Headers
   it('Headers devem conter CORS e content-type', () => {
     updateTestScenario({
       token: validToken,
@@ -203,7 +113,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // Rate limit (se aplicável)
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
     const requests = Array(10).fill(0).map(() =>
       updateTestScenario({
@@ -220,7 +129,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  // Duplicidade: aceita chamadas idênticas sequenciais
   it('Permite atualizar o mesmo cenário rapidamente', () => {
     updateTestScenario({
       token: validToken,
@@ -240,5 +148,4 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

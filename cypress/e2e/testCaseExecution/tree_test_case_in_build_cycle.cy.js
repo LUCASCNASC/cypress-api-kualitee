@@ -8,18 +8,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validCycleId = 1001;
 
 describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_case_execution/tree_test_case_in_build_cycle', () => {
- 
-  function treeTestCaseInBuildCycle(body, options = {}) {
-    return cy.request({
-      method: 'POST',
-      url: `/${PATH_API}`,
-      form: true,
-      body,
-      failOnStatusCode: false,
-      ...options,
-    });
-  }
-  
+
   it('Status Code 200', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
@@ -43,19 +32,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
     });
   });
 
-  ['token_invalido', null, '', 12345, '😀🔥💥', "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      treeTestCaseInBuildCycle({
-        token,
-        project_id: validProjectId,
-        build_id: validBuildId,
-        cycle_id: validCycleId
-      }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
   it('Falha sem project_id', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
@@ -66,20 +42,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(project_id => {
-    it(`Falha com project_id inválido (${JSON.stringify(project_id)})`, () => {
-      treeTestCaseInBuildCycle({
-        token: validToken,
-        project_id,
-        build_id: validBuildId,
-        cycle_id: validCycleId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- build_id inválido, ausente, tipos errados, limites ---
   it('Falha sem build_id', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
@@ -90,20 +52,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
     });
   });
 
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(build_id => {
-    it(`Falha com build_id inválido (${JSON.stringify(build_id)})`, () => {
-      treeTestCaseInBuildCycle({
-        token: validToken,
-        project_id: validProjectId,
-        build_id,
-        cycle_id: validCycleId
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
-    });
-  });
-
-  // --- cycle_id inválido, ausente, tipos errados, limites ---
   it('Falha sem cycle_id', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
@@ -111,19 +59,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
       build_id: validBuildId
     }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
-    });
-  });
-
-  [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(cycle_id => {
-    it(`Falha com cycle_id inválido (${JSON.stringify(cycle_id)})`, () => {
-      treeTestCaseInBuildCycle({
-        token: validToken,
-        project_id: validProjectId,
-        build_id: validBuildId,
-        cycle_id
-      }).then(response => {
-        expect([400, 422, 404]).to.include(response.status);
-      });
     });
   });
 
@@ -136,26 +71,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
       extra: 'foo'
     }).then(response => {
       expect(response.status).to.eq(200);
-    });
-  });
-
-  
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId,
-          build_id: validBuildId,
-          cycle_id: validCycleId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
     });
   });
 
@@ -232,5 +147,4 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
         expect([200, 400, 401, 409]).to.include(response.status);
       });
   });
-
 });

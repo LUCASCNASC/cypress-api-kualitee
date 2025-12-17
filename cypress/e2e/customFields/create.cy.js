@@ -23,7 +23,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Cria custom field com todos os parâmetros preenchidos', () => {
+  it('Status Code 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -36,7 +36,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     customfieldsCreate({
       'project_id[0]': validProjectId,
       custom_field_name: validCustomFieldName,
@@ -46,7 +46,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Falha sem project_id[0]', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       custom_field_name: validCustomFieldName,
@@ -56,7 +56,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Falha sem custom_field_name', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -66,7 +66,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Falha sem custom_field_desc', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -76,7 +76,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -88,7 +88,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -129,7 +129,7 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
     });
   });
   
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsCreate({
         token: validToken,
@@ -143,8 +143,8 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,

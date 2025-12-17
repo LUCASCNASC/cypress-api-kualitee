@@ -13,19 +13,19 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     customfieldsDetail({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra na query', () => {
+  it('Status Code 200', () => {
     customfieldsDetail({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
@@ -44,8 +44,8 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsDetail({ token: validToken, id: validId })
     );
@@ -54,8 +54,8 @@ describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     customfieldsDetail({ token: validToken, id: validId })
       .then(() => customfieldsDetail({ token: validToken, id: validId }))
       .then((response) => {

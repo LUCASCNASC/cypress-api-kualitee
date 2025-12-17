@@ -11,19 +11,19 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     archivedProjects({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401, 403', () => {
     archivedProjects({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 401, 403', () => {
     archivedProjects({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });

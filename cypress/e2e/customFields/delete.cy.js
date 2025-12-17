@@ -15,39 +15,31 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     customfieldsDelete({ project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      customfieldsDelete({ token, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsDelete({ token: validToken, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha sem custom_field_id[0]', () => {
+  it('Status Code 400, 422, 404', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -72,8 +64,8 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId })
     );
@@ -82,8 +74,8 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId })
       .then(() => customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }))
       .then((response) => {

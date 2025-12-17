@@ -11,19 +11,19 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     customfieldsList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     customfieldsList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -48,8 +48,8 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsList({ token: validToken })
     );
@@ -58,8 +58,8 @@ describe('API rest - Custom Fields - Custom Fields List - /customfields/list', (
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     customfieldsList({ token: validToken })
       .then(() => customfieldsList({ token: validToken }))
       .then((response) => {

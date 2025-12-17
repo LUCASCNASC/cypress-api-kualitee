@@ -15,56 +15,56 @@ describe('API rest - Build - Build List - /build/list', () => {
     });
   });
 
-  it('Retorna lista de builds filtrando por keyword', () => {
+  it('Status Code 200', () => {
     buildList({ token: validToken, project_id: validProjectId, keyword: validKeyword }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     buildList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401, 403', () => {
     buildList({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 401, 403', () => {
     buildList({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code 400, 401, 403', () => {
     buildList({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422, 404', () => {
     buildList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha com project_id inexistente', () => {
+  it('Status Code 404, 422, 400', () => {
     buildList({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     buildList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -89,8 +89,8 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       buildList({ token: validToken, project_id: validProjectId })
     );
@@ -99,8 +99,8 @@ describe('API rest - Build - Build List - /build/list', () => {
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     buildList({ token: validToken, project_id: validProjectId })
       .then(() => buildList({ token: validToken, project_id: validProjectId }))
       .then((response) => {

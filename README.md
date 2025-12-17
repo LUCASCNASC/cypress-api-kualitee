@@ -64,5 +64,5 @@ It is necessary to develop and specify the scenarios.
 - Integrate IA with project.
 - To do documentation of tests scenarios.
 
-Ajustando espaços nos arquivos de teste.
-- finalizado
+Ajustando descriçoes dos arquivos de teste.
+- feito até "customFields"

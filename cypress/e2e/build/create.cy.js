@@ -36,7 +36,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403 - Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     buildCreate({
       project_id: validProjectId,
       start_date: validStartDate,
@@ -48,7 +48,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403 - Falha com token inválido', () => {
+  it('Status Code 400, 401, 403', () => {
     buildCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -61,7 +61,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403 - Falha com token expirado', () => {
+  it('Status Code 400, 401, 403', () => {
     buildCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -74,7 +74,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403 - Falha com token nulo', () => {
+  it('Status Code 400, 401, 403', () => {
     buildCreate({
       token: null,
       project_id: validProjectId,
@@ -87,7 +87,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 200 - Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     buildCreate({
       token: validToken,
       project_id: validProjectId,
@@ -101,7 +101,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
 
-  it('Status Code 400, 415 - Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: '/Build/BuildsCreate',
@@ -148,7 +148,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
   
-  it('Status Code 429 - Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       buildCreate({
         token: validToken,
@@ -165,7 +165,7 @@ describe('API rest - Build - Builds Create - /build/create', () => {
     });
   });
   
-  it('Status Code 200, 400, 401, 409 - Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     buildCreate({
       token: validToken,
       project_id: validProjectId,

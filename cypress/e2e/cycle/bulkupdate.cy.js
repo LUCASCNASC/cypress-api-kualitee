@@ -20,7 +20,7 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   });
 
-  it('Atualiza defeitos em lote com todos os campos preenchidos', () => {
+  it('Status Code 200', () => {
     bulkUpdateDefects({
       token: validToken,
       project_id: validProjectId,
@@ -34,7 +34,7 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     bulkUpdateDefects({
       project_id: validProjectId,
       id: validIds
@@ -43,7 +43,7 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     bulkUpdateDefects({
       token: validToken,
       project_id: validProjectId,
@@ -54,7 +54,7 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,8 +91,8 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       bulkUpdateDefects({
         token: validToken,
@@ -105,8 +105,8 @@ describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     bulkUpdateDefects({
       token: validToken,
       project_id: validProjectId,

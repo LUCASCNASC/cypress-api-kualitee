@@ -19,8 +19,8 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     defectsImportStep1(
       {
         project_id: validProjectId
@@ -31,7 +31,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422', () => {
     defectsImportStep1(
       {
         token: validToken
@@ -42,7 +42,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     });
   });
 
-  it('Falha sem arquivo CSV', () => {
+  it('Status Code 400, 422', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -54,7 +54,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -67,7 +67,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -107,8 +107,8 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas importações rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsImportStep1(
         {
@@ -124,7 +124,7 @@ describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () 
     });
   });
 
-  it('Permite importações duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     defectsImportStep1(
       {
         token: validToken,

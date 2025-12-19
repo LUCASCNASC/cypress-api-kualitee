@@ -19,8 +19,8 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     treeDefectsInBuildModule({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -30,7 +30,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     treeDefectsInBuildModule({
       token: validToken,
       project_id: validProjectId,
@@ -42,7 +42,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -82,8 +82,8 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDefectsInBuildModule({
         token: validToken,
@@ -97,8 +97,8 @@ describe('API rest - Cycle - Defects Tree Defects In Build Module - /defects/tre
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     treeDefectsInBuildModule({
       token: validToken,
       project_id: validProjectId,

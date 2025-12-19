@@ -65,4 +65,4 @@ It is necessary to develop and specify the scenarios.
 - To do documentation of tests scenarios.
 
 Ajustando descriçoes dos arquivos de teste.
-- feito até "customFields"
+- feito até "dashboard", arquivo "activities.cy"

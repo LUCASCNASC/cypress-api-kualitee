@@ -33,7 +33,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Lista defeitos com todos os filtros preenchidos', () => {
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId,
@@ -60,7 +60,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     defectsList({
       project_id: validProjectId
     }).then(response => {
@@ -68,7 +68,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422', () => {
     defectsList({
       token: validToken
     }).then(response => {
@@ -76,7 +76,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Exporta lista de defeitos para CSV', () => {
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId,
@@ -89,7 +89,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Exporta lista de defeitos para Excel', () => {
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId,
@@ -102,7 +102,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Exporta lista de defeitos para Word', () => {
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId,
@@ -114,8 +114,8 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Ignora campo extra no body', () => {
+
+  it('Status Code 200', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId,
@@ -125,7 +125,7 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -159,8 +159,8 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsList({
         token: validToken,
@@ -172,8 +172,8 @@ describe('API rest - Cycle - Defects List - /defects/list', () => {
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId

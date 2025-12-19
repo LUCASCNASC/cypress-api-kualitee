@@ -15,8 +15,8 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     jiraIntegration({
       project_id: validProjectId
     }).then(response => {
@@ -24,7 +24,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422', () => {
     jiraIntegration({
       token: validToken
     }).then(response => {
@@ -32,7 +32,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,8 +66,8 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas integrações rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       jiraIntegration({
         token: validToken,
@@ -80,7 +80,7 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
     });
   });
 
-  it('Permite integrações duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     jiraIntegration({
       token: validToken,
       project_id: validProjectId

@@ -29,7 +29,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  it('Importa CSV de defeitos com campos mínimos obrigatórios', () => {
+  it('Status Code 200', () => {
     defectsImportStep2(
       {
         token: validToken,
@@ -44,8 +44,8 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     defectsImportStep2(
       {
         project_id: validProjectId,
@@ -58,7 +58,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     defectsImportStep2(
       {
         token: validToken,
@@ -73,7 +73,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -119,8 +119,8 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas importações rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsImportStep2(
         {
@@ -138,7 +138,7 @@ describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () 
     });
   });
 
-  it('Permite importações duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     defectsImportStep2(
       {
         token: validToken,

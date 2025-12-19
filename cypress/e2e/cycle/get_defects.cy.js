@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  it('Consulta defeitos com todos os filtros preenchidos', () => {
+  it('Status Code 200', () => {
     getDefects({
       token: validToken,
       project_id: validProjectId,
@@ -30,8 +30,8 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     getDefects({
       project_id: validProjectId
     }).then(response => {
@@ -39,7 +39,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422', () => {
     getDefects({
       token: validToken
     }).then(response => {
@@ -47,7 +47,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     getDefects({
       token: validToken,
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,8 +91,8 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       getDefects({
         token: validToken,
@@ -104,8 +104,8 @@ describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => 
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     getDefects({
       token: validToken,
       project_id: validProjectId

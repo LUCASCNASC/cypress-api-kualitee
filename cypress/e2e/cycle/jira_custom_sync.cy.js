@@ -18,8 +18,8 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     jiraCustomSync({
       project_id: validProjectId,
       plugin_name: validPluginName
@@ -28,7 +28,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     jiraCustomSync({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -76,8 +76,8 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas sincronizações rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       jiraCustomSync({
         token: validToken,
@@ -90,8 +90,8 @@ describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_syn
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite sincronizações duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     jiraCustomSync({
       token: validToken,
       project_id: validProjectId,

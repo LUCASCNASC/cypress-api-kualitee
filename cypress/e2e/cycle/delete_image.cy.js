@@ -18,8 +18,8 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     defectsDeleteImage({
       project_id: validProjectId,
       id: validImageId
@@ -28,7 +28,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -77,7 +77,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  it('Falha após múltiplas deleções rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDeleteImage({
         token: validToken,
@@ -91,7 +91,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
     });
   });
 
-  it('Permite deleções duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,

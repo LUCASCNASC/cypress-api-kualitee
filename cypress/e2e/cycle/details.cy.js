@@ -18,8 +18,8 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     defectsDetails({
       project_id: validProjectId,
       defect_id: validDefectId
@@ -28,7 +28,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Ignora parâmetro extra na query', () => {
+  it('Status Code 200', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Falha com Content-Type application/x-www-form-urlencoded', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -76,8 +76,8 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas consultas rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDetails({
         token: validToken,
@@ -91,7 +91,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Permite consultas duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,

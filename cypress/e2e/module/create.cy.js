@@ -23,7 +23,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401 ou 403', () => {
     moduleCreate({
       project_id: validProjectId,
       module_name: validModuleName,
@@ -34,7 +34,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401 ou 403', () => {
     moduleCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -46,7 +46,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 401, 403', () => {
     moduleCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -58,7 +58,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code 400, 401 ou 403', () => {
     moduleCreate({
       token: null,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -83,7 +83,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -127,7 +127,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleCreate({
         token: validToken,
@@ -143,7 +143,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,

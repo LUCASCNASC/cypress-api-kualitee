@@ -16,31 +16,31 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  it('Lista metas com system_options e value válidos', () => {
+  it('Status Code 200', () => {
     metasList({ token: validToken, project_id: validProjectId, system_options: validSystemOptions, value: validValue }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401 ou 403', () => {
     metasList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     metasList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     metasList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,7 +66,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasList({ token: validToken, project_id: validProjectId })
     );
@@ -76,7 +76,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     metasList({ token: validToken, project_id: validProjectId })
       .then(() => metasList({ token: validToken, project_id: validProjectId }))
       .then((response) => {

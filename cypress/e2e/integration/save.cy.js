@@ -24,8 +24,8 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401 ou 403', () => {
     integrationSave({
       plugin_name: validPluginName,
       username: validUsername,
@@ -37,7 +37,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha sem plugin_name', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationSave({
       token: validToken,
       username: validUsername,
@@ -49,7 +49,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha sem username', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -61,7 +61,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha sem password', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -73,7 +73,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha sem plugin_url', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -85,7 +85,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -97,7 +97,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -111,7 +111,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -157,8 +157,8 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       integrationSave({
         token: validToken,
@@ -174,8 +174,8 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401 ou 409', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,

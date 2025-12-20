@@ -13,7 +13,7 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   });
 
-  it('Retorna corretamente quando todos os campos opcionais são passados', () => {
+  it('Status Code 200', () => {
     tcExecutionStatus({ 
       token: validToken, 
       project_id: validProjectId,
@@ -28,61 +28,61 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401, 403', () => {
     tcExecutionStatus({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401, 403', () => {
     tcExecutionStatus({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 401, 403', () => {
     tcExecutionStatus({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code 400, 401, 403', () => {
     tcExecutionStatus({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code 400, 401, 403', () => {
     tcExecutionStatus({ token: '😀🔥💥', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code 400, 401, 403', () => {
     tcExecutionStatus({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422, 404', () => {
     tcExecutionStatus({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha com project_id inexistente', () => {
+  it('Status Code 404, 422, 400', () => {
     tcExecutionStatus({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     tcExecutionStatus({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 429', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -108,7 +108,7 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       tcExecutionStatus({ token: validToken, project_id: validProjectId })
     );
@@ -118,7 +118,7 @@ describe('API rest - Dashboard - Dashboard Test Case Execution Status - /dashboa
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401, 409', () => {
     tcExecutionStatus({ token: validToken, project_id: validProjectId })
       .then(() => tcExecutionStatus({ token: validToken, project_id: validProjectId }))
       .then((response) => {

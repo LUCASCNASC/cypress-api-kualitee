@@ -15,60 +15,60 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
     });
   });
 
-  it('Retorna total apenas com obrigatórios', () => {
+  it('Status Code 200', () => {
     testcaseTotal({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401, 403', () => {
     testcaseTotal({ project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code 400, 401, 403', () => {
     testcaseTotal({ ...validBody, token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code 401, 403', () => {
     testcaseTotal({ ...validBody, token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code 400, 401, 403', () => {
     testcaseTotal({ ...validBody, token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code 400, 401, 403', () => {
     testcaseTotal({ ...validBody, token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code 400, 401, 403', () => {
     testcaseTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     testcaseTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
-  
-  it('Falha com Content-Type application/json', () => {
+
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -93,8 +93,8 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testcaseTotal({ ...validBody, project_id: validProjectId, module_id: validModuleId })
     );
@@ -103,8 +103,8 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
       expect(rateLimited).to.be.true;
     });
   });
-  
-  it('Permite requisições duplicadas rapidamente', () => {
+
+  it('Status Code 200, 400, 401, 409', () => {
     testcaseTotal(validBody)
       .then(() => testcaseTotal(validBody))
       .then((response) => {

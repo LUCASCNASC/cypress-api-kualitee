@@ -17,43 +17,43 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  it('Atualiza meta com meta_key válido', () => {
+  it('Status Code 200', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_key: validMetaKey, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401 ou 403', () => {
     metasUpdate({ project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     metasUpdate({ token: validToken, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha sem meta_value', () => {
+  it('Status Code 400, 422 ou 404', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -79,7 +79,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
     );
@@ -89,7 +89,7 @@ describe('API rest - Metas Update - /metas/update', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
       .then(() => metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }))
       .then((response) => {

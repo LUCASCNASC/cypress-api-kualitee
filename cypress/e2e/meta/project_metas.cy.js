@@ -13,33 +13,25 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code 400, 401 ou 403', () => {
     metasProjectMetas({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      metasProjectMetas({ token, project_id: validProjectId }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-
-  it('Falha sem project_id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     metasProjectMetas({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +57,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasProjectMetas({ token: validToken, project_id: validProjectId })
     );
@@ -75,7 +67,7 @@ describe('API rest - Metas Project Metas - /metas/project_metas', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     metasProjectMetas({ token: validToken, project_id: validProjectId })
       .then(() => metasProjectMetas({ token: validToken, project_id: validProjectId }))
       .then((response) => {

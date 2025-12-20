@@ -12,26 +12,26 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401 ou 403', () => {
     integrationDetail({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code 400, 422 ou 404', () => {
     integrationDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     integrationDetail({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -57,7 +57,7 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
   
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       integrationDetail({ token: validToken, id: validId })
     );
@@ -67,7 +67,7 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
   
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     integrationDetail({ token: validToken, id: validId })
       .then(() => integrationDetail({ token: validToken, id: validId }))
       .then((response) => {

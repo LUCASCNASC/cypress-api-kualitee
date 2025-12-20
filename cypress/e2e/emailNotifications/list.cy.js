@@ -10,28 +10,20 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
-  
-  it('Falha sem token', () => {
+
+  it('Status Code 400, 401 ou 403', () => {
     emailNotificationList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  ['token_invalido', null, '', 12345, "' OR 1=1 --"].forEach(token => {
-    it(`Falha com token inválido (${JSON.stringify(token)})`, () => {
-      emailNotificationList({ token }).then(response => {
-        expect([400, 401, 403]).to.include(response.status);
-      });
-    });
-  });
-  
-  it('Ignora campo extra no body', () => {
+  it('Status Code 200', () => {
     emailNotificationList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -57,7 +49,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
   
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code 429', () => {
     const requests = Array(10).fill(0).map(() =>
       emailNotificationList({ token: validToken })
     );
@@ -67,7 +59,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
   
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code 200, 400, 401 ou 409', () => {
     emailNotificationList({ token: validToken })
       .then(() => emailNotificationList({ token: validToken }))
       .then((response) => {

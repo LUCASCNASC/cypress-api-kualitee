@@ -7,7 +7,7 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Copy - /test_case/copy_test_case', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,

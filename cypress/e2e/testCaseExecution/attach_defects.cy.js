@@ -11,7 +11,7 @@ const validDefects = [555, 556];
 
 describe('API rest - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,

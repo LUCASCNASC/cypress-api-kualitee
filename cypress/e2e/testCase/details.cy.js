@@ -7,7 +7,7 @@ const validTcId = 1001;
 
 describe('API rest - Test Case Details - /test_case/details', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,

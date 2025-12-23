@@ -7,7 +7,7 @@ const validCanDelete = true;
 
 describe('API rest - Roles Create - /roles/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

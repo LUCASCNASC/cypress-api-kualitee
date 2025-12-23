@@ -5,7 +5,7 @@ const validMetaId = 123;
 
 describe('API rest - Project Metas Delete - /project/metas/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

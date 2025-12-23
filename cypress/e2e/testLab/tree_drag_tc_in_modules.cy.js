@@ -6,7 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag_tc_in_modules', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,

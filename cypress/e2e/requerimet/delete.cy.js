@@ -7,7 +7,7 @@ const validRequirementId = 123;
 
 describe('API rest - Requirements Delete - /requirements/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,

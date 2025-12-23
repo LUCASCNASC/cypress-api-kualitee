@@ -12,7 +12,7 @@ const validDescription = 'Descrição atualizada do cenário de teste';
 
 describe('API rest - Test Scenario Update - /test_scenario/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,

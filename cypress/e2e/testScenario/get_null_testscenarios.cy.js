@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

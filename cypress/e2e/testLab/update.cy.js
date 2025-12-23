@@ -8,7 +8,7 @@ const validNodeFrom = { parent: { id: 2001 }, name: "TCExample", _type: "tc", ch
 
 describe('API rest - Manage Test Case Update - /manage_test_case/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     manageTestCaseUpdate({
       token: validToken,
       project_id: validProjectId,

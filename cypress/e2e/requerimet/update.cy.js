@@ -10,7 +10,7 @@ const validSummary = 'Resumo do requisito';
 
 describe('API rest - Requirements Update - /requirements/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,

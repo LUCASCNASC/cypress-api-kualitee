@@ -7,7 +7,7 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/tree_testcase_in_build_module_ts', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

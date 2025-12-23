@@ -8,7 +8,7 @@ const validColumnName = 'Coluna Atualizada';
 
 describe('API rest - Task Columns Update - /task/columns/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskColumnsUpdate({
       token: validToken,
       project_id: validProjectId,

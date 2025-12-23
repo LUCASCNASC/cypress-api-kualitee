@@ -5,7 +5,7 @@ const validProjectId = 77;
 
 describe('API rest - Report Defects - /report/defects', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     reportDefects({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

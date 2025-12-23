@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Task List - /task/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

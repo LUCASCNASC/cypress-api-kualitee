@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Manage Test Case Tree - /manage_test_case/tree', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     manageTestCaseTree({
       token: validToken,
       project_id: validProjectId

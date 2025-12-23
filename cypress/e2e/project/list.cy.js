@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Project List - /project/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     projectList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

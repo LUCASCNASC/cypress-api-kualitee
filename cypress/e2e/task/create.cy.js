@@ -10,7 +10,7 @@ const validEndDate = '2025-09-18';
 
 describe('API rest - Task Create - /task/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskCreate({
       token: validToken,
       project_id: validProjectId,

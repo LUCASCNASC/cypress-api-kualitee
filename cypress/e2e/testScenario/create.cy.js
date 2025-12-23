@@ -11,7 +11,7 @@ const validDescription = 'Descrição detalhada do cenário de teste';
 
 describe('API rest - Test Scenario Create - /test_scenario/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     createTestScenario({
       token: validToken,
       project_id: validProjectId,

@@ -7,7 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modules_ts', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,

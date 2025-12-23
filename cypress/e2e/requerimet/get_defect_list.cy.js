@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Get Defect List - /requirements/get_defect_list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     getDefectList({
       token: validToken,
       project_id: validProjectId

@@ -10,7 +10,7 @@ const validCreatedBy = [123];
 
 describe('API rest - Test Scenario List - /test_scenario/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testScenarioList({
       token: validToken,
       project_id: validProjectId

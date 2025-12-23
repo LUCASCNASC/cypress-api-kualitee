@@ -7,7 +7,7 @@ const validIdArray = [123];
 
 describe('API rest - Roles Delete - /roles/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdArray[0] }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

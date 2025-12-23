@@ -8,7 +8,7 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

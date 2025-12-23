@@ -7,7 +7,7 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Approve - /test_case/approve', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,

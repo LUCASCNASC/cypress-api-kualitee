@@ -7,7 +7,7 @@ const validTestCaseName = 'TC001';
 
 describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,

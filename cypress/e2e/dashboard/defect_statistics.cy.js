@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect_statistics', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     defectStatistics({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -13,7 +13,7 @@ describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect
     });
   });
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     defectStatistics({ 
       token: validToken, 
       project_id: validProjectId,
@@ -31,61 +31,61 @@ describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectStatistics({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectStatistics({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 401, 403', () => {
+  it('Status Code is 401, 403', () => {
     defectStatistics({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectStatistics({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectStatistics({ token: '😀🔥💥', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectStatistics({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 422, 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     defectStatistics({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code 404, 422, 400', () => {
+  it('Status Code is 404, 422, 400', () => {
     defectStatistics({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     defectStatistics({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code 400, 415', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -111,7 +111,7 @@ describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect
     });
   });
 
-  it('Status Code 429', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectStatistics({ token: validToken, project_id: validProjectId })
     );
@@ -121,7 +121,7 @@ describe('API rest - Dashboard - Dashboard Defect Statistics - /dashboard/defect
     });
   });
 
-  it('Status Code 200, 400, 401, 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     defectStatistics({ token: validToken, project_id: validProjectId })
       .then(() => defectStatistics({ token: validToken, project_id: validProjectId }))
       .then((response) => {

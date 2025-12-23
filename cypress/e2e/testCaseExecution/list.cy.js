@@ -10,7 +10,7 @@ const validStatus = 'passed';
 
 describe('API rest - Test Case Execution List - /test_case_execution/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     execList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

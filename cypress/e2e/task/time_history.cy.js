@@ -7,7 +7,7 @@ const validTaskId = 888;
 
 describe('API rest - Task Time History - /task/time/history', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

@@ -12,7 +12,7 @@ const validExportType = 'CSV';
 
 describe('API rest - Requirements List - /requirements/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

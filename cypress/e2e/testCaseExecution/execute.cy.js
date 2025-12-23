@@ -13,7 +13,7 @@ const validExecute = 'yes';
 
 describe('API rest - Test Case Execution Execute - /test_case_execution/execute', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

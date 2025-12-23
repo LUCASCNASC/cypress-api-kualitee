@@ -6,7 +6,7 @@ const validMetaValue = 'meta_value_exemplo';
 
 describe('API rest - Project Metas Create - /project/metas/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,

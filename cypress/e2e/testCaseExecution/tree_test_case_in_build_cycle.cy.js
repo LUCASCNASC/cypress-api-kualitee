@@ -9,7 +9,7 @@ const validCycleId = 1001;
 
 describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_case_execution/tree_test_case_in_build_cycle', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,

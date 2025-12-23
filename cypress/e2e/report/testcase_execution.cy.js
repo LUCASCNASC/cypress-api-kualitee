@@ -5,7 +5,7 @@ const validProjectId = 77;
 
 describe('API rest - Report Test Case Execution - /report/test_case_execution', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     reportTestCaseExecution({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

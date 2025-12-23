@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,

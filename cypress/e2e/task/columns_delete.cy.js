@@ -6,7 +6,7 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Task Columns Delete - /task/columns/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

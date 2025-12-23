@@ -7,7 +7,7 @@ const validImageId = 456;
 
 describe('API rest - Requirements Attachment Delete - /requirements/attachment/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,

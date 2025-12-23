@@ -11,7 +11,7 @@ const validEndDate = '2025-09-20';
 
 describe('API rest - Task Update - /task/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,

@@ -8,7 +8,7 @@ const validRequirementIds = [101, 102, 103];
 
 describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,

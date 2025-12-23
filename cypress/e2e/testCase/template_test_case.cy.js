@@ -7,7 +7,7 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Template - /test_case/template_test_case', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,

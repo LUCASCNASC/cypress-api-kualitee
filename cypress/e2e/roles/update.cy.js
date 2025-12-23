@@ -9,7 +9,7 @@ const validCanDelete = true;
 
 describe('API rest - Roles Update - /roles/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

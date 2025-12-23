@@ -6,7 +6,7 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Metas Detail - /metas/detail', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -14,31 +14,31 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  it('Status Code 400, 401 ou 403', () => {
+  it('Status Code is 400, 401 ou 403', () => {
     metasDetail({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 422 ou 404', () => {
+  it('Status Code is 400, 422 ou 404', () => {
     metasDetail({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 422 ou 404', () => {
+  it('Status Code is 400, 422 ou 404', () => {
     metasDetail({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code 400, 415', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -64,7 +64,7 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  it('Status Code 429', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasDetail({ token: validToken, project_id: validProjectId, id: validId })
     );
@@ -74,7 +74,7 @@ describe('API rest - Metas Detail - /metas/detail', () => {
     });
   });
 
-  it('Status Code 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401 ou 409', () => {
     metasDetail({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => metasDetail({ token: validToken, project_id: validProjectId, id: validId }))
       .then((response) => {

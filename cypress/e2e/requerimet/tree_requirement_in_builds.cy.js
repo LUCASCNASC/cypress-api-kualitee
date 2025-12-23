@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Requirements Tree Requirement in Builds - /requirements/tree_requirement_in_builds', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,

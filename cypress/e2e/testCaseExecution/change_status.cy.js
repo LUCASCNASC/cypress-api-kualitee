@@ -8,7 +8,7 @@ const validTcIds = [101, 102, 103];
 
 describe('API rest - Test Case Execution Change Status - /test_case_execution/change_status', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     changeStatus({
       token: validToken,
       project_id: validProjectId,

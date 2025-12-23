@@ -7,7 +7,7 @@ const validCycleId = 1001;
   
 describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/tree_test_cases', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

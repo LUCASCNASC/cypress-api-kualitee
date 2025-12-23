@@ -7,7 +7,7 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

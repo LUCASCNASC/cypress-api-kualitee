@@ -10,7 +10,7 @@ const validTestScenarioIds = [99, 100];
 
 describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

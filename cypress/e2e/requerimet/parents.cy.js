@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Parents - /requirements/parents', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     requirementsParents({
       token: validToken,
       project_id: validProjectId

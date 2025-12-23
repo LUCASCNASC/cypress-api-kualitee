@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defects_in_build', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeDefectsInBuild({
       token: validToken,
       project_id: validProjectId,
@@ -18,7 +18,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     treeDefectsInBuild({
       project_id: validProjectId,
       build_id: validBuildId
@@ -27,7 +27,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeDefectsInBuild({
       token: validToken,
       project_id: validProjectId,
@@ -38,7 +38,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  it('Status Code 400, 415', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -76,7 +76,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  it('Status Code 429', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDefectsInBuild({
         token: validToken,
@@ -90,7 +90,7 @@ describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defec
     });
   });
 
-  it('Status Code 200, 400, 401, 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeDefectsInBuild({
       token: validToken,
       project_id: validProjectId,

@@ -8,7 +8,7 @@ const validTimeId = 1000;
 
 describe('API rest - Task Time Log Update - /task/time/log/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,

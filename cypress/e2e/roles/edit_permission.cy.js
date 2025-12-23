@@ -5,7 +5,7 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

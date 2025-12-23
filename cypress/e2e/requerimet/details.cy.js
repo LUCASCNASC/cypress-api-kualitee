@@ -7,7 +7,7 @@ const validRequirementId = 101;
 
 describe('API rest - Requirements Details - /requirements/details', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

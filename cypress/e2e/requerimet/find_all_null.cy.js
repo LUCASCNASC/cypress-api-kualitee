@@ -7,7 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Requirements Find All Null - /requirements/find_all_null', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     findAllNull({
       token: validToken,
       project_id: validProjectId

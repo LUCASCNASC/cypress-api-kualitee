@@ -10,7 +10,7 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case Create - /test_case/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,

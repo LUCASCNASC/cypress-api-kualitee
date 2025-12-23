@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     tree({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

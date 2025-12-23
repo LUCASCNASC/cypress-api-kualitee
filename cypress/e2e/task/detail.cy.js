@@ -7,7 +7,7 @@ const validTaskId = 888;
 
 describe('API rest - Task Detail - /task/detail', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

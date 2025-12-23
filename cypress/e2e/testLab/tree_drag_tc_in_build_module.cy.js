@@ -8,7 +8,7 @@ const validModuleId = 22;
 
 describe('API rest - Manage Test Case Tree Drag TC In Build Module - /manage_test_case/tree_drag_tc_in_build_module', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeDragTcInBuildModule({
       token: validToken,
       project_id: validProjectId,

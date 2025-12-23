@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Users Update - /users/update', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;
     updateUser({ ...bodyMin, profile_username: 'updateuser' + Date.now(), email: `min${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);

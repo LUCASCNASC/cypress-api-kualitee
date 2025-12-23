@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testScenarioTree({
       token: validToken,
       project_id: validProjectId

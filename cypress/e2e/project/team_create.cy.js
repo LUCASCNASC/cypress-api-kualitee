@@ -7,7 +7,7 @@ const validUserIds = [10, 11, 12, 13];
 
 describe('API rest - Project Team Assigned - /team/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     teamCreate({
       token: validToken,
       project_id: validProjectId,

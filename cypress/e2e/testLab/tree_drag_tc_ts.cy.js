@@ -8,7 +8,7 @@ const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/tree_drag_tc_ts', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,

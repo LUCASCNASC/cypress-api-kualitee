@@ -6,7 +6,7 @@ const validRequirementId = 101;
 
 describe('API rest - Requirements Tree Requirements - /requirements/tree_requirements', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,

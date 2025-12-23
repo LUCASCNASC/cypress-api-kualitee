@@ -8,7 +8,7 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('API rest - Import Step 2 - /test_case/import/step2', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();

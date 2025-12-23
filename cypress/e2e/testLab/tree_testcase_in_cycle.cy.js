@@ -8,7 +8,7 @@ const validCycleId = 1001;
 
 describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testcase_in_cycle', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeTestcaseInCycle({
       token: validToken,
       project_id: validProjectId,

@@ -27,7 +27,7 @@ const validDefectImage = 'cypress/fixtures/defect_image.png';
 
 describe('API rest - Cycle - Defects Create - /defects/create', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectsCreate({
       project_id: validProjectId,
       description: validDescription
@@ -79,7 +79,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 400, 422', () => {
+  it('Status Code is 400, 422', () => {
     defectsCreate({
       token: validToken,
       description: validDescription
@@ -88,7 +88,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 400, 422', () => {
+  it('Status Code is 400, 422', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId
@@ -97,7 +97,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId,
@@ -108,7 +108,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 400, 415', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -146,7 +146,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 429', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsCreate({
         token: validToken,
@@ -160,7 +160,7 @@ describe('API rest - Cycle - Defects Create - /defects/create', () => {
     });
   });
 
-  it('Status Code 200, 400, 401, 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     defectsCreate({
       token: validToken,
       project_id: validProjectId,

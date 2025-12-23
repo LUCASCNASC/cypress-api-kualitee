@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Update Password - /update_password', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     updatePassword({ ...validBody, activated_user_email: 'user'+Date.now()+'@test.com' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

@@ -10,7 +10,7 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case List - /test_case/list', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId

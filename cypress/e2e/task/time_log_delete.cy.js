@@ -6,7 +6,7 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

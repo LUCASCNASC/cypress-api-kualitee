@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Archived Projects - /project/archived_projects', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     archivedProjects({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -11,19 +11,19 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     archivedProjects({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 400, 401, 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     archivedProjects({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code 401, 403', () => {
+  it('Status Code is 401, 403', () => {
     archivedProjects({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });

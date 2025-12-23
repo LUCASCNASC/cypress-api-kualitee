@@ -9,7 +9,7 @@ const validExecBugId = 222;
 
 describe('API rest - Test Case Execution Delete Attach Defects - /test_case_execution/delete_attach_defects', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,

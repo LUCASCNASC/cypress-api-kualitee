@@ -7,7 +7,7 @@ const validKeyword = 'important';
 
 describe('API rest - Task Columns View - /task/columns/view', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     taskColumnsView({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;

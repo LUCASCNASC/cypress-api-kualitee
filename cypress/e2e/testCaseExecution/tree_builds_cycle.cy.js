@@ -7,7 +7,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_execution/tree_builds_cycle', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');

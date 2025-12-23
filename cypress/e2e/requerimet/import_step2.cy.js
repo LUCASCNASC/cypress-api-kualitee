@@ -9,7 +9,7 @@ const validDbColumns = [ 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7',
 
 describe('API rest - Requirements Import Step 2 - /requirements/import/step2', () => {
 
-  it('Status Code 200', () => {
+  it('Status Code is 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {

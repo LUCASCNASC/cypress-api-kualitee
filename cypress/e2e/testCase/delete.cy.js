@@ -6,7 +6,9 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('API rest - Test Case Delete - /test_case/delete', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -20,6 +22,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Deleta múltiplos casos de teste', () => {
+
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -34,6 +37,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Falha sem token', () => {
+
     testCaseDelete({
       project_id: validProjectId,
       'id[0]': validIds[0]
@@ -43,6 +47,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Falha sem project_id', () => {
+
     testCaseDelete({
       token: validToken,
       'id[0]': validIds[0]
@@ -52,6 +57,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Falha sem id[0]', () => {
+
     testCaseDelete({
       token: validToken,
       project_id: validProjectId
@@ -61,6 +67,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -72,6 +79,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -88,6 +96,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseDelete({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -99,6 +108,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -110,6 +120,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Falha após múltiplas deleções rápidas (rate limit)', () => {
+
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -123,6 +134,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
   });
 
   it('Permite deleções duplicadas rapidamente', () => {
+
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,

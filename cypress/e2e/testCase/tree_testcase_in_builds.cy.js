@@ -6,7 +6,9 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_builds', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -20,6 +22,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Falha sem token', () => {
+
     testCaseTreeInBuilds({
       project_id: validProjectId,
       build_id: validBuildId
@@ -29,6 +32,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Falha sem project_id', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       build_id: validBuildId
@@ -38,6 +42,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Falha sem build_id', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId
@@ -47,6 +52,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -58,6 +64,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -74,6 +81,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseTreeInBuilds({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -85,6 +93,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -96,6 +105,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInBuilds({
         token: validToken,
@@ -110,6 +120,7 @@ describe('API rest - Test Case Tree in Builds - /test_case/tree_testcase_in_buil
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     testCaseTreeInBuilds({
       token: validToken,
       project_id: validProjectId,

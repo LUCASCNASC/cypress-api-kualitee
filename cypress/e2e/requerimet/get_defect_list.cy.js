@@ -5,7 +5,9 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Get Defect List - /requirements/get_defect_list', () => {
 
+
   it('Status Code is 200', () => {
+
     getDefectList({
       token: validToken,
       project_id: validProjectId
@@ -18,6 +20,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Falha sem token', () => {
+
     getDefectList({
       project_id: validProjectId
     }).then(response => {
@@ -26,6 +29,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Falha sem project_id', () => {
+
     getDefectList({
       token: validToken
     }).then(response => {
@@ -34,6 +38,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Ignora campo extra no body', () => {
+
     getDefectList({
       token: validToken,
       project_id: validProjectId,
@@ -44,6 +49,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -59,6 +65,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     getDefectList({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -69,6 +76,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     getDefectList({
       token: validToken,
       project_id: validProjectId
@@ -79,6 +87,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       getDefectList({
         token: validToken,
@@ -92,6 +101,7 @@ describe('API rest - Requirements Get Defect List - /requirements/get_defect_lis
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     getDefectList({
       token: validToken,
       project_id: validProjectId

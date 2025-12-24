@@ -9,7 +9,9 @@ const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /manage_test_case/tree_testcase_in_cycle_ts', () => {
 
+
   it('Status Code is 200', () => {
+
     treeTestcaseInCycleTs({
       token: validToken,
       project_id: validProjectId,
@@ -23,6 +25,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Falha sem token', () => {
+
     treeTestcaseInCycleTs({
       project_id: validProjectId,
       cycle_id: validCycleId,
@@ -33,6 +36,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Ignora campo extra no body', () => {
+
     treeTestcaseInCycleTs({
       token: validToken,
       project_id: validProjectId,
@@ -45,6 +49,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -62,6 +67,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeTestcaseInCycleTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -74,6 +80,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeTestcaseInCycleTs({
       token: validToken,
       project_id: validProjectId,
@@ -86,6 +93,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseInCycleTs({
         token: validToken,
@@ -101,6 +109,7 @@ describe('API rest - Manage Test Case Tree Testcase in Cycle Test Scenario - /ma
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeTestcaseInCycleTs({
       token: validToken,
       project_id: validProjectId,

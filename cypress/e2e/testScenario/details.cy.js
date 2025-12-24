@@ -7,7 +7,9 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
 
+
   it('Status Code is 200', () => {
+
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -21,6 +23,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Falha sem token', () => {
+
     getTestScenarioDetails({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId,
@@ -30,6 +33,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Ignora campo extra na query string', () => {
+
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -41,6 +45,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Content-Type deve ser application/json', () => {
+
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -51,6 +56,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     getTestScenarioDetails({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -62,6 +68,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -73,6 +80,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       getTestScenarioDetails({
         token: validToken,
@@ -87,6 +95,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
+
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

@@ -7,7 +7,9 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Requirements Tree Requirement in Build Modules - /requirements/tree_requirement_in_build_modules', () => {
 
+
   it('Status Code is 200', () => {
+
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -22,6 +24,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Falha sem token', () => {
+
     treeRequirementInBuildModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -32,6 +35,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Ignora campo extra no body', () => {
+
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -44,6 +48,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -61,6 +66,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeRequirementInBuildModules({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -73,6 +79,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -85,6 +92,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeRequirementInBuildModules({
         token: validToken,
@@ -100,6 +108,7 @@ describe('API rest - Requirements Tree Requirement in Build Modules - /requireme
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,

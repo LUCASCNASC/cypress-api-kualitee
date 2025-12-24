@@ -5,7 +5,9 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
 
+
   it('Status Code is 200', () => {
+
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -14,24 +16,28 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
   });
 
   it('Falha sem token', () => {
+
     rolesEditPermission({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem id', () => {
+
     rolesEditPermission({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora parâmetro extra na query', () => {
+
     rolesEditPermission({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('GET ignora Content-Type application/json', () => {
+
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -44,6 +50,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     rolesEditPermission({ token: "' OR 1=1 --", id: validId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -51,6 +58,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -58,6 +66,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       rolesEditPermission({ token: validToken, id: validId })
     );
@@ -68,6 +77,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     rolesEditPermission({ token: validToken, id: validId })
       .then(() => rolesEditPermission({ token: validToken, id: validId }))
       .then((response) => {

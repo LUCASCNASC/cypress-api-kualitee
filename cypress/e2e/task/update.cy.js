@@ -11,7 +11,9 @@ const validEndDate = '2025-09-20';
 
 describe('API rest - Task Update - /task/update', () => {
 
+
   it('Status Code is 200', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -30,6 +32,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Atualiza task com todos campos possíveis', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -49,6 +52,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha sem token', () => {
+
     taskUpdate({
       project_id: validProjectId,
       id: validTaskId,
@@ -64,6 +68,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha sem project_id', () => {
+
     taskUpdate({
       token: validToken,
       id: validTaskId,
@@ -79,6 +84,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha sem id', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -94,6 +100,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha sem assignedto[0]', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -110,6 +117,7 @@ describe('API rest - Task Update - /task/update', () => {
 
   [null, '', 'abc', 0, -1, 999999999, {}, [], true, false].forEach(param => {
     it(`Falha com project_id inválido (${JSON.stringify(param)})`, () => {
+
       taskUpdate({
         token: validToken,
         project_id: param,
@@ -125,6 +133,7 @@ describe('API rest - Task Update - /task/update', () => {
       });
     });
     it(`Falha com id inválido (${JSON.stringify(param)})`, () => {
+
       taskUpdate({
         token: validToken,
         project_id: validProjectId,
@@ -140,6 +149,7 @@ describe('API rest - Task Update - /task/update', () => {
       });
     });
     it(`Falha com assignedto[0] inválido (${JSON.stringify(param)})`, () => {
+
       taskUpdate({
         token: validToken,
         project_id: validProjectId,
@@ -157,6 +167,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -174,6 +185,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -196,6 +208,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     taskUpdate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -213,6 +226,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -230,6 +244,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       taskUpdate({
         token: validToken,
@@ -250,6 +265,7 @@ describe('API rest - Task Update - /task/update', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     taskUpdate({
       token: validToken,
       project_id: validProjectId,

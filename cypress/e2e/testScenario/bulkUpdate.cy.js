@@ -10,7 +10,9 @@ const validTestScenarioIds = [99, 100];
 
 describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
 
+
   it('Status Code is 200', () => {
+
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -24,6 +26,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Atualiza em massa múltiplos cenários de teste com todos os campos', () => {
+
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -41,6 +44,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Falha sem token', () => {
+
     bulkUpdateTestScenario({
       project_id: validProjectId,
       'test_scenario_id[0]': validTestScenarioIds[0]
@@ -50,6 +54,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Ignora campo extra no body', () => {
+
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -61,6 +66,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -77,6 +83,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     bulkUpdateTestScenario({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -88,6 +95,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -99,6 +107,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       bulkUpdateTestScenario({
         token: validToken,
@@ -113,6 +122,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
+
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

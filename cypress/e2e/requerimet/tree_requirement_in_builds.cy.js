@@ -6,7 +6,9 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Requirements Tree Requirement in Builds - /requirements/tree_requirement_in_builds', () => {
 
+
   it('Status Code is 200', () => {
+
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -20,6 +22,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Falha sem token', () => {
+
     treeRequirementInBuilds({
       project_id: validProjectId,
       build_id: validBuildId
@@ -29,6 +32,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Ignora campo extra no body', () => {
+
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -40,6 +44,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -56,6 +61,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeRequirementInBuilds({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -67,6 +73,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -78,6 +85,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeRequirementInBuilds({
         token: validToken,
@@ -92,6 +100,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,

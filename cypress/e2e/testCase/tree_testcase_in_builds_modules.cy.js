@@ -7,7 +7,9 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_in_build_modules', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseTreeInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -22,6 +24,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Falha sem token', () => {
+
     testCaseTreeInBuildModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -32,6 +35,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseTreeInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -44,6 +48,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -61,6 +66,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseTreeInBuildModules({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -73,6 +79,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseTreeInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -85,6 +92,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInBuildModules({
         token: validToken,
@@ -100,6 +108,7 @@ describe('API rest - Test Case Tree in Build Modules - /test_case/tree_testcase_
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     testCaseTreeInBuildModules({
       token: validToken,
       project_id: validProjectId,

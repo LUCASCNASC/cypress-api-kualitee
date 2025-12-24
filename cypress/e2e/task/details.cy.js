@@ -6,7 +6,9 @@ const validId = Cypress.env('VALID_ID');
 
 describe('API rest - Task Details - /task/details', () => {
 
+
   it('Status Code is 200', () => {
+
     taskDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -15,30 +17,35 @@ describe('API rest - Task Details - /task/details', () => {
   });
 
   it('Falha sem token', () => {
+
     taskDetails({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
+
     taskDetails({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha sem id', () => {
+
     taskDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora parâmetro extra na query', () => {
+
     taskDetails({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('GET ignora Content-Type application/json', () => {
+
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -51,6 +58,7 @@ describe('API rest - Task Details - /task/details', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     taskDetails({ token: "' OR 1=1 --", project_id: validProjectId, id: validId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -58,6 +66,7 @@ describe('API rest - Task Details - /task/details', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     taskDetails({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -65,6 +74,7 @@ describe('API rest - Task Details - /task/details', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       taskDetails({ token: validToken, project_id: validProjectId, id: validId })
     );
@@ -75,6 +85,7 @@ describe('API rest - Task Details - /task/details', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     taskDetails({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskDetails({ token: validToken, project_id: validProjectId, id: validId }))
       .then((response) => {

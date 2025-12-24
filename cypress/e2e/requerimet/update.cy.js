@@ -10,7 +10,9 @@ const validSummary = 'Resumo do requisito';
 
 describe('API rest - Requirements Update - /requirements/update', () => {
 
+
   it('Status Code is 200', () => {
+
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -27,6 +29,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Atualiza requirement com todos os campos preenchidos', () => {
+
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -42,6 +45,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Atualiza requirement com envio de arquivo (attachment)', () => {
+
     cy.fixture('arquivo_teste.txt', 'base64').then(fileContent => {
       requirementsUpdate({
         token: validToken,
@@ -63,6 +67,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Falha sem token', () => {
+
     requirementsUpdate({
       project_id: validProjectId,
       id: validRequirementId,
@@ -75,6 +80,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -89,6 +95,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -108,6 +115,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     requirementsUpdate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -122,6 +130,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -136,6 +145,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       requirementsUpdate({
         token: validToken,
@@ -153,6 +163,7 @@ describe('API rest - Requirements Update - /requirements/update', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,

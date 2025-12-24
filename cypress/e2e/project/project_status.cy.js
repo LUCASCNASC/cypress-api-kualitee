@@ -7,7 +7,9 @@ const validProjectId1 = 78;
 
 describe('API rest - Project Status - /project/project_status', () => {
 
+
   it('Status Code is 200', () => {
+
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -21,6 +23,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha sem token', () => {
+
     projectStatus({
       project_status: validProjectStatus,
       'project_id[0]': validProjectId0,
@@ -31,6 +34,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha com token inválido', () => {
+
     projectStatus({
       token: 'token_invalido',
       project_status: validProjectStatus,
@@ -42,6 +46,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha com token expirado', () => {
+
     projectStatus({
       token: 'token_expirado',
       project_status: validProjectStatus,
@@ -53,6 +58,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha com token nulo', () => {
+
     projectStatus({
       token: null,
       project_status: validProjectStatus,
@@ -65,6 +71,7 @@ describe('API rest - Project Status - /project/project_status', () => {
 
 
   it('Falha com project_status vazio', () => {
+
     projectStatus({
       token: validToken,
       project_status: '',
@@ -76,6 +83,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -88,6 +96,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha com Content-Type text/plain', () => {
+
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -99,6 +108,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     projectStatus({
       token: "' OR 1=1 --",
       project_status: validProjectStatus,
@@ -111,6 +121,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -123,6 +134,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       projectStatus({
         token: validToken,
@@ -138,6 +150,7 @@ describe('API rest - Project Status - /project/project_status', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,

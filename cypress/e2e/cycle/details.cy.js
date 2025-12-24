@@ -7,7 +7,9 @@ const validDefectId = 101;
 
 describe('API rest - Cycle - Defects Details - /defects/details', () => {
 
+
   it('Status Code is 200', () => {
+
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -20,6 +22,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
+
     defectsDetails({
       project_id: validProjectId,
       defect_id: validDefectId
@@ -29,6 +32,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
 
   it('Status Code is 200', () => {
+
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -40,6 +44,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -56,6 +61,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     defectsDetails({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -67,6 +73,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
   
   it('Headers devem conter CORS e content-type', () => {
+
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -78,6 +85,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       defectsDetails({
         token: validToken,
@@ -92,6 +100,7 @@ describe('API rest - Cycle - Defects Details - /defects/details', () => {
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
+
     defectsDetails({
       token: validToken,
       project_id: validProjectId,

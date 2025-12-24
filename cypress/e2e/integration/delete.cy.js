@@ -10,7 +10,9 @@ const validPluginUrl = 'https://jira.example.com';
 
 describe('API rest - Integration - Integration Save - /integration/save', () => {
 
+
   it('Status Code is 200', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -26,6 +28,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     integrationSave({
       plugin_name: validPluginName,
       username: validUsername,
@@ -38,6 +41,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     integrationSave({
       token: validToken,
       username: validUsername,
@@ -50,6 +54,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -62,6 +67,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -74,6 +80,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -86,6 +93,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -98,6 +106,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 200', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -112,6 +121,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -131,6 +141,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     integrationSave({
       token: "' OR 1=1 --",
       plugin_name: validPluginName,
@@ -145,6 +156,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
   
   it('Headers devem conter CORS e content-type', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -159,6 +171,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       integrationSave({
         token: validToken,
@@ -176,6 +189,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
+
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,

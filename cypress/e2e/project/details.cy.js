@@ -5,7 +5,9 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Project Detail - /project/details', () => {
 
+
   it('Status Code is 200', () => {
+
     projectDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -14,48 +16,56 @@ describe('API rest - Project Detail - /project/details', () => {
   });
 
   it('Falha sem token', () => {
+
     projectDetails({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token inválido', () => {
+
     projectDetails({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token expirado', () => {
+
     projectDetails({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token nulo', () => {
+
     projectDetails({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
+
     projectDetails({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha com project_id inexistente', () => {
+
     projectDetails({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra nos parâmetros', () => {
+
     projectDetails({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -68,6 +78,7 @@ describe('API rest - Project Detail - /project/details', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     projectDetails({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -75,6 +86,7 @@ describe('API rest - Project Detail - /project/details', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     projectDetails({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -82,6 +94,7 @@ describe('API rest - Project Detail - /project/details', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       projectDetails({ token: validToken, project_id: validProjectId })
     );
@@ -92,6 +105,7 @@ describe('API rest - Project Detail - /project/details', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     projectDetails({ token: validToken, project_id: validProjectId })
       .then(() => projectDetails({ token: validToken, project_id: validProjectId }))
       .then((response) => {

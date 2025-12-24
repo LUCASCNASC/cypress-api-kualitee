@@ -7,7 +7,9 @@ const validTaskId = 888;
 
 describe('API rest - Task Time History - /task/time/history', () => {
 
+
   it('Status Code is 200', () => {
+
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -16,30 +18,35 @@ describe('API rest - Task Time History - /task/time/history', () => {
   });
 
   it('Falha sem token', () => {
+
     taskTimeHistory({ project_id: validProjectId, id: validTaskId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
+
     taskTimeHistory({ token: validToken, id: validTaskId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha sem id', () => {
+
     taskTimeHistory({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
+
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -52,6 +59,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     taskTimeHistory({ token: "' OR 1=1 --", project_id: validProjectId, id: validTaskId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -59,6 +67,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -66,6 +75,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId })
     );
@@ -76,6 +86,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId })
       .then(() => taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }))
       .then((response) => {

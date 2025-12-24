@@ -3,7 +3,9 @@ const PATH_API = '/EmailNotifications/List';
 
 describe('API rest- Email Notification - Email Notification List - /emailnotification/list', () => {
 
+
   it('Status Code is 200', () => {
+
     emailNotificationList({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -12,18 +14,21 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     emailNotificationList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 200', () => {
+
     emailNotificationList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -36,6 +41,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     emailNotificationList({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -43,6 +49,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
   });
   
   it('Headers devem conter CORS e content-type', () => {
+
     emailNotificationList({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -50,6 +57,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
   });
   
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       emailNotificationList({ token: validToken })
     );
@@ -60,6 +68,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
   });
   
   it('Status Code is 200, 400, 401 ou 409', () => {
+
     emailNotificationList({ token: validToken })
       .then(() => emailNotificationList({ token: validToken }))
       .then((response) => {

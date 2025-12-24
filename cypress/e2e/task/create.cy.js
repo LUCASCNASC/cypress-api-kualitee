@@ -10,7 +10,9 @@ const validEndDate = '2025-09-18';
 
 describe('API rest - Task Create - /task/create', () => {
 
+
   it('Status Code is 200', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -26,6 +28,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Cria task com todos campos possíveis', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -44,6 +47,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Falha sem token', () => {
+
     taskCreate({
       project_id: validProjectId,
       'assignedto[0]': validAssignedTo[0],
@@ -56,6 +60,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Falha sem project_id', () => {
+
     taskCreate({
       token: validToken,
       'assignedto[0]': validAssignedTo[0],
@@ -68,6 +73,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Falha sem assignedto[0]', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -80,6 +86,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -94,6 +101,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -113,6 +121,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     taskCreate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -127,6 +136,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -141,6 +151,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       taskCreate({
         token: validToken,
@@ -158,6 +169,7 @@ describe('API rest - Task Create - /task/create', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     taskCreate({
       token: validToken,
       project_id: validProjectId,

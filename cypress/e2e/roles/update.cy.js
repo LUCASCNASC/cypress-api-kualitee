@@ -9,7 +9,9 @@ const validCanDelete = true;
 
 describe('API rest - Roles Update - /roles/update', () => {
 
+
   it('Status Code is 200', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -23,6 +25,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Atualiza role com can_delete true', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -35,6 +38,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Atualiza role com can_delete false', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -47,6 +51,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha sem token', () => {
+
     rolesUpdate({
       id: validId,
       role_name: validRoleName,
@@ -57,6 +62,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha sem id', () => {
+
     rolesUpdate({
       token: validToken,
       role_name: validRoleName,
@@ -67,6 +73,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha sem role_name', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -77,6 +84,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha sem description', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -87,6 +95,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -100,6 +109,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -117,6 +127,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     rolesUpdate({
       token: "' OR 1=1 --",
       id: validId,
@@ -129,6 +140,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -141,6 +153,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       rolesUpdate({
         token: validToken,
@@ -156,6 +169,7 @@ describe('API rest - Roles Update - /roles/update', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     rolesUpdate({
       token: validToken,
       id: validId,

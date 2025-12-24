@@ -7,7 +7,9 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseTreeInTs({
       token: validToken,
       project_id: validProjectId,
@@ -21,6 +23,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Falha sem token', () => {
+
     testCaseTreeInTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -30,6 +33,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseTreeInTs({
       token: validToken,
       project_id: validProjectId,
@@ -41,6 +45,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -57,6 +62,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseTreeInTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -68,6 +74,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseTreeInTs({
       token: validToken,
       project_id: validProjectId,
@@ -79,6 +86,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInTs({
         token: validToken,
@@ -93,6 +101,7 @@ describe('API rest - Test Case Tree in TS - /test_case/tree_testcase_in_ts', () 
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     testCaseTreeInTs({
       token: validToken,
       project_id: validProjectId,

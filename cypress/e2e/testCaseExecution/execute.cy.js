@@ -13,7 +13,9 @@ const validExecute = 'yes';
 
 describe('API rest - Test Case Execution Execute - /test_case_execution/execute', () => {
 
+
   it('Status Code is 200', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -32,6 +34,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem token', () => {
+
     executeTest({
       project_id: validProjectId,
       status: validStatus,
@@ -47,6 +50,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem project_id', () => {
+
     executeTest({
       token: validToken,
       status: validStatus,
@@ -62,6 +66,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem status', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -77,6 +82,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem tc_id', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -92,6 +98,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem testscenario_id', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -107,6 +114,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem cycle_id', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -122,6 +130,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem build_id', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -137,6 +146,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha sem execute', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -152,6 +162,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Ignora campo extra no body', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -169,6 +180,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -191,6 +203,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     executeTest({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -208,6 +221,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -225,6 +239,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       executeTest({
         token: validToken,
@@ -245,6 +260,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     executeTest({
       token: validToken,
       project_id: validProjectId,

@@ -7,7 +7,9 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/tree_testcase_in_build_module_ts', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -21,6 +23,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Falha sem token', () => {
+
     testCaseTreeInBuildModuleTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -30,6 +33,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -41,6 +45,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -57,6 +62,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseTreeInBuildModuleTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -68,6 +74,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -79,6 +86,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInBuildModuleTs({
         token: validToken,
@@ -93,6 +101,7 @@ describe('API rest - Test Case Tree in Build Module Test Scenarios - /test_case/
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

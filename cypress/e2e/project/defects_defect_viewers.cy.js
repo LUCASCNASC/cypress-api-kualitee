@@ -5,7 +5,9 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
 
+
   it('Status Code is 200', () => {
+
     defectViewers({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -14,48 +16,56 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
   });
 
   it('Falha sem token', () => {
+
     defectViewers({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token inválido', () => {
+
     defectViewers({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token expirado', () => {
+
     defectViewers({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token nulo', () => {
+
     defectViewers({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
+
     defectViewers({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha com project_id inexistente', () => {
+
     defectViewers({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra nos parâmetros', () => {
+
     defectViewers({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -68,6 +78,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     defectViewers({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -75,6 +86,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     defectViewers({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -82,6 +94,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       defectViewers({ token: validToken, project_id: validProjectId })
     );
@@ -92,6 +105,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     defectViewers({ token: validToken, project_id: validProjectId })
       .then(() => defectViewers({ token: validToken, project_id: validProjectId }))
       .then((response) => {

@@ -7,7 +7,9 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Approve - /test_case/approve', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -22,6 +24,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Aprova múltiplos casos de teste', () => {
+
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -37,6 +40,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Rejeita um caso de teste', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -51,6 +55,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha sem token', () => {
+
     testCaseApprove({
       project_id: validProjectId,
       tc_status: '1',
@@ -61,6 +66,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha sem project_id', () => {
+
     testCaseApprove({
       token: validToken,
       tc_status: '1',
@@ -71,6 +77,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha sem tc_status', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -81,6 +88,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha sem testcase_id[0]', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -91,6 +99,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -103,6 +112,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -120,6 +130,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseApprove({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -132,6 +143,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -144,6 +156,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -158,6 +171,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
   });
 
   it('Permite aprovações duplicadas rapidamente', () => {
+
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,

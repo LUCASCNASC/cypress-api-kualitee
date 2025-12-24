@@ -7,7 +7,9 @@ const validImageId = 555;
 
 describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () => {
 
+
   it('Status Code is 200', () => {
+
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,
@@ -20,6 +22,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Status Code is 400, 401, 403', () => {
+
     defectsDeleteImage({
       project_id: validProjectId,
       id: validImageId
@@ -29,6 +32,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Status Code is 200', () => {
+
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,
@@ -40,6 +44,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -56,6 +61,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     defectsDeleteImage({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -67,6 +73,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
   
   it('Headers devem conter CORS e content-type', () => {
+
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,
@@ -78,6 +85,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       defectsDeleteImage({
         token: validToken,
@@ -92,6 +100,7 @@ describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () =
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
+
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,

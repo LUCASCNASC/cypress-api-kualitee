@@ -8,7 +8,9 @@ const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/tree_drag_tc_ts', () => {
 
+
   it('Status Code is 200', () => {
+
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,
@@ -21,6 +23,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Falha sem token', () => {
+
     treeDragTcTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -30,6 +33,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Ignora campo extra no body', () => {
+
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,
@@ -41,6 +45,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -57,6 +62,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeDragTcTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -68,6 +74,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,
@@ -79,6 +86,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeDragTcTs({
         token: validToken,
@@ -93,6 +101,7 @@ describe('API rest - Manage Test Case Tree Drag TC Test Scenario - /manage_test_
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,

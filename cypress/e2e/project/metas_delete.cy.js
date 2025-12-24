@@ -5,7 +5,9 @@ const validMetaId = 123;
 
 describe('API rest - Project Metas Delete - /project/metas/delete', () => {
 
+
   it('Status Code is 200', () => {
+
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -14,48 +16,56 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   });
 
   it('Falha sem token', () => {
+
     metasDelete({ meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token inválido', () => {
+
     metasDelete({ token: 'token_invalido', meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token expirado', () => {
+
     metasDelete({ token: 'token_expirado', meta_id: validMetaId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token nulo', () => {
+
     metasDelete({ token: null, meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem meta_id', () => {
+
     metasDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha com meta_id inexistente', () => {
+
     metasDelete({ token: validToken, meta_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
+
     metasDelete({ token: validToken, meta_id: validMetaId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -68,6 +78,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     metasDelete({ token: "' OR 1=1 --", meta_id: validMetaId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -75,6 +86,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -82,6 +94,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       metasDelete({ token: validToken, meta_id: validMetaId })
     );
@@ -92,6 +105,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     metasDelete({ token: validToken, meta_id: validMetaId })
       .then(() => metasDelete({ token: validToken, meta_id: validMetaId }))
       .then((response) => {

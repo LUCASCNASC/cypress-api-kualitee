@@ -8,7 +8,9 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('API rest - Import Step 2 - /test_case/import/step2', () => {
 
+
   it('Status Code is 200', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -31,6 +33,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Falha sem token', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ token: undefined });
@@ -50,6 +53,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Falha com db_columns inválido', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ 'db_columns[2]': 'xxxx' });
@@ -68,6 +72,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Falha com arquivo CSV vazio', () => {
+
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
     const body = buildBody();
@@ -85,6 +90,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -97,6 +103,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ token: "' OR 1=1 --" });
@@ -117,6 +124,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -137,6 +145,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Falha após múltiplos uploads rápidos (rate limit)', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -160,6 +169,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
   });
 
   it('Permite uploads CSV idênticos rapidamente', () => {
+
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -173,6 +183,7 @@ describe('API rest - Import Step 2 - /test_case/import/step2', () => {
         headers: { 'Content-Type': 'multipart/form-data' },
         failOnStatusCode: false
       }).then(() => {
+
         cy.request({
           method: 'POST',
           url: `/${PATH_API}`,

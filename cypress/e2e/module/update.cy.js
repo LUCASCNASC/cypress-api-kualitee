@@ -10,7 +10,9 @@ const validModuleDescription = 'Descrição atualizada do módulo de autenticaç
 
 describe('API rest - Module Update - /module/update', () => {
 
+
   it('Status Code is 200', () => {
+
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -26,6 +28,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleUpdate({
       project_id: validProjectId,
       module_id: validModuleId,
@@ -38,6 +41,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleUpdate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -51,6 +55,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 401, 403', () => {
+
     moduleUpdate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -64,6 +69,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleUpdate({
       token: null,
       project_id: validProjectId,
@@ -77,6 +83,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 200', () => {
+
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -91,6 +98,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -110,6 +118,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     moduleUpdate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -124,6 +133,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -138,6 +148,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       moduleUpdate({
         token: validToken,
@@ -155,6 +166,7 @@ describe('API rest - Module Update - /module/update', () => {
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
+
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,

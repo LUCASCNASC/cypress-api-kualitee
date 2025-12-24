@@ -9,7 +9,9 @@ const validModuleDescription = 'Módulo responsável pelo fluxo de login e auten
 
 describe('API rest - Module Create - /module/create', () => {
 
+
   it('Status Code is 200', () => {
+
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -24,6 +26,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleCreate({
       project_id: validProjectId,
       module_name: validModuleName,
@@ -35,6 +38,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -47,6 +51,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 401, 403', () => {
+
     moduleCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -59,6 +64,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     moduleCreate({
       token: null,
       project_id: validProjectId,
@@ -71,6 +77,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 200', () => {
+
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -84,6 +91,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -102,6 +110,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     moduleCreate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -115,6 +124,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -128,6 +138,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       moduleCreate({
         token: validToken,
@@ -144,6 +155,7 @@ describe('API rest - Module Create - /module/create', () => {
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
+
     moduleCreate({
       token: validToken,
       project_id: validProjectId,

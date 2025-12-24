@@ -6,7 +6,9 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/tree_drag_tc_in_build', () => {
 
+
   it('Status Code is 200', () => {
+
     treeDragTcInBuild({
       token: validToken,
       project_id: validProjectId,
@@ -19,6 +21,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Falha sem token', () => {
+
     treeDragTcInBuild({
       project_id: validProjectId,
       build_id: validBuildId
@@ -28,6 +31,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Ignora campo extra no body', () => {
+
     treeDragTcInBuild({
       token: validToken,
       project_id: validProjectId,
@@ -39,6 +43,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -55,6 +60,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeDragTcInBuild({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -66,6 +72,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeDragTcInBuild({
       token: validToken,
       project_id: validProjectId,
@@ -77,6 +84,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeDragTcInBuild({
         token: validToken,
@@ -91,6 +99,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build - /manage_test_case/
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeDragTcInBuild({
       token: validToken,
       project_id: validProjectId,

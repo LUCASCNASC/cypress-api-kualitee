@@ -8,7 +8,9 @@ const validRequirementIds = [101, 102, 103];
 
 describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () => {
 
+
   it('Status Code is 200', () => {
+
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -24,6 +26,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Atualiza lote com múltiplos requirements', () => {
+
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -37,6 +40,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Falha sem token', () => {
+
     bulkUpdate({
       project_id: validProjectId,
       'requirement_id[0]': validRequirementIds[0],
@@ -48,6 +52,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Ignora campo extra no body', () => {
+
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -61,6 +66,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url:`/${PATH_API}`,
@@ -79,6 +85,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     bulkUpdate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -92,6 +99,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -105,6 +113,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       bulkUpdate({
         token: validToken,
@@ -121,6 +130,7 @@ describe('API rest - Requirements Bulk Update - /requirements/bulkupdate', () =>
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,

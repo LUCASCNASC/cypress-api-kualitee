@@ -9,7 +9,9 @@ const validMetaValue = 'chrome';
 
 describe('API rest - Metas Update - /metas/update', () => {
 
+
   it('Status Code is 200', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -18,42 +20,49 @@ describe('API rest - Metas Update - /metas/update', () => {
   });
 
   it('Status Code is 200', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_key: validMetaKey, meta_value: validMetaValue }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Status Code is 400, 401 ou 403', () => {
+
     metasUpdate({ project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     metasUpdate({ token: validToken, id: validId, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422 ou 404', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 200', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,6 +75,7 @@ describe('API rest - Metas Update - /metas/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     metasUpdate({ token: "' OR 1=1 --", project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -73,6 +83,7 @@ describe('API rest - Metas Update - /metas/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -80,6 +91,7 @@ describe('API rest - Metas Update - /metas/update', () => {
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
     );
@@ -90,6 +102,7 @@ describe('API rest - Metas Update - /metas/update', () => {
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
+
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue })
       .then(() => metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }))
       .then((response) => {

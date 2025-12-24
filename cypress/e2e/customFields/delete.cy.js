@@ -7,7 +7,9 @@ const validCustomFieldId = 123;
 
 describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete', () => {
 
+
   it('Status Code is 200', () => {
+
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -16,30 +18,35 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
   });
 
   it('Status Code is 400, 401, 403', () => {
+
     customfieldsDelete({ project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422, 404', () => {
+
     customfieldsDelete({ token: validToken, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422, 404', () => {
+
     customfieldsDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 200', () => {
+
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Status Code is 400, 415', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -52,6 +59,7 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     customfieldsDelete({ token: "' OR 1=1 --", project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -59,6 +67,7 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
   });
   
   it('Headers devem conter CORS e content-type', () => {
+
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -66,6 +75,7 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
   });
 
   it('Status Code is 429', () => {
+
     const requests = Array(10).fill(0).map(() =>
       customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId })
     );
@@ -76,6 +86,7 @@ describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
+
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId })
       .then(() => customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }))
       .then((response) => {

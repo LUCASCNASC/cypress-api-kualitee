@@ -7,7 +7,9 @@ const validCanDelete = true;
 
 describe('API rest - Roles Create - /roles/create', () => {
 
+
   it('Status Code is 200', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -16,42 +18,49 @@ describe('API rest - Roles Create - /roles/create', () => {
   });
 
   it('Cria role com can_delete true', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Cria role com can_delete false', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: false }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha sem token', () => {
+
     rolesCreate({ role_name: validRoleName, description: validDescription }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem role_name', () => {
+
     rolesCreate({ token: validToken, description: validDescription }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha sem description', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -64,6 +73,7 @@ describe('API rest - Roles Create - /roles/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     rolesCreate({ token: "' OR 1=1 --", role_name: validRoleName, description: validDescription }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -71,6 +81,7 @@ describe('API rest - Roles Create - /roles/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -78,6 +89,7 @@ describe('API rest - Roles Create - /roles/create', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
     );
@@ -88,6 +100,7 @@ describe('API rest - Roles Create - /roles/create', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
       .then(() => rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }))
       .then((response) => {

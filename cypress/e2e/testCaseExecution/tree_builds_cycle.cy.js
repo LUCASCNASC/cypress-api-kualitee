@@ -7,7 +7,9 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_execution/tree_builds_cycle', () => {
 
+
   it('Status Code is 200', () => {
+
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -16,30 +18,35 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
   });
 
   it('Falha sem token', () => {
+
     treeBuildsCycle({ project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
+
     treeBuildsCycle({ token: validToken, build_id: validBuildId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Falha sem build_id', () => {
+
     treeBuildsCycle({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
+
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -52,6 +59,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeBuildsCycle({ token: "' OR 1=1 --", project_id: validProjectId, build_id: validBuildId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -59,6 +67,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -66,6 +75,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId })
     );
@@ -76,6 +86,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId })
       .then(() => treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }))
       .then((response) => {

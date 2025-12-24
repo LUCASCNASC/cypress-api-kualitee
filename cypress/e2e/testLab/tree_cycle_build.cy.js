@@ -6,7 +6,9 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build', () => {
 
+
   it('Status Code is 200', () => {
+
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -19,6 +21,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Falha sem token', () => {
+
     treeCycleBuild({
       project_id: validProjectId,
       build_id: validBuildId
@@ -28,6 +31,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Ignora campo extra no body', () => {
+
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -39,6 +43,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -55,6 +60,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     treeCycleBuild({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -66,6 +72,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -77,6 +84,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       treeCycleBuild({
         token: validToken,
@@ -91,6 +99,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,

@@ -3,7 +3,9 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Users List - /users/list', () => {
 
+
   it('Falha sem token', () => {
+
     listUsers({}).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -12,6 +14,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Falha com token inválido', () => {
+
     listUsers({ token: 'token_invalido' }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -20,6 +23,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Falha com token expirado', () => {
+
     listUsers({ token: 'token_expirado' }).then((response) => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -28,12 +32,14 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Falha com token nulo', () => {
+
     listUsers({ token: null }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
+
     listUsers({ token: validToken, user_status: 0, extra: 'foo' }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
@@ -41,18 +47,21 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Falha com token contendo caracteres especiais', () => {
+
     listUsers({ token: '😀🔥💥', user_status: 0 }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token SQL Injection', () => {
+
     listUsers({ token: "' OR 1=1 --", user_status: 0 }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,6 +74,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     listUsers({ token: "' OR 1=1 --", user_status: 0 }).then((response) => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -72,6 +82,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     listUsers({ token: validToken, user_status: 0 }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -79,6 +90,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() => listUsers({ token: validToken, user_status: 0 }));
     cy.wrap(Promise.all(requests)).then((responses) => {
       const rateLimited = responses.some(r => r.status === 429);
@@ -87,6 +99,7 @@ describe('API rest - Users List - /users/list', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     listUsers({ token: validToken, user_status: 0 })
       .then(() => listUsers({ token: validToken, user_status: 0 }))
       .then((response) => {

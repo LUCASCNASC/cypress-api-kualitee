@@ -10,7 +10,9 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case List - /test_case/list', () => {
 
+
   it('Status Code is 200', () => {
+
     testCaseList({
       token: validToken,
       project_id: validProjectId
@@ -23,6 +25,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Retorna lista de casos de teste com todos os campos preenchidos', () => {
+
     testCaseList({
       token: validToken,
       project_id: validProjectId,
@@ -44,6 +47,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Falha sem token', () => {
+
     testCaseList({
       project_id: validProjectId
     }).then(response => {
@@ -52,6 +56,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Falha sem project_id', () => {
+
     testCaseList({
       token: validToken
     }).then(response => {
@@ -60,6 +65,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Ignora campo extra no body', () => {
+
     testCaseList({
       token: validToken,
       project_id: validProjectId,
@@ -70,6 +76,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
+
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -85,6 +92,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
+
     testCaseList({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -95,6 +103,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
+
     testCaseList({
       token: validToken,
       project_id: validProjectId
@@ -105,6 +114,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+
     const requests = Array(10).fill(0).map(() =>
       testCaseList({
         token: validToken,
@@ -118,6 +128,7 @@ describe('API rest - Test Case List - /test_case/list', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
+
     testCaseList({
       token: validToken,
       project_id: validProjectId

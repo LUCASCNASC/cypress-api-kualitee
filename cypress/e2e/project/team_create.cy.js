@@ -7,9 +7,7 @@ const validUserIds = [10, 11, 12, 13];
 
 describe('API rest - Project Team Assigned - /team/create', () => {
 
-
   it('Status Code is 200', () => {
-
     teamCreate({
       token: validToken,
       project_id: validProjectId,
@@ -25,7 +23,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha sem token', () => {
-
     teamCreate({
       project_id: validProjectId,
       'project_user[0]': validUserIds[0],
@@ -38,7 +35,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha com token inválido', () => {
-
     teamCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -52,7 +48,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha com token expirado', () => {
-
     teamCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -66,7 +61,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha com token nulo', () => {
-
     teamCreate({
       token: null,
       project_id: validProjectId,
@@ -80,7 +74,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     teamCreate({
       token: validToken,
       project_id: validProjectId,
@@ -95,7 +88,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -115,7 +107,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     teamCreate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -130,7 +121,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     teamCreate({
       token: validToken,
       project_id: validProjectId,
@@ -145,7 +135,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       teamCreate({
         token: validToken,
@@ -163,7 +152,6 @@ describe('API rest - Project Team Assigned - /team/create', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     teamCreate({
       token: validToken,
       project_id: validProjectId,

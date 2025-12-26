@@ -6,9 +6,7 @@ const validModuleId = 22;
 
 describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase/total', () => {
 
-
   it('Status Code is 200', () => {
-
     testcaseTotal(validBody).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -18,7 +16,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 200', () => {
-
     testcaseTotal({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
@@ -26,7 +23,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     testcaseTotal({ project_id: validProjectId, module_id: validModuleId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -34,7 +30,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     testcaseTotal({ ...validBody, token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -42,7 +37,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 401, 403', () => {
-
     testcaseTotal({ ...validBody, token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -50,28 +44,24 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     testcaseTotal({ ...validBody, token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     testcaseTotal({ ...validBody, token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     testcaseTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 200', () => {
-
     testcaseTotal({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
@@ -79,7 +69,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -92,7 +81,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testcaseTotal({ ...validBody, token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -100,7 +88,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     testcaseTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -108,7 +95,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       testcaseTotal({ ...validBody, project_id: validProjectId, module_id: validModuleId })
     );
@@ -119,7 +105,6 @@ describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     testcaseTotal(validBody)
       .then(() => testcaseTotal(validBody))
       .then((response) => {

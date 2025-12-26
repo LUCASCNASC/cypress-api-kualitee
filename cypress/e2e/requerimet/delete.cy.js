@@ -7,9 +7,7 @@ const validRequirementId = 123;
 
 describe('API rest - Requirements Delete - /requirements/delete', () => {
 
-
   it('Status Code is 200', () => {
-
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +21,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Falha sem token', () => {
-
     requirementsDelete({
       project_id: validProjectId,
       'id[0]': validRequirementId
@@ -33,7 +30,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Deleta múltiplos requisitos com id[0], id[1], ...', () => {
-
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,
@@ -45,7 +41,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,
@@ -57,7 +52,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -74,7 +68,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     requirementsDelete({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -86,7 +79,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,
@@ -98,7 +90,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       requirementsDelete({
         token: validToken,
@@ -113,7 +104,6 @@ describe('API rest - Requirements Delete - /requirements/delete', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     requirementsDelete({
       token: validToken,
       project_id: validProjectId,

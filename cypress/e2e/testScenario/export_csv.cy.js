@@ -7,9 +7,7 @@ const validExportTypes = ['CSV', 'Excel', 'Word'];
 
 describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () => {
 
-
   it('Falha sem token', () => {
-
     exportTestScenario({
       project_id: validProjectId,
       export_type: 'CSV'
@@ -19,7 +17,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Ignora campo extra no body', () => {
-
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -31,7 +28,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -48,7 +44,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     exportTestScenario({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -60,7 +55,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -72,7 +66,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       exportTestScenario({
         token: validToken,
@@ -87,7 +80,6 @@ describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () =
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,

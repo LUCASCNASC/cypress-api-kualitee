@@ -10,9 +10,7 @@ const validCustomFieldDesc = 'Descrição do campo customizado';
 
 describe('API rest - Custom Fields - Custom Fields Create - /customfields/create', () => {
 
-
   it('Status Code is 200', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -26,7 +24,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 200', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -40,7 +37,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     customfieldsCreate({
       'project_id[0]': validProjectId,
       custom_field_name: validCustomFieldName,
@@ -51,7 +47,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     customfieldsCreate({
       token: validToken,
       custom_field_name: validCustomFieldName,
@@ -62,7 +57,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -73,7 +67,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -84,7 +77,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 200', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -97,7 +89,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -115,7 +106,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     customfieldsCreate({
       token: "' OR 1=1 --",
       'project_id[0]': validProjectId,
@@ -128,7 +118,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -141,7 +130,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
   
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       customfieldsCreate({
         token: validToken,
@@ -157,7 +145,6 @@ describe('API rest - Custom Fields - Custom Fields Create - /customfields/create
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,

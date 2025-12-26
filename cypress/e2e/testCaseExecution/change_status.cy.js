@@ -8,9 +8,7 @@ const validTcIds = [101, 102, 103];
 
 describe('API rest - Test Case Execution Change Status - /test_case_execution/change_status', () => {
 
-
   it('Status Code is 200', () => {
-
     changeStatus({
       token: validToken,
       project_id: validProjectId,
@@ -26,7 +24,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Falha sem token', () => {
-
     changeStatus({
       project_id: validProjectId,
       status: validStatus,
@@ -39,7 +36,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Falha sem project_id', () => {
-
     changeStatus({
       token: validToken,
       status: validStatus,
@@ -52,7 +48,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Falha sem status', () => {
-
     changeStatus({
       token: validToken,
       project_id: validProjectId,
@@ -65,7 +60,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Ignora campo extra no body', () => {
-
     changeStatus({
       token: validToken,
       project_id: validProjectId,
@@ -80,7 +74,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -100,7 +93,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     changeStatus({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -115,7 +107,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     changeStatus({
       token: validToken,
       project_id: validProjectId,
@@ -130,7 +121,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       changeStatus({
         token: validToken,
@@ -148,7 +138,6 @@ describe('API rest - Test Case Execution Change Status - /test_case_execution/ch
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     changeStatus({
       token: validToken,
       project_id: validProjectId,

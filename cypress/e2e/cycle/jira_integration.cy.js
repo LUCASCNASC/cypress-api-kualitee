@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integration', () => {
 
-
   it('Status Code is 200', () => {
-
     jiraIntegration({
       token: validToken,
       project_id: validProjectId
@@ -19,7 +17,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     jiraIntegration({
       project_id: validProjectId
     }).then(response => {
@@ -28,7 +25,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
 
   it('Status Code is 400, 422', () => {
-
     jiraIntegration({
       token: validToken
     }).then(response => {
@@ -37,7 +33,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -53,7 +48,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     jiraIntegration({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -64,7 +58,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     jiraIntegration({
       token: validToken,
       project_id: validProjectId
@@ -75,7 +68,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       jiraIntegration({
         token: validToken,
@@ -89,7 +81,6 @@ describe('API rest - Cycle - Defects Jira Integration - /defects/jira_integratio
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     jiraIntegration({
       token: validToken,
       project_id: validProjectId

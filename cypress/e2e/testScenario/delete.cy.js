@@ -8,9 +8,7 @@ const validTestScenarioId = 99;
 
 describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
 
-
   it('Status Code is 200', () => {
-
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -24,7 +22,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Falha sem token', () => {
-
     deleteTestScenario({
       project_id: validProjectId,
       'test_scenario_id[0]': validTestScenarioId
@@ -34,7 +31,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -46,7 +42,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -63,7 +58,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     deleteTestScenario({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -75,7 +69,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -87,7 +80,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       deleteTestScenario({
         token: validToken,
@@ -102,7 +94,6 @@ describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
   });
 
   it('Permite deletar o mesmo cenário rapidamente', () => {
-
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

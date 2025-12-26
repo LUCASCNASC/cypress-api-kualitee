@@ -7,9 +7,7 @@ const validImageId = 456;
 
 describe('API rest - Requirements Attachment Delete - /requirements/attachment/delete', () => {
 
-
   it('Status Code is 200', () => {
-
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +21,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Falha sem token', () => {
-
     requirementsAttachmentDelete({
       project_id: validProjectId,
       image_id: validImageId
@@ -33,7 +30,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Ignora campo extra no body', () => {
-
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -45,7 +41,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -62,7 +57,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     requirementsAttachmentDelete({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -74,7 +68,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -86,7 +79,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       requirementsAttachmentDelete({
         token: validToken,
@@ -101,7 +93,6 @@ describe('API rest - Requirements Attachment Delete - /requirements/attachment/d
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,

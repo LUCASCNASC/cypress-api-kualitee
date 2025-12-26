@@ -7,9 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Get Null Modules - /module/get_null_modules', () => {
 
-
   it('Status Code is 200', () => {
-
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +21,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     getNullModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -34,7 +31,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     getNullModules({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -46,7 +42,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 401, 403', () => {
-
     getNullModules({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -58,7 +53,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     getNullModules({
       token: null,
       project_id: validProjectId,
@@ -70,7 +64,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 200', () => {
-
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -83,7 +76,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -101,7 +93,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     getNullModules({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -114,7 +105,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -127,7 +117,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       getNullModules({
         token: validToken,
@@ -143,7 +132,6 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
-
     getNullModules({
       token: validToken,
       project_id: validProjectId,

@@ -7,9 +7,7 @@ const validTestcaseIds = [1001, 1002];
 
 describe('API rest - Test Case Template - /test_case/template_test_case', () => {
 
-
   it('Status Code is 200', () => {
-
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +21,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Gera template para múltiplos casos de teste', () => {
-
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -38,7 +35,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Falha sem token', () => {
-
     testCaseTemplate({
       project_id: validProjectId,
       'testcase_id[0]': validTestcaseIds[0]
@@ -48,7 +44,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Falha sem project_id', () => {
-
     testCaseTemplate({
       token: validToken,
       'testcase_id[0]': validTestcaseIds[0]
@@ -58,7 +53,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Falha sem testcase_id[0]', () => {
-
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId
@@ -68,7 +62,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Ignora campo extra no body', () => {
-
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,
@@ -80,7 +73,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -97,7 +89,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testCaseTemplate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -109,7 +100,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,
@@ -121,7 +111,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -135,7 +124,6 @@ describe('API rest - Test Case Template - /test_case/template_test_case', () => 
   });
 
   it('Permite gerar templates duplicados rapidamente', () => {
-
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,

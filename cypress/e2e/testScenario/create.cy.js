@@ -11,9 +11,7 @@ const validDescription = 'Descrição detalhada do cenário de teste';
 
 describe('API rest - Test Scenario Create - /test_scenario/create', () => {
 
-
   it('Status Code is 200', () => {
-
     createTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -28,7 +26,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Cria cenário de teste com todos os campos preenchidos', () => {
-
     createTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -46,7 +43,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     createTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -59,7 +55,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -77,7 +72,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     createTestScenario({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -90,7 +84,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     createTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -103,7 +96,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       createTestScenario({
         token: validToken,
@@ -119,7 +111,6 @@ describe('API rest - Test Scenario Create - /test_scenario/create', () => {
   });
 
   it('Permite criar o mesmo cenário de teste rapidamente', () => {
-
     createTestScenario({
       token: validToken,
       project_id: validProjectId,

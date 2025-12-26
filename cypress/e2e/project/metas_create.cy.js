@@ -6,9 +6,7 @@ const validMetaValue = 'meta_value_exemplo';
 
 describe('API rest - Project Metas Create - /project/metas/create', () => {
 
-
   it('Status Code is 200', () => {
-
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -21,7 +19,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha sem token', () => {
-
     metasCreate({
       meta_key: validMetaKey,
       meta_value: validMetaValue
@@ -31,7 +28,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha com token inválido', () => {
-
     metasCreate({
       token: 'token_invalido',
       meta_key: validMetaKey,
@@ -42,7 +38,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha com token expirado', () => {
-
     metasCreate({
       token: 'token_expirado',
       meta_key: validMetaKey,
@@ -53,7 +48,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha com token nulo', () => {
-
     metasCreate({
       token: null,
       meta_key: validMetaKey,
@@ -64,7 +58,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -76,7 +69,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -93,7 +85,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     metasCreate({
       token: "' OR 1=1 --",
       meta_key: validMetaKey,
@@ -105,7 +96,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -117,7 +107,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       metasCreate({
         token: validToken,
@@ -132,7 +121,6 @@ describe('API rest - Project Metas Create - /project/metas/create', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,

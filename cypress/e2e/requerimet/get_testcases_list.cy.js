@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Get Testcases List - /requirements/get_testcases_list', () => {
 
-
   it('Status Code is 200', () => {
-
     getTestcasesList({
       token: validToken,
       project_id: validProjectId
@@ -20,7 +18,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Falha sem token', () => {
-
     getTestcasesList({
       project_id: validProjectId
     }).then(response => {
@@ -29,7 +26,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Falha sem project_id', () => {
-
     getTestcasesList({
       token: validToken
     }).then(response => {
@@ -38,7 +34,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Ignora campo extra no body', () => {
-
     getTestcasesList({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +44,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +59,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     getTestcasesList({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -76,7 +69,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     getTestcasesList({
       token: validToken,
       project_id: validProjectId
@@ -87,7 +79,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       getTestcasesList({
         token: validToken,
@@ -101,7 +92,6 @@ describe('API rest - Requirements Get Testcases List - /requirements/get_testcas
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     getTestcasesList({
       token: validToken,
       project_id: validProjectId

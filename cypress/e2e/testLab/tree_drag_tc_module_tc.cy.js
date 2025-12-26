@@ -7,9 +7,7 @@ const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case/tree_drag_tc_module_ts', () => {
 
-
   it('Status Code is 200', () => {
-
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -22,7 +20,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Falha sem token', () => {
-
     treeDragTcModuleTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -32,7 +29,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Ignora campo extra no body', () => {
-
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -44,7 +40,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -61,7 +56,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeDragTcModuleTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -73,7 +67,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -85,7 +78,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeDragTcModuleTs({
         token: validToken,
@@ -100,7 +92,6 @@ describe('API rest - Manage Test Case Tree Drag TC Module Test Scenario - /manag
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,

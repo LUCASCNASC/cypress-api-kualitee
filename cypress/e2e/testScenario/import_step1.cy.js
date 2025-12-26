@@ -7,9 +7,7 @@ const validCsvFilePath = 'cypress/fixtures/test_scenarios_import.csv';
 
 describe('API rest - Import Step One - /test_scenario/import/step1', () => {
 
-
   it('Status Code is 200', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -31,7 +29,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Falha sem token', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -49,7 +46,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Falha com arquivo CSV inválido', () => {
-
     cy.fixture('invalid.txt', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -68,7 +64,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -88,7 +83,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -108,7 +102,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -128,7 +121,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       const requests = Array(10).fill(0).map(() =>
         cy.form_request(
@@ -151,7 +143,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -164,7 +155,6 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
           { name: 'import_csv_file', fileName: 'test_scenarios_import.csv', mimeType: 'text/csv', fileContent, encoding: 'base64' }
         ]
       ).then(() => {
-
         cy.form_request(
           'POST',
           '/Test%20Scenario/importstepone',

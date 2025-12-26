@@ -3,9 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Archived Projects - /project/archived_projects', () => {
 
-
   it('Status Code is 200', () => {
-
     archivedProjects({ token: validToken }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -14,56 +12,48 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     archivedProjects({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     archivedProjects({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 401, 403', () => {
-
     archivedProjects({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token nulo', () => {
-
     archivedProjects({ token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token contendo caracteres especiais', () => {
-
     archivedProjects({ token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token SQL Injection', () => {
-
     archivedProjects({ token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
-
     archivedProjects({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -76,7 +66,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     archivedProjects({ token: "' OR 1=1 --" }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -84,7 +73,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     archivedProjects({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -92,7 +80,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       archivedProjects({ token: validToken })
     );
@@ -103,7 +90,6 @@ describe('API rest - Archived Projects - /project/archived_projects', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     archivedProjects({ token: validToken })
       .then(() => archivedProjects({ token: validToken }))
       .then((response) => {

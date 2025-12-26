@@ -10,9 +10,7 @@ const validCreatedBy = [123];
 
 describe('API rest - Test Scenario List - /test_scenario/list', () => {
 
-
   it('Status Code is 200', () => {
-
     testScenarioList({
       token: validToken,
       project_id: validProjectId
@@ -25,7 +23,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Retorna lista de cenários de teste com todos os parâmetros', () => {
-
     testScenarioList({
       token: validToken,
       project_id: validProjectId,
@@ -44,7 +41,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Falha sem token', () => {
-
     testScenarioList({
       project_id: validProjectId
     }).then(response => {
@@ -53,7 +49,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Falha sem project_id', () => {
-
     testScenarioList({
       token: validToken
     }).then(response => {
@@ -62,7 +57,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     testScenarioList({
       token: validToken,
       project_id: validProjectId,
@@ -73,7 +67,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -89,7 +82,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testScenarioList({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -100,7 +92,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     testScenarioList({
       token: validToken,
       project_id: validProjectId
@@ -111,7 +102,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       testScenarioList({
         token: validToken,
@@ -125,7 +115,6 @@ describe('API rest - Test Scenario List - /test_scenario/list', () => {
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     testScenarioList({
       token: validToken,
       project_id: validProjectId

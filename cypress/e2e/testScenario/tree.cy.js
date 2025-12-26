@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
 
-
   it('Status Code is 200', () => {
-
     testScenarioTree({
       token: validToken,
       project_id: validProjectId
@@ -20,7 +18,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Falha sem token', () => {
-
     testScenarioTree({
       project_id: validProjectId
     }).then(response => {
@@ -29,7 +26,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Falha sem project_id', () => {
-
     testScenarioTree({
       token: validToken
     }).then(response => {
@@ -38,7 +34,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     testScenarioTree({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +44,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +59,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testScenarioTree({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -76,7 +69,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     testScenarioTree({
       token: validToken,
       project_id: validProjectId
@@ -87,7 +79,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       testScenarioTree({
         token: validToken,
@@ -101,7 +92,6 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     testScenarioTree({
       token: validToken,
       project_id: validProjectId

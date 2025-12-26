@@ -7,9 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Requirements Find All Null - /requirements/find_all_null', () => {
 
-
   it('Status Code is 200', () => {
-
     findAllNull({
       token: validToken,
       project_id: validProjectId
@@ -22,7 +20,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Retorna resultado com todos os campos válidos', () => {
-
     findAllNull({
       token: validToken,
       project_id: validProjectId,
@@ -37,7 +34,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Falha sem token', () => {
-
     findAllNull({
       project_id: validProjectId
     }).then(response => {
@@ -46,7 +42,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Falha sem project_id', () => {
-
     findAllNull({
       token: validToken
     }).then(response => {
@@ -55,7 +50,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Ignora campo extra no body', () => {
-
     findAllNull({
       token: validToken,
       project_id: validProjectId,
@@ -68,7 +62,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   
   ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
     it(`Falha com método HTTP ${method}`, () => {
-
       cy.request({
         method,
         url: `/${PATH_API}`,
@@ -85,7 +78,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -101,7 +93,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     findAllNull({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -112,7 +103,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     findAllNull({
       token: validToken,
       project_id: validProjectId
@@ -123,7 +113,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       findAllNull({
         token: validToken,
@@ -137,7 +126,6 @@ describe('API rest - Requirements Find All Null - /requirements/find_all_null', 
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     findAllNull({
       token: validToken,
       project_id: validProjectId

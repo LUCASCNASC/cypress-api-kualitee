@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Tree - /requirements/tree', () => {
 
-
   it('Status Code is 200', () => {
-
     requirementsTree({
       token: validToken,
       project_id: validProjectId
@@ -20,7 +18,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Falha sem token', () => {
-
     requirementsTree({
       project_id: validProjectId
     }).then(response => {
@@ -29,7 +26,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Falha sem project_id', () => {
-
     requirementsTree({
       token: validToken
     }).then(response => {
@@ -38,7 +34,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     requirementsTree({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +44,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +59,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     requirementsTree({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -76,7 +69,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     requirementsTree({
       token: validToken,
       project_id: validProjectId
@@ -87,7 +79,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       requirementsTree({
         token: validToken,
@@ -101,7 +92,6 @@ describe('API rest - Requirements Tree - /requirements/tree', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     requirementsTree({
       token: validToken,
       project_id: validProjectId

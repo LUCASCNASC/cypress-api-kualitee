@@ -11,9 +11,7 @@ const validDefects = [555, 556];
 
 describe('API rest - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
 
-
   it('Status Code is 200', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -31,7 +29,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem token', () => {
-
     attachDefects({
       project_id: validProjectId,
       tc_id: validTcId,
@@ -46,7 +43,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem project_id', () => {
-
     attachDefects({
       token: validToken,
       tc_id: validTcId,
@@ -61,7 +57,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem tc_id', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -76,7 +71,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem testscenario_id', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -91,7 +85,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem cycle_id', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -106,7 +99,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha sem execution_id', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -121,7 +113,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Ignora campo extra no body', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -138,7 +129,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -160,7 +150,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     attachDefects({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -177,7 +166,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -194,7 +182,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       attachDefects({
         token: validToken,
@@ -214,7 +201,6 @@ describe('API rest - Test Case Execution Attach Defects - /test_case_execution/a
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     attachDefects({
       token: validToken,
       project_id: validProjectId,

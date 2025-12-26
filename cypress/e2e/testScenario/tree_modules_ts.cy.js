@@ -7,9 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules_ts', () => {
 
-
   it('Status Code is 200', () => {
-
     treeModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -24,7 +22,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Falha sem token', () => {
-
     treeModulesTS({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -35,7 +32,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Ignora campo extra no body', () => {
-
     treeModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -48,7 +44,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,7 +61,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeModulesTS({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -79,7 +73,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -92,7 +85,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeModulesTS({
         token: validToken,
@@ -108,7 +100,6 @@ describe('API rest - Tree TestScenarios In Modules - /test_scenario/tree_modules
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     treeModulesTS({
       token: validToken,
       project_id: validProjectId,

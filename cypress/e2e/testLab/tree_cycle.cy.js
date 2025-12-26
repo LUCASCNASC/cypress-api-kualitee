@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle', () => {
 
-
   it('Status Code is 200', () => {
-
     treeCycle({
       token: validToken,
       project_id: validProjectId
@@ -19,7 +17,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Falha sem token', () => {
-
     treeCycle({
       project_id: validProjectId
     }).then(response => {
@@ -28,7 +25,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Falha sem project_id', () => {
-
     treeCycle({
       token: validToken
     }).then(response => {
@@ -37,7 +33,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Ignora campo extra no body', () => {
-
     treeCycle({
       token: validToken,
       project_id: validProjectId,
@@ -48,7 +43,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -64,7 +58,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeCycle({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -75,7 +68,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeCycle({
       token: validToken,
       project_id: validProjectId
@@ -86,7 +78,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeCycle({
         token: validToken,
@@ -100,7 +91,6 @@ describe('API rest - Manage Test Case Tree Cycle - /manage_test_case/tree_cycle'
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     treeCycle({
       token: validToken,
       project_id: validProjectId

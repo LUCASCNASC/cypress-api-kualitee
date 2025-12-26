@@ -11,9 +11,7 @@ const validRequirementId = 101;
 
 describe('API rest - Test Case Update - /test_case/update', () => {
 
-
   it('Status Code is 200', () => {
-
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -32,7 +30,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Atualiza caso de teste com todos os campos preenchidos', () => {
-
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -64,7 +61,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Falha sem token', () => {
-
     testCaseUpdate({
       project_id: validProjectId,
       id: validId,
@@ -79,7 +75,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -96,7 +91,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -118,7 +112,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testCaseUpdate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -135,7 +128,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -152,7 +144,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       testCaseUpdate({
         token: validToken,
@@ -172,7 +163,6 @@ describe('API rest - Test Case Update - /test_case/update', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,

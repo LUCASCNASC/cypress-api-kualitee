@@ -12,9 +12,7 @@ const validDescription = 'Descrição atualizada do cenário de teste';
 
 describe('API rest - Test Scenario Update - /test_scenario/update', () => {
 
-
   it('Status Code is 200', () => {
-
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -30,7 +28,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Atualiza cenário de teste com todos os campos preenchidos', () => {
-
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +46,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Falha sem token', () => {
-
     updateTestScenario({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId,
@@ -61,7 +57,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -75,7 +70,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -94,7 +88,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     updateTestScenario({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -108,7 +101,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -122,7 +114,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       updateTestScenario({
         token: validToken,
@@ -139,7 +130,6 @@ describe('API rest - Test Scenario Update - /test_scenario/update', () => {
   });
 
   it('Permite atualizar o mesmo cenário rapidamente', () => {
-
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,

@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
 
-
   it('Status Code is 200', () => {
-
     approvedTc({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -16,7 +14,6 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
 
   it('Status Code is 200', () => {
-
     approvedTc({ 
       token: validToken, 
       project_id: validProjectId,
@@ -33,70 +30,60 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     approvedTc({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     approvedTc({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 401, 403', () => {
-
     approvedTc({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     approvedTc({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     approvedTc({ token: '😀🔥💥', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     approvedTc({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     approvedTc({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Status Code is 404, 422, 400', () => {
-
     approvedTc({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
   it('Status Code is 200', () => {
-
     approvedTc({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -109,7 +96,6 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     approvedTc({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -117,7 +103,6 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     approvedTc({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -125,7 +110,6 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
   
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       approvedTc({ token: validToken, project_id: validProjectId })
     );
@@ -136,7 +120,6 @@ describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/appro
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     approvedTc({ token: validToken, project_id: validProjectId })
       .then(() => approvedTc({ token: validToken, project_id: validProjectId }))
       .then((response) => {

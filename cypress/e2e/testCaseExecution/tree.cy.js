@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree', () => {
 
-
   it('Status Code is 200', () => {
-
     tree({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -16,28 +14,24 @@ describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree',
   });
 
   it('Falha sem token', () => {
-
     tree({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem project_id', () => {
-
     tree({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra no body', () => {
-
     tree({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -50,7 +44,6 @@ describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree',
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     tree({ token: "' OR 1=1 --", project_id: validProjectId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -58,7 +51,6 @@ describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree',
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     tree({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -66,7 +58,6 @@ describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree',
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       tree({ token: validToken, project_id: validProjectId })
     );
@@ -77,7 +68,6 @@ describe('API rest - Test Case Execution Tree Root - /test_case_execution/tree',
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     tree({ token: validToken, project_id: validProjectId })
       .then(() => tree({ token: validToken, project_id: validProjectId }))
       .then((response) => {

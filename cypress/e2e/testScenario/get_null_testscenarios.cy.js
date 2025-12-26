@@ -6,9 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
 
-
   it('Status Code is 200', () => {
-
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -22,7 +20,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Falha sem token', () => {
-
     getNullTestScenarios({
       project_id: validProjectId,
       build_id: validBuildId
@@ -32,7 +29,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Falha sem project_id', () => {
-
     getNullTestScenarios({
       token: validToken,
       build_id: validBuildId
@@ -42,7 +38,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Ignora campo extra no body', () => {
-
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -54,7 +49,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -71,7 +65,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     getNullTestScenarios({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -83,7 +76,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -95,7 +87,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       getNullTestScenarios({
         token: validToken,
@@ -110,7 +101,6 @@ describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenari
   });
 
   it('Permite chamadas idênticas rapidamente', () => {
-
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

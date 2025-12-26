@@ -5,9 +5,7 @@ const validUserId = 101;
 
 describe('API rest - User Detail - /users/detail', () => {
 
-
   it('Status Code is 200', () => {
-
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -18,7 +16,6 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Falha sem token', () => {
-
     getUserDetail({ user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -26,42 +23,36 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Falha com token inválido', () => {
-
     getUserDetail({ token: 'token_invalido', user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token expirado', () => {
-
     getUserDetail({ token: 'token_expirado', user_id: validUserId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token nulo', () => {
-
     getUserDetail({ token: null, user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token contendo caracteres especiais', () => {
-
     getUserDetail({ token: '😀🔥💥', user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha com token SQL Injection', () => {
-
     getUserDetail({ token: "' OR 1=1 --", user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
   it('Falha sem user_id', () => {
-
     getUserDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -69,21 +60,18 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Falha com user_id inexistente', () => {
-
     getUserDetail({ token: validToken, user_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
   it('Ignora campo extra na query', () => {
-
     getUserDetail({ token: validToken, user_id: validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
   it('Falha com Content-Type application/x-www-form-urlencoded', () => {
-
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -96,7 +84,6 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     getUserDetail({ token: "' OR 1=1 --", user_id: validUserId }).then(response => {
       const body = JSON.stringify(response.body);
       expect(body).not.to.match(/exception|trace|sql|database/i);
@@ -104,7 +91,6 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
@@ -112,7 +98,6 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       getUserDetail({ token: validToken, user_id: validUserId })
     );
@@ -123,7 +108,6 @@ describe('API rest - User Detail - /users/detail', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     getUserDetail({ token: validToken, user_id: validUserId })
       .then(() => getUserDetail({ token: validToken, user_id: validUserId }))
       .then((response) => {

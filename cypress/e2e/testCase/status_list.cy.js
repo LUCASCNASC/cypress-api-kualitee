@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Test Case Status List - /test_case/status_list', () => {
 
-
   it('Status Code is 200', () => {
-
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId
@@ -20,7 +18,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Falha sem token', () => {
-
     testCaseStatusList({
       project_id: validProjectId
     }).then(response => {
@@ -29,7 +26,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Falha sem project_id', () => {
-
     testCaseStatusList({
       token: validToken
     }).then(response => {
@@ -38,7 +34,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Ignora campo extra na query', () => {
-
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +44,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     testCaseStatusList({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -60,7 +54,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId
@@ -71,7 +64,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
       project_id: validProjectId
@@ -84,7 +76,6 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId

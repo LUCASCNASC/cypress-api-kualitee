@@ -6,9 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Module Delete - /module/delete', () => {
 
-
   it('Status Code is 200', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId,
@@ -21,7 +19,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     moduleDelete({
       project_id: validProjectId,
       'module_id[0]': validModuleId
@@ -31,7 +28,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     moduleDelete({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -42,7 +38,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 401, 403', () => {
-
     moduleDelete({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -53,7 +48,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 401 ou 403', () => {
-
     moduleDelete({
       token: null,
       project_id: validProjectId,
@@ -64,7 +58,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 422 ou 404', () => {
-
     moduleDelete({
       token: validToken,
       'module_id[0]': validModuleId
@@ -74,7 +67,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 422 ou 404', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId
@@ -84,7 +76,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 422 ou 404', () => {
-
     moduleDelete({
       token: validToken,
       project_id: 999999,
@@ -95,7 +86,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 422 ou 404', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId,
@@ -106,7 +96,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 200', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId,
@@ -118,7 +107,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -135,7 +123,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     moduleDelete({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -147,7 +134,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId,
@@ -159,7 +145,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       moduleDelete({
         token: validToken,
@@ -174,7 +159,6 @@ describe('API rest - Module Delete - /module/delete', () => {
   });
 
   it('Status Code is 200, 400, 401 ou 409', () => {
-
     moduleDelete({
       token: validToken,
       project_id: validProjectId,

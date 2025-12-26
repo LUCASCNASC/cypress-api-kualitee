@@ -7,9 +7,7 @@ const validTestScenarioId = 1234;
 
 describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario - /manage_test_case/tree_drag_tc_in_build_module_ts', () => {
 
-
   it('Status Code is 200', () => {
-
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -22,7 +20,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Falha sem token', () => {
-
     treeDragTcInBuildModuleTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -32,7 +29,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Ignora campo extra no body', () => {
-
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -44,7 +40,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -61,7 +56,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeDragTcInBuildModuleTs({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -73,7 +67,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -85,7 +78,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeDragTcInBuildModuleTs({
         token: validToken,
@@ -100,7 +92,6 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

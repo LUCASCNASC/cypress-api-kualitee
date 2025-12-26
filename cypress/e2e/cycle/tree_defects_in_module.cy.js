@@ -6,9 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_module', () => {
 
-
   it('Status Code is 200', () => {
-
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -21,7 +19,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     treeDefectsInModule({
       project_id: validProjectId,
       module_id: validModuleId
@@ -31,7 +28,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
 
   it('Status Code is 200', () => {
-
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +39,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -60,7 +55,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeDefectsInModule({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -72,7 +66,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -84,7 +77,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeDefectsInModule({
         token: validToken,
@@ -99,7 +91,6 @@ describe('API rest - Cycle - Defects Tree Defects In Module - /defects/tree_defe
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,

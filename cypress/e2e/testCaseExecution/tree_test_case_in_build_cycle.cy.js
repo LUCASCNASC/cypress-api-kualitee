@@ -9,9 +9,7 @@ const validCycleId = 1001;
 
 describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_case_execution/tree_test_case_in_build_cycle', () => {
 
-
   it('Status Code is 200', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -25,7 +23,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha sem token', () => {
-
     treeTestCaseInBuildCycle({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -36,7 +33,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha sem project_id', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       build_id: validBuildId,
@@ -47,7 +43,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha sem build_id', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -58,7 +53,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha sem cycle_id', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -69,7 +63,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Ignora campo extra no body', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -82,7 +75,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -100,7 +92,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeTestCaseInBuildCycle({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -113,7 +104,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -126,7 +116,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeTestCaseInBuildCycle({
         token: validToken,
@@ -142,7 +131,6 @@ describe('API rest - Test Case Execution Tree Test Case in Build Cycle - /test_c
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,

@@ -10,7 +10,6 @@ const validBuildDescription = 'Descrição do build de testes automáticos.';
 
 describe('API rest - Build - Builds Create - /build/create', () => {
 
-
   function buildCreate(body, options = {}) {
     return cy.request({
       method: 'POST',
@@ -23,7 +22,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   }
 
   it('Status Code is 200', () => {
-
     buildCreate({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +37,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildCreate({
       project_id: validProjectId,
       start_date: validStartDate,
@@ -52,7 +49,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -66,7 +62,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -80,7 +75,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildCreate({
       token: null,
       project_id: validProjectId,
@@ -94,7 +88,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 200', () => {
-
     buildCreate({
       token: validToken,
       project_id: validProjectId,
@@ -109,7 +102,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: '/Build/BuildsCreate',
@@ -129,7 +121,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     buildCreate({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -144,7 +135,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     buildCreate({
       token: validToken,
       project_id: validProjectId,
@@ -159,7 +149,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
   
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       buildCreate({
         token: validToken,
@@ -177,7 +166,6 @@ describe('API rest - Build - Builds Create - /build/create', () => {
   });
   
   it('Status Code is 200, 400, 401, 409', () => {
-
     buildCreate({
       token: validToken,
       project_id: validProjectId,

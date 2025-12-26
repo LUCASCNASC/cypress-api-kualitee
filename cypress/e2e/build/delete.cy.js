@@ -6,7 +6,6 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('API rest - Build - Builds Delete - /build/delete', () => {
 
-
   function buildDelete(body, options = {}) {
     return cy.request({
       method: 'POST',
@@ -19,7 +18,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   }
 
   it('Status Code is 200', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -32,7 +30,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildDelete({
       project_id: validProjectId,
       'build_id[0]': validBuildId
@@ -42,7 +39,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildDelete({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -53,7 +49,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 401, 403', () => {
-
     buildDelete({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -64,7 +59,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 401, 403', () => {
-
     buildDelete({
       token: null,
       project_id: validProjectId,
@@ -75,7 +69,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     buildDelete({
       token: validToken,
       'build_id[0]': validBuildId
@@ -85,7 +78,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 422, 404', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId
@@ -95,7 +87,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 404, 422, 400', () => {
-
     buildDelete({
       token: validToken,
       project_id: 999999,
@@ -106,7 +97,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 404, 422, 400', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -117,7 +107,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 200', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -129,7 +118,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 400, 415', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -146,7 +134,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
   
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     buildDelete({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -158,7 +145,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
   
   it('Headers devem conter CORS e content-type', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -170,7 +156,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 429', () => {
-
     const requests = Array(10).fill(0).map(() =>
       buildDelete({
         token: validToken,
@@ -185,7 +170,6 @@ describe('API rest - Build - Builds Delete - /build/delete', () => {
   });
 
   it('Status Code is 200, 400, 401, 409', () => {
-
     buildDelete({
       token: validToken,
       project_id: validProjectId,

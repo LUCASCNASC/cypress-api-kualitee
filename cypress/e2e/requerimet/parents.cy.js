@@ -5,9 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('API rest - Requirements Parents - /requirements/parents', () => {
 
-
   it('Status Code is 200', () => {
-
     requirementsParents({
       token: validToken,
       project_id: validProjectId
@@ -20,7 +18,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Falha sem token', () => {
-
     requirementsParents({
       project_id: validProjectId
     }).then(response => {
@@ -29,7 +26,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Falha sem project_id', () => {
-
     requirementsParents({
       token: validToken
     }).then(response => {
@@ -38,7 +34,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Ignora campo extra no body', () => {
-
     requirementsParents({
       token: validToken,
       project_id: validProjectId,
@@ -49,7 +44,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +59,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     requirementsParents({
       token: "' OR 1=1 --",
       project_id: validProjectId
@@ -76,7 +69,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     requirementsParents({
       token: validToken,
       project_id: validProjectId
@@ -87,7 +79,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       requirementsParents({
         token: validToken,
@@ -101,7 +92,6 @@ describe('API rest - Requirements Parents - /requirements/parents', () => {
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     requirementsParents({
       token: validToken,
       project_id: validProjectId

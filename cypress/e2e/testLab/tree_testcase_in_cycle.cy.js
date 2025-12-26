@@ -8,9 +8,7 @@ const validCycleId = 1001;
 
 describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testcase_in_cycle', () => {
 
-
   it('Status Code is 200', () => {
-
     treeTestcaseInCycle({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +21,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Falha sem token', () => {
-
     treeTestcaseInCycle({
       project_id: validProjectId,
       cycle_id: validCycleId
@@ -33,7 +30,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Ignora campo extra no body', () => {
-
     treeTestcaseInCycle({
       token: validToken,
       project_id: validProjectId,
@@ -45,7 +41,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Falha com Content-Type application/json', () => {
-
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -62,7 +57,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Resposta não deve vazar stacktrace, SQL, etc.', () => {
-
     treeTestcaseInCycle({
       token: "' OR 1=1 --",
       project_id: validProjectId,
@@ -74,7 +68,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Headers devem conter CORS e content-type', () => {
-
     treeTestcaseInCycle({
       token: validToken,
       project_id: validProjectId,
@@ -86,7 +79,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Falha após múltiplas requisições rápidas (rate limit)', () => {
-
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseInCycle({
         token: validToken,
@@ -101,7 +93,6 @@ describe('API rest - Manage Test Case Tree Testcase In Cycle - /manage_test_case
   });
 
   it('Permite requisições duplicadas rapidamente', () => {
-
     treeTestcaseInCycle({
       token: validToken,
       project_id: validProjectId,

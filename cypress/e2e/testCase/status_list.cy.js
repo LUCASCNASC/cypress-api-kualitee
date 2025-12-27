@@ -17,7 +17,7 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseStatusList({
       project_id: validProjectId
     }).then(response => {
@@ -75,7 +75,7 @@ describe('API rest - Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId

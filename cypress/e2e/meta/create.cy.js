@@ -22,19 +22,19 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasCreate({ project_id: validProjectId, meta_value: validMetaValue }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasCreate({ token: validToken, meta_value: validMetaValue }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasCreate({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -82,7 +82,7 @@ describe('API rest - Metas Create - /metas/create', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue })
       .then(() => metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }))
       .then((response) => {

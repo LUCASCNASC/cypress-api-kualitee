@@ -25,7 +25,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     integrationSave({
       plugin_name: validPluginName,
       username: validUsername,
@@ -37,7 +37,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationSave({
       token: validToken,
       username: validUsername,
@@ -49,7 +49,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -61,7 +61,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -73,7 +73,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -85,7 +85,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,
@@ -175,7 +175,7 @@ describe('API rest - Integration - Integration Save - /integration/save', () => 
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,

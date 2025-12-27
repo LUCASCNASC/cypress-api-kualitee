@@ -11,8 +11,8 @@ Este repositório tem como objetivo automatizar testes de APIs, facilitando a va
 
 ## Pré-requisitos
 
-- [Node.js](https://nodejs.org/) instalado (versão recomendada: 14.x ou superior)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/) instalado
+- [Node.js](https://nodejs.org/) instalado (versão recomendada: 14.x, superior)
+- [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/) instalado
 
 ## Instalação
 
@@ -24,7 +24,7 @@ cd cypress-api-kualitee
 Instale as dependências:
 ```bash
 npm install
-# ou
+#,
 yarn install
 ```
 ## Como executar os testes
@@ -51,7 +51,7 @@ cypress-api-kualitee/
 ```
 
 ## Contribuição
-Sinta-se à vontade para abrir issues e pull requests para sugerir melhorias, reportar bugs ou contribuir com novos testes.
+Sinta-se à vontade para abrir issues e pull requests para sugerir melhorias, reportar bugs, contribuir com novos testes.
 
 ## Licença
 

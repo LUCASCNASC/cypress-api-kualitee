@@ -14,7 +14,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskTimeLogDelete({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -32,13 +32,13 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -74,7 +74,7 @@ describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }))
       .then((response) => {

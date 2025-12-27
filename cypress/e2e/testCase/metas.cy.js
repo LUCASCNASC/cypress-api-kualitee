@@ -17,7 +17,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseMetas({
       project_id: validProjectId
     }).then(response => {
@@ -33,7 +33,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testCaseMetas({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +43,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseMetas({
       token: validToken,
       project_id: validProjectId

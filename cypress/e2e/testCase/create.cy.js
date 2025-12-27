@@ -57,7 +57,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseCreate({
       project_id: validProjectId,
       t_name: 'Nome',
@@ -70,7 +70,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -85,7 +85,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -153,7 +153,7 @@ describe('API rest - Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,

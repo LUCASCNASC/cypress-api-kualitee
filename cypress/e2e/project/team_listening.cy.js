@@ -13,25 +13,25 @@ describe('API rest - Project Team Listing - /team/listing', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamListing({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamListing({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     teamListing({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamListing({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -49,13 +49,13 @@ describe('API rest - Project Team Listing - /team/listing', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     teamListing({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Project Team Listing - /team/listing', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     teamListing({ token: validToken, project_id: validProjectId })
       .then(() => teamListing({ token: validToken, project_id: validProjectId }))
       .then((response) => {

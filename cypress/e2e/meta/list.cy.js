@@ -22,13 +22,13 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -76,7 +76,7 @@ describe('API rest - Metas List - /metas/list', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     metasList({ token: validToken, project_id: validProjectId })
       .then(() => metasList({ token: validToken, project_id: validProjectId }))
       .then((response) => {

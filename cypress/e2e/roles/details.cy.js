@@ -13,7 +13,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     rolesDetails({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -67,7 +67,7 @@ describe('API rest - Roles Details - /roles/details', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     rolesDetails({ token: validToken, id: validId })
       .then(() => rolesDetails({ token: validToken, id: validId }))
       .then((response) => {

@@ -20,7 +20,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     duplicateTestCase({
       project_id: validProjectId,
       tc_name: validTestCaseName
@@ -29,7 +29,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

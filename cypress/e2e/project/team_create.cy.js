@@ -22,7 +22,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamCreate({
       project_id: validProjectId,
       'project_user[0]': validUserIds[0],
@@ -34,7 +34,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -47,7 +47,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     teamCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -60,7 +60,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     teamCreate({
       token: null,
       project_id: validProjectId,
@@ -73,7 +73,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     teamCreate({
       token: validToken,
       project_id: validProjectId,
@@ -87,7 +87,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -151,7 +151,7 @@ describe('API rest - Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     teamCreate({
       token: validToken,
       project_id: validProjectId,

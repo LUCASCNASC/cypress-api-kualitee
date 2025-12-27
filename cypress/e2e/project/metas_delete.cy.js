@@ -13,25 +13,25 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasDelete({ meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasDelete({ token: 'token_invalido', meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     metasDelete({ token: 'token_expirado', meta_id: validMetaId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasDelete({ token: null, meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -49,13 +49,13 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     metasDelete({ token: validToken, meta_id: validMetaId })
       .then(() => metasDelete({ token: validToken, meta_id: validMetaId }))
       .then((response) => {

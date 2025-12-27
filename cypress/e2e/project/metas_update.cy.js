@@ -20,7 +20,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasUpdate({
       meta_key: validMetaKey,
       meta_value: validMetaValue,
@@ -30,7 +30,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasUpdate({
       token: 'token_invalido',
       meta_key: validMetaKey,
@@ -41,7 +41,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     metasUpdate({
       token: 'token_expirado',
       meta_key: validMetaKey,
@@ -52,7 +52,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasUpdate({
       token: null,
       meta_key: validMetaKey,
@@ -74,7 +74,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,
@@ -86,7 +86,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -142,7 +142,7 @@ describe('API rest - Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,

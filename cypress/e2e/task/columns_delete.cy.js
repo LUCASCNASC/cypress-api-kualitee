@@ -14,7 +14,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskColumnsDelete({ project_id: validProjectId, id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -32,13 +32,13 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -74,7 +74,7 @@ describe('API rest - Task Columns Delete - /task/columns/delete', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId })
       .then(() => taskColumnsDelete({ token: validToken, project_id: validProjectId, id: validId }))
       .then((response) => {

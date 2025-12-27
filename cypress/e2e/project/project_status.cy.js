@@ -20,7 +20,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectStatus({
       project_status: validProjectStatus,
       'project_id[0]': validProjectId0,
@@ -30,7 +30,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectStatus({
       token: 'token_invalido',
       project_status: validProjectStatus,
@@ -41,7 +41,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     projectStatus({
       token: 'token_expirado',
       project_status: validProjectStatus,
@@ -52,7 +52,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectStatus({
       token: null,
       project_status: validProjectStatus,
@@ -75,7 +75,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -137,7 +137,7 @@ describe('API rest - Project Status - /project/project_status', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,

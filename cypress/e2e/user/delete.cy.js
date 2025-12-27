@@ -20,26 +20,26 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     deleteUser({ 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     deleteUser({ token: 'token_invalido', 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     deleteUser({ token: 'token_expirado', 'user_id[0]': validUserId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     deleteUser({ token: null, 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -70,13 +70,13 @@ describe('API rest - Users Delete - /users/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

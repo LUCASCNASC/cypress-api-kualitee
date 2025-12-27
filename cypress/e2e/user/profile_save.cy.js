@@ -19,14 +19,14 @@ describe('API rest - Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     saveProfile({ ...validBody, extra: 'foo', profile_username: 'profileuser' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

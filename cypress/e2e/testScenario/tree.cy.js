@@ -17,7 +17,7 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testScenarioTree({
       project_id: validProjectId
     }).then(response => {
@@ -33,7 +33,7 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testScenarioTree({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +43,7 @@ describe('API rest - Test Scenario Tree - /test_scenario/tree', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

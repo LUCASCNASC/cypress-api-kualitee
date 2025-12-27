@@ -21,7 +21,7 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     rolesDelete({ 'id[0]': validIdSingle }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -33,13 +33,13 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -75,7 +75,7 @@ describe('API rest - Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle })
       .then(() => rolesDelete({ token: validToken, 'id[0]': validIdSingle }))
       .then((response) => {

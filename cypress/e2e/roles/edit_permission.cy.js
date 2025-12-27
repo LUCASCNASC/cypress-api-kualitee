@@ -13,7 +13,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     rolesEditPermission({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -67,7 +67,7 @@ describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     rolesEditPermission({ token: validToken, id: validId })
       .then(() => rolesEditPermission({ token: validToken, id: validId }))
       .then((response) => {

@@ -31,7 +31,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('project_id', validProjectId);
@@ -106,7 +106,7 @@ describe('API rest - Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `${BASE_URL}/${PATH_API}`,

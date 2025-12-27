@@ -31,7 +31,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     executeTest({
       project_id: validProjectId,
       status: validStatus,
@@ -151,7 +151,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -168,7 +168,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -244,7 +244,7 @@ describe('API rest - Test Case Execution Execute - /test_case_execution/execute'
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

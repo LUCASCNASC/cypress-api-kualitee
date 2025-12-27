@@ -19,7 +19,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     treeRequirementInBuilds({
       project_id: validProjectId,
       build_id: validBuildId
@@ -28,7 +28,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Requirements Tree Requirement in Builds - /requirements/tre
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,

@@ -18,7 +18,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     treeCycleBuild({
       project_id: validProjectId,
       build_id: validBuildId
@@ -27,7 +27,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -38,7 +38,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -90,7 +90,7 @@ describe('API rest - Manage Test Case Tree Cycle Build - /manage_test_case/tree_
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,

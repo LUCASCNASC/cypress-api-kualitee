@@ -15,7 +15,7 @@ describe('API rest - Task Detail - /task/detail', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskDetail({ project_id: validProjectId, id: validTaskId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -75,7 +75,7 @@ describe('API rest - Task Detail - /task/detail', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskDetail({ token: validToken, project_id: validProjectId, id: validTaskId })
       .then(() => taskDetail({ token: validToken, project_id: validProjectId, id: validTaskId }))
       .then((response) => {

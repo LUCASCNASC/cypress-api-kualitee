@@ -28,7 +28,7 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -63,7 +63,7 @@ describe('API rest - Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',

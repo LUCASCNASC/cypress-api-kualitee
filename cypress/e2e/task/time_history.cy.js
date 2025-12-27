@@ -15,7 +15,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskTimeHistory({ project_id: validProjectId, id: validTaskId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -33,13 +33,13 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -75,7 +75,7 @@ describe('API rest - Task Time History - /task/time/history', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId })
       .then(() => taskTimeHistory({ token: validToken, project_id: validProjectId, id: validTaskId }))
       .then((response) => {

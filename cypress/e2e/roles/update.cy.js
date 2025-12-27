@@ -46,7 +46,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     rolesUpdate({
       id: validId,
       role_name: validRoleName,
@@ -86,7 +86,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -99,7 +99,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -155,7 +155,7 @@ describe('API rest - Roles Update - /roles/update', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

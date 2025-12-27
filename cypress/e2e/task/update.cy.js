@@ -48,7 +48,7 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskUpdate({
       project_id: validProjectId,
       id: validTaskId,
@@ -156,7 +156,7 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -173,7 +173,7 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -249,7 +249,7 @@ describe('API rest - Task Update - /task/update', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,

@@ -13,7 +13,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskCalanderView({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -67,7 +67,7 @@ describe('API rest - Task Calander View - /task/calander/view', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId })
       .then(() => taskCalanderView({ token: validToken, project_id: validProjectId }))
       .then((response) => {

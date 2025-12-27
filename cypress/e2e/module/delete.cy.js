@@ -18,7 +18,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleDelete({
       project_id: validProjectId,
       'module_id[0]': validModuleId
@@ -27,7 +27,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleDelete({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -47,7 +47,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleDelete({
       token: null,
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     moduleDelete({
       token: validToken,
       'module_id[0]': validModuleId
@@ -66,7 +66,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     moduleDelete({
       token: validToken,
       project_id: validProjectId
@@ -75,7 +75,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     moduleDelete({
       token: validToken,
       project_id: 999999,
@@ -85,7 +85,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     moduleDelete({
       token: validToken,
       project_id: validProjectId,
@@ -158,7 +158,7 @@ describe('API rest - Module Delete - /module/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     moduleDelete({
       token: validToken,
       project_id: validProjectId,

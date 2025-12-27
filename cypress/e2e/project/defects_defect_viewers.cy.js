@@ -13,25 +13,25 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectViewers({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectViewers({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     defectViewers({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     defectViewers({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -55,7 +55,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -63,7 +63,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
     }).then((response) => {
-      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam, outras não
+      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam,,tras não
     });
   });
 
@@ -91,7 +91,7 @@ describe('API rest - Defect Viewer - /defects/defect_viewers', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     defectViewers({ token: validToken, project_id: validProjectId })
       .then(() => defectViewers({ token: validToken, project_id: validProjectId }))
       .then((response) => {

@@ -20,25 +20,25 @@ describe('API rest - Metas Delete - /metas/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     metasDelete({ project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasDelete({ token: validToken, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200, 400, 422 ou 404', () => {
+  it('Status Code is 200, 400, 422, 404', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0] }).then(response => {
       // Se o endpoint permitir apenas um id, pode passar, senão deve falhar
       expect([200, 400, 422, 404]).to.include(response.status);
@@ -87,7 +87,7 @@ describe('API rest - Metas Delete - /metas/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] })
       .then(() => metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }))
       .then((response) => {

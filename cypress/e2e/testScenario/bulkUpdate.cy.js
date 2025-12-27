@@ -40,7 +40,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     bulkUpdateTestScenario({
       project_id: validProjectId,
       'test_scenario_id[0]': validTestScenarioIds[0]
@@ -49,7 +49,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -60,7 +60,7 @@ describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () 
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

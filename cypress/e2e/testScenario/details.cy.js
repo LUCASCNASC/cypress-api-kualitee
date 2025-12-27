@@ -20,7 +20,7 @@ describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     getTestScenarioDetails({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId,

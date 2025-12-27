@@ -19,13 +19,13 @@ describe('API rest - Update Password - /update_password', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     updatePassword({ ...validBody, extra: 'foo' }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

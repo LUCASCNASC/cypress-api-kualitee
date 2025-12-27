@@ -20,7 +20,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     getRequirementDetails({
       project_id: validProjectId,
       requirement_id: validRequirementId
@@ -40,7 +40,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -92,7 +92,7 @@ describe('API rest - Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

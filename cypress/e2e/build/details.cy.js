@@ -76,7 +76,7 @@ describe('API rest - Build - Build Details - /build/details', () => {
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
     }).then((response) => {
-      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam, outras não
+      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam,,tras não
     });
   });
   

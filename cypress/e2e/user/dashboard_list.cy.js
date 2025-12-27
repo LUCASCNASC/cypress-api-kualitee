@@ -14,28 +14,28 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     dashboardList({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     dashboardList({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     dashboardList({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     dashboardList({ token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -53,14 +53,14 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     dashboardList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -96,7 +96,7 @@ describe('API rest - Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     dashboardList({ token: validToken })
       .then(() => dashboardList({ token: validToken }))
       .then((response) => {

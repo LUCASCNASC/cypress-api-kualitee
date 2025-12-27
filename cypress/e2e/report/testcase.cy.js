@@ -36,7 +36,7 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     reportTestcase({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -48,13 +48,13 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     reportTestcase({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -90,7 +90,7 @@ describe('API rest - Report Testcase - /report/testcase', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     reportTestcase({ token: validToken, project_id: validProjectId })
       .then(() => reportTestcase({ token: validToken, project_id: validProjectId }))
       .then((response) => {

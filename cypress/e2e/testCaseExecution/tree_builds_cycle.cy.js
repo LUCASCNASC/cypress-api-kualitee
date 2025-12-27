@@ -15,7 +15,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     treeBuildsCycle({ project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -33,13 +33,13 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -75,7 +75,7 @@ describe('API rest - Test Case Execution Tree Builds Cycle - /test_case_executio
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId })
       .then(() => treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }))
       .then((response) => {

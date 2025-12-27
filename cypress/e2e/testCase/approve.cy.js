@@ -50,7 +50,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseApprove({
       project_id: validProjectId,
       tc_status: '1',
@@ -90,7 +90,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -102,7 +102,7 @@ describe('API rest - Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

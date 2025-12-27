@@ -22,7 +22,7 @@ describe('API rest - Task Columns View - /task/columns/view', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     taskColumnsView({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -76,7 +76,7 @@ describe('API rest - Task Columns View - /task/columns/view', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     taskColumnsView({ token: validToken, project_id: validProjectId })
       .then(() => taskColumnsView({ token: validToken, project_id: validProjectId }))
       .then((response) => {

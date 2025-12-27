@@ -20,7 +20,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     getNullModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -30,7 +30,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     getNullModules({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -52,7 +52,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     getNullModules({
       token: null,
       project_id: validProjectId,
@@ -131,7 +131,7 @@ describe('API rest - Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,

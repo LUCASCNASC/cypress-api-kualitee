@@ -11,25 +11,25 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     userProject({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     userProject({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     userProject({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     userProject({ token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -53,7 +53,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  it('Falha com Content-Type application/json no GET', () => {
+  it('Status Code is 400, 415 no GET', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -61,7 +61,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
     }).then((response) => {
-      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam, outras não
+      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam,,tras não
     });
   });
 
@@ -89,7 +89,7 @@ describe('API rest - Users Project List - /project/user_project', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     userProject({ token: validToken })
       .then(() => userProject({ token: validToken }))
       .then((response) => {

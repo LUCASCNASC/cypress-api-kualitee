@@ -11,19 +11,19 @@ describe('API rest - Roles List - /roles/list', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     rolesList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     rolesList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -59,7 +59,7 @@ describe('API rest - Roles List - /roles/list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     rolesList({ token: validToken })
       .then(() => rolesList({ token: validToken }))
       .then((response) => {

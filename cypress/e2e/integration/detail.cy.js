@@ -13,13 +13,13 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     integrationDetail({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     integrationDetail({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -67,7 +67,7 @@ describe('API rest - Integration - Integration Detail - /integration/detail', ()
     });
   });
   
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     integrationDetail({ token: validToken, id: validId })
       .then(() => integrationDetail({ token: validToken, id: validId }))
       .then((response) => {

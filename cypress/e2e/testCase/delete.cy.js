@@ -33,7 +33,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseDelete({
       project_id: validProjectId,
       'id[0]': validIds[0]
@@ -60,7 +60,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -71,7 +71,7 @@ describe('API rest - Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

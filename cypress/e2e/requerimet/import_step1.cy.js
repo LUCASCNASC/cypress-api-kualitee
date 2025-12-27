@@ -24,7 +24,7 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -81,7 +81,7 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -96,7 +96,7 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       cy.request({
@@ -159,7 +159,7 @@ describe('API rest - Requirements Import Step 1 - /requirements/import/step1', (
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {

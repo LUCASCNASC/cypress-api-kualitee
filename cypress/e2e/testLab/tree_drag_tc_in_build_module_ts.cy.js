@@ -19,7 +19,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     treeDragTcInBuildModuleTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -28,7 +28,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Manage Test Case Tree Drag TC In Build Module Test Scenario
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeDragTcInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

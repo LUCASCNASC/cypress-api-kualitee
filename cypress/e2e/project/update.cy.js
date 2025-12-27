@@ -11,44 +11,44 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     const { token, ...body } = validBody;
     projectUpdate(body).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectUpdate({ ...validBody, token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     projectUpdate({ ...validBody, token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectUpdate({ ...validBody, token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com project_type inválido', () => {
+  it('Status Code is 400, 422', () => {
     projectUpdate({ ...validBody, project_type: 'invalid_type' }).then(response => {
       expect([400, 422]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     projectUpdate({ ...validBody, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -84,7 +84,7 @@ describe('API rest - Project Update - /project/update', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     projectUpdate(validBody)
       .then(() => projectUpdate(validBody))
       .then((response) => {

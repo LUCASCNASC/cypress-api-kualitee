@@ -20,7 +20,7 @@ describe('API rest - Test Case Tree in Modules - /test_case/tree_testcase_in_mod
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     testCaseTreeInModules({
       project_id: validProjectId,
       module_id: validModuleId
@@ -29,7 +29,7 @@ describe('API rest - Test Case Tree in Modules - /test_case/tree_testcase_in_mod
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     testCaseTreeInModules({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('API rest - Test Case Tree in Modules - /test_case/tree_testcase_in_mod
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -92,7 +92,7 @@ describe('API rest - Test Case Tree in Modules - /test_case/tree_testcase_in_mod
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseTreeInModules({
       token: validToken,
       project_id: validProjectId,

@@ -15,26 +15,26 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     getUserDetail({ user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     getUserDetail({ token: 'token_invalido', user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     getUserDetail({ token: 'token_expirado', user_id: validUserId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     getUserDetail({ token: null, user_id: validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -107,7 +107,7 @@ describe('API rest - User Detail - /users/detail', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     getUserDetail({ token: validToken, user_id: validUserId })
       .then(() => getUserDetail({ token: validToken, user_id: validUserId }))
       .then((response) => {

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('API rest - Users List - /users/list', () => {
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     listUsers({}).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -11,7 +11,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     listUsers({ token: 'token_invalido' }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -19,7 +19,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     listUsers({ token: 'token_expirado' }).then((response) => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -27,13 +27,13 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     listUsers({ token: null }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     listUsers({ token: validToken, user_status: 0, extra: 'foo' }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
@@ -52,7 +52,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -86,7 +86,7 @@ describe('API rest - Users List - /users/list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     listUsers({ token: validToken, user_status: 0 })
       .then(() => listUsers({ token: validToken, user_status: 0 }))
       .then((response) => {

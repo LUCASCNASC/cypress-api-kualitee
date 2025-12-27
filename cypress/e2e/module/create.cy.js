@@ -23,7 +23,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleCreate({
       project_id: validProjectId,
       module_name: validModuleName,
@@ -34,7 +34,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -58,7 +58,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleCreate({
       token: null,
       project_id: validProjectId,
@@ -143,7 +143,7 @@ describe('API rest - Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,

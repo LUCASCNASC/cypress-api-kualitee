@@ -11,7 +11,7 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     const { token, ...body } = validBody;
     createUser(body).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -19,19 +19,19 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     createUser({ ...validBody, token: 'token_invalido', profile_username: 'user' + Date.now(), email: `inv${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     createUser({ ...validBody, token: 'token_expirado', profile_username: 'user' + Date.now(), email: `exp${Date.now()}@test.com` }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     createUser({ ...validBody, token: null, profile_username: 'user' + Date.now(), email: `null${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -49,14 +49,14 @@ describe('API rest - Users Create - /users/create', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     createUser({ ...validBody, extra: 'foo', profile_username: 'user' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,

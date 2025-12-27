@@ -25,7 +25,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleUpdate({
       project_id: validProjectId,
       module_id: validModuleId,
@@ -37,7 +37,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleUpdate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -63,7 +63,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleUpdate({
       token: null,
       project_id: validProjectId,
@@ -154,7 +154,7 @@ describe('API rest - Module Update - /module/update', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     moduleUpdate({
       token: validToken,
       project_id: validProjectId,

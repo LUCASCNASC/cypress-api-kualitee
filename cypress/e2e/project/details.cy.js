@@ -13,25 +13,25 @@ describe('API rest - Project Detail - /project/details', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectDetails({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectDetails({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     projectDetails({ token: 'token_expirado', project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectDetails({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -55,7 +55,7 @@ describe('API rest - Project Detail - /project/details', () => {
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -63,7 +63,7 @@ describe('API rest - Project Detail - /project/details', () => {
       headers: { 'Content-Type': 'application/json' },
       failOnStatusCode: false
     }).then((response) => {
-      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam, outras não
+      expect([400, 415, 200]).to.include(response.status); // algumas APIs aceitam,,tras não
     });
   });
 
@@ -91,7 +91,7 @@ describe('API rest - Project Detail - /project/details', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     projectDetails({ token: validToken, project_id: validProjectId })
       .then(() => projectDetails({ token: validToken, project_id: validProjectId }))
       .then((response) => {

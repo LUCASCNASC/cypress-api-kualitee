@@ -11,7 +11,7 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     const { token, ...body } = validBody;
     updateUser(body).then(response => {
       expect([400, 401, 403]).to.include(response.status);
@@ -19,19 +19,19 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     updateUser({ ...validBody, token: 'token_invalido', profile_username: 'updateuser' + Date.now(), email: `inv${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     updateUser({ ...validBody, token: 'token_expirado', profile_username: 'updateuser' + Date.now(), email: `exp${Date.now()}@test.com` }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     updateUser({ ...validBody, token: null, profile_username: 'updateuser' + Date.now(), email: `null${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -49,13 +49,13 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     updateUser({ ...validBody, extra: 'bar', profile_username: 'updateuser' + Date.now(), email: `extra${Date.now()}@test.com` }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -91,7 +91,7 @@ describe('API rest - Users Update - /users/update', () => {
     });
   });
 
-  it('Falha ao atualizar usuário com email já existente em outro usuário', () => {
+  it('Falha ao atualizar usuário com email já existente em,tro usuário', () => {
     const uniqueEmail = `dup${Date.now()}@test.com`;
     const uniqueUsername = 'updateuser' + Date.now();
     updateUser({ ...validBody, email: uniqueEmail, profile_username: uniqueUsername, user_id: validBody.user_id }).then(() => {

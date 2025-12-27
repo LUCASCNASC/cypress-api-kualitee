@@ -11,31 +11,31 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectList({}).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectList({ token: 'token_invalido' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     projectList({ token: 'token_expirado' }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectList({ token: null }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     projectList({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
@@ -71,7 +71,7 @@ describe('API rest - List Copy - /project/project_list', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     projectList({ token: validToken })
       .then(() => projectList({ token: validToken }))
       .then((response) => {

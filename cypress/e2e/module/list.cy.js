@@ -22,13 +22,13 @@ describe('API rest - Module List - /module/list', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleList({ token: 'token_invalido', project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -40,19 +40,19 @@ describe('API rest - Module List - /module/list', () => {
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     moduleList({ token: null, project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422 ou 404', () => {
+  it('Status Code is 400, 422, 404', () => {
     moduleList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 404, 422 ou 400', () => {
+  it('Status Code is 404, 422, 400', () => {
     moduleList({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
@@ -100,7 +100,7 @@ describe('API rest - Module List - /module/list', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     moduleList({ token: validToken, project_id: validProjectId })
       .then(() => moduleList({ token: validToken, project_id: validProjectId }))
       .then((response) => {

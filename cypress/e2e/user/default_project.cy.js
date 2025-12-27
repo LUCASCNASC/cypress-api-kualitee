@@ -14,26 +14,26 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  it('Falha sem token', () => {
+  it('Status Code is 400, 401, 403', () => {
     setDefaultProject({ updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com token inválido', () => {
+  it('Status Code is 400, 401, 403', () => {
     setDefaultProject({ token: 'token_invalido', updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token expirado', () => {
+  it('Status Code is 401, 403', () => {
     setDefaultProject({ token: 'token_expirado', updated_project_id: validProjectId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token nulo', () => {
+  it('Status Code is 400, 401, 403', () => {
     setDefaultProject({ token: null, updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -64,14 +64,14 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  it('Ignora campo extra no body', () => {
+  it('Status Code is 200', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
 
-  it('Falha com Content-Type application/json', () => {
+  it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -107,7 +107,7 @@ describe('API rest - Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  it('Permite requisições duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId })
       .then(() => setDefaultProject({ token: validToken, updated_project_id: validProjectId }))
       .then((response) => {

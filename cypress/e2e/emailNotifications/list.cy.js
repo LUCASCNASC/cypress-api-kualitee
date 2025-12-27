@@ -11,7 +11,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
 
-  it('Status Code is 400, 401 ou 403', () => {
+  it('Status Code is 400, 401, 403', () => {
     emailNotificationList({ }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -59,7 +59,7 @@ describe('API rest- Email Notification - Email Notification List - /emailnotific
     });
   });
   
-  it('Status Code is 200, 400, 401 ou 409', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     emailNotificationList({ token: validToken })
       .then(() => emailNotificationList({ token: validToken }))
       .then((response) => {

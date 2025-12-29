@@ -5,7 +5,7 @@ const validEmail = 'usuario@exemplo.com';
 const validPassword = 'senhaSegura';
 const validSubdomain = 'meusubdominio';
 
-describe('API rest - Login - /auth/signin - Testes Avançados', () => {
+describe('Login - /auth/signin - Testes Avançados', () => {
   
   it('Status Code is 200', () => {
     login({ email_id: validEmail, password: validPassword, subdomain: validSubdomain }).then((response) => {

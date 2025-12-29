@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Roles Edit Permission - /roles/edit/permission', () => {
+describe('Roles Edit Permission - /roles/edit/permission', () => {
 
   it('Status Code is 200', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {

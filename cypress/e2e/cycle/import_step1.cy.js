@@ -4,7 +4,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCsvFile = 'cypress/fixtures/defects_import.csv';
 
-describe('API rest - Cycle - Defects Import Step 1 - /defects/import/step1', () => {
+describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
 
   it('Status Code is 200', () => {
     defectsImportStep1(

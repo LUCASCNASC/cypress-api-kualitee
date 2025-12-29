@@ -3,7 +3,7 @@ const PATH_API = '/Custom%20Fields/detail';
 
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Custom Fields - Custom Fields Detail - /customfields/detail', () => {
+describe('Custom Fields - Custom Fields Detail - /customfields/detail', () => {
 
   it('Status Code is 200', () => {
     customfieldsDetail({ token: validToken, id: validId }).then(response => {

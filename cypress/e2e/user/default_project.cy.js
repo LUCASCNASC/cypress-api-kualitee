@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Auth Default Project - /auth/default_project', () => {
+describe('Auth Default Project - /auth/default_project', () => {
 
   it('Status Code is 200', () => {
     setDefaultProject({ token: validToken, updated_project_id: validProjectId }).then(response => {

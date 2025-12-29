@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validExportTypes = ['CSV', 'Excel', 'Word'];
 
-describe('API rest - Test Scenario Export CSV - /test_scenario/export_csv', () => {
+describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
 
   it('Status Code is 400, 401, 403', () => {
     exportTestScenario({

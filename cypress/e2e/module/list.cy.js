@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validKeyword = 'login'; 
 
-describe('API rest - Module List - /module/list', () => {
+describe('Module List - /module/list', () => {
 
   it('Status Code is 200', () => {
     moduleList({ token: validToken, project_id: validProjectId }).then(response => {

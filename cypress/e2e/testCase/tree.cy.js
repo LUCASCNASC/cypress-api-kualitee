@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Test Case Tree - /test_case/tree', () => {
+describe('Test Case Tree - /test_case/tree', () => {
 
   it('Status Code is 200', () => {
     testCaseTree({

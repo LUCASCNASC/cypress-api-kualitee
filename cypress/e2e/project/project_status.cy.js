@@ -5,7 +5,7 @@ const validProjectStatus = 'ativo';
 const validProjectId0 = 77;
 const validProjectId1 = 78;
 
-describe('API rest - Project Status - /project/project_status', () => {
+describe('Project Status - /project/project_status', () => {
 
   it('Status Code is 200', () => {
     projectStatus({

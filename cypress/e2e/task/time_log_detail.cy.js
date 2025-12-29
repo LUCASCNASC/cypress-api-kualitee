@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTaskId = 888;
 
-describe('API rest - Task Time Log Detail - /task/time/log/detail', () => {
+describe('Task Time Log Detail - /task/time/log/detail', () => {
 
   it('Status Code is 200', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId }).then(response => {

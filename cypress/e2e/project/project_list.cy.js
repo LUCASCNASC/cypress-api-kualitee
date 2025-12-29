@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ListCopy';
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - List Copy - /project/project_list', () => {
+describe('List Copy - /project/project_list', () => {
 
   it('Status Code is 200', () => {
     projectList({ token: validToken }).then(response => {

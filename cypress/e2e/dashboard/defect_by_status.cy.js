@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Defectsbystatus';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard - Dashboard Defect by Status - /dashboard/defect_by_status', () => {
+describe('Dashboard - Dashboard Defect by Status - /dashboard/defect_by_status', () => {
 
   it('Status Code is 200', () => {
     defectByStatus({ token: validToken, project_id: validProjectId }).then(response => {

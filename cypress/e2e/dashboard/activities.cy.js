@@ -4,7 +4,7 @@ const PATH_API = '/Dashboard/Activities';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Dashboard - Dashboard Activities - /dashboard/activities', () => {
+describe('Dashboard - Dashboard Activities - /dashboard/activities', () => {
 
   it('Status Code is 200', () => {
     dashboardActivities({ token: validToken, project_id: validProjectId, show: 'all' }).then(response => {

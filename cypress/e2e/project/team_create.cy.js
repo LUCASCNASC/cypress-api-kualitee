@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validUserIds = [10, 11, 12, 13];
 
-describe('API rest - Project Team Assigned - /team/create', () => {
+describe('Project Team Assigned - /team/create', () => {
 
   it('Status Code is 200', () => {
     teamCreate({

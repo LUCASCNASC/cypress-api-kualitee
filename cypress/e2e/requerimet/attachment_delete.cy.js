@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validImageId = 456;
 
-describe('API rest - Requirements Attachment Delete - /requirements/attachment/delete', () => {
+describe('Requirements Attachment Delete - /requirements/attachment/delete', () => {
 
   it('Status Code is 200', () => {
     requirementsAttachmentDelete({

@@ -1,7 +1,7 @@
 const PATH_API = '/Roles/List';
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Roles List - /roles/list', () => {
+describe('Roles List - /roles/list', () => {
 
   it('Status Code is 200', () => {
     rolesList({ token: validToken }).then(response => {

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Test Case Metas - /test_case/metas', () => {
+describe('Test Case Metas - /test_case/metas', () => {
 
   it('Status Code is 200', () => {
     testCaseMetas({

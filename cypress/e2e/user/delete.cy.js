@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validUserId = 101;
 
-describe('API rest - Users Delete - /users/delete', () => {
+describe('Users Delete - /users/delete', () => {
 
   it('Status Code is 200', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {

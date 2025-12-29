@@ -5,7 +5,7 @@ const validIdSingle = Cypress.env('VALID_IDS_SINGLE');
 
 const validIdArray = [123];
 
-describe('API rest - Roles Delete - /roles/delete', () => {
+describe('Roles Delete - /roles/delete', () => {
 
   it('Status Code is 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdArray[0] }).then(response => {

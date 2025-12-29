@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validIds = Cypress.env('VALID_IDS');  
 
-describe('API rest - Test Case Delete - /test_case/delete', () => {
+describe('Test Case Delete - /test_case/delete', () => {
 
   it('Status Code is 200', () => {
     testCaseDelete({

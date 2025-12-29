@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validKeyword = 'feature';
 
-describe('API rest - Build - Build List - /build/list', () => {
+describe('Build - Build List - /build/list', () => {
 
   it('Status Code is 200', () => {
     buildList({ token: validToken, project_id: validProjectId }).then(response => {

@@ -4,7 +4,7 @@ const PATH_API = '/Dashboard/TestCaseTotal';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = 22;
 
-describe('API rest - Dashboard - Dashboard Test Case Total - /dashboard/testcase/total', () => {
+describe('Dashboard - Dashboard Test Case Total - /dashboard/testcase/total', () => {
 
   it('Status Code is 200', () => {
     testcaseTotal(validBody).then(response => {

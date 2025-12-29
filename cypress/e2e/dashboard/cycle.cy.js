@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Cycle';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard - Dashboard Cycle - /dashboard/cycle', () => {
+describe('Dashboard - Dashboard Cycle - /dashboard/cycle', () => {
 
   it('Status Code is 200', () => {
     dashboardCycle({ token: validToken, project_id: validProjectId }).then(response => {

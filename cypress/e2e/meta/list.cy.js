@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validSystemOptions = 'all';
 const validValue = 'some_value';  
 
-describe('API rest - Metas List - /metas/list', () => {
+describe('Metas List - /metas/list', () => {
 
   it('LStatus Code is 200', () => {
     metasList({ token: validToken, project_id: validProjectId }).then(response => {

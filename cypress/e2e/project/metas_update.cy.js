@@ -5,7 +5,7 @@ const validMetaKey = 'meta_key_exemplo';
 const validMetaValue = 'meta_value_exemplo';
 const validMetaId = 123;
 
-describe('API rest - Project Metas Update - /project/metas/update', () => {
+describe('Project Metas Update - /project/metas/update', () => {
 
   it('Status Code is 200', () => {
     metasUpdate({

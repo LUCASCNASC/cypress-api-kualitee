@@ -8,7 +8,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 const validScenarioId = 201;
 const validRequirementId = 101;
 
-describe('API rest - Test Case Create - /test_case/create', () => {
+describe('Test Case Create - /test_case/create', () => {
 
   it('Status Code is 200', () => {
     testCaseCreate({

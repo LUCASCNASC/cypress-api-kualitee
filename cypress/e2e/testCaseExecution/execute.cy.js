@@ -11,7 +11,7 @@ const validCycleId = 1001;
 const validNotes = 'Teste executado com sucesso';
 const validExecute = 'yes';
 
-describe('API rest - Test Case Execution Execute - /test_case_execution/execute', () => {
+describe('Test Case Execution Execute - /test_case_execution/execute', () => {
 
   it('Status Code is 200', () => {
     executeTest({

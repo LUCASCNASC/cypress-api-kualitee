@@ -1,7 +1,7 @@
 const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/EmailNotifications/List';
 
-describe('API rest- Email Notification - Email Notification List - /emailnotification/list', () => {
+describe('Email Notification - Email Notification List - /emailnotification/list', () => {
 
   it('Status Code is 200', () => {
     emailNotificationList({ token: validToken }).then(response => {

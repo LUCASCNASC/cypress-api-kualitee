@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = 77;
 
-describe('API rest - Report Test Case Execution - /report/test_case_execution', () => {
+describe('Report Test Case Execution - /report/test_case_execution', () => {
 
   it('Status Code is 200', () => {
     reportTestCaseExecution({ token: validToken, project_id: validProjectId }).then(response => {

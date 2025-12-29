@@ -7,7 +7,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validCycleId = 1001;
 const validTestScenarioId = 1234;
 
-describe('API rest - Manage Test Case Tree Testcase In Build Cycle Test Scenario - /manage_test_case/tree_testcase_in_build_cycle_ts', () => {
+describe('Manage Test Case Tree Testcase In Build Cycle Test Scenario - /manage_test_case/tree_testcase_in_build_cycle_ts', () => {
 
   it('Status Code is 200', () => {
     treeTestcaseInBuildCycleTs({

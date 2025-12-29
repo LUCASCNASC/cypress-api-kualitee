@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API rest - Requirements Tree Requirement in Build Modules - /requirements/tree_requirement_in_build_modules', () => {
+describe('Requirements Tree Requirement in Build Modules - /requirements/tree_requirement_in_build_modules', () => {
 
   it('Status Code is 200', () => {
     treeRequirementInBuildModules({

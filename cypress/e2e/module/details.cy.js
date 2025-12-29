@@ -4,7 +4,7 @@ const PATH_API = '/Module/ModuleDetail';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API rest - Module Detail - /module/details', () => {
+describe('Module Detail - /module/details', () => {
 
   it('Status Code is 200', () => {
     moduleDetails({ token: validToken, project_id: validProjectId, module_id: validModuleId }).then(response => {

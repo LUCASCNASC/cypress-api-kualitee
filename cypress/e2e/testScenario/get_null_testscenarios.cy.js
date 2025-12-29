@@ -4,7 +4,7 @@ const PATH_API = '/Test%20Scenario/GetNullTestScenario'
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 
-describe('API rest - Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
+describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
 
   it('Status Code is 200', () => {
     getNullTestScenarios({

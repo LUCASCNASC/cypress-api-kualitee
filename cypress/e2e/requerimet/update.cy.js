@@ -8,7 +8,7 @@ const validAssignedTo = 111;
 const validTitle = 'Título do requisito';
 const validSummary = 'Resumo do requisito';
 
-describe('API rest - Requirements Update - /requirements/update', () => {
+describe('Requirements Update - /requirements/update', () => {
 
   it('Status Code is 200', () => {
     requirementsUpdate({

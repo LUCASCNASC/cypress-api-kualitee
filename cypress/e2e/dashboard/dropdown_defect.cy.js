@@ -4,7 +4,7 @@ const PATH_API = '/Dashboard/DropdownDefects';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validIds = Cypress.env('VALID_IDS');  
 
-describe('API rest - Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
+describe('Dashboard - Dashboard Dropdown Defect - /dashboard/dropdown_defect', () => {
 
   it('Status Code is 200', () => {
     dropdownDefect({ token: validToken, project_id: validProjectId, 'id[0]': validIds[0], 'id[1]': validIds[1] }).then(response => {

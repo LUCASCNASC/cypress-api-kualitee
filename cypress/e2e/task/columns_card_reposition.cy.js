@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Task Columns Card Reposition - /task/columns/card/reposition', () => {
+describe('Task Columns Card Reposition - /task/columns/card/reposition', () => {
 
   it('Status Code is 200', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId }).then(response => {

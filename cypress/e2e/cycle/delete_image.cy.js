@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validImageId = 555;
 
-describe('API rest - Cycle - Defects Delete Image - /defects/delete_image', () => {
+describe('Cycle - Defects Delete Image - /defects/delete_image', () => {
 
   it('Status Code is 200', () => {
     defectsDeleteImage({

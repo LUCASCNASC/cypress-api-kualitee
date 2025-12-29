@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validUserId = 101;
 
-describe('API rest - User Detail - /users/detail', () => {
+describe('User Detail - /users/detail', () => {
 
   it('Status Code is 200', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Task Logtime List - /task/logtime_list', () => {
+describe('Task Logtime List - /task/logtime_list', () => {
 
   it('Status Code is 200', () => {
     taskLogtimeList({ token: validToken, project_id: validProjectId }).then(response => {

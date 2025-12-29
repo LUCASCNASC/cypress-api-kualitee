@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCustomFieldId = 123;
 
-describe('API rest - Custom Fields - Custom Fields Delete - /customfields/delete', () => {
+describe('Custom Fields - Custom Fields Delete - /customfields/delete', () => {
 
   it('Status Code is 200', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {

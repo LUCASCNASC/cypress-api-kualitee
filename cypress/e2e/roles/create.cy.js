@@ -5,7 +5,7 @@ const validRoleName = 'Novo Papel';
 const validDescription = 'Descrição do papel';
 const validCanDelete = true;
 
-describe('API rest - Roles Create - /roles/create', () => {
+describe('Roles Create - /roles/create', () => {
 
   it('Status Code is 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {

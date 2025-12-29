@@ -2,7 +2,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const PATH_API = '/Defect/Defectmetas';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Cycle - Defects Defect Metas - /defects/defect_metas', () => {
+describe('Cycle - Defects Defect Metas - /defects/defect_metas', () => {
 
   it('Status Code is 200', () => {
     defectMetas({

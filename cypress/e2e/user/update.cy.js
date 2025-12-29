@@ -1,7 +1,7 @@
 const PATH_API = '/User/UserUpdate'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Users Update - /users/update', () => {
+describe('Users Update - /users/update', () => {
 
   it('Status Code is 200', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;

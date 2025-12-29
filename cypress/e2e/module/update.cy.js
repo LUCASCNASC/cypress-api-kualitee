@@ -8,7 +8,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleName = 'Autenticação';
 const validModuleDescription = 'Descrição atualizada do módulo de autenticação.';
 
-describe('API rest - Module Update - /module/update', () => {
+describe('Module Update - /module/update', () => {
 
   it('Status Code is 200', () => {
     moduleUpdate({

@@ -1,7 +1,7 @@
 const PATH_API = '/User/UsersCreate'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Users Create - /users/create', () => {
+describe('Users Create - /users/create', () => {
 
   it('Cria usuário apenas com campos obrigatórios', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;

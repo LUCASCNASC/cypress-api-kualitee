@@ -7,7 +7,7 @@ const validId = Cypress.env('VALID_ID');
 const validMetaKey = 'browser';
 const validMetaValue = 'chrome';
 
-describe('API rest - Metas Update - /metas/update', () => {
+describe('Metas Update - /metas/update', () => {
 
   it('Status Code is 200', () => {
     metasUpdate({ token: validToken, project_id: validProjectId, id: validId, meta_value: validMetaValue }).then(response => {

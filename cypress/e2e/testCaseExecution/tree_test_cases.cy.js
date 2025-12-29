@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCycleId = 1001;
   
-describe('API rest - Test Case Execution Tree Test Cases - /test_case_execution/tree_test_cases', () => {
+describe('Test Case Execution Tree Test Cases - /test_case_execution/tree_test_cases', () => {
 
   it('Status Code is 200', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {

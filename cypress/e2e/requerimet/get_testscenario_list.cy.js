@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Requirements Get Testscenario List - /requirements/get_testscenario_list', () => {
+describe('Requirements Get Testscenario List - /requirements/get_testscenario_list', () => {
 
   it('Status Code is 200', () => {
     getTestscenarioList({

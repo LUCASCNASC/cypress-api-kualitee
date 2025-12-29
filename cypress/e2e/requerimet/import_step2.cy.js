@@ -7,7 +7,7 @@ const validCsvPath = 'caminho/para/arquivo.csv';
 const validAssignedTo = 'user123';
 const validDbColumns = [ 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8' ];
 
-describe('API rest - Requirements Import Step 2 - /requirements/import/step2', () => {
+describe('Requirements Import Step 2 - /requirements/import/step2', () => {
 
   it('Status Code is 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {

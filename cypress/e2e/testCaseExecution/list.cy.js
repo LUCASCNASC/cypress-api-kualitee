@@ -8,7 +8,7 @@ const validCycleId = 1001;
 const validExecutionType = 'manual';
 const validStatus = 'passed';
 
-describe('API rest - Test Case Execution List - /test_case_execution/list', () => {
+describe('Test Case Execution List - /test_case_execution/list', () => {
 
   it('Status Code is 200', () => {
     execList({ token: validToken, project_id: validProjectId }).then(response => {

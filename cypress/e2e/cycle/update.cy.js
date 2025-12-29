@@ -26,7 +26,7 @@ const validReqId = 'req-87654';
 const validBugRequirementId = 'bug-req-66';
 const validDefectImage = 'cypress/fixtures/defect_image.png';
 
-describe('API rest - Cycle - Defects Update - /defects/update', () => {
+describe('Cycle - Defects Update - /defects/update', () => {
 
   it('Status Code is 200', () => {
     defectsUpdate({

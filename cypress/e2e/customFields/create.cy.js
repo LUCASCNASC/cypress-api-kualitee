@@ -8,7 +8,7 @@ const validCustomFieldModule = 'TestScenario';
 const validCustomFieldName = 'MeuCampoCustomizado';
 const validCustomFieldDesc = 'Descrição do campo customizado';
 
-describe('API rest - Custom Fields - Custom Fields Create - /customfields/create', () => {
+describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
 
   it('Status Code is 200', () => {
     customfieldsCreate({

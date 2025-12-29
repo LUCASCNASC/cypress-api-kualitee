@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/Notificationcount';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard - Dashboard Notification Count - /dashboard/notification_count', () => {
+describe('Dashboard - Dashboard Notification Count - /dashboard/notification_count', () => {
 
   it('Status Code is 200', () => {
     notificationCount({ token: validToken, project_id: validProjectId }).then(response => {

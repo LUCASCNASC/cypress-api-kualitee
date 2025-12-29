@@ -4,7 +4,7 @@ const PATH_API = '/Defect/Treedefectsinbuild';
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 
-describe('API rest - Cycle - Defects Tree Defects In Build - /defects/tree_defects_in_build', () => {
+describe('Cycle - Defects Tree Defects In Build - /defects/tree_defects_in_build', () => {
 
   it('Status Code is 200', () => {
     treeDefectsInBuild({

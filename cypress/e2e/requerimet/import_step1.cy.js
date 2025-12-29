@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validCsvPath = 'caminho/para/arquivo.csv';
 
-describe('API rest - Requirements Import Step 1 - /requirements/import/step1', () => {
+describe('Requirements Import Step 1 - /requirements/import/step1', () => {
 
   it('Status Code is 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {

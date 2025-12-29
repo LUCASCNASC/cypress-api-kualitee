@@ -9,7 +9,7 @@ const validAssignedTo = [1234];
 const validTaskname = 'Tarefa atualizada';
 const validEndDate = '2025-09-20';
 
-describe('API rest - Task Update - /task/update', () => {
+describe('Task Update - /task/update', () => {
 
   it('Status Code is 200', () => {
     taskUpdate({

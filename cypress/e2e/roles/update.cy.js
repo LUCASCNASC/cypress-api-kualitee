@@ -7,7 +7,7 @@ const validRoleName = 'Papel Atualizado';
 const validDescription = 'Descrição atualizada';
 const validCanDelete = true;
 
-describe('API rest - Roles Update - /roles/update', () => {
+describe('Roles Update - /roles/update', () => {
 
   it('Status Code is 200', () => {
     rolesUpdate({

@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validAssignedTo = 123; 
 const validCsv = 'fixtures/valid_test_cases.csv';
 
-describe('API rest - Import Step 2 - /test_case/import/step2', () => {
+describe('Import Step 2 - /test_case/import/step2', () => {
 
   it('Status Code is 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {

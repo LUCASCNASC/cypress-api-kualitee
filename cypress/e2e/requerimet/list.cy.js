@@ -10,7 +10,7 @@ const validCreatedBy = [123, 456];
 const validExport = 'yes';
 const validExportType = 'CSV';
 
-describe('API rest - Requirements List - /requirements/list', () => {
+describe('Requirements List - /requirements/list', () => {
 
   it('Status Code is 200', () => {
     requirementsList({ token: validToken, project_id: validProjectId }).then(response => {

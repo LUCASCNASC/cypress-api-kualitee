@@ -8,7 +8,7 @@ const validUsername = 'usuario_teste';
 const validPassword = 'senha_teste';
 const validPluginUrl = 'https://jira.example.com';
 
-describe('API rest - Integration - Integration Save - /integration/save', () => {
+describe('Integration - Integration Save - /integration/save', () => {
 
   it('Status Code is 200', () => {
     integrationSave({

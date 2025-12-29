@@ -9,7 +9,7 @@ const validRequirementId = 88;
 const validScenarioName = 'Novo Cenário de Teste';
 const validDescription = 'Descrição detalhada do cenário de teste';
 
-describe('API rest - Test Scenario Create - /test_scenario/create', () => {
+describe('Test Scenario Create - /test_scenario/create', () => {
 
   it('Status Code is 200', () => {
     createTestScenario({

@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ArchivedProjects';
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Archived Projects - /project/archived_projects', () => {
+describe('Archived Projects - /project/archived_projects', () => {
 
   it('Status Code is 200', () => {
     archivedProjects({ token: validToken }).then(response => {

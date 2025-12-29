@@ -20,7 +20,7 @@ const validDevice = 'iPhone 13';
 const validExport = 'yes';
 const validExportType = 'Excel';
 
-describe('API rest - Cycle - Defects List - /defects/list', () => {
+describe('Cycle - Defects List - /defects/list', () => {
 
   it('Status Code is 200', () => {
     defectsList({

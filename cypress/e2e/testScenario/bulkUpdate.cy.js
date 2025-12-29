@@ -8,7 +8,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 const validRequirementId = 88;
 const validTestScenarioIds = [99, 100];
 
-describe('API rest - Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
+describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
 
   it('Status Code is 200', () => {
     bulkUpdateTestScenario({

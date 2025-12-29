@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validPluginName = 'jira';
 
-describe('API rest - Cycle - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
+describe('Cycle - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
 
   it('Status Code is 200', () => {
     jiraCustomSync({

@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validMetaKey = 'browser';
 const validMetaValue = 'chrome';
 
-describe('API rest - Metas Create - /metas/create', () => {
+describe('Metas Create - /metas/create', () => {
 
   it('Status Code is 200', () => {
     metasCreate({ token: validToken, project_id: validProjectId, meta_value: validMetaValue }).then(response => {

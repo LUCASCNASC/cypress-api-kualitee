@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Task Quik View - /task/quik/view', () => {
+describe('Task Quik View - /task/quik/view', () => {
 
   it('Status Code is 200', () => {
     taskQuikView({ token: validToken, project_id: validProjectId }).then(response => {

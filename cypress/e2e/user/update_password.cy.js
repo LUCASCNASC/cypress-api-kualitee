@@ -1,7 +1,7 @@
 const PATH_API = '/User/UpdatePassword'
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Update Password - /update_password', () => {
+describe('Update Password - /update_password', () => {
 
   it('Status Code is 200', () => {
     updatePassword({ ...validBody, activated_user_email: 'user'+Date.now()+'@test.com' }).then(response => {

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validMetaType = 'exemplo';
 
-describe('API rest - Project Metas - /project/metas', () => {
+describe('Project Metas - /project/metas', () => {
 
   it('Status Code is 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {

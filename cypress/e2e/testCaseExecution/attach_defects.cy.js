@@ -9,7 +9,7 @@ const validCycleId = 1001;
 const validExecutionId = 222;
 const validDefects = [555, 556];
 
-describe('API rest - Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
+describe('Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
 
   it('Status Code is 200', () => {
     attachDefects({

@@ -9,7 +9,7 @@ const validDbColumns = [
   "build_id", "module_id", "description", "bugtype", "priority", "status", "devices", "os", "browser", "steps_to_reproduce", "eresult", "aresult"
 ];
 
-describe('API rest - Cycle - Defects Import Step 2 - /defects/import/step2', () => {
+describe('Cycle - Defects Import Step 2 - /defects/import/step2', () => {
 
   it('Status Code is 200', () => {
     defectsImportStep2(

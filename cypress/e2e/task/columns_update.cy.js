@@ -6,7 +6,7 @@ const validId = Cypress.env('VALID_ID');
 
 const validColumnName = 'Coluna Atualizada';
 
-describe('API rest - Task Columns Update - /task/columns/update', () => {
+describe('Task Columns Update - /task/columns/update', () => {
 
   it('Status Code is 200', () => {
     taskColumnsUpdate({

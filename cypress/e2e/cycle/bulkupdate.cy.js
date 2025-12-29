@@ -6,7 +6,7 @@ const validIds = Cypress.env('VALID_IDS');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API rest - Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
+describe('Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
 
   it('Status Code is 200', () => {
     bulkUpdateDefects({

@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestScenarioId = 99;
 
-describe('API rest - Test Scenario Detail - /test_scenario/details', () => {
+describe('Test Scenario Detail - /test_scenario/details', () => {
 
   it('Status Code is 200', () => {
     getTestScenarioDetails({

@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validMetaId = 123;
 
-describe('API rest - Project Metas Delete - /project/metas/delete', () => {
+describe('Project Metas Delete - /project/metas/delete', () => {
 
   it('Status Code is 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {

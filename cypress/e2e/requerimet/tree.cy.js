@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Requirements Tree - /requirements/tree', () => {
+describe('Requirements Tree - /requirements/tree', () => {
 
   it('Status Code is 200', () => {
     requirementsTree({

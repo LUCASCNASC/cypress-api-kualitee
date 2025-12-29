@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/DropdownList';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
+describe('Dashboard - Dashboard Dropdown List - /dashboard/dropdown_list', () => {
 
   it('Status Code is 200', () => {
     dropdownList({ token: validToken, project_id: validProjectId }).then(response => {

@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestScenarioId = 99;
 
-describe('API rest - Test Scenario Delete - /test_scenario/delete', () => {
+describe('Test Scenario Delete - /test_scenario/delete', () => {
 
   it('Status Code is 200', () => {
     deleteTestScenario({

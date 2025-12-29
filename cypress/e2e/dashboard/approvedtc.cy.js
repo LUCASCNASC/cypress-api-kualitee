@@ -3,7 +3,7 @@ const PATH_API = '/Dashboard/TestCaseApproved';
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Dashboard - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
+describe('Dashboard - Dashboard Approved Test Case - /dashboard/approvedtc', () => {
 
   it('Status Code is 200', () => {
     approvedTc({ token: validToken, project_id: validProjectId }).then(response => {

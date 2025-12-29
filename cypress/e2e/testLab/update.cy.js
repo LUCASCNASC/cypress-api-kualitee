@@ -6,7 +6,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validNodeTo = { parent: { id: 1001, _type: 'cycle' } };
 const validNodeFrom = { parent: { id: 2001 }, name: "TCExample", _type: "tc", checked: true };
 
-describe('API rest - Manage Test Case Update - /manage_test_case/update', () => {
+describe('Manage Test Case Update - /manage_test_case/update', () => {
 
   it('Status Code is 200', () => {
     manageTestCaseUpdate({

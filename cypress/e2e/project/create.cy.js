@@ -1,7 +1,7 @@
 const PATH_API = '/Project/ProjectCreate';
 const validToken = Cypress.env('VALID_TOKEN');
 
-describe('API rest - Project Create - /project/create', () => {
+describe('Project Create - /project/create', () => {
 
   it('Status Code is 200', () => {
     projectCreate(validBody).then(response => {

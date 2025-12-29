@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validRequirementId = 123;
 
-describe('API rest - Requirements Delete - /requirements/delete', () => {
+describe('Requirements Delete - /requirements/delete', () => {
 
   it('Status Code is 200', () => {
     requirementsDelete({

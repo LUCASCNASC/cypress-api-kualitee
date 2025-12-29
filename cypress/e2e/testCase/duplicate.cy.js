@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestCaseName = 'TC001'; 
 
-describe('API rest - Duplicate Test Case - /test_case/duplicate', () => {
+describe('Duplicate Test Case - /test_case/duplicate', () => {
 
   it('Status Code is 200', () => {
     duplicateTestCase({

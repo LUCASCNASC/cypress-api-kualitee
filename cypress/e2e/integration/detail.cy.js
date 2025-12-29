@@ -3,7 +3,7 @@ const PATH_API = '/Integration/detail';
 
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Integration - Integration Detail - /integration/detail', () => {
+describe('Integration - Integration Detail - /integration/detail', () => {
 
   it('Status Code is 200', () => {
     integrationDetail({ token: validToken, id: validId }).then(response => {

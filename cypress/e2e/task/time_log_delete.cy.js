@@ -4,7 +4,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validId = Cypress.env('VALID_ID');
 
-describe('API rest - Task Time Log Delete - /task/time/log/delete', () => {
+describe('Task Time Log Delete - /task/time/log/delete', () => {
 
   it('Status Code is 200', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId, id: validId }).then(response => {

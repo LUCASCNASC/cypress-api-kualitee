@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestScenarioId = 99; 
 
-describe('API rest - Test Case Tree in Build TS - /test_case/tree_testcase_in_build_ts', () => {
+describe('Test Case Tree in Build TS - /test_case/tree_testcase_in_build_ts', () => {
 
   it('Status Code is 200', () => {
     testCaseTreeInBuildTs({

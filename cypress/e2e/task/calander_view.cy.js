@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
-describe('API rest - Task Calander View - /task/calander/view', () => {
+describe('Task Calander View - /task/calander/view', () => {
 
   it('Status Code is 200', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId }).then(response => {

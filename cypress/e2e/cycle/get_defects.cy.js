@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 const validBuildId = Cypress.env('VALID_BUILD_ID');
 const validModuleId = Cypress.env('VALID_MODULE_ID');
 
-describe('API rest - Cycle - Defects Get Defects - /defects/get_defects', () => {
+describe('Cycle - Defects Get Defects - /defects/get_defects', () => {
 
   it('Status Code is 200', () => {
     getDefects({

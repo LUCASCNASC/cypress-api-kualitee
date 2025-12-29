@@ -9,7 +9,7 @@ const validTestScenarioId = 1234;
 const validCycleId = 1001;
 const validOffsetTestExecutions = 0;
 
-describe('API rest - Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
+describe('Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
 
   it('Status Code is 200', () => {
     findNextTestCase({

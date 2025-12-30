@@ -20,7 +20,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Copia múltiplos casos de teste', () => {
+  it('Status Code is 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -43,7 +43,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseCopy({
       token: validToken,
       'testcase_id[0]': validTestcaseIds[0]
@@ -52,7 +52,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Falha sem testcase_id[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId
@@ -61,7 +61,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code is 200, 400', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,
@@ -110,7 +110,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Falha após múltiplas cópias rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -123,7 +123,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Permite cópias duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,

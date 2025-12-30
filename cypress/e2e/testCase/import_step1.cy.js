@@ -51,7 +51,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);

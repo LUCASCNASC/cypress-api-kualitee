@@ -81,7 +81,7 @@ describe('Users Update - /users/update', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       updateUser({ ...validBody, profile_username: 'updateuser' + Math.random(), email: `rl${Math.random()}@test.com` })
     );

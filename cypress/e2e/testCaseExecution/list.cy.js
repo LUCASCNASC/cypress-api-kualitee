@@ -38,7 +38,7 @@ describe('Test Case Execution List - /test_case_execution/list', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     execList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -82,7 +82,7 @@ describe('Test Case Execution List - /test_case_execution/list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       execList({ token: validToken, project_id: validProjectId })
     );

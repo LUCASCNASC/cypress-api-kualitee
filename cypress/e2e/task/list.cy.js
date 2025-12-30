@@ -19,7 +19,7 @@ describe('Task List - /task/list', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -57,7 +57,7 @@ describe('Task List - /task/list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskList({ token: validToken, project_id: validProjectId })
     );

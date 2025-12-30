@@ -78,7 +78,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsAttachmentDelete({
         token: validToken,

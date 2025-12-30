@@ -24,7 +24,7 @@ describe('Manage Test Case Tree Cycle - /manage_test_case/tree_cycle', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     treeCycle({
       token: validToken
     }).then(response => {
@@ -77,7 +77,7 @@ describe('Manage Test Case Tree Cycle - /manage_test_case/tree_cycle', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeCycle({
         token: validToken,

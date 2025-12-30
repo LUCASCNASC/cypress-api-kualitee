@@ -78,7 +78,7 @@ describe('Manage Test Case Tree Testcase In Cycle - /manage_test_case/tree_testc
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseInCycle({
         token: validToken,

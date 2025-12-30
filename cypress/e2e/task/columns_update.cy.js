@@ -31,7 +31,7 @@ describe('Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsUpdate({
       token: validToken,
       column_name: validColumnName,
@@ -114,7 +114,7 @@ describe('Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsUpdate({
         token: validToken,

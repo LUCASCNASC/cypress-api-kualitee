@@ -120,7 +120,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       const requests = Array(10).fill(0).map(() =>
         cy.form_request(

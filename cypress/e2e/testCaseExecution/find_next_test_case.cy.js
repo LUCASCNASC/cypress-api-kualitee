@@ -40,7 +40,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       tc_id: validTcId,
@@ -183,7 +183,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       findNextTestCase({
         token: validToken,

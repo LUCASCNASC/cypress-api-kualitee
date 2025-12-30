@@ -12,7 +12,7 @@ describe('Update Password - /update_password', () => {
     });
   });
 
-  it('Falha ao atualizar senha para mesma senha atual', () => {
+  it('Status Code is 400, 422', () => {
     updatePassword({ ...validBody, users_password: validBody.users_c_password }).then(response => {
       expect([400, 422]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -51,7 +51,7 @@ describe('Update Password - /update_password', () => {
     });
   });
 
-  it('Falha após múltiplas trocas rápidas de senha (rate limit)', () => {
+  it('Status Code is 409', () => {
     const requests = Array(10).fill(0).map(() =>
       updatePassword({ ...validBody, activated_user_email: 'user'+Math.random()+'@test.com' })
     );
@@ -61,7 +61,7 @@ describe('Update Password - /update_password', () => {
     });
   });
 
-  it('Falha ao atualizar senha duas vezes seguidas sem login entre elas', () => {
+  it('Status Code is 200, 400, 401, 409, 422', () => {
     updatePassword(validBody)
       .then(() => updatePassword(validBody))
       .then((response) => {

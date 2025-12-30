@@ -11,7 +11,7 @@ describe('Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  it('Salva perfil com attachment (arquivo)', () => {
+  it('Status Code is 200, 400, 422', () => {
     // Cria um arquivo Blob para teste
     const file = new Blob(['teste de upload'], { type: 'text/plain' });
     saveProfile({ ...validBody, profile_username: 'attachuser' + Date.now(), email: `file${Date.now()}@test.com` }, file).then(response => {
@@ -52,7 +52,7 @@ describe('Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  it('Falha após múltiplos saves rápidos (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       saveProfile({ ...validBody, profile_username: 'profileuser' + Math.random(), email: `rl${Math.random()}@test.com` })
     );
@@ -62,7 +62,7 @@ describe('Users Profile Save - /users/profile_save', () => {
     });
   });
 
-  it('Falha ao salvar perfil com email já existente', () => {
+  it('Status Code is 400, 409, 422', () => {
     const uniqueEmail = `dup${Date.now()}@test.com`;
     const uniqueUsername = 'profileuser' + Date.now();
     saveProfile({ ...validBody, email: uniqueEmail, profile_username: uniqueUsername }).then(() => {

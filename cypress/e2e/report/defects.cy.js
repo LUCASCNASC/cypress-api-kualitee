@@ -51,7 +51,7 @@ describe('Report Defects - /report/defects', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     reportDefects({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -89,7 +89,7 @@ describe('Report Defects - /report/defects', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       reportDefects({ token: validToken, project_id: validProjectId })
     );

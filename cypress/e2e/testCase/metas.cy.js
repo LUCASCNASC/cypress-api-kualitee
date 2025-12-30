@@ -25,7 +25,7 @@ describe('Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseMetas({
       token: validToken
     }).then(response => {
@@ -78,7 +78,7 @@ describe('Test Case Metas - /test_case/metas', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseMetas({
         token: validToken,

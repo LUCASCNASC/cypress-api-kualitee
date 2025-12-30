@@ -62,7 +62,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
       project_id: validProjectId,

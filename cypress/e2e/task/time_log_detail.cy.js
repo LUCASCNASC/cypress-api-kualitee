@@ -21,7 +21,7 @@ describe('Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogDetail({ token: validToken, id: validTaskId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -65,7 +65,7 @@ describe('Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId })
     );

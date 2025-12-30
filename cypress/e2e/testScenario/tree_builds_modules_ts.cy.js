@@ -84,7 +84,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeBuildModulesTS({
         token: validToken,

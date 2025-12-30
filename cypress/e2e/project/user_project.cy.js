@@ -79,7 +79,7 @@ describe('Users Project List - /project/user_project', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       userProject({ token: validToken })
     );

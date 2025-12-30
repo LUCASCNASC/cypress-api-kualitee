@@ -9,7 +9,6 @@ describe('Users List Dashboard - /users/dashboard_list', () => {
       expect(response.body).to.be.an('object');
       expect(response.body).to.have.property('success', true);
       expect(response.headers['content-type']).to.include('application/json');
-      // Ajuste conforme contrato real:
       expect(response.body).to.have.property('users').that.is.an('array');
     });
   });
@@ -41,13 +40,13 @@ describe('Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     dashboardList({ token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     dashboardList({ token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -86,7 +85,7 @@ describe('Users List Dashboard - /users/dashboard_list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       dashboardList({ token: validToken })
     );

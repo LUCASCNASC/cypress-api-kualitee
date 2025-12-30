@@ -28,7 +28,7 @@ describe('Test Case Tree in Builds - /test_case/tree_testcase_in_builds', () => 
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseTreeInBuilds({
       token: validToken,
       build_id: validBuildId
@@ -95,7 +95,7 @@ describe('Test Case Tree in Builds - /test_case/tree_testcase_in_builds', () => 
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInBuilds({
         token: validToken,

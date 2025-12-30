@@ -42,7 +42,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       tc_id: validTcId,
@@ -181,7 +181,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       attachDefects({
         token: validToken,

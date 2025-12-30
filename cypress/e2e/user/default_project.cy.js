@@ -39,26 +39,26 @@ describe('Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     setDefaultProject({ token: '😀🔥💥', updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     setDefaultProject({ token: "' OR 1=1 --", updated_project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem updated_project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     setDefaultProject({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
     });
   });
 
-  it('Falha com updated_project_id inexistente', () => {
+  it('Status Code is 404, 422, 400', () => {
     setDefaultProject({ token: validToken, updated_project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
@@ -97,7 +97,7 @@ describe('Auth Default Project - /auth/default_project', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       setDefaultProject({ token: validToken, updated_project_id: validProjectId })
     );

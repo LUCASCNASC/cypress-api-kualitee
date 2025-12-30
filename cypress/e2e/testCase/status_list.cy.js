@@ -25,7 +25,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseStatusList({
       token: validToken
     }).then(response => {
@@ -63,7 +63,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
       project_id: validProjectId

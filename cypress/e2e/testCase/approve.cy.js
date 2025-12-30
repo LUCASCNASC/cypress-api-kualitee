@@ -60,7 +60,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseApprove({
       token: validToken,
       tc_status: '1',
@@ -80,7 +80,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha sem testcase_id[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -143,7 +143,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,

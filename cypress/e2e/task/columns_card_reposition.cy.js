@@ -20,7 +20,7 @@ describe('Task Columns Card Reposition - /task/columns/card/reposition', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsCardReposition({ token: validToken, id: validId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -64,7 +64,7 @@ describe('Task Columns Card Reposition - /task/columns/card/reposition', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsCardReposition({ token: validToken, project_id: validProjectId, id: validId })
     );

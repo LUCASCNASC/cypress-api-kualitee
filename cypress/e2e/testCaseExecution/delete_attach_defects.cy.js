@@ -34,7 +34,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     deleteAttachDefects({
       token: validToken,
       tc_id: validTcId,
@@ -135,7 +135,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteAttachDefects({
         token: validToken,

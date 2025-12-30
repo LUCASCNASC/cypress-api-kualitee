@@ -48,7 +48,7 @@ describe('Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     testScenarioList({
       token: validToken
     }).then(response => {
@@ -101,7 +101,7 @@ describe('Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testScenarioList({
         token: validToken,

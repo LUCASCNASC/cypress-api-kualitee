@@ -84,7 +84,7 @@ describe('Manage Test Case Update - /manage_test_case/update', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       manageTestCaseUpdate({
         token: validToken,

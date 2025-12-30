@@ -78,7 +78,7 @@ describe('Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/tree_d
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDragTcTs({
         token: validToken,

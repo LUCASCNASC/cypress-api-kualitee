@@ -27,7 +27,7 @@ describe('Login - /auth/signin - Testes Avançados', () => {
     });
   });
 
-  it('Deve retornar erro após múltiplas tentativas rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     // Ajuste a quantidade conforme a política da API
     const requests = Array(10).fill(0).map(() => login({ email_id: validEmail, password: 'senhaErrada', subdomain: validSubdomain }));
     cy.wrap(Promise.all(requests)).then((responses) => {
@@ -36,7 +36,7 @@ describe('Login - /auth/signin - Testes Avançados', () => {
     });
   });
 
-  it('Deve tratar requisições duplicadas', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     login({ email_id: validEmail, password: validPassword, subdomain: validSubdomain })
       .then(() => login({ email_id: validEmail, password: validPassword, subdomain: validSubdomain }))
       .then((response) => {
@@ -44,7 +44,7 @@ describe('Login - /auth/signin - Testes Avançados', () => {
       });
   });
 
-  it('Falha com campos encoding especial', () => {
+  it('Status Code is 400, 401, 404', () => {
     login({ email_id: encodeURIComponent(validEmail), password: encodeURIComponent(validPassword), subdomain: encodeURIComponent(validSubdomain) }).then((response) => {
       expect([400, 401, 404]).to.include(response.status);
     });

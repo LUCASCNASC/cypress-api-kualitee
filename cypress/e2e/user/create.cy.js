@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('Users Create - /users/create', () => {
 
-  it('Cria usuário apenas com campos obrigatórios', () => {
+  it('Status Code is 200', () => {
     const { street_1, street_2, city, country, zipcode, ...bodyMin } = validBody;
     createUser({ ...bodyMin, profile_username: 'user' + Date.now(), email: `min${Date.now()}@test.com` }).then(response => {
       expect(response.status).to.eq(200);
@@ -37,13 +37,13 @@ describe('Users Create - /users/create', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     createUser({ ...validBody, token: '😀🔥💥', profile_username: 'user' + Date.now(), email: `emoji${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     createUser({ ...validBody, token: "' OR 1=1 --", profile_username: 'user' + Date.now(), email: `sqli${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -82,7 +82,7 @@ describe('Users Create - /users/create', () => {
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       createUser({ ...validBody, profile_username: 'user' + Math.random(), email: `rl${Math.random()}@test.com` })
     );
@@ -92,7 +92,7 @@ describe('Users Create - /users/create', () => {
     });
   });
 
-  it('Falha ao criar usuário com email já existente', () => {
+  it('Status Code is 400, 409, 422', () => {
     const uniqueEmail = `dup${Date.now()}@test.com`;
     const uniqueUsername = 'user' + Date.now();
     createUser({ ...validBody, email: uniqueEmail, profile_username: uniqueUsername }).then(() => {

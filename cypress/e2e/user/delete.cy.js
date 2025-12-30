@@ -14,7 +14,7 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Deleta múltiplos usuários (array de user_id)', () => {
+  it('Status Code is 200, 400, 422', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId, 'user_id[1]': validUserId + 1 }).then(response => {
       expect([200, 400, 422]).to.include(response.status);
     });
@@ -45,19 +45,19 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     deleteUser({ token: '😀🔥💥', 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     deleteUser({ token: "' OR 1=1 --", 'user_id[0]': validUserId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha sem user_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     deleteUser({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -102,7 +102,7 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Falha após múltiplas deleções rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteUser({ token: validToken, 'user_id[0]': validUserId })
     );
@@ -112,7 +112,7 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Permite deleções duplicadas rapidamente (idempotência)', () => {
+  it('Status Code is 200, 400, 409, 422, 404', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId })
       .then(() => deleteUser({ token: validToken, 'user_id[0]': validUserId }))
       .then((response) => {

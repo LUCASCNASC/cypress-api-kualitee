@@ -35,7 +35,7 @@ describe('Test Case Execution Change Status - /test_case_execution/change_status
     });
   });
 
-  it('Falha sem project_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     changeStatus({
       token: validToken,
       status: validStatus,
@@ -120,7 +120,7 @@ describe('Test Case Execution Change Status - /test_case_execution/change_status
     });
   });
 
-  it('Falha após múltiplas requisições rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const requests = Array(10).fill(0).map(() =>
       changeStatus({
         token: validToken,

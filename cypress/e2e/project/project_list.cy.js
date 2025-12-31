@@ -41,7 +41,7 @@ describe('List Copy - /project/project_list', () => {
     });
   });
 
-  it('Falha com Content-Type text/plain', () => {
+  it('Status Code is 400, 415', () => {
     projectList({ token: validToken }, { headers: { 'Content-Type': 'text/plain' } }).then(response => {
       expect([400, 415]).to.include(response.status);
     });

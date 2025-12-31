@@ -35,19 +35,19 @@ describe('Users Project List - /project/user_project', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     userProject({ token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     userProject({ token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra nos parâmetros', () => {
+  it('Status Code is 200', () => {
     userProject({ token: validToken, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });

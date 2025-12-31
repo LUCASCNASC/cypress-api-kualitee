@@ -13,7 +13,7 @@ describe('Report Defects - /report/defects', () => {
     });
   });
 
-  it('Retorna lista de defeitos usando todos os filtros possíveis', () => {
+  it('Status Code is 200', () => {
     reportDefects({
       token: validToken,
       project_id: validProjectId,

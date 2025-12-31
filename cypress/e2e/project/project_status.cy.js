@@ -64,7 +64,7 @@ describe('Project Status - /project/project_status', () => {
   });
 
 
-  it('Falha com project_status vazio', () => {
+  it('Status Code is 400, 422', () => {
     projectStatus({
       token: validToken,
       project_status: '',
@@ -87,7 +87,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Falha com Content-Type text/plain', () => {
+  it('Status Code is 400, 415', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,

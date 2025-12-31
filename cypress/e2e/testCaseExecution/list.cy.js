@@ -44,7 +44,7 @@ describe('Test Case Execution List - /test_case_execution/list', () => {
     });
   });
 
-  it('Falha com project_id inexistente', () => {
+  it('Status Code is 400, 422, 404', () => {
     execList({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });

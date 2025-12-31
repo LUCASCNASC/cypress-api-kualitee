@@ -37,13 +37,13 @@ describe('Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Falha sem meta_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha com meta_id inexistente', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasDelete({ token: validToken, meta_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });

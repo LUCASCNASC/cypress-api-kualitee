@@ -63,7 +63,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Falha com meta_id inexistente', () => {
+  it('Status Code is 400, 422, 404', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,

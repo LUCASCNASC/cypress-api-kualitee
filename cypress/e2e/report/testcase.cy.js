@@ -13,7 +13,7 @@ describe('Report Testcase - /report/testcase', () => {
     });
   });
 
-  it('Retorna relatório de test cases usando todos os filtros possíveis', () => {
+  it('Status Code is 200', () => {
     reportTestcase({
       token: validToken,
       project_id: validProjectId,

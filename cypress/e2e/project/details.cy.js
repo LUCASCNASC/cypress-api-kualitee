@@ -43,13 +43,13 @@ describe('Project Detail - /project/details', () => {
     });
   });
 
-  it('Falha com project_id inexistente', () => {
+  it('Status Code is 400, 422, 404', () => {
     projectDetails({ token: validToken, project_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  it('Ignora campo extra nos parâmetros', () => {
+  it('Status Code is 200', () => {
     projectDetails({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });

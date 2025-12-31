@@ -35,13 +35,13 @@ describe('Project List - /project/list', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectList({ token: '😀🔥💥' }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     projectList({ token: "' OR 1=1 --" }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });

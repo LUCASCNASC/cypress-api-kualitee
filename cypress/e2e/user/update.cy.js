@@ -37,13 +37,13 @@ describe('Users Update - /users/update', () => {
     });
   });
 
-  it('Falha com token contendo caracteres especiais', () => {
+  it('Status Code is 400, 401, 403', () => {
     updateUser({ ...validBody, token: '😀🔥💥', profile_username: 'updateuser' + Date.now(), email: `emoji${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Falha com token SQL Injection', () => {
+  it('Status Code is 400, 401, 403', () => {
     updateUser({ ...validBody, token: "' OR 1=1 --", profile_username: 'updateuser' + Date.now(), email: `sqli${Date.now()}@test.com` }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });

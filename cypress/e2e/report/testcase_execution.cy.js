@@ -13,7 +13,7 @@ describe('Report Test Case Execution - /report/test_case_execution', () => {
     });
   });
 
-  it('Retorna relatório de execução de testes usando todos os filtros possíveis', () => {
+  it('Status Code is 200', () => {
     reportTestCaseExecution({
       token: validToken,
       project_id: validProjectId,

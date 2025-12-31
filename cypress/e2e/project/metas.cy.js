@@ -43,7 +43,7 @@ describe('Project Metas - /project/metas', () => {
     });
   });
 
-  it('Ignora campo extra nos parâmetros', () => {
+  it('Status Code is 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });

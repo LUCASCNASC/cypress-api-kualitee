@@ -27,7 +27,7 @@ describe('Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  it('Falha sem column_name', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

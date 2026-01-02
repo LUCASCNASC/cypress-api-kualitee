@@ -20,7 +20,7 @@ describe('Requirements List - /requirements/list', () => {
     });
   });
 
-  it('Retorna lista filtrando por build_id, module_id e status', () => {
+  it('Status Code is 200', () => {
     requirementsList({
       token: validToken,
       project_id: validProjectId,
@@ -33,7 +33,7 @@ describe('Requirements List - /requirements/list', () => {
     });
   });
 
-  it('Retorna lista filtrando por created_by', () => {
+  it('Status Code is 200', () => {
     requirementsList({
       token: validToken,
       project_id: validProjectId,
@@ -44,7 +44,7 @@ describe('Requirements List - /requirements/list', () => {
     });
   });
 
-  it('Exporta lista de requisitos em CSV', () => {
+  it('Status Code is 200', () => {
     requirementsList({
       token: validToken,
       project_id: validProjectId,

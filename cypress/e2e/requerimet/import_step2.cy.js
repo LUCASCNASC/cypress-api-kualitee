@@ -52,7 +52,7 @@ describe('Requirements Import Step 2 - /requirements/import/step2', () => {
     });
   });
 
-  it('Falha com arquivo vazio', () => {
+  it('Status Code is 400, 422', () => {
     const blob = Cypress.Blob.binaryStringToBlob('', 'text/csv');
     importStep2({
       token: validToken,

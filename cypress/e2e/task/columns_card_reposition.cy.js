@@ -26,7 +26,7 @@ describe('Task Columns Card Reposition - /task/columns/card/reposition', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsCardReposition({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

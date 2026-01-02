@@ -62,7 +62,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -79,7 +79,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Falha sem timeID', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -96,7 +96,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Falha sem comment', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,

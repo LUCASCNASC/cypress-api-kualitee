@@ -29,7 +29,7 @@ describe('Task Update - /task/update', () => {
     });
   });
 
-  it('Atualiza task com todos campos possíveis', () => {
+  it('Status Code is 200', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -78,7 +78,7 @@ describe('Task Update - /task/update', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -93,7 +93,7 @@ describe('Task Update - /task/update', () => {
     });
   });
 
-  it('Falha sem assignedto[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -124,7 +124,7 @@ describe('Task Update - /task/update', () => {
         expect([400, 422, 404]).to.include(response.status);
       });
     });
-    it(`Falha com id inválido (${JSON.stringify(param)})`, () => {
+    it(`Status Code is 400, 422, 404 (${JSON.stringify(param)})`, () => {
       taskUpdate({
         token: validToken,
         project_id: validProjectId,
@@ -139,7 +139,7 @@ describe('Task Update - /task/update', () => {
         expect([400, 422, 404]).to.include(response.status);
       });
     });
-    it(`Falha com assignedto[0] inválido (${JSON.stringify(param)})`, () => {
+    it(`Status Code is 400, 422, 404 (${JSON.stringify(param)})`, () => {
       taskUpdate({
         token: validToken,
         project_id: validProjectId,

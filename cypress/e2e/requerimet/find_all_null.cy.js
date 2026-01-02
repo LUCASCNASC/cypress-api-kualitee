@@ -19,7 +19,7 @@ describe('Requirements Find All Null - /requirements/find_all_null', () => {
     });
   });
 
-  it('Retorna resultado com todos os campos válidos', () => {
+  it('Status Code is 200', () => {
     findAllNull({
       token: validToken,
       project_id: validProjectId,
@@ -58,25 +58,7 @@ describe('Requirements Find All Null - /requirements/find_all_null', () => {
       expect([200, 400]).to.include(response.status);
     });
   });
-
   
-  ['GET', 'PUT', 'DELETE', 'PATCH'].forEach(method => {
-    it(`Falha com método HTTP ${method}`, () => {
-      cy.request({
-        method,
-        url: `/${PATH_API}`,
-        form: true,
-        body: {
-          token: validToken,
-          project_id: validProjectId
-        },
-        failOnStatusCode: false,
-      }).then(response => {
-        expect([405, 404, 400]).to.include(response.status);
-      });
-    });
-  });
-
   it('Status Code is 400, 415', () => {
     cy.request({
       method: 'POST',

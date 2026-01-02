@@ -25,13 +25,13 @@ describe('Task Calander View - /task/calander/view', () => {
     });
   });
 
-  it('Ignora parâmetro extra na query', () => {
+  it('Status Code is 200', () => {
     taskCalanderView({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('GET ignora Content-Type application/json', () => {
+  it('Status Code is 200, 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,

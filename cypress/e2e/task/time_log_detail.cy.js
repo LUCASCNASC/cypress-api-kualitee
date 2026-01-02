@@ -27,19 +27,19 @@ describe('Task Time Log Detail - /task/time/log/detail', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora parâmetro extra na query', () => {
+  it('Status Code is 200', () => {
     taskTimeLogDetail({ token: validToken, project_id: validProjectId, id: validTaskId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('GET ignora Content-Type application/json', () => {
+  it('Status Code is 200, 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,

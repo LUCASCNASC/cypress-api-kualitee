@@ -19,19 +19,19 @@ describe('Roles Details - /roles/details', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesDetails({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Ignora parâmetro extra na query', () => {
+  it('Status Code is 200', () => {
     rolesDetails({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('GET ignora Content-Type application/json', () => {
+  it('Status Code is 200, 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,

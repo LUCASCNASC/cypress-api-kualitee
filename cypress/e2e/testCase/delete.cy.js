@@ -51,7 +51,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Falha sem id[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId

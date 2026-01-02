@@ -50,7 +50,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Falha sem import_csv_file', () => {
+  it('Status Code is 400, 422, 404', () => {
     importStep1({
       token: validToken,
       project_id: validProjectId
@@ -59,7 +59,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Falha com arquivo vazio', () => {
+  it('Status Code is 400, 422', () => {
     const blob = Cypress.Blob.binaryStringToBlob('', 'text/csv');
     importStep1({
       token: validToken,
@@ -70,7 +70,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Falha com arquivo não CSV', () => {
+  it('Status Code is 400, 422', () => {
     const blob = Cypress.Blob.binaryStringToBlob('not,a,csv', 'text/plain');
     importStep1({
       token: validToken,

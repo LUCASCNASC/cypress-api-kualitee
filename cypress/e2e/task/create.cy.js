@@ -25,7 +25,7 @@ describe('Task Create - /task/create', () => {
     });
   });
 
-  it('Cria task com todos campos possíveis', () => {
+  it('Status Code is 200', () => {
     taskCreate({
       token: validToken,
       project_id: validProjectId,
@@ -67,7 +67,7 @@ describe('Task Create - /task/create', () => {
     });
   });
 
-  it('Falha sem assignedto[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskCreate({
       token: validToken,
       project_id: validProjectId,

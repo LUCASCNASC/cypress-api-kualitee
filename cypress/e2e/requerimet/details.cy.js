@@ -29,7 +29,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Ignora campo extra na query', () => {
+  it('Status Code is 200, 400', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

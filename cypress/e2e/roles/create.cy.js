@@ -15,13 +15,13 @@ describe('Roles Create - /roles/create', () => {
     });
   });
 
-  it('Cria role com can_delete true', () => {
+  it('Status Code is 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Cria role com can_delete false', () => {
+  it('Status Code is 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: false }).then(response => {
       expect(response.status).to.eq(200);
     });
@@ -33,13 +33,13 @@ describe('Roles Create - /roles/create', () => {
     });
   });
 
-  it('Falha sem role_name', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesCreate({ token: validToken, description: validDescription }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Falha sem description', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesCreate({ token: validToken, role_name: validRoleName }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

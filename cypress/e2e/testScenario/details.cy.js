@@ -29,7 +29,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Ignora campo extra na query string', () => {
+  it('Status Code is 200, 400 string', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

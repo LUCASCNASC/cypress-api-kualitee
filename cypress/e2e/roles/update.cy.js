@@ -22,7 +22,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Atualiza role com can_delete true', () => {
+  it('Status Code is 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -34,7 +34,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Atualiza role com can_delete false', () => {
+  it('Status Code is 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -56,7 +56,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       role_name: validRoleName,
@@ -66,7 +66,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Falha sem role_name', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -76,7 +76,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Falha sem description', () => {
+  it('Status Code is 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

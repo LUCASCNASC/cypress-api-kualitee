@@ -26,7 +26,7 @@ describe('Task Delete - /task/delete', () => {
     });
   });
 
-  it('Falha sem id[0]', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

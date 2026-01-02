@@ -33,7 +33,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Ignora campo extra na query', () => {
+  it('Status Code is 200, 400', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId,

@@ -55,7 +55,7 @@ describe('Task Time Log - /task/time/log', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLog({
       token: validToken,
       project_id: validProjectId,

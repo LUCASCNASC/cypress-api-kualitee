@@ -29,7 +29,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Ignora campo extra na query', () => {
+  it('Status Code is 200, 400', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,

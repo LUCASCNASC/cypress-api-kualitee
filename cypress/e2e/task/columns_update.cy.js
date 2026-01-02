@@ -41,7 +41,7 @@ describe('Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  it('Falha sem column_name', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -51,7 +51,7 @@ describe('Task Columns Update - /task/columns/update', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskColumnsUpdate({
       token: validToken,
       project_id: validProjectId,

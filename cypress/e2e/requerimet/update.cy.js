@@ -26,7 +26,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Atualiza requirement com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -41,7 +41,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Atualiza requirement com envio de arquivo (attachment)', () => {
+  it('Status Code is 200', () => {
     cy.fixture('arquivo_teste.txt', 'base64').then(fileContent => {
       requirementsUpdate({
         token: validToken,

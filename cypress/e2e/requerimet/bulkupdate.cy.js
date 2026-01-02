@@ -23,7 +23,7 @@ describe('Requirements Bulk Update - /requirements/bulkupdate', () => {
     });
   });
 
-  it('Atualiza lote com múltiplos requirements', () => {
+  it('Status Code is 200, 400, 422', () => {
     bulkUpdate({
       token: validToken,
       project_id: validProjectId,

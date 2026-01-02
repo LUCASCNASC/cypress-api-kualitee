@@ -26,7 +26,7 @@ describe('Task Time Log Delete - /task/time/log/delete', () => {
     });
   });
 
-  it('Falha sem id', () => {
+  it('Status Code is 400, 422, 404', () => {
     taskTimeLogDelete({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

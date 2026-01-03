@@ -101,7 +101,7 @@ describe('Dashboard - Dashboard Test Case Execution Status - /dashboard/tcexecut
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     tcExecutionStatus({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

@@ -81,7 +81,7 @@ describe('Cycle - Defects Bulk Update - /defects/bulkupdate', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     bulkUpdateDefects({
       token: validToken,
       project_id: validProjectId,

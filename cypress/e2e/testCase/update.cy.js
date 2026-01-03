@@ -29,7 +29,7 @@ describe('Test Case Update - /test_case/update', () => {
     });
   });
 
-  it('Atualiza caso de teste com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -127,7 +127,7 @@ describe('Test Case Update - /test_case/update', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseUpdate({
       token: validToken,
       project_id: validProjectId,

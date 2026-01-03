@@ -19,7 +19,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Deleta múltiplos casos de teste', () => {
+  it('Status Code is 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -98,7 +98,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -109,7 +109,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Falha após múltiplas deleções rápidas (rate limit)', () => {
+  it('Status Code is 429', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -122,7 +122,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Permite deleções duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,

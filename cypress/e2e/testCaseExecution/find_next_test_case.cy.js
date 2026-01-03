@@ -92,7 +92,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem build_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -168,7 +168,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,

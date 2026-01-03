@@ -128,7 +128,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

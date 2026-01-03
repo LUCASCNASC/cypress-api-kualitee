@@ -126,7 +126,7 @@ describe('Task Create - /task/create', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     taskCreate({
       token: validToken,
       project_id: validProjectId,

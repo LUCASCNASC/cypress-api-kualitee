@@ -72,7 +72,7 @@ describe('Manage Test Case Update - /manage_test_case/update', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     manageTestCaseUpdate({
       token: validToken,
       project_id: validProjectId,

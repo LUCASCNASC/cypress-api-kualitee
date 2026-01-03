@@ -72,7 +72,7 @@ describe('Archived Projects - /project/archived_projects', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     archivedProjects({ token: validToken }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

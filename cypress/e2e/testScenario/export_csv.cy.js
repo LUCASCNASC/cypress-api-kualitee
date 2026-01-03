@@ -54,7 +54,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,

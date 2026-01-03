@@ -83,7 +83,7 @@ describe('Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     createTestScenario({
       token: validToken,
       project_id: validProjectId,

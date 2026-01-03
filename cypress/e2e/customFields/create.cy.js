@@ -117,7 +117,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,

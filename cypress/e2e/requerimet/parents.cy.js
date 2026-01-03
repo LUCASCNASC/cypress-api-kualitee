@@ -68,7 +68,7 @@ describe('Requirements Parents - /requirements/parents', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     requirementsParents({
       token: validToken,
       project_id: validProjectId

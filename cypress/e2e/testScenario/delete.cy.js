@@ -68,7 +68,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

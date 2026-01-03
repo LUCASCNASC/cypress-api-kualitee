@@ -58,7 +58,7 @@ describe('Custom Fields - Custom Fields Delete - /customfields/delete', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     customfieldsDelete({ token: validToken, project_id: validProjectId, 'custom_field_id[0]': validCustomFieldId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

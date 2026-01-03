@@ -66,7 +66,7 @@ describe('Cycle - Defects Delete Image - /defects/delete_image', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     defectsDeleteImage({
       token: validToken,
       project_id: validProjectId,

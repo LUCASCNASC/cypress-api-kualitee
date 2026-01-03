@@ -58,7 +58,7 @@ describe('Test Case Execution Tree Test Cases - /test_case_execution/tree_test_c
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeTestCases({ token: validToken, project_id: validProjectId, cycle_id: validCycleId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

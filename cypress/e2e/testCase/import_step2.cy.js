@@ -49,7 +49,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Falha com db_columns inválido', () => {
+  it('Status Code is 400, 401, 404', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ 'db_columns[2]': 'xxxx' });
@@ -67,7 +67,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Falha com arquivo CSV vazio', () => {
+  it('Status Code is 400, 422, 415', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
     const body = buildBody();
@@ -116,7 +116,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -136,7 +136,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Falha após múltiplos uploads rápidos (rate limit)', () => {
+  it('Status Code is 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -159,7 +159,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Permite uploads CSV idênticos rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();

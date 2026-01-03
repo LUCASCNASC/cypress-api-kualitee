@@ -120,7 +120,7 @@ describe('Project Team Assigned - /team/create', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     teamCreate({
       token: validToken,
       project_id: validProjectId,

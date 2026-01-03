@@ -90,7 +90,7 @@ describe('User Detail - /users/detail', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     getUserDetail({ token: validToken, user_id: validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

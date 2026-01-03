@@ -144,7 +144,7 @@ describe('Integration - Integration Save - /integration/save', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     integrationSave({
       token: validToken,
       plugin_name: validPluginName,

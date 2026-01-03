@@ -67,7 +67,7 @@ describe('Manage Test Case Tree Drag TC Test Scenario - /manage_test_case/tree_d
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeDragTcTs({
       token: validToken,
       project_id: validProjectId,

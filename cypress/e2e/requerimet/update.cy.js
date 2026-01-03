@@ -121,7 +121,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,

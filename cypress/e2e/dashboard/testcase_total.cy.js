@@ -87,7 +87,7 @@ describe('Dashboard - Dashboard Test Case Total - /dashboard/testcase/total', ()
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testcaseTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

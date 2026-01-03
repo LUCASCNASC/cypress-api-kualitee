@@ -20,7 +20,7 @@ describe('Test Case Template - /test_case/template_test_case', () => {
     });
   });
 
-  it('Gera template para múltiplos casos de teste', () => {
+  it('Status Code is 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -99,7 +99,7 @@ describe('Test Case Template - /test_case/template_test_case', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseTemplate({
       token: validToken,
       project_id: validProjectId,

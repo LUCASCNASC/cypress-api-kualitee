@@ -122,7 +122,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,

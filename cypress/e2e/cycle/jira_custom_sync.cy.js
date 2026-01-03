@@ -66,7 +66,7 @@ describe('Cycle - Defects Jira Custom Sync - /defects/jira_custom_sync', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     jiraCustomSync({
       token: validToken,
       project_id: validProjectId,

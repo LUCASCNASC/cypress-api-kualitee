@@ -53,7 +53,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId

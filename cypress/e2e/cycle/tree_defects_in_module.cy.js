@@ -65,7 +65,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,

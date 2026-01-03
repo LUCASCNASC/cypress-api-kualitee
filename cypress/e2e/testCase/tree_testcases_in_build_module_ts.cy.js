@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 const validTestScenarioId = 99; 
 
-describe('Test Case Tree in Build Module Test Scenarios - /test_case/tree_testcase_in_build_module_ts', () => {
+describe('Status Code is 200', () => {
 
   it('Status Code is 200', () => {
     testCaseTreeInBuildModuleTs({
@@ -67,7 +67,7 @@ describe('Test Case Tree in Build Module Test Scenarios - /test_case/tree_testca
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseTreeInBuildModuleTs({
       token: validToken,
       project_id: validProjectId,

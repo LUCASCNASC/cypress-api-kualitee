@@ -104,7 +104,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,

@@ -67,7 +67,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

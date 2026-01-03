@@ -27,7 +27,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Cria caso de teste com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -120,7 +120,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,

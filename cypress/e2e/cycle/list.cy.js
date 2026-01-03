@@ -150,7 +150,7 @@ describe('Cycle - Defects List - /defects/list', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     defectsList({
       token: validToken,
       project_id: validProjectId

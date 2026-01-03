@@ -101,7 +101,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',

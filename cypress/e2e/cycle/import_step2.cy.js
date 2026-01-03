@@ -105,7 +105,7 @@ describe('Cycle - Defects Import Step 2 - /defects/import/step2', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     defectsImportStep2(
       {
         token: validToken,

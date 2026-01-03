@@ -121,7 +121,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem build_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -207,7 +207,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

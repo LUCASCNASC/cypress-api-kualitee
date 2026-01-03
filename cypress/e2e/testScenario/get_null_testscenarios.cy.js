@@ -75,7 +75,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

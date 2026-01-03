@@ -66,7 +66,7 @@ describe('Requirements Tree Requirement in Builds - /requirements/tree_requireme
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeRequirementInBuilds({
       token: validToken,
       project_id: validProjectId,

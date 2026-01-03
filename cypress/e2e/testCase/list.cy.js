@@ -22,7 +22,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Retorna lista de casos de teste com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId,
@@ -94,7 +94,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId

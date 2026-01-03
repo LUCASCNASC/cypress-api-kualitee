@@ -72,7 +72,7 @@ describe('Test Scenarios in Builds - /test_scenario/tree_build_ts', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeBuildTS({
       token: validToken,
       project_id: validProjectId,

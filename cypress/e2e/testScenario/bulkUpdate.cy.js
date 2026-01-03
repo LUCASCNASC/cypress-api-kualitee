@@ -87,7 +87,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

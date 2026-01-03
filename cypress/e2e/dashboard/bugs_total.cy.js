@@ -100,7 +100,7 @@ describe('Dashboard - Dashboard Bugs Total - /dashboard/bugs/total', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     bugsTotal(validBody).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

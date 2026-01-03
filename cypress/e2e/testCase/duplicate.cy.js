@@ -67,7 +67,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,

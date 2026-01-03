@@ -27,7 +27,7 @@ describe('Test Case Execution Tree Builds Cycle - /test_case_execution/tree_buil
     });
   });
 
-  it('Falha sem build_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
@@ -58,7 +58,7 @@ describe('Test Case Execution Tree Builds Cycle - /test_case_execution/tree_buil
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeBuildsCycle({ token: validToken, project_id: validProjectId, build_id: validBuildId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

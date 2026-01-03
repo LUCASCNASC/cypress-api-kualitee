@@ -67,7 +67,7 @@ describe('Manage Test Case Tree - /manage_test_case/tree', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     manageTestCaseTree({
       token: validToken,
       project_id: validProjectId

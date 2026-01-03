@@ -68,7 +68,7 @@ describe('Requirements Get Defect List - /requirements/get_defect_list', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     getDefectList({
       token: validToken,
       project_id: validProjectId

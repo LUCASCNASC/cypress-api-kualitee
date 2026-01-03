@@ -138,7 +138,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,

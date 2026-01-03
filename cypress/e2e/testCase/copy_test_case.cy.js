@@ -99,7 +99,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,

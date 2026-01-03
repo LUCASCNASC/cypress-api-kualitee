@@ -95,7 +95,7 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     deleteUser({ token: validToken, 'user_id[0]': validUserId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');

@@ -106,7 +106,7 @@ describe('Test Case Execution Change Status - /test_case_execution/change_status
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     changeStatus({
       token: validToken,
       project_id: validProjectId,

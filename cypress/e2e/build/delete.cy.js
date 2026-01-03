@@ -144,7 +144,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
   
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,

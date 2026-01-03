@@ -42,7 +42,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Falha sem build_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -103,7 +103,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,

@@ -21,7 +21,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Aprova múltiplos casos de teste', () => {
+  it('Status Code is 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -36,7 +36,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Rejeita um caso de teste', () => {
+  it('Status Code is 200', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Falha sem tc_status', () => {
+  it('Status Code is 400, 422, 404', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -131,7 +131,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,
@@ -157,7 +157,7 @@ describe('Test Case Approve - /test_case/approve', () => {
     });
   });
 
-  it('Permite aprovações duplicadas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testCaseApprove({
       token: validToken,
       project_id: validProjectId,

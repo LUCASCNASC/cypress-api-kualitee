@@ -65,7 +65,7 @@ describe('Manage Test Case Tree Cycle Build - /manage_test_case/tree_cycle_build
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     treeCycleBuild({
       token: validToken,
       project_id: validProjectId,

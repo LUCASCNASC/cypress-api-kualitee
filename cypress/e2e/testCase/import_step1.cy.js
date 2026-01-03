@@ -71,7 +71,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha sem arquivo CSV', () => {
+  it('Status Code is 400, 422, 404', () => {
     cy.request({
       method: 'POST',
       url: `${BASE_URL}/${PATH_API}`,
@@ -86,7 +86,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha com arquivo CSV vazio', () => {
+  it('Status Code is 400, 422, 415', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
     formData.append('token', validToken);
@@ -143,7 +143,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Headers devem conter CORS e content-type', () => {
+  it('Status Code is 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -165,7 +165,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Falha após múltiplos uploads rápidos (rate limit)', () => {
+  it('Status Code is 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -190,7 +190,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Permite uploads CSV idênticos rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);

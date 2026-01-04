@@ -99,7 +99,7 @@ describe('Test Scenarios in Builds - /test_scenario/tree_build_ts', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeBuildTS({
       token: validToken,
       project_id: validProjectId,

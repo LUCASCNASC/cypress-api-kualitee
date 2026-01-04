@@ -27,7 +27,7 @@ describe('Test Case Execution Tree Test Cases - /test_case_execution/tree_test_c
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     treeTestCases({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });

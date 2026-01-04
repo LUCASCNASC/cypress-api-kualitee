@@ -93,7 +93,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Permite deletar o mesmo cenário rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

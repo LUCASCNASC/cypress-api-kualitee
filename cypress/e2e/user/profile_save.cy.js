@@ -12,7 +12,6 @@ describe('Users Profile Save - /users/profile_save', () => {
   });
 
   it('Status Code is 200, 400, 422', () => {
-    // Cria um arquivo Blob para teste
     const file = new Blob(['teste de upload'], { type: 'text/plain' });
     saveProfile({ ...validBody, profile_username: 'attachuser' + Date.now(), email: `file${Date.now()}@test.com` }, file).then(response => {
       expect([200, 400, 422]).to.include(response.status);

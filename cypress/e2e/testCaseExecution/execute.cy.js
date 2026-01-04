@@ -61,7 +61,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem status', () => {
+  it('Status Code is 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -76,7 +76,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem tc_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -91,7 +91,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem testscenario_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -106,7 +106,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -136,7 +136,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Falha sem execute', () => {
+  it('Status Code is 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

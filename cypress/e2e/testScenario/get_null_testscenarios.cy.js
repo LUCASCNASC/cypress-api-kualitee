@@ -100,7 +100,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

@@ -27,7 +27,7 @@ describe('Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  it('Atualiza cenário de teste com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -129,7 +129,7 @@ describe('Test Scenario Update - /test_scenario/update', () => {
     });
   });
 
-  it('Permite atualizar o mesmo cenário rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     updateTestScenario({
       token: validToken,
       project_id: validProjectId,

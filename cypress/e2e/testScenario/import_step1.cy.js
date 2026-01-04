@@ -45,7 +45,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Falha com arquivo CSV inválido', () => {
+  it('Status Code is 400, 415, 422', () => {
     cy.fixture('invalid.txt', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -142,7 +142,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',

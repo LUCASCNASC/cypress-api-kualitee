@@ -45,7 +45,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Falha sem tc_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -56,7 +56,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Falha sem bug_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -67,7 +67,7 @@ describe('Test Case Execution Delete Attach Defects - /test_case_execution/delet
     });
   });
 
-  it('Falha sem exec_bug_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     deleteAttachDefects({
       token: validToken,
       project_id: validProjectId,

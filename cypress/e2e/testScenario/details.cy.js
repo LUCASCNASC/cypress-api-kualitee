@@ -86,7 +86,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

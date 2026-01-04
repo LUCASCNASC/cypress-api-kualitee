@@ -18,7 +18,7 @@ describe('Test Case Execution List - /test_case_execution/list', () => {
     });
   });
 
-  it('Retorna lista corretamente com todos os campos opcionais preenchidos', () => {
+  it('Status Code is 200', () => {
     execList({
       token: validToken,
       project_id: validProjectId,

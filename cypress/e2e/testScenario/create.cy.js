@@ -25,7 +25,7 @@ describe('Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  it('Cria cenário de teste com todos os campos preenchidos', () => {
+  it('Status Code is 200', () => {
     createTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -110,7 +110,7 @@ describe('Test Scenario Create - /test_scenario/create', () => {
     });
   });
 
-  it('Permite criar o mesmo cenário de teste rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     createTestScenario({
       token: validToken,
       project_id: validProjectId,

@@ -56,7 +56,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha sem tc_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha sem testscenario_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -84,7 +84,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -98,7 +98,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Falha sem execution_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,

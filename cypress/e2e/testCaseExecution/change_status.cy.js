@@ -47,7 +47,7 @@ describe('Test Case Execution Change Status - /test_case_execution/change_status
     });
   });
 
-  it('Falha sem status', () => {
+  it('Status Code is 400, 422', () => {
     changeStatus({
       token: validToken,
       project_id: validProjectId,

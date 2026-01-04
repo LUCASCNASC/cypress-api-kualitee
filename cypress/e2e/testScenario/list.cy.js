@@ -22,7 +22,7 @@ describe('Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  it('Retorna lista de cenários de teste com todos os parâmetros', () => {
+  it('Status Code is 200', () => {
     testScenarioList({
       token: validToken,
       project_id: validProjectId,
@@ -114,7 +114,7 @@ describe('Test Scenario List - /test_scenario/list', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testScenarioList({
       token: validToken,
       project_id: validProjectId

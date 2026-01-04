@@ -23,7 +23,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Atualiza em massa múltiplos cenários de teste com todos os campos', () => {
+  it('Status Code is 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -112,7 +112,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

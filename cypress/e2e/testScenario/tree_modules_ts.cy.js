@@ -99,7 +99,7 @@ describe('Tree TestScenarios In Modules - /test_scenario/tree_modules_ts', () =>
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     treeModulesTS({
       token: validToken,
       project_id: validProjectId,

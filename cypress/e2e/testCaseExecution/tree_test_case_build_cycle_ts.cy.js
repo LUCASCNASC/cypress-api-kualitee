@@ -41,7 +41,7 @@ describe('Test Case Execution Tree Test Case Build Cycle TS - /test_case_executi
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     treeTestCaseBuildCycleTS({
       token: validToken,
       project_id: validProjectId,
@@ -51,7 +51,7 @@ describe('Test Case Execution Tree Test Case Build Cycle TS - /test_case_executi
     });
   });
 
-  it('Falha sem test_scenario_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     treeTestCaseBuildCycleTS({
       token: validToken,
       project_id: validProjectId,

@@ -64,7 +64,7 @@ describe('Users Delete - /users/delete', () => {
     });
   });
 
-  it('Falha com user_id inexistente', () => {
+  it('Status Code is 404, 422, 400', () => {
     deleteUser({ token: validToken, 'user_id[0]': 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });

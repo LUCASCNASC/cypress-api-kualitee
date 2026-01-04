@@ -52,7 +52,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,

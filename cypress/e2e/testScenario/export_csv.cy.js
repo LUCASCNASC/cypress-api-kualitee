@@ -79,7 +79,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,

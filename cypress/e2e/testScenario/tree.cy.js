@@ -91,7 +91,7 @@ describe('Test Scenario Tree - /test_scenario/tree', () => {
     });
   });
 
-  it('Permite chamadas idênticas rapidamente', () => {
+  it('Status Code is 200, 400, 401, 409', () => {
     testScenarioTree({
       token: validToken,
       project_id: validProjectId

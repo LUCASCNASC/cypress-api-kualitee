@@ -53,7 +53,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem tc_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -66,7 +66,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem testscenario_id', () => {
+  it('Status Code is 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -79,7 +79,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem cycle_id', () => {
+  it('Status Code is 400, 422', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -105,7 +105,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Falha sem offset_test_executions', () => {
+  it('Status Code is 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,

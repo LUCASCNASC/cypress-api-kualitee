@@ -5,7 +5,7 @@ const validMetaId = 123;
 
 describe('Project Metas Delete - /project/metas/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -13,49 +13,49 @@ describe('Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     metasDelete({ meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     metasDelete({ token: 'token_invalido', meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 401, 403', () => {
+  it('Status Code: 401, 403', () => {
     metasDelete({ token: 'token_expirado', meta_id: validMetaId }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     metasDelete({ token: null, meta_id: validMetaId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     metasDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     metasDelete({ token: validToken, meta_id: 999999 }).then(response => {
       expect([404, 422, 400]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     metasDelete({ token: validToken, meta_id: validMetaId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -74,14 +74,14 @@ describe('Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     metasDelete({ token: validToken, meta_id: validMetaId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasDelete({ token: validToken, meta_id: validMetaId })
     );
@@ -91,7 +91,7 @@ describe('Project Metas Delete - /project/metas/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     metasDelete({ token: validToken, meta_id: validMetaId })
       .then(() => metasDelete({ token: validToken, meta_id: validMetaId }))
       .then((response) => {

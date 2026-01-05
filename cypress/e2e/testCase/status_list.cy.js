@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('Test Case Status List - /test_case/status_list', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId
@@ -17,7 +17,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     testCaseStatusList({
       project_id: validProjectId
     }).then(response => {
@@ -25,7 +25,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     testCaseStatusList({
       token: validToken
     }).then(response => {
@@ -33,7 +33,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 200, 400', () => {
+  it('Status Code: 200, 400', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId,
@@ -53,7 +53,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId
@@ -63,7 +63,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
       project_id: validProjectId
@@ -75,7 +75,7 @@ describe('Test Case Status List - /test_case/status_list', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     testCaseStatusList({
       token: validToken,
       project_id: validProjectId

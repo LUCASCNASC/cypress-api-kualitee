@@ -7,7 +7,7 @@ const validImageId = 456;
 
 describe('Requirements Attachment Delete - /requirements/attachment/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     requirementsAttachmentDelete({
       project_id: validProjectId,
       image_id: validImageId
@@ -29,7 +29,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -67,7 +67,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,
@@ -78,7 +78,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsAttachmentDelete({
         token: validToken,
@@ -92,7 +92,7 @@ describe('Requirements Attachment Delete - /requirements/attachment/delete', () 
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     requirementsAttachmentDelete({
       token: validToken,
       project_id: validProjectId,

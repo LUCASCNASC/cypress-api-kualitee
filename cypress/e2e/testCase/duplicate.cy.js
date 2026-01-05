@@ -7,7 +7,7 @@ const validTestCaseName = 'TC001';
 
 describe('Duplicate Test Case - /test_case/duplicate', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     duplicateTestCase({
       project_id: validProjectId,
       tc_name: validTestCaseName
@@ -29,7 +29,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -67,7 +67,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     duplicateTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -78,7 +78,7 @@ describe('Duplicate Test Case - /test_case/duplicate', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       duplicateTestCase({
         token: validToken,

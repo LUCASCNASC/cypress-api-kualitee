@@ -7,7 +7,7 @@ const validIdArray = [123];
 
 describe('Roles Delete - /roles/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdArray[0] }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -21,25 +21,25 @@ describe('Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     rolesDelete({ 'id[0]': validIdSingle }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesDelete({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -58,14 +58,14 @@ describe('Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesDelete({ token: validToken, 'id[0]': validIdSingle })
     );
@@ -75,7 +75,7 @@ describe('Roles Delete - /roles/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     rolesDelete({ token: validToken, 'id[0]': validIdSingle })
       .then(() => rolesDelete({ token: validToken, 'id[0]': validIdSingle }))
       .then((response) => {

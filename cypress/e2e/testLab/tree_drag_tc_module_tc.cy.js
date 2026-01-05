@@ -7,7 +7,7 @@ const validTestScenarioId = 1234;
 
 describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case/tree_drag_tc_module_ts', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -19,7 +19,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     treeDragTcModuleTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -28,7 +28,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,7 +66,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,
@@ -77,7 +77,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDragTcModuleTs({
         token: validToken,
@@ -91,7 +91,7 @@ describe('Manage Test Case Tree Drag TC Module Test Scenario - /manage_test_case
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     treeDragTcModuleTs({
       token: validToken,
       project_id: validProjectId,

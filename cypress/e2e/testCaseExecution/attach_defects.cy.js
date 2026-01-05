@@ -11,7 +11,7 @@ const validDefects = [555, 556];
 
 describe('Test Case Execution Attach Defects - /test_case_execution/attach_defects', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -28,7 +28,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     attachDefects({
       project_id: validProjectId,
       tc_id: validTcId,
@@ -42,7 +42,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       tc_id: validTcId,
@@ -56,7 +56,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -84,7 +84,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -98,7 +98,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -112,7 +112,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -128,7 +128,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -165,7 +165,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,
@@ -181,7 +181,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       attachDefects({
         token: validToken,
@@ -200,7 +200,7 @@ describe('Test Case Execution Attach Defects - /test_case_execution/attach_defec
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     attachDefects({
       token: validToken,
       project_id: validProjectId,

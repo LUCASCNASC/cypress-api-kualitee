@@ -7,7 +7,7 @@ const validTestcaseIds = [1001, 1002];
 
 describe('Test Case Copy - /test_case/copy_test_case', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -34,7 +34,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     testCaseCopy({
       project_id: validProjectId,
       'testcase_id[0]': validTestcaseIds[0]
@@ -43,7 +43,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     testCaseCopy({
       token: validToken,
       'testcase_id[0]': validTestcaseIds[0]
@@ -52,7 +52,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId
@@ -61,7 +61,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 200, 400', () => {
+  it('Status Code: 200, 400', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,
@@ -72,7 +72,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -99,7 +99,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,
@@ -110,7 +110,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -123,7 +123,7 @@ describe('Test Case Copy - /test_case/copy_test_case', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     testCaseCopy({
       token: validToken,
       project_id: validProjectId,

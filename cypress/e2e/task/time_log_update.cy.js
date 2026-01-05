@@ -8,7 +8,7 @@ const validTimeId = 1000;
 
 describe('Task Time Log Update - /task/time/log/update', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -28,7 +28,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     taskTimeLogUpdate({
       project_id: validProjectId,
       id: validTaskId,
@@ -45,7 +45,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       id: validTaskId,
@@ -62,7 +62,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -79,7 +79,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -96,7 +96,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -113,7 +113,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -132,7 +132,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -175,7 +175,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -194,7 +194,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskTimeLogUpdate({
         token: validToken,
@@ -216,7 +216,7 @@ describe('Task Time Log Update - /task/time/log/update', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     taskTimeLogUpdate({
       token: validToken,
       project_id: validProjectId,

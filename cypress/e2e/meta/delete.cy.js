@@ -6,7 +6,7 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('Metas Delete - /metas/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -14,44 +14,44 @@ describe('Metas Delete - /metas/delete', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0] }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     metasDelete({ project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     metasDelete({ token: validToken, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[1]': validIds[1] }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200, 400, 422, 404', () => {
+  it('Status Code: 200, 400, 422, 404', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0] }).then(response => {
       // Se o endpoint permitir apenas um id, pode passar, senão deve falhar
       expect([200, 400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1], extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -70,14 +70,14 @@ describe('Metas Delete - /metas/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] })
     );
@@ -87,7 +87,7 @@ describe('Metas Delete - /metas/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] })
       .then(() => metasDelete({ token: validToken, project_id: validProjectId, 'ids[0]': validIds[0], 'ids[1]': validIds[1] }))
       .then((response) => {

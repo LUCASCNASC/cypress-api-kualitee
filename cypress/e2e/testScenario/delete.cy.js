@@ -8,7 +8,7 @@ const validTestScenarioId = 99;
 
 describe('Test Scenario Delete - /test_scenario/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -21,7 +21,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     deleteTestScenario({
       project_id: validProjectId,
       'test_scenario_id[0]': validTestScenarioId
@@ -30,7 +30,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -41,7 +41,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -68,7 +68,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -79,7 +79,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       deleteTestScenario({
         token: validToken,
@@ -93,7 +93,7 @@ describe('Test Scenario Delete - /test_scenario/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     deleteTestScenario({
       token: validToken,
       project_id: validProjectId,

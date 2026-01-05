@@ -6,7 +6,7 @@ const validIds = Cypress.env('VALID_IDS');
 
 describe('Test Case Delete - /test_case/delete', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -19,7 +19,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     const body = {
       token: validToken,
       project_id: validProjectId
@@ -33,7 +33,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     testCaseDelete({
       project_id: validProjectId,
       'id[0]': validIds[0]
@@ -42,7 +42,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     testCaseDelete({
       token: validToken,
       'id[0]': validIds[0]
@@ -51,7 +51,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId
@@ -60,7 +60,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -71,7 +71,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -98,7 +98,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,
@@ -109,7 +109,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const body = {
       token: validToken,
       project_id: validProjectId,
@@ -122,7 +122,7 @@ describe('Test Case Delete - /test_case/delete', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     testCaseDelete({
       token: validToken,
       project_id: validProjectId,

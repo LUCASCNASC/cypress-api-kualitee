@@ -7,7 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modules_ts', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -21,7 +21,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     treeBuildModulesTS({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -31,7 +31,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +43,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -72,7 +72,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,
@@ -84,7 +84,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeBuildModulesTS({
         token: validToken,
@@ -99,7 +99,7 @@ describe('Test Scenarios Tree Build Modules TS - /test_scenario/tree_build_modul
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     treeBuildModulesTS({
       token: validToken,
       project_id: validProjectId,

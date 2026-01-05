@@ -5,7 +5,7 @@ const validId = Cypress.env('VALID_ID');
 
 describe('Roles Edit Permission - /roles/edit/permission', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -13,25 +13,25 @@ describe('Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     rolesEditPermission({ id: validId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesEditPermission({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesEditPermission({ token: validToken, id: validId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 200, 400, 415', () => {
+  it('Status Code: 200, 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -50,14 +50,14 @@ describe('Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     rolesEditPermission({ token: validToken, id: validId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesEditPermission({ token: validToken, id: validId })
     );
@@ -67,7 +67,7 @@ describe('Roles Edit Permission - /roles/edit/permission', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     rolesEditPermission({ token: validToken, id: validId })
       .then(() => rolesEditPermission({ token: validToken, id: validId }))
       .then((response) => {

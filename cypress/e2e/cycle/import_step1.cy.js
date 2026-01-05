@@ -6,7 +6,7 @@ const validCsvFile = 'cypress/fixtures/defects_import.csv';
 
 describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -20,7 +20,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     defectsImportStep1(
       {
         project_id: validProjectId
@@ -31,7 +31,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     defectsImportStep1(
       {
         token: validToken
@@ -42,7 +42,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -54,7 +54,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -67,7 +67,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -95,7 +95,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
   
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     defectsImportStep1(
       {
         token: validToken,
@@ -108,7 +108,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsImportStep1(
         {
@@ -124,7 +124,7 @@ describe('Cycle - Defects Import Step 1 - /defects/import/step1', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     defectsImportStep1(
       {
         token: validToken,

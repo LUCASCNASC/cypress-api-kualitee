@@ -11,7 +11,7 @@ const validCustomFieldDesc = 'Descrição atualizada do campo customizado';
 
 describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -25,7 +25,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -39,7 +39,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     customfieldsUpdate({
       custom_field_id: validCustomFieldId,
       'project_id[0]': validProjectId,
@@ -50,7 +50,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     customfieldsUpdate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -61,7 +61,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -72,7 +72,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -83,7 +83,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -94,7 +94,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -107,7 +107,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -138,7 +138,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
   
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,
@@ -151,7 +151,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsUpdate({
         token: validToken,
@@ -167,7 +167,7 @@ describe('Custom Fields - Custom Fields Update - /customfields/update', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     customfieldsUpdate({
       token: validToken,
       custom_field_id: validCustomFieldId,

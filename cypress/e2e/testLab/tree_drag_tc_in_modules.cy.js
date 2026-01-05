@@ -6,7 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag_tc_in_modules', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,
@@ -18,7 +18,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     treeDragTcInModules({
       project_id: validProjectId,
       module_id: validModuleId
@@ -27,7 +27,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,
@@ -38,7 +38,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +65,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,
@@ -76,7 +76,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDragTcInModules({
         token: validToken,
@@ -90,7 +90,7 @@ describe('Manage Test Case Tree Drag TC In Modules - /manage_test_case/tree_drag
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     treeDragTcInModules({
       token: validToken,
       project_id: validProjectId,

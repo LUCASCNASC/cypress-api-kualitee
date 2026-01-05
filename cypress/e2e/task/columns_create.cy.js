@@ -7,7 +7,7 @@ const validColumnName = 'Nova Coluna';
 
 describe('Task Columns Create - /task/columns/create', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -15,31 +15,31 @@ describe('Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     taskColumnsCreate({ project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskColumnsCreate({ token: validToken, column_name: validColumnName }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -58,14 +58,14 @@ describe('Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName })
     );
@@ -75,7 +75,7 @@ describe('Task Columns Create - /task/columns/create', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName })
       .then(() => taskColumnsCreate({ token: validToken, project_id: validProjectId, column_name: validColumnName }))
       .then((response) => {

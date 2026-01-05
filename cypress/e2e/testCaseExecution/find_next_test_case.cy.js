@@ -11,7 +11,7 @@ const validOffsetTestExecutions = 0;
 
 describe('Test Case Execution Find Next Test Case - /test_case_execution/find_next_test_case', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -27,7 +27,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     findNextTestCase({
       project_id: validProjectId,
       tc_id: validTcId,
@@ -40,7 +40,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       tc_id: validTcId,
@@ -53,7 +53,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -66,7 +66,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -79,7 +79,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -92,7 +92,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -105,7 +105,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -118,7 +118,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -133,7 +133,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -168,7 +168,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,
@@ -183,7 +183,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       findNextTestCase({
         token: validToken,
@@ -201,7 +201,7 @@ describe('Test Case Execution Find Next Test Case - /test_case_execution/find_ne
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     findNextTestCase({
       token: validToken,
       project_id: validProjectId,

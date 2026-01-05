@@ -9,7 +9,7 @@ const validCanDelete = true;
 
 describe('Roles Update - /roles/update', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -22,7 +22,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -34,7 +34,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -46,7 +46,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     rolesUpdate({
       id: validId,
       role_name: validRoleName,
@@ -56,7 +56,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       role_name: validRoleName,
@@ -66,7 +66,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -76,7 +76,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -86,7 +86,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -99,7 +99,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -128,7 +128,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     rolesUpdate({
       token: validToken,
       id: validId,
@@ -140,7 +140,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesUpdate({
         token: validToken,
@@ -155,7 +155,7 @@ describe('Roles Update - /roles/update', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     rolesUpdate({
       token: validToken,
       id: validId,

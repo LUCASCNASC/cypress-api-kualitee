@@ -7,7 +7,7 @@ const validRequirementId = 101;
 
 describe('Requirements Details - /requirements/details', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     getRequirementDetails({
       project_id: validProjectId,
       requirement_id: validRequirementId
@@ -29,7 +29,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 200, 400', () => {
+  it('Status Code: 200, 400', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -67,7 +67,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,
@@ -78,7 +78,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       getRequirementDetails({
         token: validToken,
@@ -92,7 +92,7 @@ describe('Requirements Details - /requirements/details', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     getRequirementDetails({
       token: validToken,
       project_id: validProjectId,

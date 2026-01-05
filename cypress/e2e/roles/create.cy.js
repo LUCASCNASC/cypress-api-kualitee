@@ -7,7 +7,7 @@ const validCanDelete = true;
 
 describe('Roles Create - /roles/create', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -15,43 +15,43 @@ describe('Roles Create - /roles/create', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: false }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     rolesCreate({ role_name: validRoleName, description: validDescription }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesCreate({ token: validToken, description: validDescription }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     rolesCreate({ token: validToken, role_name: validRoleName }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription, can_delete: true, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -70,14 +70,14 @@ describe('Roles Create - /roles/create', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
     );
@@ -87,7 +87,7 @@ describe('Roles Create - /roles/create', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription })
       .then(() => rolesCreate({ token: validToken, role_name: validRoleName, description: validDescription }))
       .then((response) => {

@@ -13,7 +13,7 @@ const validExecute = 'yes';
 
 describe('Test Case Execution Execute - /test_case_execution/execute', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -31,7 +31,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     executeTest({
       project_id: validProjectId,
       status: validStatus,
@@ -46,7 +46,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     executeTest({
       token: validToken,
       status: validStatus,
@@ -61,7 +61,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -76,7 +76,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -91,7 +91,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -106,7 +106,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -121,7 +121,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422, 404', () => {
+  it('Status Code: 400, 422, 404', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -136,7 +136,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 422', () => {
+  it('Status Code: 400, 422', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -151,7 +151,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -168,7 +168,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -207,7 +207,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,
@@ -224,7 +224,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       executeTest({
         token: validToken,
@@ -244,7 +244,7 @@ describe('Test Case Execution Execute - /test_case_execution/execute', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     executeTest({
       token: validToken,
       project_id: validProjectId,

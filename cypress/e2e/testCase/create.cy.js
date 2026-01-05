@@ -10,7 +10,7 @@ const validRequirementId = 101;
 
 describe('Test Case Create - /test_case/create', () => {
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -27,7 +27,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -57,7 +57,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 400, 401, 403', () => {
+  it('Status Code: 400, 401, 403', () => {
     testCaseCreate({
       project_id: validProjectId,
       t_name: 'Nome',
@@ -70,7 +70,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 200', () => {
+  it('Status Code: 200', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -85,7 +85,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 400, 415', () => {
+  it('Status Code: 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -120,7 +120,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,
@@ -135,7 +135,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 429', () => {
+  it('Status Code: 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseCreate({
         token: validToken,
@@ -153,7 +153,7 @@ describe('Test Case Create - /test_case/create', () => {
     });
   });
 
-  it('Status Code is 200, 400, 401, 409', () => {
+  it('Status Code: 200, 400, 401, 409', () => {
     testCaseCreate({
       token: validToken,
       project_id: validProjectId,

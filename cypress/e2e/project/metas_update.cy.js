@@ -7,7 +7,7 @@ const validMetaId = 123;
 
 describe('Project Metas Update - /project/metas/update', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,
@@ -20,7 +20,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasUpdate({
       meta_key: validMetaKey,
       meta_value: validMetaValue,
@@ -30,7 +30,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasUpdate({
       token: 'token_invalido',
       meta_key: validMetaKey,
@@ -41,7 +41,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     metasUpdate({
       token: 'token_expirado',
       meta_key: validMetaKey,
@@ -52,7 +52,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasUpdate({
       token: null,
       meta_key: validMetaKey,
@@ -63,7 +63,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,
@@ -74,7 +74,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,
@@ -86,7 +86,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -115,7 +115,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,
@@ -127,7 +127,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasUpdate({
         token: validToken,
@@ -142,7 +142,7 @@ describe('Project Metas Update - /project/metas/update', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     metasUpdate({
       token: validToken,
       meta_key: validMetaKey,

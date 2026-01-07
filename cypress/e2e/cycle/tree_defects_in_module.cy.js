@@ -6,7 +6,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_module', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -18,7 +18,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     treeDefectsInModule({
       project_id: validProjectId,
       module_id: validModuleId
@@ -27,7 +27,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -38,7 +38,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -65,7 +65,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
   
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,
@@ -76,7 +76,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeDefectsInModule({
         token: validToken,
@@ -90,7 +90,7 @@ describe('Cycle - Defects Tree Defects In Module - /defects/tree_defects_in_modu
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     treeDefectsInModule({
       token: validToken,
       project_id: validProjectId,

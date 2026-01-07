@@ -7,7 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('Get Null Modules - /module/get_null_modules', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     getNullModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -30,7 +30,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     getNullModules({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -41,7 +41,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     getNullModules({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -52,7 +52,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     getNullModules({
       token: null,
       project_id: validProjectId,
@@ -63,7 +63,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -75,7 +75,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -104,7 +104,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,
@@ -116,7 +116,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       getNullModules({
         token: validToken,
@@ -131,7 +131,7 @@ describe('Get Null Modules - /module/get_null_modules', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     getNullModules({
       token: validToken,
       project_id: validProjectId,

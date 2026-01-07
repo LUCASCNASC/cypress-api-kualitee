@@ -5,7 +5,7 @@ const validProjectId = Cypress.env('VALID_PROJECT_ID');
 
 describe('Task List - /task/list', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     taskList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.exist;
@@ -13,25 +13,25 @@ describe('Task List - /task/list', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     taskList({ project_id: validProjectId }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     taskList({ token: validToken }).then(response => {
       expect([400, 422, 404]).to.include(response.status);
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     taskList({ token: validToken, project_id: validProjectId, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -50,14 +50,14 @@ describe('Task List - /task/list', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     taskList({ token: validToken, project_id: validProjectId }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       taskList({ token: validToken, project_id: validProjectId })
     );
@@ -67,7 +67,7 @@ describe('Task List - /task/list', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     taskList({ token: validToken, project_id: validProjectId })
       .then(() => taskList({ token: validToken, project_id: validProjectId }))
       .then((response) => {

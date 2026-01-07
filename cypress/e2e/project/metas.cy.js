@@ -5,7 +5,7 @@ const validMetaType = 'exemplo';
 
 describe('Project Metas - /project/metas', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.an('object');
@@ -13,25 +13,25 @@ describe('Project Metas - /project/metas', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectMetas({ meta_type: validMetaType }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectMetas({ token: 'token_invalido', meta_type: validMetaType }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     projectMetas({ token: 'token_expirado', meta_type: validMetaType }).then(response => {
       expect([401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectMetas({ token: null, meta_type: validMetaType }).then(response => {
       expect([400, 401, 403]).to.include(response.status);
     });
@@ -43,13 +43,13 @@ describe('Project Metas - /project/metas', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     projectMetas({ token: validToken, meta_type: validMetaType, extra: 'foo' }).then(response => {
       expect(response.status).to.eq(200);
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -68,14 +68,14 @@ describe('Project Metas - /project/metas', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     projectMetas({ token: validToken, meta_type: validMetaType }).then(response => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       projectMetas({ token: validToken, meta_type: validMetaType })
     );
@@ -85,7 +85,7 @@ describe('Project Metas - /project/metas', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     projectMetas({ token: validToken, meta_type: validMetaType })
       .then(() => projectMetas({ token: validToken, meta_type: validMetaType }))
       .then((response) => {

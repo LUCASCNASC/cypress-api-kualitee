@@ -10,7 +10,7 @@ const validCustomFieldDesc = 'Descrição do campo customizado';
 
 describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -23,7 +23,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -36,7 +36,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     customfieldsCreate({
       'project_id[0]': validProjectId,
       custom_field_name: validCustomFieldName,
@@ -46,7 +46,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       custom_field_name: validCustomFieldName,
@@ -56,7 +56,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -66,7 +66,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -76,7 +76,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -88,7 +88,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -117,7 +117,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
   
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,
@@ -129,7 +129,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
   
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       customfieldsCreate({
         token: validToken,
@@ -144,7 +144,7 @@ describe('Custom Fields - Custom Fields Create - /customfields/create', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     customfieldsCreate({
       token: validToken,
       'project_id[0]': validProjectId,

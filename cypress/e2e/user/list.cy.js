@@ -3,7 +3,7 @@ const validToken = Cypress.env('VALID_TOKEN');
 
 describe('Users List - /users/list', () => {
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     listUsers({}).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -11,7 +11,7 @@ describe('Users List - /users/list', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     listUsers({ token: 'token_invalido' }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -19,7 +19,7 @@ describe('Users List - /users/list', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     listUsers({ token: 'token_expirado' }).then((response) => {
       expect([401, 403]).to.include(response.status);
       expect(response.body).to.have.property('success', false);
@@ -27,32 +27,32 @@ describe('Users List - /users/list', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     listUsers({ token: null }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     listUsers({ token: validToken, user_status: 0, extra: 'foo' }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('success', true);
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     listUsers({ token: '😀🔥💥', user_status: 0 }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     listUsers({ token: "' OR 1=1 --", user_status: 0 }).then((response) => {
       expect([400, 401, 403]).to.include(response.status);
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -71,14 +71,14 @@ describe('Users List - /users/list', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     listUsers({ token: validToken, user_status: 0 }).then((response) => {
       expect(response.headers).to.have.property('access-control-allow-origin');
       expect(response.headers['content-type']).to.include('application/json');
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() => listUsers({ token: validToken, user_status: 0 }));
     cy.wrap(Promise.all(requests)).then((responses) => {
       const rateLimited = responses.some(r => r.status === 429);
@@ -86,7 +86,7 @@ describe('Users List - /users/list', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     listUsers({ token: validToken, user_status: 0 })
       .then(() => listUsers({ token: validToken, user_status: 0 }))
       .then((response) => {

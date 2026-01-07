@@ -7,7 +7,7 @@ const validCsvPath = 'caminho/para/arquivo.csv';
 
 describe('Requirements Import Step 1 - /requirements/import/step1', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -24,7 +24,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -37,7 +37,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -50,7 +50,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     importStep1({
       token: validToken,
       project_id: validProjectId
@@ -59,7 +59,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422', () => {
+  it('Status Code are 400, 422', () => {
     const blob = Cypress.Blob.binaryStringToBlob('', 'text/csv');
     importStep1({
       token: validToken,
@@ -70,7 +70,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422', () => {
+  it('Status Code are 400, 422', () => {
     const blob = Cypress.Blob.binaryStringToBlob('not,a,csv', 'text/plain');
     importStep1({
       token: validToken,
@@ -81,7 +81,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -96,7 +96,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       cy.request({
@@ -129,7 +129,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       importStep1({
@@ -143,7 +143,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {
@@ -159,7 +159,7 @@ describe('Requirements Import Step 1 - /requirements/import/step1', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     cy.fixture(validCsvPath, 'binary').then(CSVContent => {
       const blob = Cypress.Blob.binaryStringToBlob(CSVContent, 'text/csv');
       const formData = {

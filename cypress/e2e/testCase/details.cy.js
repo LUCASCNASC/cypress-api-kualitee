@@ -7,7 +7,7 @@ const validTcId = 1001;
 
 describe('Test Case Details - /test_case/details', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     testCaseDetails({
       project_id: validProjectId,
       tc_id: validTcId
@@ -29,7 +29,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Status Code: 200, 400', () => {
+  it('Status Code are 200, 400', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,
@@ -51,7 +51,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,
@@ -62,7 +62,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const queries = Array(10).fill(0).map(() => ({
       token: validToken,
       project_id: validProjectId,
@@ -75,7 +75,7 @@ describe('Test Case Details - /test_case/details', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     testCaseDetails({
       token: validToken,
       project_id: validProjectId,

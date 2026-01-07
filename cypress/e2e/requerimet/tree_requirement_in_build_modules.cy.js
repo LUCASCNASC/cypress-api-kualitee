@@ -7,7 +7,7 @@ const validModuleId = Cypress.env('VALID_MODULE_ID');
 
 describe('Requirements Tree Requirement in Build Modules - /requirements/tree_requirement_in_build_modules', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -21,7 +21,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     treeRequirementInBuildModules({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -31,7 +31,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +43,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -72,7 +72,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,
@@ -84,7 +84,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeRequirementInBuildModules({
         token: validToken,
@@ -99,7 +99,7 @@ describe('Requirements Tree Requirement in Build Modules - /requirements/tree_re
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     treeRequirementInBuildModules({
       token: validToken,
       project_id: validProjectId,

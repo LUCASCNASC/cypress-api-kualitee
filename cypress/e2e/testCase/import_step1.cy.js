@@ -7,7 +7,7 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('Import Step 1 - /test_case/import/step1', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -31,7 +31,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('project_id', validProjectId);
@@ -51,7 +51,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -71,7 +71,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     cy.request({
       method: 'POST',
       url: `${BASE_URL}/${PATH_API}`,
@@ -86,7 +86,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 422, 415', () => {
+  it('Status Code are 400, 422, 415', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
     formData.append('token', validToken);
@@ -106,7 +106,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `${BASE_URL}/${PATH_API}`,
@@ -143,7 +143,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -165,7 +165,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);
@@ -190,7 +190,7 @@ describe('Import Step 1 - /test_case/import/step1', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       formData.append('token', validToken);

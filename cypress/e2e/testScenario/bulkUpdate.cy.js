@@ -10,7 +10,7 @@ const validTestScenarioIds = [99, 100];
 
 describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +23,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     bulkUpdateTestScenario({
       project_id: validProjectId,
       'test_scenario_id[0]': validTestScenarioIds[0]
@@ -49,7 +49,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -60,7 +60,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -87,7 +87,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -98,7 +98,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       bulkUpdateTestScenario({
         token: validToken,
@@ -112,7 +112,7 @@ describe('Test Scenario Bulk Update - /test_scenario/bulkupdate', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     bulkUpdateTestScenario({
       token: validToken,
       project_id: validProjectId,

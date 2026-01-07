@@ -10,7 +10,7 @@ const validRequirementId = 101;
 
 describe('Test Case List - /test_case/list', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId
@@ -22,7 +22,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId,
@@ -43,7 +43,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     testCaseList({
       project_id: validProjectId
     }).then(response => {
@@ -51,7 +51,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     testCaseList({
       token: validToken
     }).then(response => {
@@ -59,7 +59,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId,
@@ -69,7 +69,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -94,7 +94,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId
@@ -104,7 +104,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseList({
         token: validToken,
@@ -117,7 +117,7 @@ describe('Test Case List - /test_case/list', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     testCaseList({
       token: validToken,
       project_id: validProjectId

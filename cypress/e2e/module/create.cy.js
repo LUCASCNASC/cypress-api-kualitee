@@ -9,7 +9,7 @@ const validModuleDescription = 'Módulo responsável pelo fluxo de login e auten
 
 describe('Module Create - /module/create', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -23,7 +23,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     moduleCreate({
       project_id: validProjectId,
       module_name: validModuleName,
@@ -34,7 +34,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     moduleCreate({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -46,7 +46,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     moduleCreate({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -58,7 +58,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     moduleCreate({
       token: null,
       project_id: validProjectId,
@@ -70,7 +70,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -83,7 +83,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -114,7 +114,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,
@@ -127,7 +127,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       moduleCreate({
         token: validToken,
@@ -143,7 +143,7 @@ describe('Module Create - /module/create', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     moduleCreate({
       token: validToken,
       project_id: validProjectId,

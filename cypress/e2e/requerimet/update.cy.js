@@ -10,7 +10,7 @@ const validSummary = 'Resumo do requisito';
 
 describe('Requirements Update - /requirements/update', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -26,7 +26,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -41,7 +41,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture('arquivo_teste.txt', 'base64').then(fileContent => {
       requirementsUpdate({
         token: validToken,
@@ -62,7 +62,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     requirementsUpdate({
       project_id: validProjectId,
       id: validRequirementId,
@@ -74,7 +74,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -88,7 +88,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -121,7 +121,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,
@@ -135,7 +135,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       requirementsUpdate({
         token: validToken,
@@ -152,7 +152,7 @@ describe('Requirements Update - /requirements/update', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     requirementsUpdate({
       token: validToken,
       project_id: validProjectId,

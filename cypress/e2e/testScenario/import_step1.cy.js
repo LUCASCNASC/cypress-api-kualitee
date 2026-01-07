@@ -7,7 +7,7 @@ const validCsvFilePath = 'cypress/fixtures/test_scenarios_import.csv';
 
 describe('Import Step One - /test_scenario/import/step1', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -28,7 +28,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -45,7 +45,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 400, 415, 422', () => {
+  it('Status Code are 400, 415, 422', () => {
     cy.fixture('invalid.txt', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -63,7 +63,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -101,7 +101,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',
@@ -120,7 +120,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       const requests = Array(10).fill(0).map(() =>
         cy.form_request(
@@ -142,7 +142,7 @@ describe('Import Step One - /test_scenario/import/step1', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     cy.fixture('test_scenarios_import.csv', 'base64').then(fileContent => {
       cy.form_request(
         'POST',

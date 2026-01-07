@@ -9,7 +9,7 @@ const validCycleId = 1001;
 
 describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_testcase_cycle_build', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeTestcaseCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -22,7 +22,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     treeTestcaseCycleBuild({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -32,7 +32,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeTestcaseCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -44,7 +44,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -73,7 +73,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     treeTestcaseCycleBuild({
       token: validToken,
       project_id: validProjectId,
@@ -85,7 +85,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestcaseCycleBuild({
         token: validToken,
@@ -100,7 +100,7 @@ describe('Manage Test Case Tree Testcase Cycle Build - /manage_test_case/tree_te
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     treeTestcaseCycleBuild({
       token: validToken,
       project_id: validProjectId,

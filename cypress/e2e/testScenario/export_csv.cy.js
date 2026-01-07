@@ -7,7 +7,7 @@ const validExportTypes = ['CSV', 'Excel', 'Word'];
 
 describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     exportTestScenario({
       project_id: validProjectId,
       export_type: 'CSV'
@@ -16,7 +16,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -27,7 +27,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -54,7 +54,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,
@@ -65,7 +65,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       exportTestScenario({
         token: validToken,
@@ -79,7 +79,7 @@ describe('Test Scenario Export CSV - /test_scenario/export_csv', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     exportTestScenario({
       token: validToken,
       project_id: validProjectId,

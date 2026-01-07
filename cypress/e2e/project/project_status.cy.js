@@ -7,7 +7,7 @@ const validProjectId1 = 78;
 
 describe('Project Status - /project/project_status', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -20,7 +20,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectStatus({
       project_status: validProjectStatus,
       'project_id[0]': validProjectId0,
@@ -30,7 +30,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectStatus({
       token: 'token_invalido',
       project_status: validProjectStatus,
@@ -41,7 +41,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     projectStatus({
       token: 'token_expirado',
       project_status: validProjectStatus,
@@ -52,7 +52,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     projectStatus({
       token: null,
       project_status: validProjectStatus,
@@ -64,7 +64,7 @@ describe('Project Status - /project/project_status', () => {
   });
 
 
-  it('Status Code: 400, 422', () => {
+  it('Status Code are 400, 422', () => {
     projectStatus({
       token: validToken,
       project_status: '',
@@ -75,7 +75,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -87,7 +87,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -110,7 +110,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,
@@ -122,7 +122,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       projectStatus({
         token: validToken,
@@ -137,7 +137,7 @@ describe('Project Status - /project/project_status', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     projectStatus({
       token: validToken,
       project_status: validProjectStatus,

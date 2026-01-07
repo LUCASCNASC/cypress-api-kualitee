@@ -8,7 +8,7 @@ const validCsv = 'fixtures/valid_test_cases.csv';
 
 describe('Import Step 2 - /test_case/import/step2', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -30,7 +30,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ token: undefined });
@@ -49,7 +49,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 400, 401, 404', () => {
+  it('Status Code are 400, 401, 404', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody({ 'db_columns[2]': 'xxxx' });
@@ -67,7 +67,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 400, 422, 415', () => {
+  it('Status Code are 400, 422, 415', () => {
     const emptyBlob = new Blob([''], { type: 'text/csv' });
     const formData = new FormData();
     const body = buildBody();
@@ -84,7 +84,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -116,7 +116,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -136,7 +136,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();
@@ -159,7 +159,7 @@ describe('Import Step 2 - /test_case/import/step2', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     cy.fixture(validCsv, 'binary').then(Cypress.Blob.binaryStringToBlob).then(blob => {
       const formData = new FormData();
       const body = buildBody();

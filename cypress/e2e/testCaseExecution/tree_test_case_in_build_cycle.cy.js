@@ -9,7 +9,7 @@ const validCycleId = 1001;
 
 describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_execution/tree_test_case_in_build_cycle', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -22,7 +22,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     treeTestCaseInBuildCycle({
       project_id: validProjectId,
       build_id: validBuildId,
@@ -32,7 +32,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       build_id: validBuildId,
@@ -42,7 +42,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -52,7 +52,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 400, 422', () => {
+  it('Status Code are 400, 422', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -62,7 +62,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -74,7 +74,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -103,7 +103,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,
@@ -115,7 +115,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeTestCaseInBuildCycle({
         token: validToken,
@@ -130,7 +130,7 @@ describe('Test Case Execution Tree Test Case in Build Cycle - /test_case_executi
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     treeTestCaseInBuildCycle({
       token: validToken,
       project_id: validProjectId,

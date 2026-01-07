@@ -6,7 +6,7 @@ const validBuildId = Cypress.env('VALID_BUILD_ID');
 
 describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -19,7 +19,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     getNullTestScenarios({
       project_id: validProjectId,
       build_id: validBuildId
@@ -28,7 +28,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     getNullTestScenarios({
       token: validToken,
       build_id: validBuildId
@@ -37,7 +37,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -48,7 +48,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -75,7 +75,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,
@@ -86,7 +86,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       getNullTestScenarios({
         token: validToken,
@@ -100,7 +100,7 @@ describe('Get Null TestScenario - /test_scenario/get_null_testscenarios', () => 
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     getNullTestScenarios({
       token: validToken,
       project_id: validProjectId,

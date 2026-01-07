@@ -7,7 +7,7 @@ const validTestScenarioId = 99;
 
 describe('Test Scenario Detail - /test_scenario/details', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     getTestScenarioDetails({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId,
@@ -29,7 +29,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Status Code: 200, 400 string', () => {
+  it('Status Code are 200, 400 string', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -61,7 +61,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,
@@ -72,7 +72,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       getTestScenarioDetails({
         token: validToken,
@@ -86,7 +86,7 @@ describe('Test Scenario Detail - /test_scenario/details', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     getTestScenarioDetails({
       token: validToken,
       project_id: validProjectId,

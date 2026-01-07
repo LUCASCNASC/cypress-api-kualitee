@@ -6,7 +6,7 @@ const validMetaValue = 'meta_value_exemplo';
 
 describe('Project Metas Create - /project/metas/create', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -18,7 +18,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasCreate({
       meta_key: validMetaKey,
       meta_value: validMetaValue
@@ -27,7 +27,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasCreate({
       token: 'token_invalido',
       meta_key: validMetaKey,
@@ -37,7 +37,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     metasCreate({
       token: 'token_expirado',
       meta_key: validMetaKey,
@@ -47,7 +47,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     metasCreate({
       token: null,
       meta_key: validMetaKey,
@@ -57,7 +57,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -68,7 +68,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -95,7 +95,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,
@@ -106,7 +106,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       metasCreate({
         token: validToken,
@@ -120,7 +120,7 @@ describe('Project Metas Create - /project/metas/create', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     metasCreate({
       token: validToken,
       meta_key: validMetaKey,

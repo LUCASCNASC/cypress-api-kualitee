@@ -6,7 +6,7 @@ const validRequirementId = 101;
 
 describe('Requirements Tree Requirements - /requirements/tree_requirements', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,
@@ -19,7 +19,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     treeRequirements({
       project_id: validProjectId,
       requirement_id: validRequirementId
@@ -28,7 +28,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -66,7 +66,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,
@@ -77,7 +77,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       treeRequirements({
         token: validToken,
@@ -91,7 +91,7 @@ describe('Requirements Tree Requirements - /requirements/tree_requirements', () 
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     treeRequirements({
       token: validToken,
       project_id: validProjectId,

@@ -7,7 +7,7 @@ const validDefectId = 101;
 
 describe('Cycle - Defects Details - /defects/details', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -19,7 +19,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     defectsDetails({
       project_id: validProjectId,
       defect_id: validDefectId
@@ -28,7 +28,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -39,7 +39,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'GET',
       url: `/${PATH_API}`,
@@ -66,7 +66,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
   
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,
@@ -77,7 +77,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       defectsDetails({
         token: validToken,
@@ -91,7 +91,7 @@ describe('Cycle - Defects Details - /defects/details', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     defectsDetails({
       token: validToken,
       project_id: validProjectId,

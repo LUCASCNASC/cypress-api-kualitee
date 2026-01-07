@@ -7,7 +7,7 @@ const validTestScenarioId = 99;
 
 describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts', () => {
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseTreeInModulesTs({
       token: validToken,
       project_id: validProjectId,
@@ -20,7 +20,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     testCaseTreeInModulesTs({
       project_id: validProjectId,
       test_scenario_id: validTestScenarioId
@@ -29,7 +29,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     testCaseTreeInModulesTs({
       token: validToken,
       project_id: validProjectId,
@@ -40,7 +40,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -67,7 +67,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     testCaseTreeInModulesTs({
       token: validToken,
       project_id: validProjectId,
@@ -78,7 +78,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       testCaseTreeInModulesTs({
         token: validToken,
@@ -92,7 +92,7 @@ describe('Test Case Tree in Modules TS - /test_case/tree_testcase_in_modules_ts'
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     testCaseTreeInModulesTs({
       token: validToken,
       project_id: validProjectId,

@@ -17,7 +17,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   }
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -29,7 +29,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     buildDelete({
       project_id: validProjectId,
       'build_id[0]': validBuildId
@@ -38,7 +38,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     buildDelete({
       token: 'token_invalido',
       project_id: validProjectId,
@@ -48,7 +48,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 401, 403', () => {
+  it('Status Code are 401, 403', () => {
     buildDelete({
       token: 'token_expirado',
       project_id: validProjectId,
@@ -58,7 +58,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 401, 403', () => {
+  it('Status Code are 400, 401, 403', () => {
     buildDelete({
       token: null,
       project_id: validProjectId,
@@ -68,7 +68,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     buildDelete({
       token: validToken,
       'build_id[0]': validBuildId
@@ -77,7 +77,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 422, 404', () => {
+  it('Status Code are 400, 422, 404', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId
@@ -86,7 +86,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 404, 422, 400', () => {
+  it('Status Code are 404, 422, 400', () => {
     buildDelete({
       token: validToken,
       project_id: 999999,
@@ -96,7 +96,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 404, 422, 400', () => {
+  it('Status Code are 404, 422, 400', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -106,7 +106,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 200', () => {
+  it('Status Code are 200', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -117,7 +117,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 400, 415', () => {
+  it('Status Code are 400, 415', () => {
     cy.request({
       method: 'POST',
       url: `/${PATH_API}`,
@@ -144,7 +144,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
   
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,
@@ -155,7 +155,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 429', () => {
+  it('Status Code are 429', () => {
     const requests = Array(10).fill(0).map(() =>
       buildDelete({
         token: validToken,
@@ -169,7 +169,7 @@ describe('Build - Builds Delete - /build/delete', () => {
     });
   });
 
-  it('Status Code: 200, 400, 401, 409', () => {
+  it('Status Code are 200, 400, 401, 409', () => {
     buildDelete({
       token: validToken,
       project_id: validProjectId,

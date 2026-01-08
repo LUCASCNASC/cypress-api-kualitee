@@ -1,0 +1,7 @@
+{
+    "create": "/Build/BuildsCreate",
+    "delete": "/Build/BuildsDelete",
+    "details": "/Build/BuildsDelete",
+    "list": "/Build/BuiltList",
+    "update": "/Build/BuildsUpdate"
+}

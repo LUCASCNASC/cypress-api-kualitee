@@ -1,0 +1,7 @@
+{
+    "create": "/Custom%20Fields/Create",
+    "delete": "/Custom%20Fields/Delete",
+    "details": "/Custom%20Fields/detail",
+    "list": "/Custom%20Fields/List",
+    "update": "/Custom%20Fields/Update"
+}

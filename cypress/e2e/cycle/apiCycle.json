@@ -1,0 +1,19 @@
+{
+    "bulkupdate": "/Defect/Bulkupdate",
+    "create": "/Defect/Create",
+    "defect_metas": "/Defect/Defectmetas",
+    "delete_image": "/Defect/Deleteimages",
+    "delete": "/Defect/Delete",
+    "details": "/Defect/stagingdetail",
+    "get_defects": "/Defect/get_defects",
+    "import_step1": "/Defect/importstepone",
+    "import_step2": "/Defect/step2",
+    "jira_custom_sync": "/Defect/jira_custom_sync",
+    "jira_integration": "/Defect/jira_integration",
+    "list": "/Defect/List",
+    "tree_defects_in_build_module": "/Defect/Treedefectsinbuildmodule",
+    "tree_defects_in_build": "/Defect/Treedefectsinbuild",
+    "tree_defects_in_module": "/Defect/Treedefectsinmodule",
+    "tree": "/Defect/Tree",
+    "update": "/Defect/Update"
+}

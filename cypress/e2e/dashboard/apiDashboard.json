@@ -1,0 +1,21 @@
+{
+    "activities": "/Dashboard/Activities",
+    "approvedtc": "/Dashboard/TestCaseApproved",
+    "bugclosestatus": "/Dashboard/Defectsclosestatus",
+    "bugopenstatus": "/Dashboard/Defectsopenstatus",
+    "bugs_total": "/Dashboard/DefectsTotal",
+    "cycle": "/Dashboard/Cycle",
+    "defect_by_severity": "/Dashboard/Defectsbyseverity",
+    "defect_by_status": "/Dashboard/Defectsbystatus",
+    "defect_statistics": "/Dashboard/DefectsStatistics",
+    "dropdown_defect": "/Dashboard/DropdownDefects",
+    "dropdown_list": "/Dashboard/DropdownList",
+    "heatmap": "/Dashboard/Heatmap",
+    "notification_count": "/Dashboard/Notificationcount",
+    "notification_list": "/Dashboard/Dropdownnotificationlist",
+    "tcexecutionstatus": "/Dashboard/TestCaseExecutions",
+    "testcase_total": "/Dashboard/TestCaseTotal",
+    "tester_tray": "/Dashboard/TesterTray",
+    "testscenario_total": "/Dashboard/TestScenarioTotal",
+    "update_notification_status": "/Dashboard/UpdateNotificationStatus"
+}
